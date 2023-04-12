@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://bdkqfp6jym00f"]
+
+[ext_resource type="Theme" uid="uid://b4sdg0tw0ymsb" path="res://content/default_theme.tres" id="1_gycgf"]
+[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="3_7126r"]
+[ext_resource type="PackedScene" uid="uid://ckilqsajfuwmi" path="res://src/tscn/food_item_button.tscn" id="4_ft3d7"]
+
+[node name="ItemPickTab" type="MarginContainer"]
+offset_right = 333.0
+offset_bottom = 607.0
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme = ExtResource("1_gycgf")
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_gycgf")
+placeholder_text = "Фильтры"
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_gycgf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_7126r")
+ExportTitle = "vegetables"
+
+[node name="FoodItemButton" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_ft3d7")]
+layout_mode = 2
+
+[node name="FoodItemButton2" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_ft3d7")]
+layout_mode = 2
+
+[node name="FoodItemButton3" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_ft3d7")]
+layout_mode = 2
+
+[node name="FoodItemButton4" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_ft3d7")]
+layout_mode = 2
+
+[node name="FoodItemButton5" parent="VBoxContainer/PanelContainer/VBoxContainer/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("4_ft3d7")]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Добавить"

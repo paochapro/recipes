@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://8xmlah8red6q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_26ecw"]
+font_color = Color(0.376471, 0.376471, 0.376471, 1)
+
+[node name="RangeValue" type="HBoxContainer"]
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 2
+text = "до"
+label_settings = SubResource("LabelSettings_26ecw")
+
+[node name="To" type="SpinBox" parent="."]
+layout_mode = 2

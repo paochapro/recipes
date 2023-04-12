@@ -1,0 +1,154 @@
+[gd_scene load_steps=12 format=3 uid="uid://7jdhrwpvxxqw"]
+
+[ext_resource type="Script" path="res://src/code/Program.cs" id="1_4fc4l"]
+[ext_resource type="Theme" uid="uid://b4sdg0tw0ymsb" path="res://content/default_theme.tres" id="1_5myt1"]
+[ext_resource type="PackedScene" uid="uid://8xmlah8red6q" path="res://src/tscn/range_value.tscn" id="2_mfl4x"]
+[ext_resource type="Texture2D" uid="uid://8rlx7qpojxlk" path="res://icon.svg" id="2_np3tx"]
+[ext_resource type="Script" path="res://src/code/gui/ItemsSection.cs" id="3_32x1p"]
+[ext_resource type="PackedScene" uid="uid://bdkqfp6jym00f" path="res://src/tscn/item_pick_tab.tscn" id="3_rtd78"]
+[ext_resource type="Script" path="res://src/code/gui/FoodPickTab.cs" id="6_2sinn"]
+[ext_resource type="Script" path="res://src/code/gui/InventoryPickTab.cs" id="7_idevw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mr3l0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5dx4c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y00mv"]
+bg_color = Color(0.254902, 0.254902, 0.254902, 1)
+
+[node name="Program" type="Node"]
+script = ExtResource("1_4fc4l")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5myt1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_5myt1")
+alignment = 1
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_5myt1")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_5myt1")
+
+[node name="ItemsSection" type="TabContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+theme_override_constants/icon_separation = 8
+theme_override_icons/menu = ExtResource("2_np3tx")
+theme_override_icons/menu_highlight = ExtResource("2_np3tx")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mr3l0")
+theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_5dx4c")
+script = ExtResource("3_32x1p")
+
+[node name="FoodTab" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/ItemsSection" instance=ExtResource("3_rtd78")]
+layout_mode = 2
+script = ExtResource("6_2sinn")
+
+[node name="InventoryTab" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/ItemsSection" instance=ExtResource("3_rtd78")]
+visible = false
+layout_mode = 2
+script = ExtResource("7_idevw")
+
+[node name="AllTab" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/ItemsSection" instance=ExtResource("3_rtd78")]
+visible = false
+layout_mode = 2
+
+[node name="OptionsSection" type="PanelContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_y00mv")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer"]
+layout_mode = 2
+theme = ExtResource("1_5myt1")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Продукты:"
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer/HBoxContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+columns = 5
+
+[node name="Time" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer/Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Время приготовления:"
+
+[node name="RangeValue" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer/Time" instance=ExtResource("2_mfl4x")]
+layout_mode = 2
+
+[node name="Type" type="HBoxContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer/Type"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Тип блюда"
+
+[node name="OptionButton" type="OptionButton" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/OptionsSection/MarginContainer/HBoxContainer/Type"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 2
+selected = 0
+popup/item_0/text = "первый"
+popup/item_0/id = 0
+popup/item_1/text = "второй"
+popup/item_1/id = 1
+
+[node name="RecipesSection" type="TabContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer"]
+layout_mode = 2
+clip_tabs = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/RecipesSection"]
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/RecipesSection"]
+visible = false
+layout_mode = 2

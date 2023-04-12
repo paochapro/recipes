@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckilqsajfuwmi"]
+
+[ext_resource type="Script" path="res://src/code/gui/FoodItemButton.cs" id="1_m6p38"]
+[ext_resource type="Texture2D" uid="uid://ci27wydx14ee8" path="res://content/tomato.svg" id="2_n40tl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37dld"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y7i8n"]
+font_size = 18
+
+[node name="FoodItemButton" type="PanelContainer"]
+custom_minimum_size = Vector2(76, 76)
+offset_right = 76.0
+offset_bottom = 76.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_37dld")
+script = ExtResource("1_m6p38")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_n40tl")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Томат"
+label_settings = SubResource("LabelSettings_y7i8n")
+vertical_alignment = 1

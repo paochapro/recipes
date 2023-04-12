@@ -1,0 +1,11 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b4sdg0tw0ymsb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mb3t2"]
+
+[resource]
+MarginContainer/constants/margin_bottom = 10
+MarginContainer/constants/margin_left = 10
+MarginContainer/constants/margin_right = 10
+MarginContainer/constants/margin_top = 10
+TabContainer/constants/side_margin = 0
+TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_mb3t2")
