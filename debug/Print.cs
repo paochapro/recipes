@@ -13,8 +13,8 @@ static class Print
         GD.Print("ItemSet:");
         
         GD.Print("\tFood:");
-        foreach(FoodItem food in items.Food)
-            GD.Print($"\t\t{food.Name} ({food.Category})");
+        foreach(FoodWithCount food in items.Food)
+            GD.Print($"\t\t{food.Item.Name} [{food.Count}] ({food.Item.Category})");
                
         GD.Print("\tInv:");
         foreach(InventoryItem inv in items.Inventory)

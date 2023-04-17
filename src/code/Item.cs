@@ -16,29 +16,59 @@ readonly record struct InventoryItem(
 )
 : Item;
 
+//Food with count
+readonly record struct FoodWithCount(
+    FoodItem Item,
+    int Count
+);
+
 //ItemSet
 interface ReadonlyItemSet {
-    public IEnumerable<FoodItem> Food { get; }
+    public IEnumerable<FoodWithCount> Food { get; }
     public IEnumerable<InventoryItem> Inventory { get; }
+    
+    public IEnumerable<FoodItem> FoodItems { get; }
     public IEnumerable<string> FoodNames { get; }
     public IEnumerable<string> InventoryNames { get; }
 }
 
 class ItemSet : ReadonlyItemSet {
-    public List<FoodItem> FoodList;
+    public List<FoodWithCount> FoodList;
     public List<InventoryItem> InventoryList;
 
-    public IEnumerable<FoodItem> Food => FoodList;
+    public IEnumerable<FoodWithCount> Food => FoodList;
     public IEnumerable<InventoryItem> Inventory => InventoryList;
-    public IEnumerable<string> FoodNames => FoodList.Select(x => x.Name);
+
+    public IEnumerable<FoodItem> FoodItems => FoodList.Select(x => x.Item);
+    public IEnumerable<string> FoodNames => FoodList.Select(x => x.Item.Name);
     public IEnumerable<string> InventoryNames => InventoryList.Select(x => x.Name);
 
-    public ItemSet(List<FoodItem> foodList, List<InventoryItem> inventoryList) 
+    public ItemSet(List<FoodWithCount> foodList, List<InventoryItem> inventoryList) 
     {
         this.FoodList = foodList;
         this.InventoryList = inventoryList;
     }
 
-    public ItemSet() : this(new(), new())
+    public ItemSet() 
+        : this(new List<FoodWithCount>(), new List<InventoryItem>())
     {}
+}
+
+interface ReadonlyItemBank {
+    public IEnumerable<FoodItem> Food { get; }
+    public IEnumerable<InventoryItem> Inventory { get; }
+}
+
+class ItemBank : ReadonlyItemBank  {
+    public List<FoodItem> FoodList;
+    public List<InventoryItem> InventoryList;
+
+    public IEnumerable<FoodItem> Food => FoodList;
+    public IEnumerable<InventoryItem> Inventory => InventoryList;
+
+    public ItemBank(List<FoodItem> food, List<InventoryItem> inv)
+    {
+        FoodList = food;
+        InventoryList = inv;
+    }
 }

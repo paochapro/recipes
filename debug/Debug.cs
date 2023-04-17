@@ -1,151 +1,149 @@
 public partial class Debug : Node
 {
-	const string texturePlaceholder = "texture_uid_placeholder";
+    const string categoryPlaceholder = "category_placeholder";
+    const string texturePlaceholder = "texture_uid_placeholder";
 
-	//Data
-	RecipeGeneratorInfo recipeInfo;
-	ItemsSelectorInfo itemsInfo;
+    RecipeGeneratorInfo recipeInfo;
+    ItemsSelectorInfo itemsInfo;
 
-	ItemSet _localItemSet;
-	List<Recipe> _recipes;
+    ItemSet userItemSet;
+    List<Recipe> recipes;
 
-	ItemSet localItemSet {
-		get => _localItemSet;
-		set {
-			_localItemSet = value;
-			control.LocalItemsUpdate(_localItemSet);
-		}
-	}
+    //Nodes
+    #nullable disable
+    DebugControl control;
+    #nullable restore
 
-	List<Recipe> recipes {
-		get => _recipes;
-		set {
-			_recipes = value;
-			control.RecipesUpdate(_recipes);
-		}
-	}
+    public Debug()
+    {
+        userItemSet = new();
+        recipes = new();
+    }
 
-	void ItemSetFoodAdd(FoodItem item) {
-		localItemSet.FoodList.Add(item);
-		control.LocalItemsUpdate(localItemSet);
-	}
+    public override void _Ready()
+    {
+        string itemsJsonFile = "debug/items.json";
+        ReadonlyItemBank avaliableItemsBank = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
 
-	void ItemSetInventoryAdd(InventoryItem item) {
-		localItemSet.InventoryList.Add(item);
-		control.LocalItemsUpdate(localItemSet);
-	}
+        itemsInfo = new ItemsSelectorInfo() {
+            avaliableItems = avaliableItemsBank,
+            minItemRatio = 1/3,
+            maxItemRatio = 1.0f,
+        };
 
-	void RecipesListAdd(Recipe recipe) {
-		recipes.Add(recipe);
-		control.RecipesUpdate(recipes);
-	}
+        recipeInfo = new RecipeGeneratorInfo() {
+            itemsGeneratorInfo = itemsInfo,
+            minRandomMinutes = 20,
+            maxRandomMinutes = 100,
+            minRandomRecipes = 3,
+            maxRandomRecipes = 10,
+        };
 
-	//Nodes
-	#nullable disable
-	DebugControl control;
-	#nullable restore
+        control = GetNode<DebugControl>("Control");
+    }
 
-	public Debug()
-	{
-		_localItemSet = new();
-		_recipes = new();
-	}
+    public void GenerateLocalItems()
+    {
+        userItemSet = ItemSetGenerator.GenerateItemSet(itemsInfo);
+        control.FoodUpdate(userItemSet.Food);
+        control.InventoryUpdate(userItemSet.Inventory);
+    }
 
-	public override void _Ready()
-	{
-		string itemsJsonFile = "debug/items.json";
-		ReadonlyItemSet localItemSet = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
+    public void GenerateRecipes() 
+    {
+        recipes = RecipesGenerator.GenerateRecipes(recipeInfo).ToList();
+        control.RecipesUpdate(recipes);
+    }
 
-		itemsInfo = new ItemsSelectorInfo() {
-			avaliableItems = localItemSet,
-			minItemRatio = 1/3,
-			maxItemRatio = 1.0f,
-		};
+    public void Compare()
+    {
+        var result = RecipeCompare.Compare(recipes, userItemSet);
+        control.CompareUpdate(userItemSet, result);
+    }
 
-		recipeInfo = new RecipeGeneratorInfo() {
-			itemsGeneratorInfo = itemsInfo,
-			minRandomMinutes = 20,
-			maxRandomMinutes = 100,
-			minRandomRecipes = 3,
-			maxRandomRecipes = 10,
-		};
+    public void ClearLocalItems()
+    {
+        userItemSet = new();
+        control.FoodUpdate(userItemSet.Food);
+        control.InventoryUpdate(userItemSet.Inventory);
+    }
 
-		control = GetNode<DebugControl>("Control");
-	}
+    public void ClearRecipes() 
+    {
+        recipes.Clear();
+        control.RecipesUpdate(recipes);
+    }
+    
+    public void ClearCompare() => control.CompareUpdate(new ItemSet(), new Recipe[0]);
 
-	public void GenerateLocalItems() 
-	{
-		localItemSet = ItemsSelector.GetRandomItemSet(itemsInfo);
-	}
+    public void AddRecipe(string title, string foodStr, string invStr)
+    {
+        List<FoodWithCount> food = CreateFoodByString(foodStr, userItemSet.Food.Select(i => i.Item));
+        List<InventoryItem> inv = CreateInventoryByString(invStr, userItemSet.Inventory);
+        
+        ItemSet itemSet = new(food, inv);
+        
+        if(title == "")
+            title = $"recipe{recipes.Count+1}";
+            
+        RecipeSearchData searchData = new(itemSet, DishType.None, 0);
+        Recipe recipe = new(title, "instructions_placeholder", texturePlaceholder, searchData);
 
-	public void GenerateRecipes() 
-	{
-		recipes = RecipesGenerator.GenerateRecipes(recipeInfo).ToList();
-	}
+        recipes.Add(recipe);
+    }
 
-	public void Compare()
-	{
-		if(recipes == null || localItemSet == null)
-			return;
+    public void AddFoodItem(string str) 
+    {
+        var result = CreateFoodItemByString(str, userItemSet.Food.Select(f => f.Item).ToList());
+        userItemSet.FoodList.Add(result);
+        control.FoodUpdate(userItemSet.Food);
+    }
 
-		var result = RecipeCompare.Compare(recipes, localItemSet);
-		
-		control.CompareUpdate(localItemSet, result);
-	}
+    public void AddInventoryItem(string str) 
+    {
+        userItemSet.InventoryList.Add(CreateInventoryItemByString(str, userItemSet.Inventory));
+        control.InventoryUpdate(userItemSet.Inventory);
+    }
 
-	public void ClearLocalItems() => localItemSet = new();
-	public void ClearRecipes() => recipes = new();
-	public void ClearCompare() => control.CompareUpdate(new ItemSet(), new Recipe[0]);
+    //fuck dry im lazy
+    List<FoodWithCount> CreateFoodByString(string text, IEnumerable<FoodItem> foodBank)
+    {
+        string[] foodData = text.Split(',');
+        return foodData.Select(str => CreateFoodItemByString(str, foodBank)).ToList();
+    }
 
-	public void AddRecipe(string title, string foodStr, string invStr)
-	{
-		var createFoodFunc = (string name, string category) => {
-			return new FoodItem(name, category, texturePlaceholder);
-		};
+    List<InventoryItem> CreateInventoryByString(string itemStr, IEnumerable<InventoryItem> invBank)
+    {
+        string[] itemNames = itemStr.Split(',');
+        var items = itemNames.Select(n => new InventoryItem(n, categoryPlaceholder));
+        return items.ToList();
+    }
 
-		var createInvFunc = (string name, string category) => {
-			return new InventoryItem(name, category);
-		};
+    FoodWithCount CreateFoodItemByString(string str, IEnumerable<FoodItem> foodBank)
+    {
+        int count = Convert.ToInt32(str.Last());
+        string name = new string(str.SkipLast(1).ToArray());
 
-		List<FoodItem> food = MakeItemList(foodStr, localItemSet?.Food , createFoodFunc);
-		List<InventoryItem> inv = MakeItemList(invStr, localItemSet?.Inventory, createInvFunc);
-		
-		ItemSet itemSet = new(food, inv);
-		
-		if(title == "")
-			title = $"recipe{recipes.Count+1}";
-			
-		RecipeSearchData searchData = new(itemSet, DishType.None, 0);
-		Recipe recipe = new(title, "instructions_placeholder", texturePlaceholder, searchData);
-		RecipesListAdd(recipe);
-	}
+        FoodItem defaultItem = new FoodItem();
+        FoodItem resultItem = foodBank.FirstOrDefault(f => f.Name == name, defaultItem);
 
-	public void AddFoodItem(string name, string category) {
-		FoodItem item = new(name, category, texturePlaceholder);
-		ItemSetFoodAdd(item);
-	}
+        if(resultItem == defaultItem)
+        {
+            resultItem = new(name, categoryPlaceholder, texturePlaceholder);
+        }
 
-	public void AddInventoryItem(string name, string category) {
-		InventoryItem item = new(name, category);
-		ItemSetInventoryAdd(item);
-	}
+        return new FoodWithCount(resultItem, count);
+    }
 
-	List<TItem> MakeItemList<TItem>(string itemStr, IEnumerable<TItem>? existingItems, Func<string, string, TItem> createFunc)
-		where TItem : Item
-	{
-		string[] itemNames = itemStr.Split(',');
-		var items = itemNames.Select(n => CreateRecipeItem(n, existingItems, createFunc));
-		return items.ToList();
-	}
+    InventoryItem CreateInventoryItemByString(string str, IEnumerable<InventoryItem> invBank)
+    {
+        InventoryItem defaultItem = new InventoryItem();
+        InventoryItem resultItem = invBank.FirstOrDefault(f => f.Name == str, defaultItem);
 
-	TItem CreateRecipeItem<TItem>(string itemName, IEnumerable<TItem>? existingItems, Func<string, string, TItem> createFunc)
-		where TItem : Item
-	{
-		//If existing items contains an item with a name 'itemName'
-		if(existingItems != null && existingItems.Select(i => i.Name).Contains(itemName))
-			return existingItems.First(i => i.Name == itemName);
+        if(resultItem == defaultItem) {
+            resultItem = new(str, categoryPlaceholder);
+        }
 
-		var newItem = createFunc.Invoke(itemName, "category_placeholder");
-		return newItem;
-	}
+        return resultItem;
+    }
 }

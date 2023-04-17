@@ -15,11 +15,11 @@ static class RecipesGenerator
 
     static Recipe RandomRecipe(RecipeGeneratorInfo info, string name)
     {
-        ItemSet items = ItemsSelector.GetRandomItemSet(info.itemsGeneratorInfo);
+        ItemSet set = ItemSetGenerator.GenerateItemSet(info.itemsGeneratorInfo);
         DishType dishType = (DishType)GD.RandRange(0, Enum.GetValues(typeof(DishType)).Length-1);
         int minutes = GD.RandRange(info.minRandomMinutes, info.maxRandomMinutes);
 
-        RecipeSearchData searchData = new(items, dishType, minutes);
+        RecipeSearchData searchData = new(set, dishType, minutes);
         Recipe result = new(name, "instructions", "image_uid", searchData);
         return result;
     }
