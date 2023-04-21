@@ -4,7 +4,7 @@ partial class FoodItemButton : PanelContainer
     Label nameLabel;
     TextureRect image;
     Button button;
-    #nullable enable
+    #nullable restore
 
     public override void _Ready()
     {

@@ -1,13 +1,14 @@
-public partial class Debug : Node
+partial class Debug : Node
 {
-    const string categoryPlaceholder = "category_placeholder";
-    const string texturePlaceholder = "texture_uid_placeholder";
+    const string defCategory = "category_placeholder";
+    const string defTexture = "texture_uid_placeholder";
 
     RecipeGeneratorInfo recipeInfo;
     ItemsSelectorInfo itemsInfo;
 
-    ItemSet userItemSet;
     List<Recipe> recipes;
+    ItemSet userItemSet;
+    ItemSet filterItemSet;
 
     //Nodes
     #nullable disable
@@ -17,6 +18,7 @@ public partial class Debug : Node
     public Debug()
     {
         userItemSet = new();
+        filterItemSet = new();
         recipes = new();
     }
 
@@ -55,9 +57,12 @@ public partial class Debug : Node
         control.RecipesUpdate(recipes);
     }
 
-    public void Compare()
-    {
-        var result = RecipeCompare.Compare(recipes, userItemSet);
+    public void Compare(double minutesValue, int dishTypeValue)
+    {   
+        DishType dishType = (DishType)Mathf.Clamp(dishTypeValue, 0, Enum.GetValues(typeof(DishType)).Length);
+        int minutes = Mathf.RoundToInt(minutesValue);
+        SearchInfo info = new(userItemSet, filterItemSet, dishType, minutes);
+        var result = RecipeSearch.Search(recipes, info);
         control.CompareUpdate(userItemSet, result);
     }
 
@@ -66,6 +71,13 @@ public partial class Debug : Node
         userItemSet = new();
         control.FoodUpdate(userItemSet.Food);
         control.InventoryUpdate(userItemSet.Inventory);
+    }
+
+    public void ClearFilterItems()
+    {
+        filterItemSet = new();
+        control.FilterFoodUpdate(filterItemSet.Food);
+        control.FilterInventoryUpdate(filterItemSet.Inventory);
     }
 
     public void ClearRecipes() 
@@ -86,15 +98,15 @@ public partial class Debug : Node
         if(title == "")
             title = $"recipe{recipes.Count+1}";
             
-        RecipeSearchData searchData = new(itemSet, DishType.None, 0);
-        Recipe recipe = new(title, "instructions_placeholder", texturePlaceholder, searchData);
+        Recipe recipe = new(title, defCategory, defTexture, 0, itemSet, DishType.None);
 
         recipes.Add(recipe);
+        control.RecipesUpdate(recipes);
     }
 
     public void AddFoodItem(string str) 
     {
-        var result = CreateFoodItemByString(str, userItemSet.Food.Select(f => f.Item).ToList());
+        var result = CreateFoodItemByString(str, userItemSet.FoodItems);
         userItemSet.FoodList.Add(result);
         control.FoodUpdate(userItemSet.Food);
     }
@@ -103,6 +115,19 @@ public partial class Debug : Node
     {
         userItemSet.InventoryList.Add(CreateInventoryItemByString(str, userItemSet.Inventory));
         control.InventoryUpdate(userItemSet.Inventory);
+    }
+
+    public void AddFilterFoodItem(string str)
+    {
+        var food = CreateFoodItemByString(str, filterItemSet.FoodItems);
+        filterItemSet.FoodList.Add(food);
+        control.FilterFoodUpdate(filterItemSet.Food);
+    }
+
+    public void AddFilterInvItem(string str)
+    {
+        filterItemSet.InventoryList.Add(CreateInventoryItemByString(str, filterItemSet.Inventory));
+        control.FilterInventoryUpdate(filterItemSet.Inventory);
     }
 
     //fuck dry im lazy
@@ -115,21 +140,28 @@ public partial class Debug : Node
     List<InventoryItem> CreateInventoryByString(string itemStr, IEnumerable<InventoryItem> invBank)
     {
         string[] itemNames = itemStr.Split(',');
-        var items = itemNames.Select(n => new InventoryItem(n, categoryPlaceholder));
+        var items = itemNames.Select(n => new InventoryItem(n, defCategory));
         return items.ToList();
     }
 
     FoodWithCount CreateFoodItemByString(string str, IEnumerable<FoodItem> foodBank)
     {
-        int count = Convert.ToInt32(str.Last());
-        string name = new string(str.SkipLast(1).ToArray());
+        int count = 1;
+        string name = str;
+        char lastChar = str.Last();
+
+        if(char.IsDigit(lastChar))
+        {
+            count = (int)char.GetNumericValue(lastChar);
+            name = str.Substring(0, str.Length-1);
+        }
 
         FoodItem defaultItem = new FoodItem();
         FoodItem resultItem = foodBank.FirstOrDefault(f => f.Name == name, defaultItem);
 
         if(resultItem == defaultItem)
         {
-            resultItem = new(name, categoryPlaceholder, texturePlaceholder);
+            resultItem = new(name, defCategory, defTexture);
         }
 
         return new FoodWithCount(resultItem, count);
@@ -141,7 +173,7 @@ public partial class Debug : Node
         InventoryItem resultItem = invBank.FirstOrDefault(f => f.Name == str, defaultItem);
 
         if(resultItem == defaultItem) {
-            resultItem = new(str, categoryPlaceholder);
+            resultItem = new(str, defCategory);
         }
 
         return resultItem;

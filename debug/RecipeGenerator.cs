@@ -19,8 +19,7 @@ static class RecipesGenerator
         DishType dishType = (DishType)GD.RandRange(0, Enum.GetValues(typeof(DishType)).Length-1);
         int minutes = GD.RandRange(info.minRandomMinutes, info.maxRandomMinutes);
 
-        RecipeSearchData searchData = new(set, dishType, minutes);
-        Recipe result = new(name, "instructions", "image_uid", searchData);
+        Recipe result = new(name, "instructions", "image_uid", minutes, set, dishType);
         return result;
     }
 }

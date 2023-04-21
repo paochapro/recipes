@@ -7,7 +7,7 @@ public partial class Fold : VBoxContainer
     Container mainContainer;
     TextureRect arrowIcon;
     Label titleLabel;
-    #nullable enable
+    #nullable restore
 
     string title {
         get => titleLabel.Text;

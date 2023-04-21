@@ -1,35 +1,79 @@
 using System.Linq;
 
-static class RecipeCompare
+static class RecipeSearch
 {
-    public static IEnumerable<Recipe> Compare(IEnumerable<Recipe> recipes, ReadonlyItemSet localItems)
+    static bool orderingEnabled = false;
+
+    public static IEnumerable<Recipe> Search(IEnumerable<Recipe> recipes, SearchInfo searchInfo)
     {
-        IEnumerable<Recipe> compareRecipes = GetNeededRecipes(recipes, localItems).ToArray();
+        IEnumerable<Recipe> neededRecipes = GetNeededRecipes(recipes, searchInfo).ToArray();
 
-        var inventoryCompare = new ItemsCompare<InventoryItem>(localItems.Inventory);
-        var foodCompare = new ItemsCompare<FoodItem>(localItems.FoodItems);
+        var inventoryCompare = new ItemsCompare<InventoryItem>(searchInfo.LocalItemSet.Inventory);
+        var foodCompare = new ItemsCompare<FoodItem>(searchInfo.LocalItemSet.FoodItems);
 
-        var result = compareRecipes
-            .OrderByDescending(r => r.SearchData.ItemSet.Inventory, inventoryCompare);
+        IEnumerable<Recipe> result = neededRecipes;
+
+        if(orderingEnabled)
+        {
+            result = neededRecipes
+                .OrderByDescending(r => r.ItemSet.Inventory, inventoryCompare);
+        }
 
         return result;
     }
 
-    static IEnumerable<Recipe> GetNeededRecipes(IEnumerable<Recipe> recipes, ReadonlyItemSet localItems)
+    static IEnumerable<Recipe> GetNeededRecipes(IEnumerable<Recipe> recipes, SearchInfo info)
     {
         foreach(Recipe recipe in recipes)
-        {
-            var recipeFoodNames = recipe.SearchData.ItemSet.FoodNames;
-            var recipeInventoryNames = recipe.SearchData.ItemSet.InventoryNames;
-            var localFoodNames = localItems.FoodNames;
-            var localInvNames = localItems.InventoryNames;
-
-            int bothFoodCount = localFoodNames.Intersect(recipeFoodNames).Count();
-            int bothInventoryCount = localInvNames.Intersect(recipeInventoryNames).Count();
-
-            if(bothFoodCount > 0 && bothInventoryCount > 0)
+            if(DoesRecipePass(recipe, info))
                 yield return recipe;
-        }
+    }
+
+    static bool DoesRecipePass(Recipe recipe, SearchInfo info)
+    {
+        bool items = RecipePassItems(recipe, info.FilterItemSet);
+        bool dishType = RecipePassDishType(recipe, info.DishType);
+        bool time = RecipePassTime(recipe, info.Minutes);
+        return items && dishType && time;
+    }
+
+    static bool RecipePassItems(Recipe recipe, ReadonlyItemSet searchItemSet)
+    {
+        bool searchFood = searchItemSet.Food.Count() != 0;
+        bool searchInv = searchItemSet.Inventory.Count() != 0;
+
+        var recipeFoodNames = recipe.ItemSet.FoodNames;
+        var recipeInventoryNames = recipe.ItemSet.InventoryNames;
+        var localFoodNames = searchItemSet.FoodNames;
+        var localInvNames = searchItemSet.InventoryNames;
+
+        int bothFoodCount = localFoodNames.Intersect(recipeFoodNames).Count();
+        int bothInventoryCount = localInvNames.Intersect(recipeInventoryNames).Count();
+
+        //Check for food and inventory passes:
+        //If we arent searching for items of certain type, then item condition passes
+        //Else check if local items and recipe items have common items
+        //If they have common items - pass, dont have common - dont pass
+        bool foodPasses = !searchFood || (searchFood && bothFoodCount > 0);
+        bool invPasses = !searchInv || (searchInv && bothInventoryCount > 0);
+
+        return foodPasses && invPasses;
+    }
+
+    static bool RecipePassDishType(Recipe recipe, DishType searchDishType)
+    {
+        if(searchDishType == DishType.None)
+            return true;
+
+        return recipe.DishType == searchDishType;
+    }
+
+    static bool RecipePassTime(Recipe recipe, int searchMinutes)
+    {
+        if(searchMinutes <= 0)
+            return true;
+
+        return recipe.Minutes <= searchMinutes;
     }
 }
 
@@ -70,40 +114,12 @@ class ItemsCompare<TItem> : IComparer<IEnumerable<TItem>>
 
     int NullCompare(object? x, object? y)
     {
-        if(x == null && y == null)
-            return 0;
-
         if(x == null && y != null)
             return -1;
 
         if(x != null && y == null)
             return 1;
 
-        throw new Exception("Both objects in NullCompare were not null");
+        return 0;
     }
-
-    //Ratio comparing
-    // public int Compare(IEnumerable<TItem>? items1, IEnumerable<TItem>? items2)
-    // {
-    //     if(items1 == null || items2 == null)
-    //         return NullCompare(items1, items2);
-
-    //     float GetItemRatio(IEnumerable<TItem> items) 
-    //     {
-    //         int avaliableItemsCount = userInventory.Intersect(items).Count();
-    //         return avaliableItemsCount / items.Count();
-    //     }
-
-    //     //Compare avaliable items to item count ratios
-    //     float items1Ratio = GetItemRatio(items1);
-    //     float items2Ratio = GetItemRatio(items2);
-    //     int result = items1Ratio.CompareTo(items2Ratio);
-
-    //     //If ratios are the same
-    //     //Then compare which one has smallest item count
-    //     if(result == 0)
-    //         result = items2.Count() - items1.Count();
-        
-    //     return result;
-    // }
 }

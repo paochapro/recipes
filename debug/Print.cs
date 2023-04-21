@@ -4,7 +4,7 @@ static class Print
     {
         foreach(Recipe recipe in recipes) {
             GD.Print(recipe.Title.ToUpper() + ":");
-            ItemSet(recipe.SearchData.ItemSet);
+            ItemSet(recipe.ItemSet);
         }
     }
 

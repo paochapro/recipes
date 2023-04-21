@@ -8,7 +8,7 @@ public partial class ItemsSection : TabContainer
 
     #nullable disable
     Program program;
-    #nullable enable
+    #nullable restore
 
     void LocalizeTabNames() {
         var foodTab = GetNode<Control>("FoodTab");

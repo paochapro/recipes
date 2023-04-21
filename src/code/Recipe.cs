@@ -2,13 +2,9 @@ readonly record struct  Recipe(
     string Title,
     string Instructions,
     string ImageTextureUID,
-    RecipeSearchData SearchData
-);
-
-readonly record struct RecipeSearchData(
+    int Minutes,
     ReadonlyItemSet ItemSet,
-    DishType DishType,
-    int Minutes
+    DishType DishType
 );
 
 enum DishType
