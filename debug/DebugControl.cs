@@ -184,16 +184,16 @@ partial class DebugControl : Control
     public void AddLocalItemButton()
     {
         var form = itemSetSection.GetNode<Container>("VBoxContainer/AddItemForm");
-        var foodFunc = (string text) => root.AddFoodItem(text);
-        var invFunc = (string text) => root.AddInventoryItem(text);
+        var foodFunc = (string text) => root.AddLocalFoodItems(text);
+        var invFunc = (string text) => root.AddLocalInvItems(text);
         FormAddItem(form, foodFunc, invFunc);
     }
 
     public void AddFilterItemButton()
     {
         var form = filterSection.GetNode<Container>("Fold/Content/ItemSet/AddItemForm");
-        var foodFunc = (string text) => root.AddFilterFoodItem(text);
-        var invFunc = (string text) => root.AddFilterInvItem(text);
+        var foodFunc = (string text) => root.AddFilterFoodItems(text);
+        var invFunc = (string text) => root.AddFilterInvItems(text);
         FormAddItem(form, foodFunc, invFunc);
     }
 

@@ -2,11 +2,13 @@ partial class Debug : Node
 {
     const string defCategory = "category_placeholder";
     const string defTexture = "texture_uid_placeholder";
+    const string itemsJsonFile = "debug/items.json";
 
     RecipeGeneratorInfo recipeInfo;
     ItemsSelectorInfo itemsInfo;
 
     List<Recipe> recipes;
+    ItemBank itemBank;
     ItemSet userItemSet;
     ItemSet filterItemSet;
 
@@ -17,6 +19,7 @@ partial class Debug : Node
 
     public Debug()
     {
+        itemBank = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
         userItemSet = new();
         filterItemSet = new();
         recipes = new();
@@ -24,11 +27,8 @@ partial class Debug : Node
 
     public override void _Ready()
     {
-        string itemsJsonFile = "debug/items.json";
-        ReadonlyItemBank avaliableItemsBank = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
-
         itemsInfo = new ItemsSelectorInfo() {
-            avaliableItems = avaliableItemsBank,
+            avaliableItems = itemBank,
             minItemRatio = 1/3,
             maxItemRatio = 1.0f,
         };
@@ -61,7 +61,6 @@ partial class Debug : Node
     public void Compare(double minutesValue, int dishTypeValue)
     {   
         DishType dishType = (DishType)Mathf.Clamp(dishTypeValue, 0, Enum.GetValues(typeof(DishType)).Length-1);
-        GD.Print("Compare dish type: " + dishType);
         int minutes = Mathf.RoundToInt(minutesValue);
         SearchInfo info = new(userItemSet, filterItemSet, dishType, minutes);
         var result = RecipeSearch.Search(recipes, info);
@@ -92,8 +91,8 @@ partial class Debug : Node
 
     public void AddRecipe(string title, string foodStr, string invStr)
     {
-        List<FoodWithCount> food = CreateFoodByString(foodStr, userItemSet.Food.Select(i => i.Item));
-        List<InventoryItem> inv = CreateInventoryByString(invStr, userItemSet.Inventory);
+        List<FoodWithCount> food = CreateFoodByString(foodStr, itemBank.Food);
+        List<InventoryItem> inv = CreateInventoryByString(invStr, itemBank.Inventory);
         
         ItemSet itemSet = new(food, inv);
         
@@ -106,29 +105,27 @@ partial class Debug : Node
         control.RecipesUpdate(recipes);
     }
 
-    public void AddFoodItem(string str) 
+    public void AddLocalFoodItems(string str) 
     {
-        var result = CreateFoodItemByString(str, userItemSet.FoodItems);
-        userItemSet.FoodList.Add(result);
+        userItemSet.FoodList.AddRange(CreateFoodByString(str, itemBank.Food));
         control.FoodUpdate(userItemSet.Food);
     }
 
-    public void AddInventoryItem(string str) 
+    public void AddLocalInvItems(string str) 
     {
-        userItemSet.InventoryList.Add(CreateInventoryItemByString(str, userItemSet.Inventory));
+        userItemSet.InventoryList.AddRange(CreateInventoryByString(str, itemBank.Inventory));
         control.InventoryUpdate(userItemSet.Inventory);
     }
 
-    public void AddFilterFoodItem(string str)
+    public void AddFilterFoodItems(string str)
     {
-        var food = CreateFoodItemByString(str, filterItemSet.FoodItems);
-        filterItemSet.FoodList.Add(food);
+        filterItemSet.FoodList.AddRange(CreateFoodByString(str, itemBank.Food));
         control.FilterFoodUpdate(filterItemSet.Food);
     }
 
-    public void AddFilterInvItem(string str)
+    public void AddFilterInvItems(string str)
     {
-        filterItemSet.InventoryList.Add(CreateInventoryItemByString(str, filterItemSet.Inventory));
+        filterItemSet.InventoryList.AddRange(CreateInventoryByString(str, itemBank.Inventory));
         control.FilterInventoryUpdate(filterItemSet.Inventory);
     }
 
