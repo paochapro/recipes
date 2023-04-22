@@ -47,6 +47,9 @@ static class RecipeSearch
         var localFoodNames = searchItemSet.FoodNames;
         var localInvNames = searchItemSet.InventoryNames;
 
+        //bool containsAllFood = localFoodNames.Except(recipeFoodNames).Count() != 0;
+        //bool containsAllInv = localFoodNames.Except(recipeInventoryNames).Count() != 0;
+
         int bothFoodCount = localFoodNames.Intersect(recipeFoodNames).Count();
         int bothInventoryCount = localInvNames.Intersect(recipeInventoryNames).Count();
 

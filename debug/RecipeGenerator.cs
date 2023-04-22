@@ -16,7 +16,7 @@ static class RecipesGenerator
     static Recipe RandomRecipe(RecipeGeneratorInfo info, string name)
     {
         ItemSet set = ItemSetGenerator.GenerateItemSet(info.itemsGeneratorInfo);
-        DishType dishType = (DishType)GD.RandRange(0, Enum.GetValues(typeof(DishType)).Length-1);
+        DishType dishType = info.avaliableDishTypes[GD.RandRange(0, info.avaliableDishTypes.Length-1)];
         int minutes = GD.RandRange(info.minRandomMinutes, info.maxRandomMinutes);
 
         Recipe result = new(name, "instructions", "image_uid", minutes, set, dishType);
@@ -27,8 +27,9 @@ static class RecipesGenerator
 readonly record struct RecipeGeneratorInfo
 (
     ItemsSelectorInfo itemsGeneratorInfo,
-    int minRandomRecipes,
-    int maxRandomRecipes,
+    DishType[] avaliableDishTypes,
     int minRandomMinutes,
-    int maxRandomMinutes
+    int maxRandomMinutes,
+    int minRandomRecipes,
+    int maxRandomRecipes
 );

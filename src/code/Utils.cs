@@ -14,4 +14,10 @@ static class NodeExtenstions
             child.QueueFree();
         }
     }
+
+    public static void AddChildren(this Node node, IEnumerable<Node> children)
+    {
+        foreach(Node child in children)
+            node.AddChild(child);
+    }
 }

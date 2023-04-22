@@ -10,6 +10,7 @@ readonly record struct  Recipe(
 enum DishType
 {
     None,
-    Normal,
-    Max,
+    First,
+    Second,
+    Third,
 }

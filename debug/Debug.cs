@@ -35,6 +35,7 @@ partial class Debug : Node
 
         recipeInfo = new RecipeGeneratorInfo() {
             itemsGeneratorInfo = itemsInfo,
+            avaliableDishTypes = new DishType[] { DishType.First, DishType.Second, DishType.Third },
             minRandomMinutes = 20,
             maxRandomMinutes = 100,
             minRandomRecipes = 3,
@@ -59,7 +60,8 @@ partial class Debug : Node
 
     public void Compare(double minutesValue, int dishTypeValue)
     {   
-        DishType dishType = (DishType)Mathf.Clamp(dishTypeValue, 0, Enum.GetValues(typeof(DishType)).Length);
+        DishType dishType = (DishType)Mathf.Clamp(dishTypeValue, 0, Enum.GetValues(typeof(DishType)).Length-1);
+        GD.Print("Compare dish type: " + dishType);
         int minutes = Mathf.RoundToInt(minutesValue);
         SearchInfo info = new(userItemSet, filterItemSet, dishType, minutes);
         var result = RecipeSearch.Search(recipes, info);

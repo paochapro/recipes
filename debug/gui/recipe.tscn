@@ -5,10 +5,18 @@ offset_right = 390.0
 offset_bottom = 423.0
 size_flags_horizontal = 3
 
-[node name="Title" type="Label" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 text = "Recipe 0"
+
+[node name="Info" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Info"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2

@@ -1,214 +1,226 @@
 partial class DebugControl : Control
 {
-	bool showCategories = false;
+    bool showCategories = false;
+    bool moreRecipeInfo = true;
 
-	const string sectionContentPath = "VBoxContainer/PanelContainer/ScrollContainer/Content";
-	readonly PackedScene recipePackedScene = GD.Load<PackedScene>("uid://cnqfeh5fpq4ua");
-	readonly Color noMatchColor = Color.Color8(255,255,255);
-	readonly Color foundMatchColor = Color.Color8(70,70,255);
+    const string sectionContentPath = "VBoxContainer/PanelContainer/ScrollContainer/Content";
+    readonly PackedScene recipePackedScene = GD.Load<PackedScene>("uid://cnqfeh5fpq4ua");
+    readonly Color noMatchColor = Color.Color8(255,255,255);
+    readonly Color foundMatchColor = Color.Color8(70,70,255);
 
-	#nullable disable
-	Debug root;
-	Container itemSetSection;
-	Container recipeSection;
-	Container compareSection;
-	Container filterSection;
-	#nullable restore
+    #nullable disable
+    Debug root;
+    Container itemSetSection;
+    Container recipeSection;
+    Container compareSection;
+    Container filterSection;
+    #nullable restore
 
-	public override void _Ready() => GetNodes();
+    public override void _Ready() => GetNodes();
 
-	void GetNodes()
-	{
-		root = GetParent<Debug>();
+    void GetNodes()
+    {
+        root = GetParent<Debug>();
 
-		var sectionRoot = GetNode("HBoxContainer");
+        var sectionRoot = GetNode("HBoxContainer");
 
-		itemSetSection = sectionRoot.GetNode<Container>("ItemSetSection");
-		recipeSection = sectionRoot.GetNode<Container>("RecipeSection");
-		compareSection = sectionRoot.GetNode<Container>("SearchSection");
-		filterSection = compareSection.GetNode<Container>("Filters");
-	}
+        itemSetSection = sectionRoot.GetNode<Container>("ItemSetSection");
+        recipeSection = sectionRoot.GetNode<Container>("RecipeSection");
+        compareSection = sectionRoot.GetNode<Container>("SearchSection");
+        filterSection = compareSection.GetNode<Container>("Filters");
+        
+        AddDishTypesToFilterOptionButton();
+    }
 
-	void AddLabelChild(Node parent, string text) => AddItemLabelColored(parent, text, new Color(255,255,255));
-	
-	void AddItemLabelColored(Node parent, string text, Color color)
-	{    
-		Label label = new();
-		label.Text = text;
-		label.LabelSettings = new() {
-			FontColor = color
-		};
+    void AddDishTypesToFilterOptionButton()
+    {
+        var optionButton = filterSection.GetNode<OptionButton>("Fold/Content/DishType/OptionButton");
 
-		parent.AddChild(label);
-	}
+        foreach(string name in Enum.GetNames(typeof(DishType)))
+            optionButton.AddItem(name);
+    }
 
-	void AddRecipeScene(Node parent, Recipe recipe)
-	{
-		var recipeScene = recipePackedScene.Instantiate();
+    Label CreateLabel(string text) => CreateLabelColored(text, new Color(255,255,255));
+    
+    Label CreateLabelColored(string text, Color color)
+    {    
+        Label label = new();
+        label.Text = text;
+        label.LabelSettings = new() {
+            FontColor = color
+        };
+        return label;
+    }
 
-		var titleLabel = recipeScene.GetNode<Label>("Title");
-		var content1 = recipeScene.GetNode<Container>("MarginContainer/HBoxContainer/Content1");
-		var content2 = recipeScene.GetNode<Container>("MarginContainer/HBoxContainer/Content2");
+    Control CreateRecipeScene(Recipe recipe, IEnumerable<Control> contentNodes1, IEnumerable<Control> contentNodes2)
+    {
+        var recipeScene = recipePackedScene.Instantiate<Control>();
 
-		titleLabel.Text = recipe.Title;
+        var titleLabel = recipeScene.GetNode<Label>("HBoxContainer/Title");
+        var infoLabel = recipeScene.GetNode<Label>("HBoxContainer/Info");
+        var content1 = recipeScene.GetNode<Container>("MarginContainer/HBoxContainer/Content1");
+        var content2 = recipeScene.GetNode<Container>("MarginContainer/HBoxContainer/Content2");
 
-		//problem
-		ContentItemsUpdate(content1, GenerateFoodText(recipe.ItemSet.Food));
-		ContentItemsUpdate(content2, GenerateInvText(recipe.ItemSet.Inventory));
+        string dishTypeName = Enum.GetNames(typeof(DishType)).ElementAt((int)recipe.DishType);
 
-		parent.AddChild(recipeScene);
-	}
+        titleLabel.Text = recipe.Title;
+        infoLabel.Text = moreRecipeInfo ? $"[TIME:{recipe.Minutes}, DISH_TYPE:{dishTypeName}]" : "";
 
-	void AddCompareItemLabels<TItem>(IEnumerable<TItem> items, IEnumerable<TItem> compareColl, Container content) where TItem : Item 
-	{
-		foreach(TItem item in items)
-		{
-			bool match = compareColl.Contains(item);
-			AddItemLabelColored(content, item.Name, match ? foundMatchColor : noMatchColor);
-		}
-	}
+        foreach(var node in contentNodes1)
+            content1.AddChild(node);
 
-	void ContentItemsUpdate(Container container, IEnumerable<string> texts)
-	{
-		container.RemoveChildren();
+        foreach(var node in contentNodes2)
+            content2.AddChild(node);
 
-		foreach(var text in texts)
-			AddLabelChild(container, text);
-	}
+        return recipeScene;
+    }
 
-	IEnumerable<string> GenerateFoodText(IEnumerable<FoodWithCount> food)
-	{
-		foreach(var i in food)
-		{
-			string count = (i.Count == 1) ? "" : $"[{i.Count}x]"; 
-			string category = showCategories ? $"({i.Item.Category})" : "";
-			yield return $"{i.Item.Name} {count} {category}";
-		}
-	}
-	
-	IEnumerable<string> GenerateInvText(IEnumerable<InventoryItem> inv)
-	{
-		foreach(var i in inv)
-		{
-			string category = showCategories ? $"({i.Category})" : "";
-			yield return $"{i.Name} {category}";
-		}
-	}
+    IEnumerable<Label> GetCompareItemLabels<TItem>(IEnumerable<TItem> items, IEnumerable<TItem> compareColl) where TItem : Item 
+    {
+        foreach(TItem item in items)
+        {
+            bool match = compareColl.Contains(item);
+            yield return CreateLabelColored(item.Name, match ? foundMatchColor : noMatchColor);
+        }
+    }
 
-	public void FoodUpdate(IEnumerable<FoodWithCount> food)
-	{
-		var itemSetContent = itemSetSection.GetNode(sectionContentPath);
-		var foodContent = itemSetContent.GetNode<Container>("FoodSubsection/MarginContainer/Content");
-		ContentItemsUpdate(foodContent, GenerateFoodText(food));
-	}
+    IEnumerable<Label> GenerateLabelsFromStrings(IEnumerable<string> texts)
+    {
+        return texts.Select(t => CreateLabel(t));
+    }
 
-	public void InventoryUpdate(IEnumerable<InventoryItem> inv)
-	{
-		var itemSetContent = itemSetSection.GetNode(sectionContentPath);
-		var invContent = itemSetContent.GetNode<Container>("InvSubsection/MarginContainer/Content");
-		ContentItemsUpdate(invContent, GenerateInvText(inv));
-	}
+    IEnumerable<string> GenerateFoodText(IEnumerable<FoodWithCount> food)
+    {
+        foreach(var i in food)
+        {
+            string count = (i.Count == 1) ? "" : $"[{i.Count}x]"; 
+            string category = showCategories ? $"({i.Item.Category})" : "";
+            yield return $"{i.Item.Name} {count} {category}";
+        }
+    }
+    
+    IEnumerable<string> GenerateInvText(IEnumerable<InventoryItem> inv)
+    {
+        foreach(var i in inv)
+        {
+            string category = showCategories ? $"({i.Category})" : "";
+            yield return $"{i.Name} {category}";
+        }
+    }
 
-	public void RecipesUpdate(IEnumerable<Recipe> recipes) 
-	{
-		var recipesContent = recipeSection.GetNode<Container>(sectionContentPath);
+    void ContentItemsUpdate(Container content, IEnumerable<string> strings)
+    {
+        content.RemoveChildren();
+        content.AddChildren(GenerateLabelsFromStrings(strings));
+    }
 
-		recipesContent.RemoveChildren();
+    public void FoodUpdate(IEnumerable<FoodWithCount> food)
+    {
+        var itemSetContent = itemSetSection.GetNode(sectionContentPath);
+        var foodContent = itemSetContent.GetNode<Container>("FoodSubsection/MarginContainer/Content");
+        ContentItemsUpdate(foodContent, GenerateFoodText(food));
+    }
 
-		foreach(Recipe recipe in recipes)
-			AddRecipeScene(recipesContent, recipe);
-	}
+    public void InventoryUpdate(IEnumerable<InventoryItem> inv)
+    {
+        var itemSetContent = itemSetSection.GetNode(sectionContentPath);
+        var invContent = itemSetContent.GetNode<Container>("InvSubsection/MarginContainer/Content");
+        ContentItemsUpdate(invContent, GenerateInvText(inv));
+    }
 
-	public void CompareUpdate(ReadonlyItemSet itemSet, IEnumerable<Recipe> recipes) 
-	{
-		var compareContent = compareSection.GetNode<Container>("Search/" + sectionContentPath);
+    public void RecipesUpdate(IEnumerable<Recipe> recipes)
+    {
+        var recipesContent = recipeSection.GetNode<Container>(sectionContentPath);
 
-		compareContent.RemoveChildren();
+        recipesContent.RemoveChildren();
 
-		foreach(Recipe recipe in recipes)
-		{
-			var recipeScene = recipePackedScene.Instantiate();
+        foreach(Recipe recipe in recipes) {
+            var nodes1 = GenerateLabelsFromStrings(recipe.ItemSet.FoodNames);
+            var nodes2 = GenerateLabelsFromStrings(recipe.ItemSet.InventoryNames);
+            recipesContent.AddChild(CreateRecipeScene(recipe, nodes1, nodes2));
+        }
+    }
 
-			var titleLabel = recipeScene.GetNode<Label>("Title");
-			var content1 = recipeScene.GetNode<Container>("MarginContainer/HBoxContainer/Content1");
-			var content2 = recipeScene.GetNode<Container>("MarginContainer/HBoxContainer/Content2");
+    public void CompareUpdate(ReadonlyItemSet itemSet, IEnumerable<Recipe> recipes) 
+    {
+        var compareContent = compareSection.GetNode<Container>("Search/" + sectionContentPath);
 
-			titleLabel.Text = recipe.Title;
+        compareContent.RemoveChildren();
 
-			AddCompareItemLabels(recipe.ItemSet.FoodItems, itemSet.FoodItems, content1);
-			AddCompareItemLabels(recipe.ItemSet.Inventory, itemSet.Inventory, content2);
+        foreach(Recipe recipe in recipes) {
+            var nodes1 = GetCompareItemLabels(recipe.ItemSet.FoodItems, itemSet.FoodItems);
+            var nodes2 = GetCompareItemLabels(recipe.ItemSet.Inventory, itemSet.Inventory);
+            compareContent.AddChild(CreateRecipeScene(recipe, nodes1, nodes2));
+        }
+    }
 
-			compareContent.AddChild(recipeScene);
-		}
-	}
+    public void FilterFoodUpdate(IEnumerable<FoodWithCount> food)
+    {
+        var itemSet = filterSection.GetNode("Fold/Content/ItemSet");
+        var foodLabel = itemSet.GetNode<Label>("Food/Items");
 
-	public void FilterFoodUpdate(IEnumerable<FoodWithCount> food)
-	{
-		var itemSet = filterSection.GetNode("Fold/Content/ItemSet");
-		var foodLabel = itemSet.GetNode<Label>("Food/Items");
+        foodLabel.Text = string.Join(',', food.Select(f => f.Item.Name));
+    }
 
-		foodLabel.Text = string.Join(',', food.Select(f => f.Item.Name));
-	}
+    public void FilterInventoryUpdate(IEnumerable<InventoryItem> inv) 
+    {
+        var itemSet = filterSection.GetNode("Fold/Content/ItemSet");
+        var invLabel = itemSet.GetNode<Label>("Inventory/Items");
 
-	public void FilterInventoryUpdate(IEnumerable<InventoryItem> inv) 
-	{
-		var itemSet = filterSection.GetNode("Fold/Content/ItemSet");
-		var invLabel = itemSet.GetNode<Label>("Inventory/Items");
+        invLabel.Text = string.Join(',', inv.Select(i => i.Name));
+    }
 
-		invLabel.Text = string.Join(',', inv.Select(i => i.Name));
-	}
+    public void OnAddRecipeButtonPress()
+    {
+        var form = recipeSection.GetNode("VBoxContainer/AddRecipeForm");
+        var prompts = form.GetNode("VBoxContainer");
+        var titleLineEdit = prompts.GetNode<LineEdit>("TitlePrompt/LineEdit");
+        var foodLineEdit = prompts.GetNode<LineEdit>("FoodPrompt/LineEdit");
+        var invLineEdit = prompts.GetNode<LineEdit>("InvPrompt/LineEdit");
 
-	public void OnAddRecipeButtonPress()
-	{
-		var form = recipeSection.GetNode("VBoxContainer/AddRecipeForm");
-		var prompts = form.GetNode("VBoxContainer");
-		var titleLineEdit = prompts.GetNode<LineEdit>("TitlePrompt/LineEdit");
-		var foodLineEdit = prompts.GetNode<LineEdit>("FoodPrompt/LineEdit");
-		var invLineEdit = prompts.GetNode<LineEdit>("InvPrompt/LineEdit");
+        root.AddRecipe(titleLineEdit.Text, foodLineEdit.Text, invLineEdit.Text);
+    }
 
-		root.AddRecipe(titleLineEdit.Text, foodLineEdit.Text, invLineEdit.Text);
-	}
+    public void AddLocalItemButton()
+    {
+        var form = itemSetSection.GetNode<Container>("VBoxContainer/AddItemForm");
+        var foodFunc = (string text) => root.AddFoodItem(text);
+        var invFunc = (string text) => root.AddInventoryItem(text);
+        FormAddItem(form, foodFunc, invFunc);
+    }
 
-	public void AddLocalItemButton()
-	{
-		var form = itemSetSection.GetNode<Container>("VBoxContainer/AddItemForm");
-		var foodFunc = (string text) => root.AddFoodItem(text);
-		var invFunc = (string text) => root.AddInventoryItem(text);
-		FormAddItem(form, foodFunc, invFunc);
-	}
+    public void AddFilterItemButton()
+    {
+        var form = filterSection.GetNode<Container>("Fold/Content/ItemSet/AddItemForm");
+        var foodFunc = (string text) => root.AddFilterFoodItem(text);
+        var invFunc = (string text) => root.AddFilterInvItem(text);
+        FormAddItem(form, foodFunc, invFunc);
+    }
 
-	public void AddFilterItemButton()
-	{
-		var form = filterSection.GetNode<Container>("Fold/Content/ItemSet/AddItemForm");
-		var foodFunc = (string text) => root.AddFilterFoodItem(text);
-		var invFunc = (string text) => root.AddFilterInvItem(text);
-		FormAddItem(form, foodFunc, invFunc);
-	}
+    public void FormAddItem(Container form, Action<string> foodFunc, Action<string> invFunc)
+    {
+        var lineEdit = form.GetNode<LineEdit>("VBoxContainer/LineEdit");
+        var addFood = form.GetNode<CheckBox>("VBoxContainer/HBoxContainer/AddFood");
+        var addInv = form.GetNode<CheckBox>("VBoxContainer/HBoxContainer/AddInventory");
 
-	public void FormAddItem(Container form, Action<string> foodFunc, Action<string> invFunc)
-	{
-		var lineEdit = form.GetNode<LineEdit>("VBoxContainer/LineEdit");
-		var addFood = form.GetNode<CheckBox>("VBoxContainer/HBoxContainer/AddFood");
-		var addInv = form.GetNode<CheckBox>("VBoxContainer/HBoxContainer/AddInventory");
+        if(addFood.ButtonPressed)
+            foodFunc.Invoke(lineEdit.Text);
 
-		if(addFood.ButtonPressed)
-			foodFunc.Invoke(lineEdit.Text);
+        if(addInv.ButtonPressed)
+            invFunc.Invoke(lineEdit.Text);
+    }
 
-		if(addInv.ButtonPressed)
-			invFunc.Invoke(lineEdit.Text);
-	}
+    public void OnSearchButtonPress()
+    {
+        var filters = GetNode("HBoxContainer/SearchSection/Filters");
+        var dishType = filters.GetNode<OptionButton>("Fold/Content/DishType/OptionButton");
+        var time = filters.GetNode<SpinBox>("Fold/Content/Time/SpinBox");
 
-	public void OnSearchButtonPress()
-	{
-		var filters = GetNode("HBoxContainer/SearchSection/Filters");
-		var dishType = filters.GetNode<OptionButton>("Fold/Content/DishType/OptionButton");
-		var time = filters.GetNode<SpinBox>("Fold/Content/Time/SpinBox");
+        root.Compare(time.Value, dishType.Selected);
+    }
 
-		root.Compare(time.Value, dishType.Selected);
-	}
-
-	public void OnSearchClearButtonPress()
-	{
-		CompareUpdate(new ItemSet(), new Recipe[0]);
-	}
+    public void OnSearchClearButtonPress()
+    {
+        CompareUpdate(new ItemSet(), new Recipe[0]);
+    }
 }
