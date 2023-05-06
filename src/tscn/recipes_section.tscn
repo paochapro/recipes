@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dpjq0bsmrengm" path="res://src/tscn/control_panel.tscn" id="1_8x03f"]
 [ext_resource type="PackedScene" uid="uid://dbikslr1uubmp" path="res://src/tscn/filters.tscn" id="2_8yqw5"]
 
-[node name="PanelContainer" type="PanelContainer"]
+[node name="RecipesSection" type="PanelContainer"]
 offset_right = 397.0
 offset_bottom = 649.0
 
@@ -27,3 +27,5 @@ layout_mode = 2
 
 [node name="Filters" parent="Components" instance=ExtResource("2_8yqw5")]
 layout_mode = 2
+
+[editable path="Components/ControlPanel"]

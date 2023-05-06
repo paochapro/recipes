@@ -1,24 +1,36 @@
 abstract partial class ItemsSubsection<TItem> : VBoxContainer
 {
+    public event Action CreateItemButtonPress;
+
+    //Debug
     static ItemBank debugBank = ItemsFromJson.GetItemsFromJson("content/items.json");
     protected static ReadonlyItemBank DebugBank => debugBank;
 
-    protected abstract IEnumerable<TItem> AvaliableItems { get; }
-
     #nullable disable
-    Container content;
+    protected Container content;
     #nullable restore
+
+    public ItemsSubsection()
+    {
+        CreateItemButtonPress += () => {};
+    }
 
 	public override sealed void _Ready()
 	{
         OnReady();
         content = GetNode<Container>("ScrollContainer/Content");
+
+        var lineedit = GetNode<LineEdit>("ControlPanel/LineEdit");
+        lineedit.TextChanged += OnSearchTextChanged;
+
+        var createButton = GetNode<Button>("ControlPanel/Button");
+        createButton.Pressed += () => { CreateItemButtonPress.Invoke(); };
+
         UpdateContent(AvaliableItems);
 	}
 
-    public void OnSearchTextChanged(string text)
+    protected void OnSearchTextChanged(string text)
     {
-        GD.Print("ai count: " + AvaliableItems.Count());
         var result = ItemSearch.Search(AvaliableItems.Cast<Item>(), text);
         IEnumerable<TItem> items = result.Cast<TItem>();
 
@@ -33,6 +45,9 @@ abstract partial class ItemsSubsection<TItem> : VBoxContainer
             content.AddChild(GetControlForItem(item));
     }
 
-    protected abstract Control GetControlForItem(TItem item);
     protected abstract void OnReady();
+
+    protected abstract IEnumerable<TItem> AvaliableItems { get; }
+
+    protected abstract Control GetControlForItem(TItem item);
 }

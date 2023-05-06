@@ -1,10 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://7jdhrwpvxxqw"]
+[gd_scene load_steps=11 format=3 uid="uid://7jdhrwpvxxqw"]
 
 [ext_resource type="Script" path="res://src/code/Program.cs" id="1_4fc4l"]
 [ext_resource type="Theme" uid="uid://b4sdg0tw0ymsb" path="res://content/default_theme.tres" id="1_5myt1"]
 [ext_resource type="PackedScene" uid="uid://8xmlah8red6q" path="res://src/tscn/range_value.tscn" id="2_mfl4x"]
 [ext_resource type="Texture2D" uid="uid://8rlx7qpojxlk" path="res://icon.svg" id="2_np3tx"]
-[ext_resource type="Script" path="res://src/code/gui/ItemsSection.cs" id="3_32x1p"]
 [ext_resource type="PackedScene" uid="uid://bdkqfp6jym00f" path="res://src/tscn/item_pick_tab.tscn" id="3_rtd78"]
 [ext_resource type="Script" path="res://src/code/gui/FoodPickTab.cs" id="6_2sinn"]
 [ext_resource type="Script" path="res://src/code/gui/InventoryPickTab.cs" id="7_idevw"]
@@ -59,7 +58,6 @@ theme_override_icons/menu = ExtResource("2_np3tx")
 theme_override_icons/menu_highlight = ExtResource("2_np3tx")
 theme_override_styles/panel = SubResource("StyleBoxFlat_mr3l0")
 theme_override_styles/tabbar_background = SubResource("StyleBoxFlat_5dx4c")
-script = ExtResource("3_32x1p")
 
 [node name="FoodTab" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/ItemsSection" instance=ExtResource("3_rtd78")]
 layout_mode = 2

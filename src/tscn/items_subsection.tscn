@@ -18,6 +18,4 @@ size_flags_vertical = 3
 [node name="ControlPanel" parent="." instance=ExtResource("1_xfghm")]
 layout_mode = 2
 
-[connection signal="text_changed" from="ControlPanel/LineEdit" to="." method="OnSearchTextChanged"]
-
 [editable path="ControlPanel"]

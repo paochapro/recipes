@@ -4,5 +4,5 @@
 offset_right = 313.0
 offset_bottom = 31.0
 size_flags_horizontal = 3
-placeholder_text = "Search"
+placeholder_text = "Поиск"
 clear_button_enabled = true

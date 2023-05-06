@@ -1,0 +1,87 @@
+[gd_scene load_steps=5 format=3 uid="uid://37nem4yrgw63"]
+
+[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/sault.svg" id="1_6m1os"]
+[ext_resource type="Script" path="res://src/code/gui/CreateFood.cs" id="1_m02bs"]
+[ext_resource type="PackedScene" uid="uid://ciy5m1774low5" path="res://src/tscn/image_file_dialog.tscn" id="2_nms35"]
+[ext_resource type="LabelSettings" uid="uid://m8vincgqqsa4" path="res://content/error_label_settings.tres" id="4_uhhge"]
+
+[node name="CreateFood" type="PanelContainer"]
+offset_right = 341.0
+offset_bottom = 526.0
+script = ExtResource("1_m02bs")
+fileDialogScene = ExtResource("2_nms35")
+
+[node name="Components" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Components"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Components/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Создать пищевой продукт"
+
+[node name="Label" type="Label" parent="Components"]
+layout_mode = 2
+text = "Изображение:"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Components"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Components/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("1_6m1os")
+
+[node name="Button" type="Button" parent="Components/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Загрузить изображение"
+
+[node name="Name" type="HBoxContainer" parent="Components"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Components/Name"]
+layout_mode = 2
+text = "Название:"
+
+[node name="LineEdit" type="LineEdit" parent="Components/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Category" type="HBoxContainer" parent="Components"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Components/Category"]
+layout_mode = 2
+text = "Категория:"
+
+[node name="LineEdit" type="LineEdit" parent="Components/Category"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateButton" type="Button" parent="Components"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Создать"
+
+[node name="LoadErrorLabel" type="Label" parent="Components"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Загрузить изображение не удалось."
+label_settings = ExtResource("4_uhhge")
+
+[node name="EmptyErrorLabel" type="Label" parent="Components"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Название или категория отсутствует."
+label_settings = ExtResource("4_uhhge")
+
+[connection signal="pressed" from="Components/HBoxContainer/Button" to="." method="OnImageButtonPressed"]
+[connection signal="pressed" from="Components/CreateButton" to="." method="OnCreateButtonPressed"]
