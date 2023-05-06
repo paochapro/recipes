@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://cp2rqo0hbhim7"]
+
+[ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_mboqg"]
+[ext_resource type="PackedScene" uid="uid://cgthrsajq1mxn" path="res://src/tscn/items_section.tscn" id="1_pxiax"]
+[ext_resource type="PackedScene" uid="uid://ced2qhfiu2nk1" path="res://src/tscn/recipes_section.tscn" id="2_y3vfk"]
+
+[node name="Program" type="Node"]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mboqg")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Control/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="HSplitContainer" type="HSplitContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="ItemsSection" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer" instance=ExtResource("1_pxiax")]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="PanelContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer" instance=ExtResource("2_y3vfk")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2

@@ -1,0 +1,10 @@
+{
+	"food": {
+		"fruits": ["banana", "apple", "grapefruit"],
+		"vegetables": ["potato", "tomato", "pickle"]
+	},
+	"inventory": {
+		"tech": ["oven", "gas"],
+		"tool": ["pan", "knife"]
+	}
+}

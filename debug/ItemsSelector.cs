@@ -1,7 +1,5 @@
 using System.Linq;
 
-readonly record struct Avaliable(string[] Names, string[] Categories);
-
 static class ItemsSelector
 {
     public static ItemBank GetRandomItemSet(ItemsSelectorInfo info)

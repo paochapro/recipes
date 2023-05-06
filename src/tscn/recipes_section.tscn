@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://ced2qhfiu2nk1"]
+
+[ext_resource type="PackedScene" uid="uid://dpjq0bsmrengm" path="res://src/tscn/control_panel.tscn" id="1_8x03f"]
+[ext_resource type="PackedScene" uid="uid://dbikslr1uubmp" path="res://src/tscn/filters.tscn" id="2_8yqw5"]
+
+[node name="PanelContainer" type="PanelContainer"]
+offset_right = 397.0
+offset_bottom = 649.0
+
+[node name="Components" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="Components"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Components/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Recipes"
+
+[node name="Content" type="VBoxContainer" parent="Components"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ControlPanel" parent="Components" instance=ExtResource("1_8x03f")]
+layout_mode = 2
+
+[node name="Filters" parent="Components" instance=ExtResource("2_8yqw5")]
+layout_mode = 2

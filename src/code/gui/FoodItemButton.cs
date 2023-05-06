@@ -1,22 +1,13 @@
 partial class FoodItemButton : PanelContainer
 {
-    #nullable disable
-    Label nameLabel;
-    TextureRect image;
-    Button button;
-    #nullable restore
+	public void Initialize(string name, Texture2D imageTexture, Action onButtonClick)
+	{
+        var nameLabel = GetNode<Label>("HBoxContainer/Label");
+		var image = GetNode<TextureRect>("HBoxContainer/TextureRect");
+		var button = GetNode<Button>("Button");
 
-    public override void _Ready()
-    {
-        nameLabel = GetNode<Label>("HBoxContainer/Label");
-        image = GetNode<TextureRect>("HBoxContainer/TextureRect");
-        button = GetNode<Button>("Button");
-    }
-
-    public void Initialize(string name, Texture2D imageTexture, Action onButtonClick)
-    {
-        nameLabel.Text = name;
-        image.Texture = imageTexture;
-        button.ButtonUp += onButtonClick;
-    }
+		nameLabel.Text = name;
+		image.Texture = imageTexture;
+		button.ButtonUp += onButtonClick;
+	}
 }

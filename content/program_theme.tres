@@ -1,0 +1,30 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://cryc6iba6l42n"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6566v"]
+bg_color = Color(0.266667, 0.266667, 0.266667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4umjs"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+bg_color = Color(0.266667, 0.266667, 0.266667, 1)
+border_width_top = 2
+border_color = Color(0.454902, 0.745098, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m85et"]
+content_margin_left = 8.0
+content_margin_top = 2.0
+content_margin_right = 8.0
+content_margin_bottom = 2.0
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_avjni"]
+bg_color = Color(0.2, 0.2, 0.2, 1)
+
+[resource]
+TabContainer/constants/side_margin = 0
+TabContainer/styles/panel = SubResource("StyleBoxFlat_6566v")
+TabContainer/styles/tab_selected = SubResource("StyleBoxFlat_4umjs")
+TabContainer/styles/tab_unselected = SubResource("StyleBoxFlat_m85et")
+TabContainer/styles/tabbar_background = SubResource("StyleBoxFlat_avjni")

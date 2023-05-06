@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpjq0bsmrengm"]
+
+[ext_resource type="PackedScene" uid="uid://cwui08h0lmfae" path="res://src/tscn/search_bar.tscn" id="1_v3mmm"]
+
+[node name="ControlPanel" type="HBoxContainer"]
+offset_right = 358.0
+offset_bottom = 40.0
+
+[node name="LineEdit" parent="." instance=ExtResource("1_v3mmm")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+text = "+"

@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://cwui08h0lmfae"]
+
+[node name="LineEdit" type="LineEdit"]
+offset_right = 313.0
+offset_bottom = 31.0
+size_flags_horizontal = 3
+placeholder_text = "Search"
+clear_button_enabled = true

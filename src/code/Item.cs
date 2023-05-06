@@ -71,4 +71,9 @@ class ItemBank : ReadonlyItemBank  {
         FoodList = food;
         InventoryList = inv;
     }
+
+    public ItemBank()
+        : this(new(), new()) 
+    {
+    }
 }

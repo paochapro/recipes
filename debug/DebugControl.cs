@@ -148,6 +148,7 @@ partial class DebugControl : Control
         compareContent.RemoveChildren();
 
         foreach(Recipe recipe in recipes) {
+
             var nodes1 = GetCompareItemLabels(recipe.ItemSet.FoodItems, itemSet.FoodItems);
             var nodes2 = GetCompareItemLabels(recipe.ItemSet.Inventory, itemSet.Inventory);
             compareContent.AddChild(CreateRecipeScene(recipe, nodes1, nodes2));

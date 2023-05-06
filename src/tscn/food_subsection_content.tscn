@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://b8tjag4hg3s1j"]
+
+[node name="Content" type="VBoxContainer"]
+offset_right = 364.0
+offset_bottom = 651.0
+size_flags_horizontal = 3
+size_flags_vertical = 3

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://cgthrsajq1mxn"]
+
+[ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsection.tscn" id="1_v8c5m"]
+[ext_resource type="Script" path="res://src/code/FoodSubsection.cs" id="2_0hql5"]
+[ext_resource type="Script" path="res://src/code/InvSubsection.cs" id="3_qbwn2"]
+
+[node name="ItemsSection" type="VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
+offset_right = 446.0
+offset_bottom = 648.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Food" parent="TabContainer" instance=ExtResource("1_v8c5m")]
+layout_mode = 2
+script = ExtResource("2_0hql5")
+
+[node name="Inv" parent="TabContainer" instance=ExtResource("1_v8c5m")]
+visible = false
+layout_mode = 2
+script = ExtResource("3_qbwn2")
+
+[node name="All" parent="TabContainer" instance=ExtResource("1_v8c5m")]
+visible = false
+layout_mode = 2

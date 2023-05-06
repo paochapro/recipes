@@ -3,20 +3,27 @@ using System.IO;
 
 static class ItemsFromJson
 {
-    public static ItemBank GetItemsFromJson(string itemsJsonFile)
+    public static ItemBank GetItemsFromJson(string jsonPath)
     {
         List<FoodItem> food = new();
         List<InventoryItem> inventory = new();
 
-        using(StreamReader reader = new(itemsJsonFile))
+        using(Godot.FileAccess file = Godot.FileAccess.Open(jsonPath, Godot.FileAccess.ModeFlags.Read))
         {
-            string json = reader.ReadToEnd();
-            var dict = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string[]>>>(json);
-
-            if(dict != null)
+            if(file != null)
             {
-                food = GetItemsFromItemType<FoodItem>(dict["food"], GetNewFoodItem).ToList();
-                inventory = GetItemsFromItemType<InventoryItem>(dict["inventory"], GetNewInventoryItem).ToList();
+                string jsonText = file.GetAsText();
+                var dict = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<string, string[]>>>(jsonText);
+
+                if(dict != null)
+                {
+                    food = GetItemsFromItemType<FoodItem>(dict["food"], GetNewFoodItem).ToList();
+                    inventory = GetItemsFromItemType<InventoryItem>(dict["inventory"], GetNewInventoryItem).ToList();
+                }
+            }
+            else
+            {
+                GD.PrintErr(Godot.FileAccess.GetOpenError());
             }
         }
 

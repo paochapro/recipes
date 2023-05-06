@@ -2,7 +2,6 @@ partial class Debug : Node
 {
     const string defCategory = "category_placeholder";
     const string defTexture = "texture_uid_placeholder";
-    const string itemsJsonFile = "debug/items.json";
 
     RecipeGeneratorInfo recipeInfo;
     ItemsSelectorInfo itemsInfo;
@@ -19,7 +18,7 @@ partial class Debug : Node
 
     public Debug()
     {
-        itemBank = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
+        itemBank = ItemsFromJson.GetItemsFromJson("res://content/items.json");
         userItemSet = new();
         filterItemSet = new();
         recipes = new();
@@ -27,6 +26,7 @@ partial class Debug : Node
 
     public override void _Ready()
     {
+
         itemsInfo = new ItemsSelectorInfo() {
             avaliableItems = itemBank,
             minItemRatio = 1/3,
