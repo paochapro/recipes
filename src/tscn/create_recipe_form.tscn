@@ -1,0 +1,62 @@
+[gd_scene load_steps=3 format=3 uid="uid://bersmo4ubx7eu"]
+
+[ext_resource type="Script" path="res://src/code/gui/CreateRecipeForm.cs" id="1_0vlud"]
+[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/sault.svg" id="1_lf0qt"]
+
+[node name="CreateRecipeForm" type="VBoxContainer"]
+offset_right = 381.0
+offset_bottom = 590.0
+script = ExtResource("1_0vlud")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Изображение:"
+
+[node name="Image" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Image"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("1_lf0qt")
+
+[node name="Button" type="Button" parent="Image"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Загрузить изображение"
+
+[node name="Name" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Name"]
+layout_mode = 2
+text = "Название:"
+
+[node name="LineEdit" type="LineEdit" parent="Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Time" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Time"]
+layout_mode = 2
+text = "Макс. время (мин):"
+
+[node name="SpinBox" type="SpinBox" parent="Time"]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_greater = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+text = "Тип блюда:"
+
+[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3

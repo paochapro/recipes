@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dcfpoo2h8yuf4"]
+[gd_scene load_steps=8 format=3 uid="uid://dcfpoo2h8yuf4"]
 
 [ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_mboqg"]
 [ext_resource type="PackedScene" uid="uid://c4m08fa0e1b0n" path="res://src/tscn/item_set_section.tscn" id="1_pxiax"]
 [ext_resource type="PackedScene" uid="uid://ced2qhfiu2nk1" path="res://src/tscn/recipes_section.tscn" id="2_y3vfk"]
 [ext_resource type="Script" path="res://src/code/gui/DynamicWindow.cs" id="3_tmb7u"]
+[ext_resource type="PackedScene" uid="uid://dvtof26a07574" path="res://src/tscn/create_inv_menu.tscn" id="4_v6l60"]
 [ext_resource type="Script" path="res://src/code/gui/RecipesSection.cs" id="5_0kktu"]
+[ext_resource type="PackedScene" uid="uid://dm3o7nxtg4hhq" path="res://src/tscn/create_food_menu.tscn" id="5_laod1"]
 
 [node name="Program" type="Node"]
 
@@ -45,12 +47,18 @@ theme_override_constants/separation = 5
 [node name="ItemSetSection" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer" instance=ExtResource("1_pxiax")]
 layout_mode = 2
 
-[node name="DynamicWindow" type="Control" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer" node_paths=PackedStringArray("itemSetSection", "recipesSection")]
+[node name="DynamicWindow" type="VBoxContainer" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer" node_paths=PackedStringArray("itemSetSection", "recipesSection")]
 layout_mode = 2
-size_flags_horizontal = 3
 script = ExtResource("3_tmb7u")
 itemSetSection = NodePath("../ItemSetSection")
 recipesSection = NodePath("../../RecipesSection")
+
+[node name="CreateFoodMenu" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("5_laod1")]
+layout_mode = 2
+
+[node name="CreateInvMenu" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("4_v6l60")]
+visible = false
+layout_mode = 2
 
 [node name="RecipesSection" parent="Control/MarginContainer/HBoxContainer/HSplitContainer" instance=ExtResource("2_y3vfk")]
 custom_minimum_size = Vector2(400, 0)

@@ -1,4 +1,4 @@
-readonly record struct  Recipe(
+readonly record struct Recipe(
     string Title,
     string Instructions,
     string ImageTextureUID,

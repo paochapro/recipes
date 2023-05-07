@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvh6l72wx212b"]
+
+[ext_resource type="PackedScene" uid="uid://b6753yr6hb1l0" path="res://src/tscn/create_menu.tscn" id="1_r2v45"]
+[ext_resource type="Script" path="res://src/code/gui/CreateInvMenu.cs" id="1_s1ukc"]
+[ext_resource type="PackedScene" uid="uid://durt7fcomnrl1" path="res://src/tscn/create_inv_form.tscn" id="2_77u7a"]
+
+[node name="CreateMenu" instance=ExtResource("1_r2v45")]
+script = ExtResource("1_s1ukc")
+
+[node name="Label" parent="Content/Title" index="0"]
+text = "gfdsgds"
+
+[node name="CreateInvForm" parent="Content/FormRoot" index="0" instance=ExtResource("2_77u7a")]
+layout_mode = 2

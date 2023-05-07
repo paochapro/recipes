@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://durt7fcomnrl1"]
+
+[ext_resource type="Script" path="res://src/code/gui/CreateInvForm.cs" id="1_1v7f2"]
+
+[node name="CreateInvForm" type="VBoxContainer"]
+offset_right = 267.0
+offset_bottom = 88.0
+script = ExtResource("1_1v7f2")
+
+[node name="Name" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Name"]
+layout_mode = 2
+text = "Название:"
+
+[node name="LineEdit" type="LineEdit" parent="Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Category" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Category"]
+layout_mode = 2
+text = "Категория:"
+
+[node name="LineEdit" type="LineEdit" parent="Category"]
+layout_mode = 2
+size_flags_horizontal = 3

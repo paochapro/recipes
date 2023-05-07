@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://gr27shwuqy0e"]
+
+[ext_resource type="PackedScene" uid="uid://b6753yr6hb1l0" path="res://src/tscn/create_menu.tscn" id="1_ysam7"]
+[ext_resource type="Script" path="res://src/code/gui/CreateRecipeMenu.cs" id="2_i5on6"]
+[ext_resource type="PackedScene" uid="uid://bersmo4ubx7eu" path="res://src/tscn/create_recipe_form.tscn" id="3_x5mjw"]
+
+[node name="CreateMenu" instance=ExtResource("1_ysam7")]
+script = ExtResource("2_i5on6")
+
+[node name="Label" parent="Content/Title" index="0"]
+text = "Создать рецепт"
+
+[node name="CreateRecipeForm" parent="Content/FormRoot" index="0" instance=ExtResource("3_x5mjw")]
+layout_mode = 2

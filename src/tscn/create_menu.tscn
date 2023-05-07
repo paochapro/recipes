@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6753yr6hb1l0"]
+
+[ext_resource type="LabelSettings" uid="uid://m8vincgqqsa4" path="res://content/error_label_settings.tres" id="1_ghags"]
+[ext_resource type="Script" path="res://src/code/gui/CreateMenu.cs" id="1_mnw3m"]
+
+[node name="CreateMenu" type="PanelContainer"]
+offset_right = 292.0
+offset_bottom = 442.0
+size_flags_vertical = 3
+script = ExtResource("1_mnw3m")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Title" type="PanelContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/Title"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="FormRoot" type="VBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Create" type="Button" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Создать"
+
+[node name="ErrorLabel" type="Label" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 4
+label_settings = ExtResource("1_ghags")
+
+[connection signal="pressed" from="Content/Create" to="." method="OnCreateButtonPressed"]
