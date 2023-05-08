@@ -4,7 +4,7 @@ partial class CreateInvForm : VBoxContainer, CreateForm<InventoryItem>
 
     public CreateInvForm() => ErrorOccured += (m) => {};
 
-    public InventoryItem CreateObject()
+    public void AddToBank()
     {
         string name = GetNode<LineEdit>("Name/LineEdit").Text;
         string category = GetNode<LineEdit>("Category/LineEdit").Text;
@@ -18,6 +18,6 @@ partial class CreateInvForm : VBoxContainer, CreateForm<InventoryItem>
         if(category == "")
             throw new CustomErrorException("Категория отсутствует.");
 
-        return new InventoryItem(name, category);
+        GetNode<Program>("/root/Program").AddInvItem(new InventoryItem(name, category));
     }
 }

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" uid="uid://b6753yr6hb1l0" path="res://src/tscn/creation/create_menu.tscn" id="1_wg6cv"]
+[ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodMenu.cs" id="2_r7b3v"]
+[ext_resource type="PackedScene" path="res://src/tscn/creation/create_food_form.tscn" id="2_x7f1l"]
+
+[node name="CreateFoodMenu" instance=ExtResource("1_wg6cv")]
+script = ExtResource("2_r7b3v")
+
+[node name="Label" parent="Content/Title" index="0"]
+text = "Создать пищевой продукт"
+
+[node name="CreateFoodForm" parent="Content/FormRoot" index="0" instance=ExtResource("2_x7f1l")]
+layout_mode = 2

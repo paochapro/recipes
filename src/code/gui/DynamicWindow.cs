@@ -1,10 +1,5 @@
 public partial class DynamicWindow : VBoxContainer
 {
-    #nullable disable
-    [Export] ItemSetSection itemSetSection;
-    [Export] RecipesSection recipesSection;
-    #nullable restore
-
     void SetWindow(Control setControl)
     {
         foreach(Control node in GetChildren())

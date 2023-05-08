@@ -47,7 +47,7 @@ partial class CreateFoodForm : VBoxContainer, CreateForm<FoodItem>
         fileDialog.QueueFree();
     }
 
-    public FoodItem CreateObject()
+    public void AddToBank()
     {
         string name = GetNode<LineEdit>("Name/LineEdit").Text;
         string category = GetNode<LineEdit>("Category/LineEdit").Text; 
@@ -62,7 +62,9 @@ partial class CreateFoodForm : VBoxContainer, CreateForm<FoodItem>
         if(category == "")
             throw new CustomErrorException("Категория отсутствует.");
 
-        return new FoodItem(name, category, "fix this!"); //TODO: fix texture uids
+        FoodItem result = new(name, category, "fix this!"); //TODO: fix texture uids
+        
+        GetNode<Program>("/root/Program").AddFoodItem(result);
     }
 }
 

@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbc4q7oar1oo3"]
+
+[ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_de05s"]
+[ext_resource type="PackedScene" uid="uid://c4m08fa0e1b0n" path="res://src/tscn/item_set_section.tscn" id="2_rhyb0"]
+[ext_resource type="Script" path="res://src/code/gui/DynamicWindow.cs" id="3_ohc7q"]
+[ext_resource type="PackedScene" path="res://src/tscn/creation/create_food_menu.tscn" id="4_ithgr"]
+[ext_resource type="PackedScene" path="res://src/tscn/creation/create_inv_menu.tscn" id="5_227hs"]
+[ext_resource type="PackedScene" uid="uid://c8x3apkju3cya" path="res://src/tscn/creation/create_recipe_menu.tscn" id="6_oa3ot"]
+[ext_resource type="PackedScene" uid="uid://ced2qhfiu2nk1" path="res://src/tscn/recipes_section.tscn" id="7_vs2t5"]
+[ext_resource type="Script" path="res://src/code/gui/RecipesSection.cs" id="8_evnr1"]
+
+[node name="GuiRoot" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_de05s")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HBoxContainer/HSplitContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 5
+
+[node name="ItemSetSection" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer" instance=ExtResource("2_rhyb0")]
+layout_mode = 2
+
+[node name="DynamicWindow" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+script = ExtResource("3_ohc7q")
+
+[node name="CreateFoodMenu" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("4_ithgr")]
+layout_mode = 2
+
+[node name="CreateInvMenu" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("5_227hs")]
+visible = false
+layout_mode = 2
+
+[node name="CreateRecipeMenu" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("6_oa3ot")]
+visible = false
+layout_mode = 2
+
+[node name="RecipesSection" parent="MarginContainer/HBoxContainer/HSplitContainer" instance=ExtResource("7_vs2t5")]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+script = ExtResource("8_evnr1")

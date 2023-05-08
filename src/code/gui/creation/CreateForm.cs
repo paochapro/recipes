@@ -1,5 +1,5 @@
 interface CreateForm<T>
 {
-    T CreateObject();
+    void AddToBank();
     event Action<string> ErrorOccured; 
 }

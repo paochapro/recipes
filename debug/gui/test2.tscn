@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjpojtr7m4626"]
+[gd_scene load_steps=4 format=3]
 
-[ext_resource type="Script" path="res://src/code/gui/CreateFoodMenu.cs" id="1_4c35h"]
-[ext_resource type="PackedScene" uid="uid://c3kryamwkff2f" path="res://src/tscn/create_food_form.tscn" id="2_ttnws"]
+[ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodMenu.cs" id="1_4c35h"]
+[ext_resource type="PackedScene" path="res://src/tscn/creation/create_food_form.tscn" id="2_ttnws"]
 [ext_resource type="LabelSettings" uid="uid://m8vincgqqsa4" path="res://content/error_label_settings.tres" id="3_dmwgd"]
 
 [node name="CreateFoodMenu" type="PanelContainer"]

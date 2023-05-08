@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://ba82tt1qjxwyh"]
-
-[node name="InvSection" type="VBoxContainer"]
-offset_right = 401.0
-offset_bottom = 650.0

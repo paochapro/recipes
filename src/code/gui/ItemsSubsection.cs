@@ -1,4 +1,5 @@
 abstract partial class ItemsSubsection<TItem> : VBoxContainer
+    where TItem : Item
 {
     public event Action CreateItemButtonPress;
 
@@ -33,15 +34,26 @@ abstract partial class ItemsSubsection<TItem> : VBoxContainer
         var result = ItemSearch.Search(AvaliableItems.Cast<Item>(), text);
         IEnumerable<TItem> items = result.Cast<TItem>();
 
-        UpdateContent(items);
+        bool autoExpand = text != "";
+        UpdateContent(items, autoExpand);
     }
 
-    void UpdateContent(IEnumerable<TItem> items)
+    void UpdateContent(IEnumerable<TItem> items, bool autoExpand = false)
     {
         content.RemoveChildren();
 
-        foreach(TItem item in items)
-            content.AddChild(GetControlForItem(item));
+        var groups = items.GroupBy(i => i.Category);
+
+        foreach(IGrouping<string, TItem> group in groups)
+        {
+            Fold fold = new Fold() { Expanded = autoExpand };
+            fold.Title = group.Key;
+
+            var controls = group.Select(i => GetControlForItem(i));
+            fold.AddChildren(controls);
+
+            content.AddChild(fold);
+        }
     }
 
     protected abstract IEnumerable<TItem> AvaliableItems { get; }

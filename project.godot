@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="darya-recipes"
-run/main_scene="res://debug/gui/debug.tscn"
+run/main_scene="res://src/tscn/gui_root.tscn"
 config/features=PackedStringArray("4.0", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Program="*res://src/code/Program.cs"
 
 [dotnet]
 

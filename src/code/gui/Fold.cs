@@ -9,14 +9,14 @@ public partial class Fold : VBoxContainer
     Label titleLabel;
     #nullable restore
 
-    string title {
+    public string Title {
         get => titleLabel.Text;
         set {
             titleLabel.Text = value;
         }
     }
 
-    bool expanded {
+    public bool Expanded {
         get => mainContainer.Visible;
         set {
             if(value == true) {
@@ -30,24 +30,32 @@ public partial class Fold : VBoxContainer
         }
     }
 
-    [Export] bool ExportExpanded = false;
-    [Export] string ExportTitle = "";
+    public Fold()
+    {
+        titleLabel = new Label();
+        mainContainer = new VBoxContainer();
+        arrowIcon = new TextureRect() { ExpandMode = TextureRect.ExpandModeEnum.FitWidth };
+        Expanded = false;
+        Title = "";
+    }
 
     public override void _Ready()
     {
-        mainContainer = GetMainContainer();
-        arrowIcon = new TextureRect() { ExpandMode = TextureRect.ExpandModeEnum.FitWidth };
-        titleLabel = new Label();
+        var children = GetChildren();
+
+        foreach(var child in children)
+        {
+            RemoveChild(child);
+            mainContainer.AddChild(child);
+        }
 
         HBoxContainer tab = new();
         tab.AddChild(arrowIcon);
         tab.AddChild(titleLabel);
         AddChild(tab);
+        AddChild(mainContainer);
         MoveChild(tab, 0);
         tab.GuiInput += TabGuiInput;
-
-        expanded = ExportExpanded;
-        title = ExportTitle;
     }
 
     public void TabGuiInput(InputEvent @event)
@@ -56,22 +64,7 @@ public partial class Fold : VBoxContainer
             ev.ButtonIndex == MouseButton.Left &&
             ev.Pressed)
         {
-            expanded = !expanded;
+            Expanded = !Expanded;
         }
-    }
-
-    Container GetMainContainer()
-    {
-        Container result = new PanelContainer() { Name = "Default" };
-        var children = GetChildren();
-
-        if(children.Count > 0)
-        {
-            var first = children[0];
-            if(first is Container container)
-                result = container;
-        }
-
-        return result;
     }
 }

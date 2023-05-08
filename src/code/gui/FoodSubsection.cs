@@ -10,7 +10,7 @@ partial class FoodSubsection : ItemsSubsection<FoodItem>
 
 	protected override void OnMenuButtonPressed()
 	{
-        var dynamicWindow = GetNode<DynamicWindow>("/root/Program/Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow");
+        var dynamicWindow = GetNode<DynamicWindow>("/root/GuiRoot/%DynamicWindow");
 		dynamicWindow.SetFoodMenu();
 	}
 

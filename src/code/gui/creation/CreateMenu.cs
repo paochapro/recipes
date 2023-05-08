@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 partial class CreateMenu<T> : PanelContainer
 {
     public event Action<T> ObjectCreated;
@@ -17,13 +14,13 @@ partial class CreateMenu<T> : PanelContainer
         errorLabel = GetNode<Label>("Content/ErrorLabel");
         form = GetNode("Content/FormRoot").GetChild<CreateForm<T>>(0);
         form.ErrorOccured += ShowErrorMessage;
+        this.VisibilityChanged += HideErrorMessage;
 	}
 
     void OnCreateButtonPressed()
     {
         try {
-            T obj = form.CreateObject();
-            ObjectCreated.Invoke(obj);
+            form.AddToBank();
             HideErrorMessage();
         }
         catch(CustomErrorException ex)

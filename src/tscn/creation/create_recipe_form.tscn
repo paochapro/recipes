@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bersmo4ubx7eu"]
+[gd_scene load_steps=3 format=3 uid="uid://btvm20cgmyo38"]
 
-[ext_resource type="Script" path="res://src/code/gui/CreateRecipeForm.cs" id="1_0vlud"]
+[ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeForm.cs" id="1_0vlud"]
 [ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/sault.svg" id="1_lf0qt"]
 
 [node name="CreateRecipeForm" type="VBoxContainer"]

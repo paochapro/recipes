@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://durt7fcomnrl1"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://src/code/gui/CreateInvForm.cs" id="1_1v7f2"]
+[ext_resource type="Script" path="res://src/code/gui/creation/CreateInvForm.cs" id="1_1v7f2"]
 
 [node name="CreateInvForm" type="VBoxContainer"]
 offset_right = 267.0

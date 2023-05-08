@@ -4,8 +4,9 @@ partial class CreateRecipeForm : VBoxContainer, CreateForm<Recipe>
 
     public CreateRecipeForm() => ErrorOccured += (m) => {};
     
-    public Recipe CreateObject()
+    public void AddToBank()
     {
-        return new Recipe();
+        //TODO: this stuff
+        GetNode<Program>("/root/Program").AddRecipe(new Recipe());
     }
 }

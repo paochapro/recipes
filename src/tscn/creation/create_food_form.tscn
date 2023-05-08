@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c3kryamwkff2f"]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/sault.svg" id="1_7occ7"]
-[ext_resource type="Script" path="res://src/code/gui/CreateFoodForm.cs" id="1_sl3de"]
+[ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodForm.cs" id="1_sl3de"]
 [ext_resource type="PackedScene" uid="uid://ciy5m1774low5" path="res://src/tscn/image_file_dialog.tscn" id="2_dil1j"]
 
 [node name="CreateFoodForm" type="VBoxContainer"]
