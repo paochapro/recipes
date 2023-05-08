@@ -5,14 +5,6 @@ public partial class DynamicWindow : VBoxContainer
     [Export] RecipesSection recipesSection;
     #nullable restore
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-        itemSetSection.CreateFoodItem += () => SetWindow(GetNode<Control>("CreateFoodMenu"));
-        itemSetSection.CreateInventoryItem += () => SetWindow(GetNode<Control>("CreateInvMenu"));
-        recipesSection.CreateRecipe += () => SetWindow(GetNode<Control>("CreateRecipeMenu"));
-	}
-
     void SetWindow(Control setControl)
     {
         foreach(Control node in GetChildren())
@@ -20,4 +12,8 @@ public partial class DynamicWindow : VBoxContainer
         
         setControl.Show();
     }
+
+    public void SetFoodMenu() => SetWindow(GetNode<Control>("CreateFoodMenu"));
+    public void SetInvMenu() => SetWindow(GetNode<Control>("CreateInvMenu"));
+    public void SetRecipeMenu() => SetWindow(GetNode<Control>("CreateRecipeMenu"));
 }

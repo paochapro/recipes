@@ -6,7 +6,11 @@ partial class InvSubsection : ItemsSubsection<InventoryItem>
 
     protected override IEnumerable<InventoryItem> AvaliableItems => DebugBank.Inventory;
 
-    protected override void OnReady() {}
+    protected override void OnMenuButtonPressed()
+    {
+        var dynamicWindow = GetNode<DynamicWindow>("/root/Program/Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow");
+        dynamicWindow.SetInvMenu();
+    }
 
     protected override Control GetControlForItem(InventoryItem item)
     {

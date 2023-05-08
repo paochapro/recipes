@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://src/code/gui/CreateRecipeMenu.cs" id="2_i5on6"]
 [ext_resource type="PackedScene" uid="uid://bersmo4ubx7eu" path="res://src/tscn/create_recipe_form.tscn" id="3_x5mjw"]
 
-[node name="CreateMenu" instance=ExtResource("1_ysam7")]
+[node name="CreateRecipeMenu" instance=ExtResource("1_ysam7")]
 script = ExtResource("2_i5on6")
 
 [node name="Label" parent="Content/Title" index="0"]

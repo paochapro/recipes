@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcfpoo2h8yuf4"]
+[gd_scene load_steps=9 format=3 uid="uid://dcfpoo2h8yuf4"]
 
 [ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_mboqg"]
 [ext_resource type="PackedScene" uid="uid://c4m08fa0e1b0n" path="res://src/tscn/item_set_section.tscn" id="1_pxiax"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dvtof26a07574" path="res://src/tscn/create_inv_menu.tscn" id="4_v6l60"]
 [ext_resource type="Script" path="res://src/code/gui/RecipesSection.cs" id="5_0kktu"]
 [ext_resource type="PackedScene" uid="uid://dm3o7nxtg4hhq" path="res://src/tscn/create_food_menu.tscn" id="5_laod1"]
+[ext_resource type="PackedScene" uid="uid://gr27shwuqy0e" path="res://src/tscn/create_recipe_menu.tscn" id="6_en712"]
 
 [node name="Program" type="Node"]
 
@@ -57,6 +58,10 @@ recipesSection = NodePath("../../RecipesSection")
 layout_mode = 2
 
 [node name="CreateInvMenu" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("4_v6l60")]
+visible = false
+layout_mode = 2
+
+[node name="CreateRecipeMenu" parent="Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("6_en712")]
 visible = false
 layout_mode = 2
 

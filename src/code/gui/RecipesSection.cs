@@ -14,7 +14,8 @@ public partial class RecipesSection : PanelContainer
 	public override void _Ready()
 	{
         var createButton = GetNode<Button>("Components/ControlPanel/Button");
-        createButton.Pressed += () => { CreateRecipe.Invoke(); };
+        var dynamicWindow = GetNode<DynamicWindow>("/root/Program/Control/MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow");
+        createButton.Pressed += dynamicWindow.SetRecipeMenu;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
