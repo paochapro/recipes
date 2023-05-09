@@ -1,29 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4m08fa0e1b0n"]
+[gd_scene load_steps=7 format=3 uid="uid://uwwuvdlaemow"]
 
-[ext_resource type="Script" path="res://src/code/gui/ItemSetSection.cs" id="1_ay6dt"]
-[ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsection.tscn" id="1_v8c5m"]
-[ext_resource type="Script" path="res://src/code/gui/FoodSubsection.cs" id="3_t5pk0"]
-[ext_resource type="Script" path="res://src/code/gui/InvSubsection.cs" id="4_ls6cm"]
-[ext_resource type="PackedScene" uid="uid://dpjblgpf85kl8" path="res://src/tscn/all_subsection.tscn" id="5_vm2qm"]
+[ext_resource type="Script" path="res://src/code/gui/ItemSetSection.cs" id="1_3n63r"]
+[ext_resource type="PackedScene" uid="uid://jraik2p7ijeo" path="res://src/tscn/items_subsections/food_subsection.tscn" id="2_5ceom"]
+[ext_resource type="PackedScene" uid="uid://cnca0dgx22olb" path="res://src/tscn/items_subsections/inv_subsection.tscn" id="3_hm4vf"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/FoodSubsection.cs" id="3_r7qls"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/InvSubsection.cs" id="4_c4ykg"]
+[ext_resource type="PackedScene" path="res://src/tscn/items_subsections/all_subsection.tscn" id="5_vm2qm"]
 
 [node name="ItemSetSection" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
 offset_right = 446.0
 offset_bottom = 648.0
-script = ExtResource("1_ay6dt")
+script = ExtResource("1_3n63r")
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Food" parent="TabContainer" instance=ExtResource("1_v8c5m")]
+[node name="Food" parent="TabContainer" instance=ExtResource("2_5ceom")]
 layout_mode = 2
-script = ExtResource("3_t5pk0")
+script = ExtResource("3_r7qls")
 
-[node name="Inv" parent="TabContainer" instance=ExtResource("1_v8c5m")]
+[node name="Inv" parent="TabContainer" instance=ExtResource("3_hm4vf")]
 visible = false
 layout_mode = 2
-script = ExtResource("4_ls6cm")
+script = ExtResource("4_c4ykg")
 
 [node name="All" parent="TabContainer" instance=ExtResource("5_vm2qm")]
 visible = false

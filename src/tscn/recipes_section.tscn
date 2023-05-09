@@ -16,7 +16,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Components/Title"]
 layout_mode = 2
 size_flags_horizontal = 4
-text = "Recipes"
+text = "Рецепты"
 
 [node name="Content" type="VBoxContainer" parent="Components"]
 layout_mode = 2

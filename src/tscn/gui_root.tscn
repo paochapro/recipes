@@ -1,7 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://dbc4q7oar1oo3"]
+[gd_scene load_steps=9 format=3 uid="uid://wnhjx7m7mto5"]
 
 [ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_de05s"]
-[ext_resource type="PackedScene" uid="uid://c4m08fa0e1b0n" path="res://src/tscn/item_set_section.tscn" id="2_rhyb0"]
+[ext_resource type="PackedScene" uid="uid://uwwuvdlaemow" path="res://src/tscn/item_set_section.tscn" id="2_rhyb0"]
 [ext_resource type="Script" path="res://src/code/gui/DynamicWindow.cs" id="3_ohc7q"]
 [ext_resource type="PackedScene" path="res://src/tscn/creation/create_food_menu.tscn" id="4_ithgr"]
 [ext_resource type="PackedScene" path="res://src/tscn/creation/create_inv_menu.tscn" id="5_227hs"]

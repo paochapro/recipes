@@ -1,36 +1,41 @@
 partial class AllSubsection : VBoxContainer
 {
     #nullable disable
-    Container foodContainer;
-    Container invContainer;
+    FoodSubsectionContent foodContent;
+    InvSubsectionContent invContent;
     #nullable restore
 
     public override void _Ready()
     {
         var content = GetNode("ScrollContainer/Content");
-        foodContainer = content.GetNode<Container>("Food");
-        invContainer = content.GetNode<Container>("Inv");
+        foodContent = content.GetNode<FoodSubsectionContent>("FoodTab/MarginContainer/Content");
+        invContent = content.GetNode<InvSubsectionContent>("InvTab/MarginContainer/Content");
     }
 
     void OnSearchTextChanged(string text)
     {
         var bank = GetNode<Program>("/root/Program").ItemsBank;
-        var foodResult = ItemSearch.Search(bank.Food.Cast<Item>(), text);
-        var invResult = ItemSearch.Search(bank.Inventory.Cast<Item>(), text);
-        ItemBank bankResult = new ItemBank(foodResult.Cast<FoodItem>().ToList(), invResult.Cast<InventoryItem>().ToList());
+        foodContent.SearchUpdate(bank.Food, text);
+        invContent.SearchUpdate(bank.Inventory, text);
 
-        UpdateContent(bankResult, true);
+        // var foodResult = ItemSearch.Search(bank.Food.Cast<Item>(), text);
+        // var invResult = ItemSearch.Search(bank.Inventory.Cast<Item>(), text);
+        // ItemBank bankResult = new ItemBank(foodResult.Cast<FoodItem>().ToList(), invResult.Cast<InventoryItem>().ToList());
+        // UpdateContent(bankResult, true);
     }
 
     void UpdateContent(ReadonlyItemBank bank, bool autoExpand = false)
     {
-        var foodTabs = GenerateTabsFromItems(bank.Food, GetControlForFood, autoExpand);
-        foodContainer.RemoveChildren();
-        foodContainer.AddChildren(foodTabs);
+        foodContent.UpdateContent(bank.Food);
+        invContent.UpdateContent(bank.Inventory);
 
-        var invTabs = GenerateTabsFromItems(bank.Inventory, GetControlForInv, autoExpand);
-        invContainer.RemoveChildren();
-        invContainer.AddChildren(invTabs);
+        // var foodTabs = GenerateTabsFromItems(bank.Food, GetControlForFood, autoExpand);
+        // foodContent.RemoveChildren();
+        // foodContent.AddChildren(foodTabs);
+
+        // var invTabs = GenerateTabsFromItems(bank.Inventory, GetControlForInv, autoExpand);
+        // invContent.RemoveChildren();
+        // invContent.AddChildren(invTabs);
 
         //UpdateTypeContent(bank.Food, foodContainer, GetControlForFood, autoExpand);
         //UpdateTypeContent(bank.Inventory, invContainer, GetControlForInv, autoExpand);

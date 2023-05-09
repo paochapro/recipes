@@ -14,11 +14,4 @@ partial class InvSubsection : ItemsSubsection<InventoryItem>
 		dynamicWindow.SetFoodMenu();
         dynamicWindow.SetInvMenu();
     }
-
-    protected override Control GetControlForItem(InventoryItem item)
-    {
-        Button button = new();
-        button.Text = item.Name;
-        return button;
-    }
 }

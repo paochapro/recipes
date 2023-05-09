@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://cbveahus425no"]
+
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="1_mbbrs"]
+[ext_resource type="PackedScene" uid="uid://cwui08h0lmfae" path="res://src/tscn/search_bar.tscn" id="2_08thn"]
+[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="2_im3na"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/FoodSubsectionContent.cs" id="2_tpt10"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/InvSubsectionContent.cs" id="3_bmf1u"]
+
+[node name="All" type="VBoxContainer"]
+offset_right = 301.0
+offset_bottom = 473.0
+size_flags_vertical = 3
+script = ExtResource("1_mbbrs")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FoodTab" type="VBoxContainer" parent="ScrollContainer/Content"]
+layout_mode = 2
+script = ExtResource("2_im3na")
+Title = "Продукты"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Content/FoodTab"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="Content" type="VBoxContainer" parent="ScrollContainer/Content/FoodTab/MarginContainer"]
+layout_mode = 2
+script = ExtResource("2_tpt10")
+
+[node name="InvTab" type="VBoxContainer" parent="ScrollContainer/Content"]
+layout_mode = 2
+script = ExtResource("2_im3na")
+Title = "Инвентарь"
+
+[node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Content/InvTab"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="Content" type="VBoxContainer" parent="ScrollContainer/Content/InvTab/MarginContainer"]
+layout_mode = 2
+script = ExtResource("3_bmf1u")
+
+[node name="ControlPanel" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LineEdit" parent="ControlPanel" instance=ExtResource("2_08thn")]
+layout_mode = 2
+size_flags_vertical = 10
+
+[connection signal="text_changed" from="ControlPanel/LineEdit" to="." method="OnSearchTextChanged"]
