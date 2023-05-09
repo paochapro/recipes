@@ -1,9 +1,5 @@
 partial class CreateMenu<T> : PanelContainer
 {
-    public event Action<T> ObjectCreated;
-
-    public CreateMenu() => ObjectCreated += (t) => {};
-
     #nullable disable
     Label errorLabel;
     CreateForm<T> form;
@@ -26,7 +22,6 @@ partial class CreateMenu<T> : PanelContainer
         catch(CustomErrorException ex)
         {
             ShowErrorMessage(ex.Message);
-            
         }
         catch(Exception ex)
         {

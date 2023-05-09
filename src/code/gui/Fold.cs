@@ -9,6 +9,7 @@ public partial class Fold : VBoxContainer
     Label titleLabel;
     #nullable restore
 
+    [Export]
     public string Title {
         get => titleLabel.Text;
         set {
@@ -16,6 +17,7 @@ public partial class Fold : VBoxContainer
         }
     }
 
+    [Export]
     public bool Expanded {
         get => mainContainer.Visible;
         set {

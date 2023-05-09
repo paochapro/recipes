@@ -4,7 +4,9 @@ partial class InvSubsection : ItemsSubsection<InventoryItem>
     Program program;
     #nullable restore
 
-    protected override IEnumerable<InventoryItem> AvaliableItems => DebugBank.Inventory;
+    protected override IEnumerable<InventoryItem> AvaliableItems {
+        get => GetNode<Program>("/root/Program").ItemsBank.Inventory;
+    }
 
     protected override void OnMenuButtonPressed()
     {

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4m08fa0e1b0n"]
+[gd_scene load_steps=6 format=3 uid="uid://c4m08fa0e1b0n"]
 
 [ext_resource type="Script" path="res://src/code/gui/ItemSetSection.cs" id="1_ay6dt"]
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsection.tscn" id="1_v8c5m"]
 [ext_resource type="Script" path="res://src/code/gui/FoodSubsection.cs" id="3_t5pk0"]
 [ext_resource type="Script" path="res://src/code/gui/InvSubsection.cs" id="4_ls6cm"]
+[ext_resource type="PackedScene" uid="uid://dpjblgpf85kl8" path="res://src/tscn/all_subsection.tscn" id="5_vm2qm"]
 
 [node name="ItemSetSection" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
@@ -24,6 +25,6 @@ visible = false
 layout_mode = 2
 script = ExtResource("4_ls6cm")
 
-[node name="All" parent="TabContainer" instance=ExtResource("1_v8c5m")]
+[node name="All" parent="TabContainer" instance=ExtResource("5_vm2qm")]
 visible = false
 layout_mode = 2

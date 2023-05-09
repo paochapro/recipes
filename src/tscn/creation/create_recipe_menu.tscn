@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://btvm20cgmyo38" path="res://src/tscn/creation/create_recipe_form.tscn" id="3_x5mjw"]
 
 [node name="CreateRecipeMenu" instance=ExtResource("1_ysam7")]
+offset_right = 427.0
+offset_bottom = 658.0
 script = ExtResource("2_i5on6")
 
 [node name="Label" parent="Content/Title" index="0"]

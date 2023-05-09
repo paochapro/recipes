@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpjblgpf85kl8"]
+
+[ext_resource type="Script" path="res://src/code/gui/AllSubsection.cs" id="1_mbbrs"]
+[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="2_0j1ol"]
+[ext_resource type="PackedScene" uid="uid://cwui08h0lmfae" path="res://src/tscn/search_bar.tscn" id="2_08thn"]
+
+[node name="All" type="VBoxContainer"]
+offset_right = 301.0
+offset_bottom = 473.0
+size_flags_vertical = 3
+script = ExtResource("1_mbbrs")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Food" type="VBoxContainer" parent="ScrollContainer/Content"]
+layout_mode = 2
+script = ExtResource("2_0j1ol")
+
+[node name="Inv" type="VBoxContainer" parent="ScrollContainer/Content"]
+layout_mode = 2
+script = ExtResource("2_0j1ol")
+
+[node name="ControlPanel" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="LineEdit" parent="ControlPanel" instance=ExtResource("2_08thn")]
+layout_mode = 2
+size_flags_vertical = 10
+
+[connection signal="text_changed" from="ControlPanel/LineEdit" to="." method="OnSearchTextChanged"]

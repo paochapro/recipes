@@ -1,7 +1,6 @@
 partial class Program : Node
 {
     List<Recipe> recipeBank = new();
-
     ItemBank itemsBank = new();
     ItemSet localItems = new();
 
@@ -9,6 +8,14 @@ partial class Program : Node
     public IEnumerable<Recipe> RecipeBank => recipeBank;
     public ReadonlyItemBank ItemsBank => itemsBank;
     public ReadonlyItemSet LocalItems => localItems;
+
+    public Program()
+    {
+        //Debug
+        string itemsJsonFile = "content/items.json"; 
+        var items = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
+        itemsBank = items;
+    }
 
     public void AddFoodItem(FoodItem item)
     { 

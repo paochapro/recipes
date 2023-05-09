@@ -1,20 +1,9 @@
 abstract partial class ItemsSubsection<TItem> : VBoxContainer
     where TItem : Item
 {
-    public event Action CreateItemButtonPress;
-
-    //Debug
-    static ItemBank debugBank = ItemsFromJson.GetItemsFromJson("content/items.json");
-    protected static ReadonlyItemBank DebugBank => debugBank;
-
     #nullable disable
     protected Container content;
     #nullable restore
-
-    public ItemsSubsection()
-    {
-        CreateItemButtonPress += () => {};
-    }
 
 	public override sealed void _Ready()
 	{

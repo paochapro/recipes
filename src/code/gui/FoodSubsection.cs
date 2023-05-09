@@ -6,7 +6,9 @@ partial class FoodSubsection : ItemsSubsection<FoodItem>
 	Program program;
 	#nullable restore
 
-	protected override IEnumerable<FoodItem> AvaliableItems => DebugBank.Food;
+	protected override IEnumerable<FoodItem> AvaliableItems {
+        get => GetNode<Program>("/root/Program").ItemsBank.Food;
+    }
 
 	protected override void OnMenuButtonPressed()
 	{
