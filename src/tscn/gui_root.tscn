@@ -45,6 +45,9 @@ theme_override_constants/separation = 5
 
 [node name="ItemSetSection" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer" instance=ExtResource("2_rhyb0")]
 layout_mode = 2
+foodTabName = "Продукты"
+invTabName = "Инвентарь"
+allTabName = "Банк"
 
 [node name="DynamicWindow" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
 unique_name_in_owner = true

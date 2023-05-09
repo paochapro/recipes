@@ -21,3 +21,12 @@ static class NodeExtenstions
             node.AddChild(child);
     }
 }
+
+static class EnumerableExtensions
+{
+    public static void Iterate<T>(this IEnumerable<T> source, Action<T> func)
+    {
+        foreach(T value in source)
+            func(value);
+    }
+}
