@@ -15,23 +15,25 @@ partial class Program : Node
         string itemsJsonFile = "content/items.json"; 
         var items = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
         itemsBank = items;
+        localItems = ItemSetGenerator.SelectAllFromBank(itemsBank, 1);
     }
 
-    public void AddFoodItem(FoodItem item)
-    { 
-        GD.Print("Added " + item.Name + " to program");
+    //Bank
+    public void AddFoodItem(FoodItem item) 
+    {
+        GD.Print("add food item: " + item.Name);
         itemsBank.FoodList.Add(item);
     }
 
-    public void AddInvItem(InventoryItem item)
-    {
-        GD.Print("Added " + item.Name + " to program");
-        itemsBank.InventoryList.Add(item);
-    }
-        
-    public void AddRecipe(Recipe recipe)
-    {
-        GD.Print("Added " + recipe.Title + " to program");
-        recipeBank.Add(recipe);
-    }
+    public void AddInvItem(InventoryItem item) => itemsBank.InventoryList.Add(item);
+    public void RemoveFoodItem(FoodItem item) => itemsBank.FoodList.Remove(item);
+    public void RemoveInvItem(InventoryItem item) => itemsBank.InventoryList.Remove(item);
+
+    public void AddRecipe(Recipe recipe) => recipeBank.Add(recipe);
+
+    //Local items
+    public void AddLocalFood(FoodWithCount item) => localItems.FoodList.Add(item);
+    public void AddLocalInv(InventoryItem item) => localItems.InventoryList.Add(item);
+    public void RemoveLocalFood(FoodWithCount item) => localItems.FoodList.Remove(item);
+    public void RemoveLocalInv(InventoryItem item) => localItems.InventoryList.Remove(item);
 }

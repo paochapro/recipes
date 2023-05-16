@@ -44,7 +44,7 @@ static class ItemsFromJson
         }
     }
 
-    static FoodItem GetNewFoodItem(string name, string category) => new FoodItem(name, category, "texture_placeholder");
+    static FoodItem GetNewFoodItem(string name, string category) => new FoodItem(name, category, "res://content/salt.svg");
 
     static InventoryItem GetNewInventoryItem(string name, string category) => new InventoryItem(name, category);
 }

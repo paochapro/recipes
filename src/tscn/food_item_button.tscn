@@ -1,38 +1,33 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=6 format=3 uid="uid://brkg8enlfy71d"]
 
+[ext_resource type="PackedScene" uid="uid://djvtt7cv7rdgk" path="res://src/tscn/food_button.tscn" id="1_fc3i0"]
 [ext_resource type="Script" path="res://src/code/gui/FoodItemButton.cs" id="1_m6p38"]
-[ext_resource type="Texture2D" uid="uid://ci27wydx14ee8" path="res://content/tomato.svg" id="2_n40tl"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_37dld"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8yhm"]
+bg_color = Color(0, 0, 0, 0.117647)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 0.196078)
+border_blend = true
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
-[sub_resource type="LabelSettings" id="LabelSettings_y7i8n"]
-font_size = 18
+[sub_resource type="ImageTexture" id="ImageTexture_dvkqg"]
 
-[node name="FoodItemButton" type="PanelContainer"]
-custom_minimum_size = Vector2(76, 76)
-offset_right = 76.0
-offset_bottom = 76.0
-mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxEmpty_37dld")
+[sub_resource type="Theme" id="Theme_hiy4q"]
+LineEdit/colors/font_color = Color(0.627451, 0.784314, 1, 1)
+LineEdit/styles/normal = SubResource("StyleBoxFlat_m8yhm")
+SpinBox/icons/updown = SubResource("ImageTexture_dvkqg")
+
+[node name="FoodItemButton" instance=ExtResource("1_fc3i0")]
 script = ExtResource("1_m6p38")
 
-[node name="Button" type="Button" parent="."]
+[node name="SpinBox" type="SpinBox" parent="HBoxContainer" index="2"]
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
-texture_filter = 1
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-texture = ExtResource("2_n40tl")
-expand_mode = 2
-
-[node name="Label" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "Томат"
-label_settings = SubResource("LabelSettings_y7i8n")
-vertical_alignment = 1
+size_flags_vertical = 4
+theme = SubResource("Theme_hiy4q")
+suffix = "x"

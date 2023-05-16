@@ -1,10 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cbveahus425no"]
+[gd_scene load_steps=6 format=3 uid="uid://c22xxv6qyv2oi"]
 
 [ext_resource type="Script" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="1_mbbrs"]
 [ext_resource type="PackedScene" uid="uid://cwui08h0lmfae" path="res://src/tscn/search_bar.tscn" id="2_08thn"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/content/AllSubsectionFoodContent.cs" id="2_eqbce"]
 [ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="2_im3na"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/FoodSubsectionContent.cs" id="2_tpt10"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/InvSubsectionContent.cs" id="3_bmf1u"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/content/InvSubsectionContent.cs" id="4_5nc2v"]
 
 [node name="All" type="VBoxContainer"]
 offset_right = 301.0
@@ -32,7 +32,7 @@ theme_override_constants/margin_left = 15
 
 [node name="Content" type="VBoxContainer" parent="ScrollContainer/Content/FoodTab/MarginContainer"]
 layout_mode = 2
-script = ExtResource("2_tpt10")
+script = ExtResource("2_eqbce")
 
 [node name="InvTab" type="VBoxContainer" parent="ScrollContainer/Content"]
 layout_mode = 2
@@ -45,7 +45,7 @@ theme_override_constants/margin_left = 15
 
 [node name="Content" type="VBoxContainer" parent="ScrollContainer/Content/InvTab/MarginContainer"]
 layout_mode = 2
-script = ExtResource("3_bmf1u")
+script = ExtResource("4_5nc2v")
 
 [node name="ControlPanel" type="HBoxContainer" parent="."]
 layout_mode = 2

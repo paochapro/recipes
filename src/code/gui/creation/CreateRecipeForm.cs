@@ -6,7 +6,7 @@ partial class CreateRecipeForm : VBoxContainer, CreateForm<Recipe>
     
     public void AddToBank()
     {
-        //TODO: this stuff
+        //TODO: make recipe creation
         GetNode<Program>("/root/Program").AddRecipe(new Recipe());
     }
 }

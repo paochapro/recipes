@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://btvm20cgmyo38"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeForm.cs" id="1_0vlud"]
-[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/sault.svg" id="1_lf0qt"]
+[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_lf0qt"]
 
 [node name="CreateRecipeForm" type="VBoxContainer"]
 offset_right = 381.0

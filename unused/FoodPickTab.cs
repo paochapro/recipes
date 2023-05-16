@@ -6,12 +6,12 @@ partial class FoodPickTab : ItemPickTab<FoodItem>
     {
         var foodButton = foodButtonScene.Instantiate<FoodItemButton>();
         string name = item.Name;
-        Texture2D texture = GD.Load<Texture2D>(item.TextureUID);
+        //Texture2D texture = GD.Load<Texture2D>(item.TextureUID); unused
 
         //add food item to filter
         Action onButtonClick = () => {};
 
-        foodButton.Initialize(name, texture, onButtonClick);
+        //foodButton.Initialize(name, texture, onButtonClick); unused
 
         return foodButton;
     }

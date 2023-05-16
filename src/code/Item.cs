@@ -6,21 +6,26 @@ interface Item {
 readonly record struct FoodItem (
     string Name,
     string Category,
-    string TextureUID
-)
-: Item;
+    string TexturePath
+) : Item;
 
 readonly record struct InventoryItem(
     string Name, 
     string Category
-)
-: Item;
+) : Item;
 
 //Food with count
-readonly record struct FoodWithCount(
-    FoodItem Item,
-    int Count
-);
+class FoodWithCount
+{
+    public FoodItem Item { get; private set; }
+    public int Count { get; set; }
+
+    public FoodWithCount(FoodItem item, int count)
+    {
+        Item = item;
+        Count = count;
+    }
+}
 
 //ItemSet
 interface ReadonlyItemSet {

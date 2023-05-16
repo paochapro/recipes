@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnca0dgx22olb"]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsections/items_subsection.tscn" id="1_678ro"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/InvSubsectionContent.cs" id="2_irdvr"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/content/InvSubsectionContent.cs" id="2_irdvr"]
 
 [node name="InvSubsection" instance=ExtResource("1_678ro")]
 

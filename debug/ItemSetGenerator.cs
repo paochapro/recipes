@@ -13,4 +13,11 @@ static class ItemSetGenerator
 
         return new(food, bank.Inventory.ToList());
     }
+
+    public static ItemSet SelectAllFromBank(ReadonlyItemBank bank, int defaultCount)
+    {
+        List<FoodWithCount> foodWithCountList = new();
+        bank.Food.Iterate(i => foodWithCountList.Add(new FoodWithCount(i, defaultCount)));
+        return new ItemSet(foodWithCountList, bank.Inventory.ToList());
+    }
 }

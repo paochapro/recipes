@@ -9,7 +9,7 @@ public partial class Fold : VBoxContainer
     Label titleLabel;
     //#nullable restore
 
-    public Container GetMainContainer => mainContainer;
+    public Container GetMainContainer => mainContainer; //TODO: get child
 
     [Export]
     public string Title {

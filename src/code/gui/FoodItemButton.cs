@@ -1,13 +1,13 @@
-partial class FoodItemButton : PanelContainer
+partial class FoodItemButton : FoodButton
 {
-	public void Initialize(string name, Texture2D imageTexture, Action onButtonClick)
+	public void Initialize(string name, Texture2D imageTexture, int count, Action removeButtonPressed, Action<double> onCountChanged)
 	{
-        var nameLabel = GetNode<Label>("HBoxContainer/Label");
-		var image = GetNode<TextureRect>("HBoxContainer/TextureRect");
-		var button = GetNode<Button>("Button");
+        base.Initialize(name, imageTexture, removeButtonPressed);
 
-		nameLabel.Text = name;
-		image.Texture = imageTexture;
-		button.ButtonUp += onButtonClick;
+        //Spinbox
+        var spinbox = GetNode<SpinBox>("HBoxContainer/SpinBox");
+        Godot.Range.ValueChangedEventHandler changedFunc = (double value) => onCountChanged(value);
+        spinbox.Value = count;
+        spinbox.ValueChanged += changedFunc;
 	}
 }

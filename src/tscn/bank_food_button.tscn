@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://b31u4awnw68ty"]
+
+[ext_resource type="PackedScene" path="res://src/tscn/food_button.tscn" id="1_c77er"]
+[ext_resource type="Script" path="res://src/code/gui/FoodButton.cs" id="2_46qw1"]
+
+[node name="BankFoodButton" instance=ExtResource("1_c77er")]
+script = ExtResource("2_46qw1")

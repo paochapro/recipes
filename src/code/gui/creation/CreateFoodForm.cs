@@ -5,6 +5,7 @@ partial class CreateFoodForm : VBoxContainer, CreateForm<FoodItem>
     #nullable restore
 
     [Export] PackedScene? fileDialogScene;
+    string texturePath = "";
 
     public event Action<string> ErrorOccured;
 
@@ -36,6 +37,7 @@ partial class CreateFoodForm : VBoxContainer, CreateForm<FoodItem>
             if(texture == null)
                 throw new Exception("Wrong format for loading image (" + fileDialog.CurrentFile.Split(".").Last() + ")");
 
+            texturePath = fileDialog.CurrentPath;
             image.Texture = texture;
         }
         catch(Exception ex)
@@ -62,7 +64,7 @@ partial class CreateFoodForm : VBoxContainer, CreateForm<FoodItem>
         if(category == "")
             throw new CustomErrorException("Категория отсутствует.");
 
-        FoodItem result = new(name, category, "fix this!"); //TODO: fix texture uids
+        FoodItem result = new(name, category, texturePath);
         
         GetNode<Program>("/root/Program").AddFoodItem(result);
     }
