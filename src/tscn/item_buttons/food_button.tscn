@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://ge5q0ymoqskr"]
 
-[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_wtrqv"]
+[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_wwqpy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y7i8n"]
 font_size = 18
@@ -19,7 +19,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-texture = ExtResource("1_wtrqv")
+texture = ExtResource("1_wwqpy")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]

@@ -3,13 +3,14 @@ public partial class Fold : VBoxContainer
     static Texture2D arrowIconCollapsed = ThemeDB.GetDefaultTheme().GetIcon("arrow_collapsed", "Tree");
     static Texture2D arrowIconExpanded = ThemeDB.GetDefaultTheme().GetIcon("arrow", "Tree");
 
-    //#nullable disable
-    Container mainContainer;
+    const string tabName = "_FoldTab";
+    const string mainContainerName = "_FoldMainContainer";
+
+    VBoxContainer mainContainer;
     TextureRect arrowIcon;
     Label titleLabel;
-    //#nullable restore
 
-    public Container GetMainContainer => mainContainer; //TODO: get child
+    public VBoxContainer MainContainer => mainContainer; //TODO: get child?
 
     [Export]
     public string Title {
@@ -38,7 +39,7 @@ public partial class Fold : VBoxContainer
     {
         titleLabel = new Label();
         arrowIcon = new TextureRect() { ExpandMode = TextureRect.ExpandModeEnum.FitWidth };
-        mainContainer = new VBoxContainer() { Name = "_FoldContainer" };
+        mainContainer = new VBoxContainer() { Name = mainContainerName };
         Expanded = false;
         Title = "";
     }
@@ -47,7 +48,7 @@ public partial class Fold : VBoxContainer
     {
         SetupMainContainer();
 
-        HBoxContainer tab = new() { Name = "_FoldTab" };
+        HBoxContainer tab = new() { Name = tabName };
         tab.AddChild(arrowIcon);
         tab.AddChild(titleLabel);
         AddChild(tab);
@@ -67,19 +68,9 @@ public partial class Fold : VBoxContainer
 
     void SetupMainContainer()
     {
-        var children = GetChildren();
-        var first = GetChild(0);
-
-        if(children.Count() == 1 && first is Container userContainer)
+        foreach(var child in this.GetChildren())
         {
-            userContainer.Visible = Expanded;
-            mainContainer = userContainer;
-            return;
-        }
-        
-        foreach(var child in children)
-        {
-            RemoveChild(child);
+            this.RemoveChild(child);
             mainContainer.AddChild(child);
         }
 

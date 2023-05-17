@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqtrvk1fqad6g"]
+
+[ext_resource type="Script" path="res://src/code/gui/InvButton.cs" id="1_iq14x"]
+
+[node name="InvButton" type="HBoxContainer"]
+offset_right = 439.0
+offset_bottom = 40.0
+script = ExtResource("1_iq14x")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+text = "Pan"
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.435294, 0.368627, 1)
+text = "X"

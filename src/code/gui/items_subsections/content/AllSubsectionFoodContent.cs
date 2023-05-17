@@ -1,6 +1,6 @@
 partial class AllSubsectionFoodContent : ItemsSubsectionContent<FoodItem>
 {
-	static PackedScene itemButtonScene = GD.Load<PackedScene>("res://src/tscn/bank_food_button.tscn");
+	static PackedScene itemButtonScene = GD.Load<PackedScene>("res://src/tscn/item_buttons/bank_food_button.tscn");
 
     protected override Control GetControlForItem(FoodItem item)
     {

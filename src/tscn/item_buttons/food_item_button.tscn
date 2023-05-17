@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://brkg8enlfy71d"]
 
-[ext_resource type="PackedScene" uid="uid://djvtt7cv7rdgk" path="res://src/tscn/food_button.tscn" id="1_fc3i0"]
+[ext_resource type="PackedScene" uid="uid://djvtt7cv7rdgk" path="res://src/tscn/item_buttons/food_button.tscn" id="1_fc3i0"]
 [ext_resource type="Script" path="res://src/code/gui/FoodItemButton.cs" id="1_m6p38"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8yhm"]

@@ -13,8 +13,8 @@ partial class AllSubsection : VBoxContainer
         foodTab = content.GetNode<Fold>("FoodTab");
         invTab = content.GetNode<Fold>("InvTab");
 
-        foodContent = foodTab.GetMainContainer.GetNode<AllSubsectionFoodContent>("Content");
-        invContent = invTab.GetMainContainer.GetNode<InvSubsectionContent>("Content");
+        foodContent = foodTab.MainContainer.GetNode<AllSubsectionFoodContent>("MarginContainer/Content");
+        invContent = invTab.MainContainer.GetNode<InvSubsectionContent>("MarginContainer/Content");
 
         var bank = GetNode<Program>("/root/Program").ItemsBank;
         UpdateContent(bank);
