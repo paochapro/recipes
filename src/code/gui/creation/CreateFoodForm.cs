@@ -2,18 +2,17 @@ partial class CreateFoodForm : VBoxContainer, CreateForm<FoodItem>
 {
     #nullable disable
     TextureRect image;
+    LineEdit imagePathTb;
     #nullable restore
 
     [Export] PackedScene? fileDialogScene;
-    string texturePath = "";
 
-    public event Action<string> ErrorOccured;
+    public event Action<string>? ErrorOccured;
 
-    public CreateFoodForm() => ErrorOccured += (m) => {};
-    
     public override void _Ready()
     {
         image = GetNode<TextureRect>("Image/TextureRect");
+        imagePathTb = GetNode<LineEdit>("ImagePath/LineEdit");
     }
 
     public void OnImageButtonPressed()
@@ -37,13 +36,13 @@ partial class CreateFoodForm : VBoxContainer, CreateForm<FoodItem>
             if(texture == null)
                 throw new Exception("Wrong format for loading image (" + fileDialog.CurrentFile.Split(".").Last() + ")");
 
-            texturePath = fileDialog.CurrentPath;
+            imagePathTb.Text = fileDialog.CurrentPath;
             image.Texture = texture;
         }
         catch(Exception ex)
         {
             GD.PushError("Exception in [CreateFoodForm.cs]: " + ex.Message);
-            ErrorOccured.Invoke("Не удалось загрузить изображение.");
+            ErrorOccured?.Invoke("Не удалось загрузить изображение.");
         }
 
         fileDialog.QueueFree();
@@ -52,19 +51,19 @@ partial class CreateFoodForm : VBoxContainer, CreateForm<FoodItem>
     public void AddToBank()
     {
         string name = GetNode<LineEdit>("Name/LineEdit").Text;
-        string category = GetNode<LineEdit>("Category/LineEdit").Text; 
-        Texture2D texture = GetNode<TextureRect>("Image/TextureRect").Texture;
+        string category = GetNode<LineEdit>("Category/LineEdit").Text;
+        string imagePath = imagePathTb.Text;
 
-        if(name == "" && category == "")
-            throw new CustomErrorException("Имя и категория отсутствуют.");
+        List<string> errors = new();
 
-        if(name == "")
-            throw new CustomErrorException("Имя отсутствует.");
+        if(name == "") errors.Add("Имя отсутствует.");
+        if(category == "") errors.Add("Категория отсутствует.");
+        if(imagePath == "") errors.Add("Изображение отсутствует.");
 
-        if(category == "")
-            throw new CustomErrorException("Категория отсутствует.");
+        if(errors.Count() != 0)
+            throw new CustomErrorException(string.Join('\n', errors));
 
-        FoodItem result = new(name, category, texturePath);
+        FoodItem result = new(name, category, imagePath);
         
         GetNode<Program>("/root/Program").AddFoodItem(result);
     }

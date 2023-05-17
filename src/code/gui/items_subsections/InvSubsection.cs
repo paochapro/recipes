@@ -10,8 +10,6 @@ partial class InvSubsection : ItemsSubsection<InventoryItem>
 
     protected override void OnMenuButtonPressed()
     {
-        var dynamicWindow = GetNode<DynamicWindow>("/root/GuiRoot/%DynamicWindow");
-		dynamicWindow.SetFoodMenu();
-        dynamicWindow.SetInvMenu();
+        GetNode<GlobalEvents>("/root/GlobalEvents").CallSwitchDynamicWindow(DynamicWindowMenu.Inv);
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://dykoaxd108nk6"]
 
 [ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_7occ7"]
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodForm.cs" id="1_sl3de"]
@@ -28,6 +28,18 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 4
 text = "Загрузить изображение"
+
+[node name="ImagePath" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ImagePath"]
+layout_mode = 2
+text = "Путь:"
+
+[node name="LineEdit" type="LineEdit" parent="ImagePath"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
 
 [node name="Name" type="HBoxContainer" parent="."]
 layout_mode = 2

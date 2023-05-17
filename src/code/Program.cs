@@ -21,11 +21,16 @@ partial class Program : Node
     //Bank
     public void AddFoodItem(FoodItem item) 
     {
-        GD.Print("add food item: " + item.Name);
         itemsBank.FoodList.Add(item);
+        GetNode<GlobalEvents>("/root/GlobalEvents").CallNewBankFoodItem(item);
     }
 
-    public void AddInvItem(InventoryItem item) => itemsBank.InventoryList.Add(item);
+    public void AddInvItem(InventoryItem item) 
+    {
+        itemsBank.InventoryList.Add(item);
+        GetNode<GlobalEvents>("/root/GlobalEvents").CallNewBankInvItem(item);
+    }
+
     public void RemoveFoodItem(FoodItem item) => itemsBank.FoodList.Remove(item);
     public void RemoveInvItem(InventoryItem item) => itemsBank.InventoryList.Remove(item);
 

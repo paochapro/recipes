@@ -9,15 +9,16 @@ partial class CreateInvForm : VBoxContainer, CreateForm<InventoryItem>
         string name = GetNode<LineEdit>("Name/LineEdit").Text;
         string category = GetNode<LineEdit>("Category/LineEdit").Text;
 
-        if(name == "" && category == "")
-            throw new CustomErrorException("Имя и категория отсутствуют.");
+        List<string> errors = new();
 
-        if(name == "")
-            throw new CustomErrorException("Имя отсутствует.");
+        if(name == "") errors.Add("Имя отсутствует.");
+        if(category == "") errors.Add("Категория отсутствует.");
 
-        if(category == "")
-            throw new CustomErrorException("Категория отсутствует.");
+        if(errors.Count() != 0)
+            throw new CustomErrorException(string.Join('\n', errors));
 
-        GetNode<Program>("/root/Program").AddInvItem(new InventoryItem(name, category));
+        InventoryItem result = new(name, category);
+        
+        GetNode<Program>("/root/Program").AddInvItem(result);
     }
 }

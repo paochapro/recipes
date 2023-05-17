@@ -10,7 +10,6 @@ partial class FoodSubsection : ItemsSubsection<FoodItem>
 
 	protected override void OnMenuButtonPressed()
 	{
-        var dynamicWindow = GetNode<DynamicWindow>("/root/GuiRoot/%DynamicWindow");
-		dynamicWindow.SetFoodMenu();
+        GetNode<GlobalEvents>("/root/GlobalEvents").CallSwitchDynamicWindow(DynamicWindowMenu.Food);
 	}
 }

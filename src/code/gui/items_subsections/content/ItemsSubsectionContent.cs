@@ -28,5 +28,22 @@ abstract partial class ItemsSubsectionContent<TItem> : Container
 		}
 	}
 
+    //This could cause a ton of bugs, should handle new item creation better
+    public void UpdateItem(TItem item)
+    {
+        var control = GetControlForItem(item);
+
+        var foundFold = GetChildren().Cast<Fold>().FirstOrDefault(f => f.Title == item.Category);
+
+        if(foundFold != null)
+            foundFold.MainContainer.AddChild(control);
+        else
+        {
+            Fold newFold = new() { Title = item.Category };
+            newFold.AddChild(control);
+            this.AddChild(newFold);
+        }
+    }
+
 	protected abstract Control GetControlForItem(TItem item);
 }
