@@ -1,40 +1,35 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://6yaa4mcus8ty"]
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeForm.cs" id="1_0vlud"]
-[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_lf0qt"]
+[ext_resource type="PackedScene" uid="uid://bkwwjwnte1d33" path="res://src/tscn/form_image_component.tscn" id="2_ui8jc"]
 
 [node name="CreateRecipeForm" type="VBoxContainer"]
-offset_right = 381.0
-offset_bottom = 590.0
+offset_right = 375.0
+offset_bottom = 578.0
 script = ExtResource("1_0vlud")
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-text = "Изображение:"
-
-[node name="Image" type="HBoxContainer" parent="."]
+[node name="Image" parent="." instance=ExtResource("2_ui8jc")]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="Image"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("1_lf0qt")
-
-[node name="Button" type="Button" parent="Image"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-text = "Загрузить изображение"
-
-[node name="Name" type="HBoxContainer" parent="."]
+[node name="Title" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Name"]
+[node name="Label" type="Label" parent="Title"]
 layout_mode = 2
 text = "Название:"
 
-[node name="LineEdit" type="LineEdit" parent="Name"]
+[node name="LineEdit" type="LineEdit" parent="Title"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DishType" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DishType"]
+layout_mode = 2
+text = "Тип блюда:"
+
+[node name="OptionButton" type="OptionButton" parent="DishType"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -50,13 +45,38 @@ layout_mode = 2
 size_flags_horizontal = 3
 allow_greater = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Instructions" type="VBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="HBoxContainer"]
+[node name="Label" type="Label" parent="Instructions"]
 layout_mode = 2
-text = "Тип блюда:"
+size_flags_horizontal = 4
+text = "Инструкции"
 
-[node name="OptionButton" type="OptionButton" parent="HBoxContainer"]
+[node name="TextEdit" type="TextEdit" parent="Instructions"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Введите текст"
+
+[node name="Food" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Food"]
+layout_mode = 2
+text = "Продукты:"
+
+[node name="LineEdit" type="LineEdit" parent="Food"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Inv" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Inv"]
+layout_mode = 2
+text = "Инвентарь:"
+
+[node name="LineEdit" type="LineEdit" parent="Inv"]
 layout_mode = 2
 size_flags_horizontal = 3

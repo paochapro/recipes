@@ -1,9 +1,12 @@
 partial class FoodSubsectionContent : ItemsSubsectionContent<FoodItem>
 {
-	static PackedScene itemButtonScene = GD.Load<PackedScene>("res://src/tscn/item_buttons/food_item_button.tscn");
+	[Export] PackedScene? itemButtonScene;
 
 	protected override Control GetControlForItem(FoodItem item)
 	{
+        if(itemButtonScene == null)
+            throw new Exception("No item button packed scene [FoodSubsectionContent.cs]");
+
 		//Get food with count
 		var program = GetNode<Program>("/root/Program");
 		IEnumerable<FoodWithCount> food = program.LocalItems.Food;

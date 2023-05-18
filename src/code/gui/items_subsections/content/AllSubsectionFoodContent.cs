@@ -1,9 +1,12 @@
 partial class AllSubsectionFoodContent : ItemsSubsectionContent<FoodItem>
 {
-	static PackedScene itemButtonScene = GD.Load<PackedScene>("res://src/tscn/item_buttons/bank_food_button.tscn");
+	[Export] PackedScene? itemButtonScene;
 
     protected override Control GetControlForItem(FoodItem item)
     {
+        if(itemButtonScene == null)
+            throw new Exception("No item button packed scene [AllSubsectionFoodContent.cs]");
+
         var button = itemButtonScene.Instantiate<FoodButton>();
         string name = item.Name;
         Texture2D texture = GD.Load<Texture2D>(item.TexturePath);

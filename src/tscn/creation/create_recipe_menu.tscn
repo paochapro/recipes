@@ -2,15 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://b6753yr6hb1l0" path="res://src/tscn/creation/create_menu.tscn" id="1_ysam7"]
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeMenu.cs" id="2_i5on6"]
-[ext_resource type="PackedScene" uid="uid://btvm20cgmyo38" path="res://src/tscn/creation/create_recipe_form.tscn" id="3_x5mjw"]
+[ext_resource type="PackedScene" uid="uid://6yaa4mcus8ty" path="res://src/tscn/creation/create_recipe_form.tscn" id="3_x5mjw"]
 
 [node name="CreateRecipeMenu" instance=ExtResource("1_ysam7")]
-offset_right = 427.0
-offset_bottom = 658.0
+offset_right = 369.0
+offset_bottom = 641.0
 script = ExtResource("2_i5on6")
+metadata/_edit_horizontal_guides_ = []
 
 [node name="Label" parent="Content/Title" index="0"]
 text = "Создать рецепт"
 
-[node name="CreateRecipeForm" parent="Content/FormRoot" index="0" instance=ExtResource("3_x5mjw")]
+[node name="CreateRecipeForm" parent="Content/FormContainer/MarginContainer" index="0" instance=ExtResource("3_x5mjw")]
 layout_mode = 2

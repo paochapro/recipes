@@ -8,7 +8,7 @@ partial class CreateMenu<T> : PanelContainer
 	public override void _Ready()
 	{
         errorLabel = GetNode<Label>("Content/ErrorLabel");
-        form = GetNode("Content/FormRoot").GetChild<CreateForm<T>>(0);
+        form = GetNode("Content/FormContainer/MarginContainer").GetChild<CreateForm<T>>(0);
         form.ErrorOccured += ShowErrorMessage;
         this.VisibilityChanged += HideErrorMessage;
 	}

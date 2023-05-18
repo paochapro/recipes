@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkwwjwnte1d33"]
+
+[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_856cf"]
+[ext_resource type="Script" path="res://src/code/gui/FormImageComponent.cs" id="1_hk0yr"]
+[ext_resource type="PackedScene" uid="uid://ciy5m1774low5" path="res://src/tscn/image_file_dialog.tscn" id="2_tdf7q"]
+
+[node name="Image" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_hk0yr")
+fileDialogScene = ExtResource("2_tdf7q")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Изображение"
+
+[node name="Load" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Load"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+texture = ExtResource("1_856cf")
+
+[node name="Button" type="Button" parent="Load"]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+text = "Загрузить изображение"
+
+[node name="Path" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Path"]
+layout_mode = 2
+text = "Путь:"
+
+[node name="LineEdit" type="LineEdit" parent="Path"]
+layout_mode = 2
+size_flags_horizontal = 3
+editable = false
+
+[connection signal="pressed" from="Load/Button" to="." method="OnLoadImageButtonPressed"]

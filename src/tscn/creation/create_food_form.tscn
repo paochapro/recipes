@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dykoaxd108nk6"]
 
-[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_7occ7"]
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodForm.cs" id="1_sl3de"]
 [ext_resource type="PackedScene" uid="uid://ciy5m1774low5" path="res://src/tscn/image_file_dialog.tscn" id="2_dil1j"]
+[ext_resource type="PackedScene" uid="uid://bkwwjwnte1d33" path="res://src/tscn/form_image_component.tscn" id="3_i48jg"]
 
 [node name="CreateFoodForm" type="VBoxContainer"]
 offset_right = 40.0
@@ -10,36 +10,8 @@ offset_bottom = 40.0
 script = ExtResource("1_sl3de")
 fileDialogScene = ExtResource("2_dil1j")
 
-[node name="Label" type="Label" parent="."]
+[node name="Image" parent="." instance=ExtResource("3_i48jg")]
 layout_mode = 2
-text = "Изображение:"
-
-[node name="Image" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="Image"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("1_7occ7")
-
-[node name="Button" type="Button" parent="Image"]
-layout_mode = 2
-size_flags_horizontal = 6
-size_flags_vertical = 4
-text = "Загрузить изображение"
-
-[node name="ImagePath" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="ImagePath"]
-layout_mode = 2
-text = "Путь:"
-
-[node name="LineEdit" type="LineEdit" parent="ImagePath"]
-layout_mode = 2
-size_flags_horizontal = 3
-editable = false
 
 [node name="Name" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -62,5 +34,3 @@ text = "Категория:"
 [node name="LineEdit" type="LineEdit" parent="Category"]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[connection signal="pressed" from="Image/Button" to="." method="OnImageButtonPressed"]
