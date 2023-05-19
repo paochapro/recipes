@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://6yaa4mcus8ty"]
+[gd_scene load_steps=7 format=3 uid="uid://6yaa4mcus8ty"]
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeForm.cs" id="1_0vlud"]
 [ext_resource type="PackedScene" uid="uid://bkwwjwnte1d33" path="res://src/tscn/form_image_component.tscn" id="2_ui8jc"]
+[ext_resource type="PackedScene" uid="uid://b726knif8qpt4" path="res://src/tscn/form_string_component.tscn" id="3_qnmyl"]
+[ext_resource type="PackedScene" uid="uid://qfevxmc7kgsf" path="res://src/tscn/form_options_component.tscn" id="4_va472"]
+[ext_resource type="PackedScene" uid="uid://dodfqef10wx3u" path="res://src/tscn/form_spinbox_component.tscn" id="5_1al1x"]
+[ext_resource type="PackedScene" uid="uid://5vpibnwkqjqy" path="res://src/tscn/form_textedit_component.tscn" id="6_f35m8"]
 
 [node name="CreateRecipeForm" type="VBoxContainer"]
 offset_right = 375.0
@@ -11,72 +15,45 @@ script = ExtResource("1_0vlud")
 [node name="Image" parent="." instance=ExtResource("2_ui8jc")]
 layout_mode = 2
 
-[node name="Title" type="HBoxContainer" parent="."]
+[node name="Title" parent="." instance=ExtResource("3_qnmyl")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Title"]
-layout_mode = 2
+[node name="Label" parent="Title" index="0"]
 text = "Название:"
 
-[node name="LineEdit" type="LineEdit" parent="Title"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="DishType" type="HBoxContainer" parent="."]
+[node name="DishType" parent="." instance=ExtResource("4_va472")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="DishType"]
-layout_mode = 2
+[node name="Label" parent="DishType" index="0"]
 text = "Тип блюда:"
 
-[node name="OptionButton" type="OptionButton" parent="DishType"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Time" type="HBoxContainer" parent="."]
+[node name="Time" parent="." instance=ExtResource("5_1al1x")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Time"]
-layout_mode = 2
+[node name="Label" parent="Time" index="0"]
 text = "Макс. время (мин):"
 
-[node name="SpinBox" type="SpinBox" parent="Time"]
-layout_mode = 2
-size_flags_horizontal = 3
-allow_greater = true
-
-[node name="Instructions" type="VBoxContainer" parent="."]
+[node name="Instructions" parent="." instance=ExtResource("6_f35m8")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Instructions"]
-layout_mode = 2
-size_flags_horizontal = 4
+[node name="Label" parent="Instructions" index="0"]
 text = "Инструкции"
 
-[node name="TextEdit" type="TextEdit" parent="Instructions"]
-custom_minimum_size = Vector2(0, 200)
-layout_mode = 2
-size_flags_vertical = 3
-placeholder_text = "Введите текст"
-
-[node name="Food" type="HBoxContainer" parent="."]
+[node name="Food" parent="." instance=ExtResource("3_qnmyl")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Food"]
-layout_mode = 2
+[node name="Label" parent="Food" index="0"]
 text = "Продукты:"
 
-[node name="LineEdit" type="LineEdit" parent="Food"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Inv" type="HBoxContainer" parent="."]
+[node name="Inv" parent="." instance=ExtResource("3_qnmyl")]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Inv"]
-layout_mode = 2
+[node name="Label" parent="Inv" index="0"]
 text = "Инвентарь:"
 
-[node name="LineEdit" type="LineEdit" parent="Inv"]
-layout_mode = 2
-size_flags_horizontal = 3
+[editable path="Title"]
+[editable path="DishType"]
+[editable path="Time"]
+[editable path="Instructions"]
+[editable path="Food"]
+[editable path="Inv"]

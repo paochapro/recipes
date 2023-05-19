@@ -1,6 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://b6753yr6hb1l0"]
-
-[ext_resource type="LabelSettings" uid="uid://m8vincgqqsa4" path="res://content/error_label_settings.tres" id="1_ghags"]
+[gd_scene format=3 uid="uid://b6753yr6hb1l0"]
 
 [node name="CreateMenu" type="PanelContainer"]
 offset_right = 292.0
@@ -34,11 +32,7 @@ theme_override_constants/margin_bottom = 5
 [node name="Create" type="Button" parent="Content"]
 layout_mode = 2
 size_flags_horizontal = 4
+disabled = true
 text = "Создать"
-
-[node name="ErrorLabel" type="Label" parent="Content"]
-layout_mode = 2
-size_flags_horizontal = 4
-label_settings = ExtResource("1_ghags")
 
 [connection signal="pressed" from="Content/Create" to="." method="OnCreateButtonPressed"]

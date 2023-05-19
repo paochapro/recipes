@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dodfqef10wx3u"]
+
+[ext_resource type="Script" path="res://src/code/gui/FormSpinBoxComponent.cs" id="1_6o6ww"]
+
+[node name="SpinBox" type="HBoxContainer"]
+script = ExtResource("1_6o6ww")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+
+[node name="SpinBox" type="SpinBox" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+allow_greater = true
+
+[connection signal="value_changed" from="SpinBox" to="." method="OnValueChanged"]

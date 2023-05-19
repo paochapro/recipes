@@ -12,6 +12,3 @@ text = "Создать пищевой продукт"
 
 [node name="CreateFoodForm" parent="Content/FormContainer/MarginContainer" index="0" instance=ExtResource("2_x7f1l")]
 layout_mode = 2
-
-[node name="ErrorLabel" parent="Content" index="3"]
-horizontal_alignment = 1

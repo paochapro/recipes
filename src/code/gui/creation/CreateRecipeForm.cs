@@ -1,10 +1,8 @@
-partial class CreateRecipeForm : VBoxContainer, CreateForm<Recipe>
+partial class CreateRecipeForm : CreateForm
 {
     #nullable disable
     FormImageComponent imageComponent;
     #nullable restore
-
-    public event Action<string>? ErrorOccured;
 
     //lazy localization
     Dictionary<DishType, string> localiztaion = new() {
@@ -17,8 +15,8 @@ partial class CreateRecipeForm : VBoxContainer, CreateForm<Recipe>
     public override void _Ready()
     {
         imageComponent = GetNode<FormImageComponent>("Image");
-        imageComponent.ErrorOccured += this.ErrorOccured;
         AddDishOptions();
+        base._Ready();
     }
 
     void AddDishOptions()
@@ -29,14 +27,14 @@ partial class CreateRecipeForm : VBoxContainer, CreateForm<Recipe>
             options.AddItem(localiztaion[type]);
     }
     
-    public void AddToBank()
+    public override void AddToBank()
     {
         var program = GetNode<Program>("/root/Program");
-        string title = GetNode<LineEdit>("Title/LineEdit").Text;
-        string foodStr = GetNode<LineEdit>("Food/LineEdit").Text;
-        string invStr = GetNode<LineEdit>("Inv/LineEdit").Text;
+        string title = GetNode<FormLineEditComponent>("Title").GetValue;
+        string foodStr = GetNode<FormLineEditComponent>("Food").GetValue;
+        string invStr = GetNode<FormLineEditComponent>("Inv").GetValue;
         string instuctions = GetNode<TextEdit>("Instructions/TextEdit").Text;
-        string imagePath = imageComponent.ImagePath;
+        string imagePath = imageComponent.GetValue;
 
         int selectedDishTypeInt = GetNode<OptionButton>("DishType/OptionButton").Selected;
         DishType dishType = (DishType)selectedDishTypeInt;

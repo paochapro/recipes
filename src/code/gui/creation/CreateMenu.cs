@@ -1,40 +1,21 @@
 partial class CreateMenu<T> : PanelContainer
 {
     #nullable disable
-    Label errorLabel;
-    CreateForm<T> form;
+    Button createButton;
+    CreateForm form;
     #nullable restore
 
 	public override void _Ready()
 	{
-        errorLabel = GetNode<Label>("Content/ErrorLabel");
-        form = GetNode("Content/FormContainer/MarginContainer").GetChild<CreateForm<T>>(0);
-        form.ErrorOccured += ShowErrorMessage;
-        this.VisibilityChanged += HideErrorMessage;
+        createButton = GetNode<Button>("Content/Create");
+        form = GetNode("Content/FormContainer/MarginContainer").GetChild<CreateForm>(0);
+        form.FormChanged += () => OnFormChanged(form);
 	}
 
-    void OnCreateButtonPressed()
+    void OnFormChanged(CreateForm form)
     {
-        try {
-            form.AddToBank();
-            HideErrorMessage();
-        }
-        catch(CustomErrorException ex)
-        {
-            ShowErrorMessage(ex.Message);
-        }
-        catch(Exception ex)
-        {
-            GD.PrintErr("Exception on creating object [CreateMenu.cs]: " + ex.Message);
-            ShowErrorMessage($"Неизвестная ошибка. Объект создать не удалось.");
-        }
+        createButton.Disabled = !form.IsFormCompleted;
     }
 
-    void ShowErrorMessage(string message)
-    {
-        errorLabel.Text = message;
-        errorLabel.Show();
-    }
-
-    void HideErrorMessage() => errorLabel.Hide();
+    void OnCreateButtonPressed() => form.AddToBank();
 }

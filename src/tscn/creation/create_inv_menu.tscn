@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bmho2ixo71pbv"]
 
 [ext_resource type="PackedScene" uid="uid://b6753yr6hb1l0" path="res://src/tscn/creation/create_menu.tscn" id="1_srr6i"]
-[ext_resource type="PackedScene" path="res://src/tscn/creation/create_inv_form.tscn" id="2_eygjm"]
+[ext_resource type="PackedScene" uid="uid://b6mfwe3lsr8yj" path="res://src/tscn/creation/create_inv_form.tscn" id="2_eygjm"]
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateInvMenu.cs" id="2_o15oq"]
 
 [node name="CreateInvMenu" instance=ExtResource("1_srr6i")]
@@ -12,6 +12,3 @@ text = "Создать инструмент"
 
 [node name="CreateInvForm" parent="Content/FormContainer/MarginContainer" index="0" instance=ExtResource("2_eygjm")]
 layout_mode = 2
-
-[node name="ErrorLabel" parent="Content" index="3"]
-horizontal_alignment = 1
