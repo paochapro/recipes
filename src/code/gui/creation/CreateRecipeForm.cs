@@ -1,88 +1,72 @@
-partial class CreateRecipeForm : CreateForm
+partial class CreateRecipeForm : CreateForm<Recipe>
 {
-    #nullable disable
-    FormImageComponent imageComponent;
-    #nullable restore
+	#nullable disable
+	FormImageComponent imageComponent;
+	#nullable restore
 
-    //lazy localization
-    Dictionary<DishType, string> localiztaion = new() {
-        [DishType.None] = "Отсутствует",
-        [DishType.First] = "Первый",
-        [DishType.Second] = "Второй",
-        [DishType.Third] = "Третий"
-    };
+	public override void _Ready()
+	{
+		imageComponent = GetNode<FormImageComponent>("Image");
+		base._Ready();
+	}
+	
+	public override Recipe CreateObject()
+	{
+		string title = GetNode<FormLineEditComponent>("Title").GetValue;
+		string foodStr = GetNode<FormLineEditComponent>("Food").GetValue;
+		string invStr = GetNode<FormLineEditComponent>("Inv").GetValue;
+		string instuctions = GetNode<TextEdit>("Instructions/TextEdit").Text;
+		string imagePath = imageComponent.GetValue;
 
-    public override void _Ready()
-    {
-        imageComponent = GetNode<FormImageComponent>("Image");
-        AddDishOptions();
-        base._Ready();
-    }
+		int selectedDishTypeInt = GetNode<OptionButton>("DishType/OptionButton").Selected;
+		DishType dishType = (DishType)selectedDishTypeInt;
 
-    void AddDishOptions()
-    {
-        var options = GetNode<OptionButton>("DishType/OptionButton");
+		int time = (int)GetNode<SpinBox>("Time/SpinBox").Value;
 
-        foreach(DishType type in Enum.GetValues<DishType>())
-            options.AddItem(localiztaion[type]);
-    }
-    
-    public override void AddToBank()
-    {
-        var program = GetNode<Program>("/root/Program");
-        string title = GetNode<FormLineEditComponent>("Title").GetValue;
-        string foodStr = GetNode<FormLineEditComponent>("Food").GetValue;
-        string invStr = GetNode<FormLineEditComponent>("Inv").GetValue;
-        string instuctions = GetNode<TextEdit>("Instructions/TextEdit").Text;
-        string imagePath = imageComponent.GetValue;
+		var program = GetNode<Program>("/root/Program");
+		var foodResult = GetFoodWithCountByString(foodStr, program.ItemsBank.Food);
+		var invResult = GetItemsByString<InventoryItem>(invStr, program.ItemsBank.Inventory);
+		ItemSet set = new(foodResult.ToList(), invResult.ToList());
+		Recipe recipe = new(title, instuctions, imagePath, time, set, dishType);
+		
+		return recipe;
+	}
 
-        int selectedDishTypeInt = GetNode<OptionButton>("DishType/OptionButton").Selected;
-        DishType dishType = (DishType)selectedDishTypeInt;
+	//Debug (Works for now) 
+	IEnumerable<FoodWithCount> GetFoodWithCountByString(string value, IEnumerable<FoodItem> avaliableItems)
+	{
+		string[] foodValues = value.Split(',');
+		return foodValues.Select(v => GetFoodItemByString(v, avaliableItems));
+	}
 
-        int time = (int)GetNode<SpinBox>("Time/SpinBox").Value;
+	FoodWithCount GetFoodItemByString(string str, IEnumerable<FoodItem> foodBank)
+	{
+		int count = 1;
+		string name = str;
+		char lastChar = str.Last();
 
-        var foodResult = GetFoodWithCountByString(foodStr, program.ItemsBank.Food);
-        var invResult = GetItemsByString<InventoryItem>(invStr, program.ItemsBank.Inventory);
-        ItemSet set = new(foodResult.ToList(), invResult.ToList());
-        Recipe recipe = new(title, instuctions, imagePath, time, set, dishType);
-        program.AddRecipe(recipe);
-    }
+		if(char.IsDigit(lastChar)) 
+		{
+			count = (int)char.GetNumericValue(lastChar);
+			name = str.Substring(0, str.Length-1);
+		}
 
-    //Debug (Works for now) 
-    IEnumerable<FoodWithCount> GetFoodWithCountByString(string value, IEnumerable<FoodItem> avaliableItems)
-    {
-        string[] foodValues = value.Split(',');
-        return foodValues.Select(v => GetFoodItemByString(v, avaliableItems));
-    }
+		FoodItem resultItem = foodBank.FirstOrDefault(f => f.Name == name);
+		
+		if(resultItem == null)
+			throw new CustomErrorException("Некоторые предметы не существует в банке");
 
-    FoodWithCount GetFoodItemByString(string str, IEnumerable<FoodItem> foodBank)
-    {
-        int count = 1;
-        string name = str;
-        char lastChar = str.Last();
+		return new FoodWithCount(resultItem, count);
+	}
 
-        if(char.IsDigit(lastChar)) 
-        {
-            count = (int)char.GetNumericValue(lastChar);
-            name = str.Substring(0, str.Length-1);
-        }
+	IEnumerable<TItem> GetItemsByString<TItem>(string value, IEnumerable<TItem> avaliableItems)
+		where TItem : Item
+	{
+		string[] itemNames = value.Split(',');
 
-        FoodItem resultItem = foodBank.FirstOrDefault(f => f.Name == name);
-        
-        if(resultItem == null)
-            throw new CustomErrorException("Некоторые предметы не существует в банке");
+		if(!itemNames.All(name => avaliableItems.Select(i => i.Name).Contains(name)))
+			throw new CustomErrorException("Некоторые предметы не существует в банке");
 
-        return new FoodWithCount(resultItem, count);
-    }
-
-    IEnumerable<TItem> GetItemsByString<TItem>(string value, IEnumerable<TItem> avaliableItems)
-        where TItem : Item
-    {
-        string[] itemNames = value.Split(',');
-
-        if(!itemNames.All(name => avaliableItems.Select(i => i.Name).Contains(name)))
-            throw new CustomErrorException("Некоторые предметы не существует в банке");
-
-        return avaliableItems.Where(i => itemNames.Contains(i.Name));
-    }
+		return avaliableItems.Where(i => itemNames.Contains(i.Name));
+	}
 }

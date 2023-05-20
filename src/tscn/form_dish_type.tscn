@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1ki8cp5w7l0s"]
+
+[ext_resource type="Script" path="res://src/code/gui/FormOptionsComponent.cs" id="1_482xs"]
+
+[node name="DishType" type="HBoxContainer"]
+offset_right = 211.0
+offset_bottom = 26.0
+script = ExtResource("1_482xs")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "Тип блюда:"
+
+[node name="OptionButton" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 4
+selected = 0
+popup/item_0/text = "Отсутствует"
+popup/item_0/id = 0
+popup/item_1/text = "Первый"
+popup/item_1/id = 1
+popup/item_2/text = "Второй"
+popup/item_2/id = 2
+popup/item_3/text = "Третий"
+popup/item_3/id = 3
+
+[connection signal="item_selected" from="OptionButton" to="." method="OnItemSelected" flags=18]

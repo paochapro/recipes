@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodForm.cs" id="1_sl3de"]
 [ext_resource type="PackedScene" uid="uid://bkwwjwnte1d33" path="res://src/tscn/form_image_component.tscn" id="3_i48jg"]
-[ext_resource type="PackedScene" uid="uid://dlcnqsd502lpq" path="res://src/tscn/form_string_component.tscn" id="4_r47to"]
+[ext_resource type="PackedScene" uid="uid://b726knif8qpt4" path="res://src/tscn/form_string_component.tscn" id="4_r47to"]
 
 [node name="CreateFoodForm" type="VBoxContainer"]
 offset_right = 40.0

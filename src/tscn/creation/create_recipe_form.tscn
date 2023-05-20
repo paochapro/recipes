@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeForm.cs" id="1_0vlud"]
 [ext_resource type="PackedScene" uid="uid://bkwwjwnte1d33" path="res://src/tscn/form_image_component.tscn" id="2_ui8jc"]
 [ext_resource type="PackedScene" uid="uid://b726knif8qpt4" path="res://src/tscn/form_string_component.tscn" id="3_qnmyl"]
-[ext_resource type="PackedScene" uid="uid://qfevxmc7kgsf" path="res://src/tscn/form_options_component.tscn" id="4_va472"]
+[ext_resource type="PackedScene" uid="uid://c1ki8cp5w7l0s" path="res://src/tscn/form_dish_type.tscn" id="4_4yc4g"]
 [ext_resource type="PackedScene" uid="uid://dodfqef10wx3u" path="res://src/tscn/form_spinbox_component.tscn" id="5_1al1x"]
 [ext_resource type="PackedScene" uid="uid://5vpibnwkqjqy" path="res://src/tscn/form_textedit_component.tscn" id="6_f35m8"]
 
@@ -21,11 +21,8 @@ layout_mode = 2
 [node name="Label" parent="Title" index="0"]
 text = "Название:"
 
-[node name="DishType" parent="." instance=ExtResource("4_va472")]
+[node name="DishType" parent="." instance=ExtResource("4_4yc4g")]
 layout_mode = 2
-
-[node name="Label" parent="DishType" index="0"]
-text = "Тип блюда:"
 
 [node name="Time" parent="." instance=ExtResource("5_1al1x")]
 layout_mode = 2
@@ -52,7 +49,6 @@ layout_mode = 2
 text = "Инвентарь:"
 
 [editable path="Title"]
-[editable path="DishType"]
 [editable path="Time"]
 [editable path="Instructions"]
 [editable path="Food"]

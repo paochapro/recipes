@@ -1,0 +1,108 @@
+[gd_scene load_steps=2 format=3 uid="uid://bqv3ngpdutjws"]
+
+[ext_resource type="Script" path="res://src/code/gui/RecipeCard.cs" id="1_poa34"]
+
+[node name="RecipeCard" type="PanelContainer" node_paths=PackedStringArray("title", "time", "dishType", "instructions", "image", "foodContent", "invContent")]
+offset_right = 342.0
+offset_bottom = 466.0
+size_flags_vertical = 3
+script = ExtResource("1_poa34")
+title = NodePath("Content/PanelContainer/Banner/Title")
+time = NodePath("Content/Time/Value")
+dishType = NodePath("Content/DishType/Type")
+instructions = NodePath("Content/InstructionsPanel/Label")
+image = NodePath("Content/PanelContainer/Banner/TextureRect")
+foodContent = NodePath("Content/ItemSet/FoodScroll/Content")
+invContent = NodePath("Content/ItemSet/InvScroll/Content")
+
+[node name="Content" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Content"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="Banner" type="HBoxContainer" parent="Content/PanelContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Content/PanelContainer/Banner"]
+layout_mode = 2
+expand_mode = 2
+
+[node name="Title" type="Label" parent="Content/PanelContainer/Banner"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+
+[node name="Time" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="PreText" type="Label" parent="Content/Time"]
+layout_mode = 2
+text = "Время:"
+
+[node name="Value" type="Label" parent="Content/Time"]
+layout_mode = 2
+
+[node name="PostText" type="Label" parent="Content/Time"]
+layout_mode = 2
+text = "мин"
+
+[node name="DishType" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="Content/DishType"]
+layout_mode = 2
+text = "Тип блюда:"
+
+[node name="Type" type="Label" parent="Content/DishType"]
+layout_mode = 2
+
+[node name="InstructionsText" type="Label" parent="Content"]
+layout_mode = 2
+text = "Инструкции:"
+
+[node name="InstructionsPanel" type="PanelContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/InstructionsPanel"]
+layout_mode = 2
+
+[node name="ItemSetText" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/ItemSetText"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Продукты"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Content/ItemSetText"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Инвентарь"
+horizontal_alignment = 1
+
+[node name="ItemSet" type="HBoxContainer" parent="Content"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FoodScroll" type="ScrollContainer" parent="Content/ItemSet"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Content/ItemSet/FoodScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InvScroll" type="ScrollContainer" parent="Content/ItemSet"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_scroll_mode = 0
+
+[node name="Content" type="VBoxContainer" parent="Content/ItemSet/InvScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

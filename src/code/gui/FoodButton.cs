@@ -1,5 +1,6 @@
 partial class FoodButton : PanelContainer
 {
+    //TODO: Intialize function should take in FoodItem rather than multiple params
     public virtual void Initialize(string name, Texture2D imageTexture, Action removeButtonPressed)
     {
         var nameLabel = GetNode<Label>("HBoxContainer/Label");

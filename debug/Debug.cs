@@ -62,7 +62,7 @@ partial class Debug : Node
     {   
         DishType dishType = (DishType)Mathf.Clamp(dishTypeValue, 0, Enum.GetValues(typeof(DishType)).Length-1);
         int minutes = Mathf.RoundToInt(minutesValue);
-        SearchInfo info = new(userItemSet, filterItemSet, dishType, minutes);
+        SearchInfo info = new("", userItemSet, filterItemSet, dishType, minutes);
         var result = RecipeSearch.Search(recipes, info);
         control.CompareUpdate(userItemSet, result);
     }

@@ -1,11 +1,11 @@
-partial class CreateInvForm : CreateForm
+partial class CreateInvForm : CreateForm<InventoryItem>
 {
-    public override void AddToBank()
+    public override InventoryItem CreateObject()
     {
         string name = GetNode<FormLineEditComponent>("Name").GetValue;
         string category = GetNode<FormLineEditComponent>("Category").GetValue;
 
         InventoryItem result = new(name, category);
-        GetNode<Program>("/root/Program").AddInvItem(result);
+        return result;
     }
 }

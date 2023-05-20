@@ -31,11 +31,20 @@ static class RecipeSearch
 
     static bool DoesRecipePass(Recipe recipe, SearchInfo info)
     {
+        bool title = RecipePassTitle(recipe, info.Title);
         bool localItems = RecipePassItemSet(recipe, info.LocalItemSet);
         bool filterItems = RecipePassItemSet(recipe, info.FilterItemSet);
         bool dishType = RecipePassDishType(recipe, info.DishType);
         bool time = RecipePassTime(recipe, info.Minutes);
-        return localItems && filterItems && dishType && time;
+        return title && localItems && filterItems && dishType && time;
+    }
+
+    static bool RecipePassTitle(Recipe recipe, string searchTitle)
+    {
+        if(searchTitle == "")
+            return true;
+
+        return recipe.Title.Contains(searchTitle);
     }
 
     static bool RecipePassItemSet(Recipe recipe, ReadonlyItemSet searchItemSet)
