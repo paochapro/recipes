@@ -1,1 +1,1 @@
-partial class CreateInvMenu : CreateMenu<InventoryItem> {}
+partial class CreateInvMenu : CreateMenu {}

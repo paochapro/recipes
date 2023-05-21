@@ -1,16 +1,16 @@
 [gd_scene load_steps=7 format=3 uid="uid://ced2qhfiu2nk1"]
 
 [ext_resource type="PackedScene" uid="uid://dpjq0bsmrengm" path="res://src/tscn/control_panel.tscn" id="1_8x03f"]
-[ext_resource type="Script" path="res://src/code/gui/RecipesSection.cs" id="1_jqywm"]
-[ext_resource type="Script" path="res://src/code/gui/RecipeContent.cs" id="2_7075m"]
-[ext_resource type="PackedScene" uid="uid://bqv3ngpdutjws" path="res://src/tscn/recipe_card.tscn" id="3_nplny"]
+[ext_resource type="Script" path="res://src/code/gui/RecipeContent.cs" id="1_k41t1"]
+[ext_resource type="Script" path="res://src/code/gui/RecipesSection.cs" id="1_wpon4"]
+[ext_resource type="PackedScene" uid="uid://bqv3ngpdutjws" path="res://src/tscn/recipe_card.tscn" id="2_4kfgs"]
 [ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="5_sk41l"]
 [ext_resource type="PackedScene" uid="uid://c0a6alfteob6f" path="res://src/tscn/filters_form.tscn" id="6_143f0"]
 
 [node name="RecipesSection" type="PanelContainer"]
 offset_right = 397.0
 offset_bottom = 649.0
-script = ExtResource("1_jqywm")
+script = ExtResource("1_wpon4")
 
 [node name="Components" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -26,8 +26,8 @@ text = "Рецепты"
 [node name="Content" type="VBoxContainer" parent="Components"]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("2_7075m")
-recipeCardScene = ExtResource("3_nplny")
+script = ExtResource("1_k41t1")
+recipeCardScene = ExtResource("2_4kfgs")
 
 [node name="ControlPanel" parent="Components" instance=ExtResource("1_8x03f")]
 layout_mode = 2
@@ -39,7 +39,6 @@ layout_mode = 2
 layout_mode = 2
 script = ExtResource("5_sk41l")
 Title = "Фильтры"
-Expanded = null
 
 [node name="FiltersForm" parent="Components/FiltersRoot/Fold" instance=ExtResource("6_143f0")]
 layout_mode = 2

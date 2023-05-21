@@ -2,8 +2,6 @@ partial class FiltersForm : Form
 {
 	public SearchInfo GetSearchInfo()
 	{
-        GD.Print("SAERHGIOSRJHGOIJHGOJHG");
-
 		int time = (int)GetNode<FormSpinBoxComponent>("Time").GetValue;
 		int dishTypeIndex = GetNode<FormOptionsComponent>("DishType").GetValue;
 		DishType dishType = (DishType)dishTypeIndex;

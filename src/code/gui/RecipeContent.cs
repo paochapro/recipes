@@ -14,7 +14,7 @@ partial class RecipeContent : VBoxContainer
 
         foreach(Recipe recipe in recipes)
         {
-            GD.Print($"Hello? Recipe: {recipe.Title}");
+            GD.Print($"Recipe: {recipe.Title}");
 
             Fold fold = new();
             fold.Title = recipe.Title;

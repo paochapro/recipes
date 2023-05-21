@@ -1,1 +1,1 @@
-partial class CreateFoodMenu : CreateMenu<FoodItem> {}
+partial class CreateFoodMenu : CreateMenu {}

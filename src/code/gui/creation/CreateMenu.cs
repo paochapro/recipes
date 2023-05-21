@@ -1,4 +1,4 @@
-partial class CreateMenu<T> : PanelContainer
+partial class CreateMenu : PanelContainer
 {
     #nullable disable
     Button createButton;

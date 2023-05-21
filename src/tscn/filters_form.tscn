@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://c0a6alfteob6f"]
 
-[ext_resource type="Script" path="res://src/code/gui/FiltersForm.cs" id="1_cythq"]
+[ext_resource type="Script" path="res://src/code/gui/FiltersForm.cs" id="1_brgbw"]
 [ext_resource type="PackedScene" uid="uid://dodfqef10wx3u" path="res://src/tscn/form_spinbox_component.tscn" id="2_2u4p1"]
 [ext_resource type="PackedScene" uid="uid://c1ki8cp5w7l0s" path="res://src/tscn/form_dish_type.tscn" id="2_yfhyg"]
 
 [node name="FiltersForm" type="VBoxContainer"]
-script = ExtResource("1_cythq")
+script = ExtResource("1_brgbw")
 
 [node name="DishType" parent="." instance=ExtResource("2_yfhyg")]
 layout_mode = 2

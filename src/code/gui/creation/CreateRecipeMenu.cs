@@ -1,4 +1,4 @@
 using Godot;
 using System;
 
-partial class CreateRecipeMenu : CreateMenu<Recipe> {}
+partial class CreateRecipeMenu : CreateMenu {}

@@ -1,4 +1,4 @@
-abstract partial class CreateForm<T> : Form
+abstract partial class CreateForm<CreateFormItem> : Form
 {
-    public abstract T CreateObject();
+    public abstract CreateFormItem CreateObject();
 }

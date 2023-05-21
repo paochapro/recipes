@@ -14,8 +14,8 @@ partial class Form : Control
 	{
 		var components = GetChildren().OfType<FormComponent>();
 
-		foreach(Node component in components)
-		     GD.Print($"{component.GetType()} ({component.GetNode<Label>("Label").Text})");
+		// foreach(Node component in components)
+		//      GD.Print($"{component.GetType()} ({component.GetNode<Label>("Label").Text})");
 
 		components.Iterate(c => c.ComponentChanged += () => { FormChanged?.Invoke(); } );
 	}

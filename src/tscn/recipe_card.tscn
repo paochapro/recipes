@@ -1,12 +1,12 @@
 [gd_scene load_steps=2 format=3 uid="uid://bqv3ngpdutjws"]
 
-[ext_resource type="Script" path="res://src/code/gui/RecipeCard.cs" id="1_poa34"]
+[ext_resource type="Script" path="res://src/code/gui/RecipeCard.cs" id="1_ll5dl"]
 
 [node name="RecipeCard" type="PanelContainer" node_paths=PackedStringArray("title", "time", "dishType", "instructions", "image", "foodContent", "invContent")]
 offset_right = 342.0
 offset_bottom = 466.0
 size_flags_vertical = 3
-script = ExtResource("1_poa34")
+script = ExtResource("1_ll5dl")
 title = NodePath("Content/PanelContainer/Banner/Title")
 time = NodePath("Content/Time/Value")
 dishType = NodePath("Content/DishType/Type")
