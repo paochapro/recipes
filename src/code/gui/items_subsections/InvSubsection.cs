@@ -1,15 +1,8 @@
 partial class InvSubsection : ItemsSubsection<InventoryItem>
 {
-    #nullable disable
-    Program program;
-    #nullable restore
-
     protected override IEnumerable<InventoryItem> AvaliableItems {
-        get => GetNode<Program>("/root/Program").ItemsBank.Inventory;
+        get => GetNode<Program>("/root/Program").LocalItems.Inventory;
     }
 
-    protected override void OnMenuButtonPressed()
-    {
-        GetNode<GlobalEvents>("/root/GlobalEvents").CallSwitchDynamicWindow(DynamicWindowMenu.Inv);
-    }
+    protected override DynamicWindowMenu SwitchMenu => DynamicWindowMenu.Inv;
 }

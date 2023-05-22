@@ -1,11 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvjefkc34w1l2"]
+[gd_scene load_steps=4 format=3 uid="uid://de1c7ttsy6ir2"]
 
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsections/items_subsection.tscn" id="1_678ro"]
 [ext_resource type="Script" path="res://src/code/gui/items_subsections/content/InvSubsectionContent.cs" id="2_irdvr"]
-[ext_resource type="PackedScene" uid="uid://cqtrvk1fqad6g" path="res://src/tscn/item_buttons/inv_button.tscn" id="3_gy03n"]
+[ext_resource type="PackedScene" uid="uid://ih5ig1h6oew3" path="res://src/tscn/item_buttons/local_inv_button.tscn" id="3_q148f"]
 
 [node name="InvSubsection" instance=ExtResource("1_678ro")]
 
 [node name="Content" parent="ScrollContainer" index="0"]
 script = ExtResource("2_irdvr")
-invButton = ExtResource("3_gy03n")
+itemButtonScene = ExtResource("3_q148f")

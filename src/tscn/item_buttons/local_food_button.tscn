@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://brkg8enlfy71d"]
+[gd_scene load_steps=6 format=3 uid="uid://mcwt0xjk21df"]
 
-[ext_resource type="PackedScene" uid="uid://djvtt7cv7rdgk" path="res://src/tscn/item_buttons/food_button.tscn" id="1_fc3i0"]
-[ext_resource type="Script" path="res://src/code/gui/FoodItemButton.cs" id="1_m6p38"]
+[ext_resource type="PackedScene" uid="uid://c1w2r8b5j678n" path="res://src/tscn/item_buttons/bank_food_button.tscn" id="1_er8d3"]
+[ext_resource type="Script" path="res://src/code/gui/item_buttons/LocalFoodButton.cs" id="2_q36hj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m8yhm"]
 bg_color = Color(0, 0, 0, 0.117647)
@@ -18,16 +18,16 @@ corner_radius_bottom_left = 2
 
 [sub_resource type="ImageTexture" id="ImageTexture_dvkqg"]
 
-[sub_resource type="Theme" id="Theme_hiy4q"]
+[sub_resource type="Theme" id="Theme_y8wek"]
 LineEdit/colors/font_color = Color(0.627451, 0.784314, 1, 1)
 LineEdit/styles/normal = SubResource("StyleBoxFlat_m8yhm")
 SpinBox/icons/updown = SubResource("ImageTexture_dvkqg")
 
-[node name="FoodItemButton" instance=ExtResource("1_fc3i0")]
-script = ExtResource("1_m6p38")
+[node name="LocalFoodButton" instance=ExtResource("1_er8d3")]
+script = ExtResource("2_q36hj")
 
 [node name="SpinBox" type="SpinBox" parent="HBoxContainer" index="2"]
 layout_mode = 2
 size_flags_vertical = 4
-theme = SubResource("Theme_hiy4q")
+theme = SubResource("Theme_y8wek")
 suffix = "x"

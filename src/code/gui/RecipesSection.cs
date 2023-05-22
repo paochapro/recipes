@@ -8,7 +8,7 @@ public partial class RecipesSection : PanelContainer
 
 	public override void _Ready()
 	{
-		content = GetNode<RecipeContent>("Components/Content");
+		content = GetNode<RecipeContent>("Components/ContentScroll/Content");
         titleTb = GetNode<LineEdit>("Components/ControlPanel/LineEdit");
 
         var filtersFoldContainer = GetNode<Fold>("Components/FiltersRoot/Fold").MainContainer;

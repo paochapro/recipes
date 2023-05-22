@@ -1,29 +1,11 @@
-abstract partial class ItemsSubsection<TItem> : VBoxContainer
+abstract partial class ItemsSubsection<TItem> : ItemsInspector<TItem>
 	where TItem : Item
 {
-	#nullable disable
-	protected ItemsSubsectionContent<TItem> content;
-	#nullable restore
+    protected abstract DynamicWindowMenu SwitchMenu { get; }
 
-	public override sealed void _Ready()
-	{
-		content = GetNode<ItemsSubsectionContent<TItem>>("ScrollContainer/Content");
-
-		var lineedit = GetNode<LineEdit>("ControlPanel/LineEdit");
-		lineedit.TextChanged += OnSearchTextChanged;
-
-		var createButton = GetNode<Button>("ControlPanel/Button");
-		createButton.Pressed += OnMenuButtonPressed;
-
-		content.UpdateContent(AvaliableItems);
-	}
-
-	protected void OnSearchTextChanged(string text)
-	{
-		content.SearchUpdate(AvaliableItems, text);
-	}
-
-	protected abstract IEnumerable<TItem> AvaliableItems { get; }
-
-	protected abstract void OnMenuButtonPressed();
+	void OnMenuButtonPressed()
+    {
+        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        events.CallSwitchDynamicWindow(SwitchMenu);
+    }
 }

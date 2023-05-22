@@ -23,8 +23,13 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Рецепты"
 
-[node name="Content" type="VBoxContainer" parent="Components"]
+[node name="ContentScroll" type="ScrollContainer" parent="Components"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="Components/ContentScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_k41t1")
 recipeCardScene = ExtResource("2_4kfgs")

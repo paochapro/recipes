@@ -1,14 +1,7 @@
-abstract partial class ItemsSubsectionContent<TItem> : Container
+abstract partial class ItemsInspectorContent<TItem> : Container
 	where TItem : Item
 {
-	public void SearchUpdate(IEnumerable<TItem> avaliableItems, string text)
-	{
-		var result = ItemSearch.Search(avaliableItems.Cast<Item>(), text);
-		IEnumerable<TItem> items = result.Cast<TItem>();
-
-		bool autoExpand = text != "";
-		UpdateContent(items, autoExpand);
-	}
+    [Export] PackedScene? itemButtonScene;
 
 	public void UpdateContent(IEnumerable<TItem> items, bool autoExpand = false)
 	{
@@ -45,5 +38,15 @@ abstract partial class ItemsSubsectionContent<TItem> : Container
         }
     }
 
-	protected abstract Control GetControlForItem(TItem item);
+	Control GetControlForItem(TItem item)
+    {
+        if(itemButtonScene == null)
+            throw new Exception("No item button scene [ItemsInspectorContent.cs]");
+
+        var itemButton = itemButtonScene.Instantiate<ItemButton<TItem>>();
+        var program = GetNode<Program>("/root/Program");
+        itemButton.Initialize(item, program);
+        
+        return itemButton;
+    }
 }

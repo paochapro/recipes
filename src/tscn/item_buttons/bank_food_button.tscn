@@ -1,7 +1,39 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3 uid="uid://c1w2r8b5j678n"]
 
-[ext_resource type="PackedScene" uid="uid://ge5q0ymoqskr" path="res://src/tscn/item_buttons/food_button.tscn" id="1_c77er"]
-[ext_resource type="Script" path="res://src/code/gui/FoodButton.cs" id="2_46qw1"]
+[ext_resource type="Script" path="res://src/code/gui/item_buttons/BankFoodButton.cs" id="1_ndecf"]
+[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_yhcq1"]
 
-[node name="BankFoodButton" instance=ExtResource("1_c77er")]
-script = ExtResource("2_46qw1")
+[sub_resource type="LabelSettings" id="LabelSettings_y7i8n"]
+font_size = 18
+
+[node name="BankFoodButton" type="PanelContainer"]
+custom_minimum_size = Vector2(76, 76)
+offset_right = 206.0
+offset_bottom = 76.0
+mouse_filter = 2
+script = ExtResource("1_ndecf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("1_yhcq1")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Title"
+label_settings = SubResource("LabelSettings_y7i8n")
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 4
+theme_override_colors/font_color = Color(1, 0.435294, 0.368627, 1)
+text = "X"

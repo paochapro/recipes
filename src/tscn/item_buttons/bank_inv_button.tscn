@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqtrvk1fqad6g"]
+[gd_scene load_steps=2 format=3 uid="uid://b5s1ob37srd6l"]
 
-[ext_resource type="Script" path="res://src/code/gui/InvButton.cs" id="1_iq14x"]
+[ext_resource type="Script" path="res://src/code/gui/item_buttons/BankInvButton.cs" id="1_iq14x"]
 
 [node name="InvButton" type="HBoxContainer"]
 offset_right = 439.0
@@ -17,7 +17,6 @@ theme_override_constants/margin_left = 10
 
 [node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
 layout_mode = 2
-text = "Pan"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 2

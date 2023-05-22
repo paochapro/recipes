@@ -1,15 +1,15 @@
-partial class InvSubsectionContent : ItemsSubsectionContent<InventoryItem>
+partial class InvSubsectionContent : ItemsInspectorContent<InventoryItem>
 {
-    [Export] PackedScene? invButton;
+    // [Export] PackedScene? invButton;
 
-    protected override Control GetControlForItem(InventoryItem item)
-    {
-        if(invButton == null)
-            throw new Exception("No inv button packed scene [InvSubsectionContent.cs]");
+    // protected override Control GetControlForItem(InventoryItem item)
+    // {
+    //     if(invButton == null)
+    //         throw new Exception("No inv button packed scene [InvSubsectionContent.cs]");
 
-        var button = invButton.Instantiate<InvButton>();
-        var program = GetNode<Program>("/root/Program");
-        button.Initialize(item.Name, () => program.RemoveInvItem(item));
-        return button;
-    }
+    //     var button = invButton.Instantiate<InvButton>();
+    //     var program = GetNode<Program>("/root/Program");
+    //     button.Initialize(item.Name, () => program.RemoveInvItem(item));
+    //     return button;
+    // }
 }

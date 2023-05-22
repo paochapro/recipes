@@ -34,14 +34,24 @@ partial class AllSubsection : VBoxContainer
     void OnSearchTextChanged(string text)
     {
         var bank = GetNode<Program>("/root/Program").ItemsBank;
-        foodContent.SearchUpdate(bank.Food, text);
-        invContent.SearchUpdate(bank.Inventory, text);
+        bool autoExpand = text != "";
+
+        var foodItems = GetItems(bank.Food.Cast<Item>(), text).Cast<FoodItem>();
+        var invItems = GetItems(bank.Inventory.Cast<Item>(), text).Cast<InventoryItem>();
+
+        foodContent.UpdateContent(foodItems, autoExpand);
+        invContent.UpdateContent(invItems, autoExpand);
+    }
+
+    IEnumerable<Item> GetItems(IEnumerable<Item> avaliableItems, string text)
+    {
+        return ItemSearch.Search(avaliableItems, text);
     }
 
     void UpdateContent()
     {
-        var bank = GetNode<Program>("/root/Program").ItemsBank;
         //TODO: How food and inv tabs should expand?
+        var bank = GetNode<Program>("/root/Program").ItemsBank;
         foodContent.UpdateContent(bank.Food);
         invContent.UpdateContent(bank.Inventory);
     }
