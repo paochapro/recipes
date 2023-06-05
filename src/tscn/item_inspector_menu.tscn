@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://60apnml35xmh"]
+
+[ext_resource type="PackedScene" uid="uid://cwui08h0lmfae" path="res://src/tscn/search_bar.tscn" id="2_a6qol"]
+
+[node name="ItemInspectorMenu" type="PanelContainer"]
+offset_right = 350.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Components" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Banner" type="PanelContainer" parent="Components"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Components/Banner"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Inspector" type="VBoxContainer" parent="Components"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Components/Inspector"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="Components/Inspector/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ControlPanel" type="HBoxContainer" parent="Components/Inspector"]
+layout_mode = 2
+
+[node name="LineEdit" parent="Components/Inspector/ControlPanel" instance=ExtResource("2_a6qol")]
+layout_mode = 2

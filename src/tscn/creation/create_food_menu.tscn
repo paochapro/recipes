@@ -7,8 +7,5 @@
 [node name="CreateFoodMenu" instance=ExtResource("1_wg6cv")]
 script = ExtResource("2_r7b3v")
 
-[node name="Label" parent="Content/Title" index="0"]
-text = "Создать пищевой продукт"
-
 [node name="CreateFoodForm" parent="Content/FormContainer/MarginContainer" index="0" instance=ExtResource("2_x7f1l")]
 layout_mode = 2

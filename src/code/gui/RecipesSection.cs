@@ -6,6 +6,8 @@ public partial class RecipesSection : PanelContainer
     LineEdit titleTb;
 	#nullable restore
 
+    const DynamicWindowMenu SWITCH_MENU = DynamicWindowMenu.RecipeCreation; 
+
 	public override void _Ready()
 	{
 		content = GetNode<RecipeContent>("Components/ContentScroll/Content");
@@ -37,6 +39,6 @@ public partial class RecipesSection : PanelContainer
 
 	public void OnMenuButtonPressed()
 	{
-		GetNode<GlobalEvents>("/root/GlobalEvents").CallSwitchDynamicWindow(DynamicWindowMenu.Recipe);
+		GetNode<GlobalEvents>("/root/GlobalEvents").CallSwitchDynamicWindow(SWITCH_MENU);
 	}
 }

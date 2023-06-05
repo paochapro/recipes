@@ -1,5 +1,6 @@
 enum DynamicWindowMenu {
     Food,
     Inv,
-    Recipe
+    RecipeCreation,
+    ItemCreation
 }

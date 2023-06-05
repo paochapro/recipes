@@ -10,8 +10,13 @@ offset_bottom = 641.0
 script = ExtResource("2_i5on6")
 metadata/_edit_horizontal_guides_ = []
 
-[node name="Label" parent="Content/Title" index="0"]
+[node name="PanelContainer" type="PanelContainer" parent="Content" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/PanelContainer" index="0"]
+layout_mode = 2
 text = "Создать рецепт"
+horizontal_alignment = 1
 
 [node name="CreateRecipeForm" parent="Content/FormContainer/MarginContainer" index="0" instance=ExtResource("3_x5mjw")]
 layout_mode = 2

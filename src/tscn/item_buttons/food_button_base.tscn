@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://btuhihx8nc0gb"]
+
+[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_70yyt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_013ct"]
+font_size = 18
+
+[node name="FoodButtonBase" type="PanelContainer"]
+custom_minimum_size = Vector2(76, 76)
+offset_right = 206.0
+offset_bottom = 76.0
+mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("1_70yyt")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Title"
+label_settings = SubResource("LabelSettings_013ct")
+vertical_alignment = 1

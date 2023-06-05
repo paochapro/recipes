@@ -1,11 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://uwwuvdlaemow"]
+[gd_scene load_steps=5 format=3 uid="uid://uwwuvdlaemow"]
 
 [ext_resource type="Script" path="res://src/code/gui/ItemSetSection.cs" id="1_3n63r"]
-[ext_resource type="PackedScene" path="res://src/tscn/items_subsections/food_subsection.tscn" id="2_5ceom"]
-[ext_resource type="PackedScene" path="res://src/tscn/items_subsections/inv_subsection.tscn" id="3_hm4vf"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/FoodSubsection.cs" id="3_r7qls"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/InvSubsection.cs" id="4_c4ykg"]
-[ext_resource type="PackedScene" uid="uid://c22xxv6qyv2oi" path="res://src/tscn/items_subsections/all_subsection.tscn" id="5_vm2qm"]
+[ext_resource type="PackedScene" uid="uid://dtog2r2wjrfa1" path="res://src/tscn/items_subsections/food_subsection.tscn" id="2_5ceom"]
+[ext_resource type="PackedScene" uid="uid://de1c7ttsy6ir2" path="res://src/tscn/items_subsections/inv_subsection.tscn" id="3_hm4vf"]
+[ext_resource type="PackedScene" uid="uid://6e42gnjujs5g" path="res://src/tscn/items_subsections/all_subsection.tscn" id="5_vm2qm"]
 
 [node name="ItemSetSection" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
@@ -19,12 +17,10 @@ size_flags_vertical = 3
 
 [node name="Food" parent="TabContainer" instance=ExtResource("2_5ceom")]
 layout_mode = 2
-script = ExtResource("3_r7qls")
 
 [node name="Inv" parent="TabContainer" instance=ExtResource("3_hm4vf")]
 visible = false
 layout_mode = 2
-script = ExtResource("4_c4ykg")
 
 [node name="All" parent="TabContainer" instance=ExtResource("5_vm2qm")]
 visible = false

@@ -7,6 +7,8 @@ partial class AllSubsection : VBoxContainer
     Fold invTab;
     #nullable restore
 
+    const DynamicWindowMenu SWITCH_MENU = DynamicWindowMenu.ItemCreation;
+
     public override void _Ready()
     {
         GetNodes();
@@ -29,6 +31,12 @@ partial class AllSubsection : VBoxContainer
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewBankFoodItem += (i) => foodContent.UpdateItem(i);
         events.NewBankInvItem += (i) => invContent.UpdateItem(i);
+
+        var lineedit = GetNode<LineEdit>("ControlPanel/LineEdit");
+		lineedit.TextChanged += OnSearchTextChanged;
+
+        var menuButton = GetNode<Button>("ControlPanel/Button");
+        menuButton.Pressed += () => events.CallSwitchDynamicWindow(SWITCH_MENU);
     }
 
     void OnSearchTextChanged(string text)

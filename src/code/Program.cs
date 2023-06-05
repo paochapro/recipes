@@ -11,6 +11,10 @@ partial class Program : Node
 
     public Program()
     {
+        GD.Print("nfafwwf");
+        GD.Print("fmwoafkiawf");
+        GD.Print("fmwaiofaw");
+
         //TODO: Debug this, and remove
         recipeBank = new List<Recipe>();
         Recipe testRecipe = new("Test Recipe", "1. Hello\n2. Goodbye", "res://content/tomato.svg", 20, new ItemSet(), DishType.Second);

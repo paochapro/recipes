@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxcba7kifjeu4"]
+
+[ext_resource type="PackedScene" uid="uid://60apnml35xmh" path="res://src/tscn/item_inspector_menu.tscn" id="1_yxpoo"]
+[ext_resource type="Script" path="res://src/code/gui/FoodInspector.cs" id="2_pkoxh"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/content/FoodSubsectionContent.cs" id="3_h1ey7"]
+
+[node name="FoodInspectorMenu" instance=ExtResource("1_yxpoo")]
+
+[node name="Label" parent="Components/Banner" index="0"]
+text = "Добавить продукты в холодильник"
+
+[node name="Inspector" parent="Components" index="1"]
+script = ExtResource("2_pkoxh")
+
+[node name="Content" parent="Components/Inspector/ScrollContainer" index="0"]
+script = ExtResource("3_h1ey7")

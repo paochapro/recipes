@@ -2,7 +2,8 @@ public partial class DynamicWindow : VBoxContainer
 {
     public override void _Ready()
     {
-        GetNode<GlobalEvents>("/root/GlobalEvents").SwitchDynamicWindow += (m) => SetWindow(GetMenuControl(m));
+        var func = (DynamicWindowMenu m) => SetWindow(GetNode<Control>(GetMenuControlName(m)));
+        GetNode<GlobalEvents>("/root/GlobalEvents").SwitchDynamicWindow += func;
     }
 
     void SetWindow(Control setControl)
@@ -13,13 +14,14 @@ public partial class DynamicWindow : VBoxContainer
         setControl.Show();
     }
 
-    Control GetMenuControl(DynamicWindowMenu menu)
+    string GetMenuControlName(DynamicWindowMenu menu)
     {
         return menu switch {
-            DynamicWindowMenu.Food => GetNode<Control>("CreateFoodMenu"),
-            DynamicWindowMenu.Inv => GetNode<Control>("CreateInvMenu"),
-            DynamicWindowMenu.Recipe => GetNode<Control>("CreateRecipeMenu"),
-            _ => GetNode<Control>("CreateFoodMenu")
+            DynamicWindowMenu.ItemCreation => "ItemCreationTabs",
+            DynamicWindowMenu.RecipeCreation => "CreateRecipeMenu",
+            DynamicWindowMenu.Food => "FoodInspectorMenu",
+            DynamicWindowMenu.Inv => "InvInspectorMenu",
+            _ => "UnknownMenu"
         };
     }
 }

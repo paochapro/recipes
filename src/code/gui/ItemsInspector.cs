@@ -16,7 +16,7 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 
 	protected void OnSearchTextChanged(string text)
 	{
-        var result = ItemSearch.Search(AvaliableItems.Cast<Item>(), text);
+		var result = ItemSearch.Search(AvaliableItems.Cast<Item>(), text);
 		IEnumerable<TItem> items = result.Cast<TItem>();
 
 		bool autoExpand = text != "";

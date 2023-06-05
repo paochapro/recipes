@@ -1,10 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dtog2r2wjrfa1"]
+[gd_scene load_steps=5 format=3 uid="uid://dtog2r2wjrfa1"]
 
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsections/items_subsection.tscn" id="1_xsqlf"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/FoodSubsection.cs" id="2_jgukh"]
 [ext_resource type="Script" path="res://src/code/gui/items_subsections/content/FoodSubsectionContent.cs" id="2_yoy83"]
 [ext_resource type="PackedScene" uid="uid://mcwt0xjk21df" path="res://src/tscn/item_buttons/local_food_button.tscn" id="3_t3pek"]
 
 [node name="FoodSubsection" instance=ExtResource("1_xsqlf")]
+script = ExtResource("2_jgukh")
 
 [node name="Content" parent="ScrollContainer" index="0"]
 script = ExtResource("2_yoy83")
