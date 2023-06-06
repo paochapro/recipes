@@ -6,9 +6,8 @@ abstract partial class AddLocalItemButton<TItem> : ItemButton<TItem>
     protected Program program;
     #nullable restore
 
-    public override void Initialize(TItem item, Program program)
+    public override void CustomInit(TItem item, Program program)
     {
-        base.Initialize(item, program);
         this.program = program;
 
         button.Pressed += OnButtonPress;

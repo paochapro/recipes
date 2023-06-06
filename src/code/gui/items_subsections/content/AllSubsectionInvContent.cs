@@ -1,0 +1,1 @@
+partial class AllSubsectionInvContent : ItemsInspectorContent<InventoryItem> {}

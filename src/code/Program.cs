@@ -42,16 +42,6 @@ partial class Program : Node
         events.CallNewBankInv(item);
     }
 
-    public void RemoveFoodItem(FoodItem item) {
-        itemsBank.FoodList.Remove(item);
-        events.CallRemoveBankFood(item);
-    }
-
-    public void RemoveInvItem(InventoryItem item) { 
-        itemsBank.InventoryList.Remove(item);
-        events.CallRemoveBankInv(item);
-    }
-
     public void AddLocalFood(FoodWithCount item) {
         localItems.FoodList.Add(item);
         events.CallNewLocalFood(item);
@@ -60,6 +50,30 @@ partial class Program : Node
     public void AddLocalInv(InventoryItem item) {
         localItems.InventoryList.Add(item);
         events.CallNewLocalInv(item);
+    }
+
+    public void RemoveFoodItem(FoodItem item) 
+    {
+        if(localItems.FoodItems.Contains(item))
+        {
+            GD.PrintErr("Local items contains an item that was reqeusted to be removed: " + item.Name);
+            return;
+        }
+
+        itemsBank.FoodList.Remove(item);
+        events.CallRemoveBankFood(item);
+    }
+
+    public void RemoveInvItem(InventoryItem item) 
+    {
+        if(localItems.Inventory.Contains(item))
+        {
+            GD.PrintErr("Local items contains an item that was reqeusted to be removed: " + item.Name);
+            return;
+        }
+
+        itemsBank.InventoryList.Remove(item);
+        events.CallRemoveBankInv(item);
     }
 
     public void RemoveLocalFood(FoodWithCount item) { 

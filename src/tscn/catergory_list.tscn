@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dthyap1g137sf"]
+
+[node name="CatergoryList" type="PanelContainer"]
+offset_right = 252.0
+offset_bottom = 252.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

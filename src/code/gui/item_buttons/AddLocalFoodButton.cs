@@ -3,9 +3,9 @@ partial class AddLocalFoodButton : AddLocalItemButton<FoodItem>
     protected override bool DisabledCondition => program.LocalItems.FoodItems.Contains(Item);
     protected override Action OnButtonPress => () => program.AddLocalFood(new FoodWithCount(Item, 1));
 
-    public override void Initialize(FoodItem item, Program program)
+    public override void CustomInit(FoodItem item, Program program)
     {
-        base.Initialize(item, program);
+        base.CustomInit(item, program);
 
         var image = GetNode<TextureRect>("HBoxContainer/TextureRect");
         var nameLabel = GetNode<Label>("HBoxContainer/Label");

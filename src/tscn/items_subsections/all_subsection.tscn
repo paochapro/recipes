@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsections/items_subsection.tscn" id="1_vnm3k"]
 [ext_resource type="Script" path="res://src/code/gui/items_subsections/content/AllSubsectionFoodContent.cs" id="2_eqbce"]
 [ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="2_im3na"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/content/InvSubsectionContent.cs" id="4_5nc2v"]
 [ext_resource type="PackedScene" uid="uid://dwqasoufekbqe" path="res://src/tscn/item_buttons/bank_food_button.tscn" id="4_keq8g"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/content/AllSubsectionInvContent.cs" id="6_5ywlc"]
 [ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="6_wtjey"]
 
 [node name="AllSubsection" instance=ExtResource("1_vnm3k")]
@@ -36,5 +36,5 @@ theme_override_constants/margin_left = 15
 
 [node name="Content" type="VBoxContainer" parent="ScrollContainer/Content/InvTab/MarginContainer" index="0"]
 layout_mode = 2
-script = ExtResource("4_5nc2v")
+script = ExtResource("6_5ywlc")
 itemButtonScene = ExtResource("6_wtjey")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dykoaxd108nk6"]
+[gd_scene load_steps=5 format=3 uid="uid://dykoaxd108nk6"]
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodForm.cs" id="1_sl3de"]
 [ext_resource type="PackedScene" uid="uid://bkwwjwnte1d33" path="res://src/tscn/form_image_component.tscn" id="3_i48jg"]
+[ext_resource type="PackedScene" uid="uid://bgv75r360iy23" path="res://src/tscn/form_food_category_component.tscn" id="4_ghhp7"]
 [ext_resource type="PackedScene" uid="uid://b726knif8qpt4" path="res://src/tscn/form_string_component.tscn" id="4_r47to"]
 
 [node name="CreateFoodForm" type="VBoxContainer"]
@@ -18,11 +19,9 @@ layout_mode = 2
 [node name="Label" parent="Name" index="0"]
 text = "Название:"
 
-[node name="Category" parent="." instance=ExtResource("4_r47to")]
+[node name="FormCategoryComponent" parent="." instance=ExtResource("4_ghhp7")]
 layout_mode = 2
 
-[node name="Label" parent="Category" index="0"]
-text = "Категория:"
-
 [editable path="Name"]
-[editable path="Category"]
+[editable path="FormCategoryComponent"]
+[editable path="FormCategoryComponent/Category"]

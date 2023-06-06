@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c06nq33bft6n0"]
+
+[ext_resource type="PackedScene" uid="uid://b726knif8qpt4" path="res://src/tscn/form_string_component.tscn" id="1_j3fnh"]
+[ext_resource type="Script" path="res://src/code/gui/FormCategoryComponent.cs" id="1_t4t5v"]
+[ext_resource type="PackedScene" uid="uid://dthyap1g137sf" path="res://src/tscn/catergory_list.tscn" id="2_0cp2j"]
+
+[node name="FormCategoryComponent" type="VBoxContainer"]
+offset_right = 254.0
+offset_bottom = 293.0
+script = ExtResource("1_t4t5v")
+
+[node name="Category" parent="." instance=ExtResource("1_j3fnh")]
+layout_mode = 2
+
+[node name="Label" parent="Category" index="0"]
+text = "Категория:"
+
+[node name="CatergoryList" parent="." instance=ExtResource("2_0cp2j")]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[editable path="Category"]
