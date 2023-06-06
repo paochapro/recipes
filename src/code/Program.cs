@@ -9,11 +9,13 @@ partial class Program : Node
     public ReadonlyItemBank ItemsBank => itemsBank;
     public ReadonlyItemSet LocalItems => localItems;
 
+    #nullable disable
+    GlobalEvents events;
+    #nullable restore
+
     public Program()
     {
-        GD.Print("nfafwwf");
         GD.Print("fmwoafkiawf");
-        GD.Print("fmwaiofaw");
 
         //TODO: Debug this, and remove
         recipeBank = new List<Recipe>();
@@ -27,13 +29,18 @@ partial class Program : Node
         localItems = ItemSetGenerator.SelectAllFromBank(itemsBank, 1);
     }
 
+    public override void _Ready()
+    {
+        events = GetNode<GlobalEvents>("/root/GlobalEvents");
+    }
+
     //Bank
     public void AddFoodItem(FoodItem item) 
     {
         GD.Print("Added food item: " + item.Name);
 
         itemsBank.FoodList.Add(item);
-        GetNode<GlobalEvents>("/root/GlobalEvents").CallNewBankFoodItem(item);
+        events.CallNewBankFoodItem(item);
     }
 
     public void AddInvItem(InventoryItem item) 
@@ -41,7 +48,7 @@ partial class Program : Node
         GD.Print("Added inv item: " + item.Name);
 
         itemsBank.InventoryList.Add(item);
-        GetNode<GlobalEvents>("/root/GlobalEvents").CallNewBankInvItem(item);
+        events.CallNewBankInvItem(item);
     }
 
     public void RemoveFoodItem(FoodItem item) => itemsBank.FoodList.Remove(item);
@@ -50,8 +57,27 @@ partial class Program : Node
     public void AddRecipe(Recipe recipe) { GD.Print("Added recipe item: " + recipe.Title); recipeBank.Add(recipe); }
 
     //Local items
-    public void AddLocalFood(FoodWithCount item) => localItems.FoodList.Add(item);
-    public void AddLocalInv(InventoryItem item) => localItems.InventoryList.Add(item);
-    public void RemoveLocalFood(FoodWithCount item) => localItems.FoodList.Remove(item);
-    public void RemoveLocalInv(InventoryItem item) => localItems.InventoryList.Remove(item);
+    public void AddLocalFood(FoodWithCount item) 
+    {
+        localItems.FoodList.Add(item);
+        events.CallNewLocalFood(item);
+    }
+
+    public void AddLocalInv(InventoryItem item) 
+    { 
+        localItems.InventoryList.Add(item);
+        events.CallNewLocalInv(item);
+    }
+
+    public void RemoveLocalFood(FoodWithCount item) 
+    { 
+        localItems.FoodList.Remove(item);
+        events.CallRemoveLocalFood(item);
+    }
+
+    public void RemoveLocalInv(InventoryItem item) 
+    {
+        localItems.InventoryList.Remove(item);
+        events.CallRemoveLocalInv(item);
+    }
 }

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://src/code/gui/items_subsections/content/AllSubsectionFoodContent.cs" id="2_eqbce"]
 [ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="2_im3na"]
 [ext_resource type="Script" path="res://src/code/gui/items_subsections/content/InvSubsectionContent.cs" id="4_5nc2v"]
-[ext_resource type="PackedScene" uid="uid://c1w2r8b5j678n" path="res://src/tscn/item_buttons/bank_food_button.tscn" id="4_keq8g"]
+[ext_resource type="PackedScene" uid="uid://dwqasoufekbqe" path="res://src/tscn/item_buttons/bank_food_button.tscn" id="4_keq8g"]
 [ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="6_wtjey"]
 
 [node name="AllSubsection" instance=ExtResource("1_vnm3k")]

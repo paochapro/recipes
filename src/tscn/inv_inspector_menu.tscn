@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ba7cy0rcumexl"]
+[gd_scene load_steps=5 format=3 uid="uid://ba7cy0rcumexl"]
 
 [ext_resource type="PackedScene" uid="uid://60apnml35xmh" path="res://src/tscn/item_inspector_menu.tscn" id="1_4umnr"]
 [ext_resource type="Script" path="res://src/code/gui/InvInspector.cs" id="2_714h7"]
 [ext_resource type="Script" path="res://src/code/gui/items_subsections/content/InvSubsectionContent.cs" id="3_jq77f"]
+[ext_resource type="PackedScene" uid="uid://bum86cyq53ohv" path="res://src/tscn/item_buttons/add_local_inv_button.tscn" id="4_5mbpf"]
 
 [node name="InvInspectorMenu" instance=ExtResource("1_4umnr")]
 
@@ -14,3 +15,4 @@ script = ExtResource("2_714h7")
 
 [node name="Content" parent="Components/Inspector/ScrollContainer" index="0"]
 script = ExtResource("3_jq77f")
+itemButtonScene = ExtResource("4_5mbpf")
