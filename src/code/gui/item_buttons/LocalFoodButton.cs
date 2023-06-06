@@ -2,6 +2,8 @@ partial class LocalFoodButton : ItemButton<FoodItem>
 {
     public override void Initialize(FoodItem item, Program program)
     {
+        base.Initialize(item, program);
+
         var nameLabel = GetNode<Label>("HBoxContainer/Label");
 		var image = GetNode<TextureRect>("HBoxContainer/TextureRect");
 
@@ -15,7 +17,6 @@ partial class LocalFoodButton : ItemButton<FoodItem>
 		//Delete button
 		var button = GetNode<Button>("HBoxContainer/Button");
         button.Pressed +=  () => program.RemoveLocalFood(foodWithCount);
-        button.Pressed += this.QueueFree;
 
 		//Spinbox change count function
 		Action<double> changeCount = (double value) => {

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://60apnml35xmh" path="res://src/tscn/item_inspector_menu.tscn" id="1_yxpoo"]
 [ext_resource type="Script" path="res://src/code/gui/FoodInspector.cs" id="2_pkoxh"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/content/FoodSubsectionContent.cs" id="3_h1ey7"]
+[ext_resource type="Script" path="res://src/code/gui/FoodInspectorContent.cs" id="3_2udu3"]
 [ext_resource type="PackedScene" uid="uid://bk6cpwda6rm23" path="res://src/tscn/item_buttons/add_local_food_button.tscn" id="4_oolp0"]
 
 [node name="FoodInspectorMenu" instance=ExtResource("1_yxpoo")]
@@ -14,5 +14,5 @@ text = "Добавить продукты в холодильник"
 script = ExtResource("2_pkoxh")
 
 [node name="Content" parent="Components/Inspector/ScrollContainer" index="0"]
-script = ExtResource("3_h1ey7")
+script = ExtResource("3_2udu3")
 itemButtonScene = ExtResource("4_oolp0")

@@ -8,5 +8,5 @@ Find out what exactly causes ".net failed to unload assemblies" error
 
 Show list of categories in food and inv creation
 Remake adding items in recipe creation (not just lineedit)
-Change menu buttons in ItemSetSection
++ Change menu buttons in ItemSetSection
 Remove category fold when all items are removed from this category

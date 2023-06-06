@@ -15,8 +15,6 @@ partial class Program : Node
 
     public Program()
     {
-        GD.Print("fmwoafkiawf");
-
         //TODO: Debug this, and remove
         recipeBank = new List<Recipe>();
         Recipe testRecipe = new("Test Recipe", "1. Hello\n2. Goodbye", "res://content/tomato.svg", 20, new ItemSet(), DishType.Second);
@@ -34,50 +32,45 @@ partial class Program : Node
         events = GetNode<GlobalEvents>("/root/GlobalEvents");
     }
 
-    //Bank
-    public void AddFoodItem(FoodItem item) 
-    {
-        GD.Print("Added food item: " + item.Name);
-
+    public void AddFoodItem(FoodItem item) {
         itemsBank.FoodList.Add(item);
-        events.CallNewBankFoodItem(item);
+        events.CallNewBankFood(item);
     }
 
-    public void AddInvItem(InventoryItem item) 
-    {
-        GD.Print("Added inv item: " + item.Name);
-
+    public void AddInvItem(InventoryItem item) {
         itemsBank.InventoryList.Add(item);
-        events.CallNewBankInvItem(item);
+        events.CallNewBankInv(item);
     }
 
-    public void RemoveFoodItem(FoodItem item) => itemsBank.FoodList.Remove(item);
-    public void RemoveInvItem(InventoryItem item) => itemsBank.InventoryList.Remove(item);
+    public void RemoveFoodItem(FoodItem item) {
+        itemsBank.FoodList.Remove(item);
+        events.CallRemoveBankFood(item);
+    }
 
-    public void AddRecipe(Recipe recipe) { GD.Print("Added recipe item: " + recipe.Title); recipeBank.Add(recipe); }
+    public void RemoveInvItem(InventoryItem item) { 
+        itemsBank.InventoryList.Remove(item);
+        events.CallRemoveBankInv(item);
+    }
 
-    //Local items
-    public void AddLocalFood(FoodWithCount item) 
-    {
+    public void AddLocalFood(FoodWithCount item) {
         localItems.FoodList.Add(item);
         events.CallNewLocalFood(item);
     }
 
-    public void AddLocalInv(InventoryItem item) 
-    { 
+    public void AddLocalInv(InventoryItem item) {
         localItems.InventoryList.Add(item);
         events.CallNewLocalInv(item);
     }
 
-    public void RemoveLocalFood(FoodWithCount item) 
-    { 
+    public void RemoveLocalFood(FoodWithCount item) { 
         localItems.FoodList.Remove(item);
         events.CallRemoveLocalFood(item);
     }
 
-    public void RemoveLocalInv(InventoryItem item) 
-    {
+    public void RemoveLocalInv(InventoryItem item) {
         localItems.InventoryList.Remove(item);
         events.CallRemoveLocalInv(item);
     }
+
+    public void AddRecipe(Recipe recipe) => recipeBank.Add(recipe);
 }

@@ -3,14 +3,14 @@ abstract partial class AddLocalItemButton<TItem> : ItemButton<TItem>
 {
     #nullable disable
     [Export] Button button;
-    protected TItem item;
     protected Program program;
     #nullable restore
 
     public override void Initialize(TItem item, Program program)
     {
-        this.item = item;
+        base.Initialize(item, program);
         this.program = program;
+
         button.Pressed += OnButtonPress;
         button.Disabled = DisabledCondition;
         AddEvents();
@@ -24,14 +24,18 @@ abstract partial class AddLocalItemButton<TItem> : ItemButton<TItem>
 
     protected void CheckRemovedLocalItem(TItem removed)
     {
-        if(item.Equals(removed))
-            button.Disabled = true;
+        GD.Print($"Check removed local {removed.Name}");
+
+        if(Item.Equals(removed))
+            button.Disabled = false;
     }
 
     protected void CheckNewLocalItem(TItem added)
     {
-        if(item.Equals(added))
-            button.Disabled = false;
+        GD.Print($"Check added local {added.Name}");
+
+        if(Item.Equals(added))
+            button.Disabled = true;
     }
 
     protected abstract void AddEvents();

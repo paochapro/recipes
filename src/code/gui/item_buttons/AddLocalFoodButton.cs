@@ -1,23 +1,23 @@
 partial class AddLocalFoodButton : AddLocalItemButton<FoodItem>
 {
-    protected override bool DisabledCondition => program.LocalItems.FoodItems.Contains(item);
-    protected override Action OnButtonPress => () => program.AddLocalFood(new FoodWithCount(item, 1));
+    protected override bool DisabledCondition => program.LocalItems.FoodItems.Contains(Item);
+    protected override Action OnButtonPress => () => program.AddLocalFood(new FoodWithCount(Item, 1));
 
     public override void Initialize(FoodItem item, Program program)
     {
+        base.Initialize(item, program);
+
         var image = GetNode<TextureRect>("HBoxContainer/TextureRect");
         var nameLabel = GetNode<Label>("HBoxContainer/Label");
 
         image.Texture = GD.Load<Texture2D>(item.TexturePath);
         nameLabel.Text = item.Name;
-
-        base.Initialize(item, program);
     }
 
     protected override void AddEvents()
     {
         var events = program.GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.RemoveLocalFood += CheckAdded; 
+        events.RemoveLocalFood += CheckAdded;
         events.NewLocalFood += CheckRemoved;
     }
 
@@ -25,7 +25,7 @@ partial class AddLocalFoodButton : AddLocalItemButton<FoodItem>
     {
         var events = program.GetNode<GlobalEvents>("/root/GlobalEvents");
         events.RemoveLocalFood -= CheckAdded;
-        events.NewLocalFood -= CheckRemoved; 
+        events.NewLocalFood -= CheckRemoved;
     }
 
     void CheckAdded(FoodWithCount food) => CheckRemovedLocalItem(food.Item);

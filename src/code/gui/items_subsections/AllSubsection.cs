@@ -29,8 +29,10 @@ partial class AllSubsection : VBoxContainer
     void ConnectEvents()
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.NewBankFoodItem += (i) => foodContent.UpdateItem(i);
-        events.NewBankInvItem += (i) => invContent.UpdateItem(i);
+        events.NewBankFood += (i) => foodContent.UpdateItem(i);
+        events.NewBankInv += (i) => invContent.UpdateItem(i);
+        events.RemoveBankFood += (i) => foodContent.RemoveItem(i);
+        events.RemoveBankInv += (i) => invContent.RemoveItem(i);
 
         var lineedit = GetNode<LineEdit>("ControlPanel/LineEdit");
 		lineedit.TextChanged += OnSearchTextChanged;

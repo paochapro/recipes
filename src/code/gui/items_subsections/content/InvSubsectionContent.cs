@@ -4,5 +4,6 @@ partial class InvSubsectionContent : ItemsInspectorContent<InventoryItem>
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewLocalInv += (InventoryItem item) => UpdateItem(item);
+        events.RemoveLocalInv += (InventoryItem item) => RemoveItem(item);
     }
 }

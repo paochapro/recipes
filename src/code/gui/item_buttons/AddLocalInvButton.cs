@@ -1,10 +1,12 @@
 partial class AddLocalInvButton : AddLocalItemButton<InventoryItem>
 {
-    protected override bool DisabledCondition => program.LocalItems.Inventory.Contains(item);
-    protected override Action OnButtonPress => () => program.AddLocalInv(item);
+    protected override bool DisabledCondition => program.LocalItems.Inventory.Contains(Item);
+    protected override Action OnButtonPress => () => program.AddLocalInv(Item);
 
     public override void Initialize(InventoryItem item, Program program)
     {
+        base.Initialize(item, program);
+
         var nameLabel = GetNode<Label>("PanelContainer/MarginContainer/Label");
         var button = GetNode<Button>("Button");
 

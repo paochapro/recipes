@@ -38,6 +38,25 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 		}
 	}
 
+	public void RemoveItem(TItem removing)
+	{
+		GD.Print("Remove item: " + removing.Name);
+
+		foreach(Fold fold in GetChildren())
+		foreach(ItemButton<TItem> button in fold.MainContainer.GetChildren())
+		{
+			var container = fold.MainContainer;
+
+			if(button.Item.Equals(removing))
+			{
+				container.RemoveChild(button);
+
+				if(container.GetChildCount() == 0)
+					fold.QueueFree();
+			}
+		}
+	}
+
 	Control GetControlForItem(TItem item)
 	{
 		if(itemButtonScene == null)
