@@ -12,18 +12,4 @@ partial class AddLocalInvButton : AddLocalItemButton<InventoryItem>
 
         nameLabel.Text = item.Name;
     }
-
-    protected override void AddEvents()
-    {
-        var events = program.GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.RemoveLocalInv += CheckRemovedLocalItem;
-        events.NewLocalInv += CheckNewLocalItem;
-    }
-
-    protected override void RemoveEvents()
-    {
-        var events = program.GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.RemoveLocalInv += CheckRemovedLocalItem;
-        events.NewLocalInv += CheckNewLocalItem;
-    }
 }

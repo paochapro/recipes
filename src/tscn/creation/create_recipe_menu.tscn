@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://b6753yr6hb1l0" path="res://src/tscn/creation/create_menu.tscn" id="1_ysam7"]
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeMenu.cs" id="2_i5on6"]
-[ext_resource type="PackedScene" uid="uid://6yaa4mcus8ty" path="res://src/tscn/creation/create_recipe_form.tscn" id="3_x5mjw"]
+[ext_resource type="PackedScene" uid="uid://cbmbjwgtd3qdg" path="res://src/tscn/creation/create_recipe_form.tscn" id="3_x5mjw"]
 
 [node name="CreateRecipeMenu" instance=ExtResource("1_ysam7")]
 offset_right = 369.0

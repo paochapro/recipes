@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://b44ij26hjakx6"]
 
 [ext_resource type="Script" path="res://src/code/gui/form_components/FormLineEditComponent.cs" id="1_30goj"]
 
