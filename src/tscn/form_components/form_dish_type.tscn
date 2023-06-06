@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c1ki8cp5w7l0s"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://src/code/gui/FormOptionsComponent.cs" id="1_482xs"]
+[ext_resource type="Script" path="res://src/code/gui/form_components/FormOptionsComponent.cs" id="1_482xs"]
 
 [node name="DishType" type="HBoxContainer"]
 offset_right = 211.0

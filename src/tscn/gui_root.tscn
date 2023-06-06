@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://wnhjx7m7mto5"]
+[gd_scene load_steps=10 format=3 uid="uid://btus26bhov6uo"]
 
 [ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_de05s"]
 [ext_resource type="PackedScene" uid="uid://uwwuvdlaemow" path="res://src/tscn/item_set_section.tscn" id="2_rhyb0"]
@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://csvmlceawnv6f" path="res://src/tscn/item_creation_tabs.tscn" id="4_smctc"]
 [ext_resource type="PackedScene" uid="uid://cdencvbo5p4aj" path="res://src/tscn/unknown_menu.tscn" id="6_ajv68"]
 [ext_resource type="PackedScene" uid="uid://c8x3apkju3cya" path="res://src/tscn/creation/create_recipe_menu.tscn" id="6_oa3ot"]
-[ext_resource type="PackedScene" uid="uid://dxcba7kifjeu4" path="res://src/tscn/food_inspector_menu.tscn" id="7_85ixy"]
+[ext_resource type="PackedScene" path="res://src/tscn/inspector/food_inspector_menu.tscn" id="7_85ixy"]
 [ext_resource type="PackedScene" uid="uid://ced2qhfiu2nk1" path="res://src/tscn/recipes_section.tscn" id="7_vs2t5"]
-[ext_resource type="PackedScene" uid="uid://ba7cy0rcumexl" path="res://src/tscn/inv_inspector_menu.tscn" id="8_34fwe"]
+[ext_resource type="PackedScene" path="res://src/tscn/inspector/inv_inspector_menu.tscn" id="8_34fwe"]
 
 [node name="GuiRoot" type="Control"]
 layout_mode = 3

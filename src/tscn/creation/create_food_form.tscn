@@ -1,16 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dykoaxd108nk6"]
+[gd_scene load_steps=5 format=3 uid="uid://cf5vue5eeutg6"]
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodForm.cs" id="1_sl3de"]
-[ext_resource type="PackedScene" uid="uid://bkwwjwnte1d33" path="res://src/tscn/form_image_component.tscn" id="3_i48jg"]
-[ext_resource type="PackedScene" uid="uid://bgv75r360iy23" path="res://src/tscn/form_food_category_component.tscn" id="4_ghhp7"]
-[ext_resource type="PackedScene" uid="uid://b726knif8qpt4" path="res://src/tscn/form_string_component.tscn" id="4_r47to"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_image_component.tscn" id="2_heorf"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_food_category_component.tscn" id="3_wxhsa"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_string_component.tscn" id="4_r47to"]
 
 [node name="CreateFoodForm" type="VBoxContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_sl3de")
 
-[node name="Image" parent="." instance=ExtResource("3_i48jg")]
+[node name="Image" parent="." instance=ExtResource("2_heorf")]
 layout_mode = 2
 
 [node name="Name" parent="." instance=ExtResource("4_r47to")]
@@ -19,9 +19,7 @@ layout_mode = 2
 [node name="Label" parent="Name" index="0"]
 text = "Название:"
 
-[node name="FormCategoryComponent" parent="." instance=ExtResource("4_ghhp7")]
+[node name="FormCategoryComponent" parent="." instance=ExtResource("3_wxhsa")]
 layout_mode = 2
 
 [editable path="Name"]
-[editable path="FormCategoryComponent"]
-[editable path="FormCategoryComponent/Category"]

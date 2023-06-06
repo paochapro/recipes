@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://dodfqef10wx3u"]
+[gd_scene load_steps=2 format=3]
 
-[ext_resource type="Script" path="res://src/code/gui/FormSpinBoxComponent.cs" id="1_6o6ww"]
+[ext_resource type="Script" path="res://src/code/gui/form_components/FormSpinBoxComponent.cs" id="1_6o6ww"]
 
 [node name="SpinBox" type="HBoxContainer"]
 script = ExtResource("1_6o6ww")

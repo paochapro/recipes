@@ -1,18 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://6yaa4mcus8ty"]
+[gd_scene load_steps=7 format=3 uid="uid://cbmbjwgtd3qdg"]
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeForm.cs" id="1_0vlud"]
-[ext_resource type="PackedScene" uid="uid://bkwwjwnte1d33" path="res://src/tscn/form_image_component.tscn" id="2_ui8jc"]
-[ext_resource type="PackedScene" uid="uid://b726knif8qpt4" path="res://src/tscn/form_string_component.tscn" id="3_qnmyl"]
-[ext_resource type="PackedScene" uid="uid://c1ki8cp5w7l0s" path="res://src/tscn/form_dish_type.tscn" id="4_4yc4g"]
-[ext_resource type="PackedScene" uid="uid://dodfqef10wx3u" path="res://src/tscn/form_spinbox_component.tscn" id="5_1al1x"]
-[ext_resource type="PackedScene" uid="uid://5vpibnwkqjqy" path="res://src/tscn/form_textedit_component.tscn" id="6_f35m8"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_image_component.tscn" id="2_5mf23"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_string_component.tscn" id="3_qnmyl"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_dish_type.tscn" id="4_4yc4g"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_spinbox_component.tscn" id="5_1al1x"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_textedit_component.tscn" id="6_f35m8"]
 
 [node name="CreateRecipeForm" type="VBoxContainer"]
 offset_right = 375.0
 offset_bottom = 578.0
 script = ExtResource("1_0vlud")
 
-[node name="Image" parent="." instance=ExtResource("2_ui8jc")]
+[node name="Image" parent="." instance=ExtResource("2_5mf23")]
 layout_mode = 2
 
 [node name="Title" parent="." instance=ExtResource("3_qnmyl")]

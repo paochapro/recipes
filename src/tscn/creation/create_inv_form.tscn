@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6mfwe3lsr8yj"]
+[gd_scene load_steps=4 format=3 uid="uid://bdqaftq3buu7o"]
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateInvForm.cs" id="1_1v7f2"]
-[ext_resource type="PackedScene" uid="uid://b726knif8qpt4" path="res://src/tscn/form_string_component.tscn" id="2_4wiuk"]
-[ext_resource type="PackedScene" uid="uid://c4psvnhprupil" path="res://src/tscn/form_inv_category_component.tscn" id="3_2d1pp"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_string_component.tscn" id="2_4wiuk"]
+[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_inv_category_component.tscn" id="3_7oos0"]
 
 [node name="CreateInvForm" type="VBoxContainer"]
 offset_right = 267.0
@@ -15,7 +15,7 @@ layout_mode = 2
 [node name="Label" parent="Name" index="0"]
 text = "Название:"
 
-[node name="FormCategoryComponent" parent="." instance=ExtResource("3_2d1pp")]
+[node name="FormCategoryComponent" parent="." instance=ExtResource("3_7oos0")]
 layout_mode = 2
 
 [editable path="Name"]

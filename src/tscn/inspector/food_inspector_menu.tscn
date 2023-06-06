@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxcba7kifjeu4"]
+[gd_scene load_steps=5 format=3]
 
-[ext_resource type="PackedScene" uid="uid://60apnml35xmh" path="res://src/tscn/item_inspector_menu.tscn" id="1_yxpoo"]
-[ext_resource type="Script" path="res://src/code/gui/FoodInspector.cs" id="2_pkoxh"]
-[ext_resource type="Script" path="res://src/code/gui/FoodInspectorContent.cs" id="3_2udu3"]
+[ext_resource type="PackedScene" uid="uid://60apnml35xmh" path="res://src/tscn/inspector/item_inspector_menu.tscn" id="1_yxpoo"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/FoodInspector.cs" id="2_pkoxh"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/FoodInspectorContent.cs" id="3_2udu3"]
 [ext_resource type="PackedScene" uid="uid://bk6cpwda6rm23" path="res://src/tscn/item_buttons/add_local_food_button.tscn" id="4_oolp0"]
 
 [node name="FoodInspectorMenu" instance=ExtResource("1_yxpoo")]
