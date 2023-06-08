@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://ih5ig1h6oew3"]
-
-[ext_resource type="Script" path="res://src/code/gui/item_buttons/LocalInvButton.cs" id="1_2v516"]
-[ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="1_bxeps"]
-
-[node name="InvButton" instance=ExtResource("1_bxeps")]
-script = ExtResource("1_2v516")

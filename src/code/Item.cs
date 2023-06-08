@@ -15,8 +15,10 @@ readonly record struct InventoryItem(
 ) : Item;
 
 //Food with count
-class FoodWithCount
+class FoodWithCount : Item
 {
+    public string Name => Item.Name;
+    public string Category => Item.Category;
     public FoodItem Item { get; private set; }
     public int Count { get; set; }
 

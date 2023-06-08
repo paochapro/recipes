@@ -5,6 +5,11 @@ partial class AllSubsection : VBoxContainer
     InvInspectorContent invContent;
     Fold foodTab;
     Fold invTab;
+
+    [Export] PackedScene foodButtonScene;
+    [Export] PackedScene invButtonScene;
+    ButtonGenerator<FoodItem> foodButtonGenerator;
+    ButtonGenerator<InventoryItem> invButtonGenerator;
     #nullable restore
 
     const DynamicWindowMenu SWITCH_MENU = DynamicWindowMenu.ItemCreation;
@@ -14,6 +19,13 @@ partial class AllSubsection : VBoxContainer
         GetNodes();
         ConnectEvents();
         UpdateContent();
+
+        var program = GetNode<Program>("/root/Program");
+        var foodButtonPressed = (FoodItem item) => program.RemoveFoodItem(item);
+        var invButtonPressed = (InventoryItem item) => program.RemoveInvItem(item);
+
+        foodButtonGenerator = new ButtonGenerator<FoodItem>(foodButtonScene, foodButtonPressed);
+        invButtonGenerator = new ButtonGenerator<InventoryItem>(invButtonScene, invButtonPressed); 
     }
 
     void GetNodes()
@@ -29,8 +41,8 @@ partial class AllSubsection : VBoxContainer
     void ConnectEvents()
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.NewBankFood += (i) => foodContent.UpdateItem(i);
-        events.NewBankInv += (i) => invContent.UpdateItem(i);
+        events.NewBankFood += (i) => foodContent.UpdateItem(i, foodButtonGenerator);
+        events.NewBankInv += (i) => invContent.UpdateItem(i, invButtonGenerator);
         events.RemoveBankFood += (i) => foodContent.RemoveItem(i);
         events.RemoveBankInv += (i) => invContent.RemoveItem(i);
 
@@ -49,8 +61,8 @@ partial class AllSubsection : VBoxContainer
         var foodItems = GetItems(bank.Food.Cast<Item>(), text).Cast<FoodItem>();
         var invItems = GetItems(bank.Inventory.Cast<Item>(), text).Cast<InventoryItem>();
 
-        foodContent.UpdateContent(foodItems, autoExpand);
-        invContent.UpdateContent(invItems, autoExpand);
+        foodContent.UpdateContent(foodItems, foodButtonGenerator, autoExpand);
+        invContent.UpdateContent(invItems, invButtonGenerator, autoExpand);
     }
 
     IEnumerable<Item> GetItems(IEnumerable<Item> avaliableItems, string text)
@@ -62,7 +74,7 @@ partial class AllSubsection : VBoxContainer
     {
         //TODO: How food and inv tabs should expand?
         var bank = GetNode<Program>("/root/Program").ItemsBank;
-        foodContent.UpdateContent(bank.Food);
-        invContent.UpdateContent(bank.Inventory);
+        foodContent.UpdateContent(bank.Food, foodButtonGenerator);
+        invContent.UpdateContent(bank.Inventory, invButtonGenerator);
     }
 }

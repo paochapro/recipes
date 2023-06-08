@@ -1,18 +1,17 @@
 abstract partial class ItemButton<TItem> : Control
+    where TItem : Item
 {
-    //I am sorry for adding program parameter in this, but it solves the problem
-    //of getting program node, when button is not in the scene tree yet
-    public void Initialize(TItem item, Program program)
+    #nullable disable
+    [Export] protected Button button;
+    public TItem Item { get; private set; }
+    #nullable restore
+
+    public void ButtonInitialize(TItem item, Action<TItem> onButtonPressed) 
     {
         this.Item = item;
-        this.Program = program;
-        CustomInit(item, program);
+        button.Pressed += () => onButtonPressed(item);
+        Initialize();
     }
 
-    public abstract void CustomInit(TItem item, Program program);
-
-    #nullable disable
-    public TItem Item { get; private set; }
-    protected Program Program { get; private set; }
-    #nullable restore
+    protected abstract void Initialize();
 }

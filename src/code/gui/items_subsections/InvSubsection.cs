@@ -6,10 +6,13 @@ partial class InvSubsection : ItemsSubsection<InventoryItem>
 
     protected override DynamicWindowMenu SwitchMenu => DynamicWindowMenu.Inv;
 
+    protected override Action<InventoryItem> OnButtonPressed => 
+        (item) => GetNode<Program>("/root/Program").RemoveLocalInv(item);
+
     protected override void _ChildReady()
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.NewLocalInv += (InventoryItem item) => content.UpdateItem(item);
-        events.RemoveLocalInv += (InventoryItem item) => content.RemoveItem(item);
+        events.NewLocalInv += (InventoryItem item) => UpdateItem(item);
+        events.RemoveLocalInv += (InventoryItem item) => RemoveItem(item);
     }
 }

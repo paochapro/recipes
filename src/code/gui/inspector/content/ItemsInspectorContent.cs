@@ -1,9 +1,7 @@
 abstract partial class ItemsInspectorContent<TItem> : Container
 	where TItem : Item
 {
-	[Export] PackedScene? itemButtonScene;
-
-	public void UpdateContent(IEnumerable<TItem> items, bool autoExpand = false)
+	public void UpdateContent(IEnumerable<TItem> items, ButtonGenerator<TItem> generator, bool autoExpand = false)
 	{
 		this.RemoveChildren();
 
@@ -14,7 +12,7 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 			Fold fold = new Fold() { Expanded = autoExpand };
 			fold.Title = group.Key;
 
-			var controls = group.Select(i => GetControlForItem(i));
+			var controls = group.Select(i => generator.GetButton(i));
 			fold.MainContainer.AddChildren(controls);
 
 			this.AddChild(fold);
@@ -22,9 +20,9 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 	}
 
 	//This could cause a ton of bugs, should handle new item creation better
-	public void UpdateItem(TItem item)
+	public void UpdateItem(TItem item, ButtonGenerator<TItem> generator)
 	{
-		var control = GetControlForItem(item);
+		var control = generator.GetButton(item);
 
 		var foundFold = GetChildren().Cast<Fold>().FirstOrDefault(f => f.Title == item.Category);
 
@@ -44,8 +42,10 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 		foreach(ItemButton<TItem> button in fold.MainContainer.GetChildren())
 		{
 			var container = fold.MainContainer;
+            var item1 = button.Item as Item;
+            var item2 = removing as Item;
 
-			if(button.Item.Equals(removing))
+			if(item1 == item2)
 			{
 				container.RemoveChild(button);
 
@@ -55,15 +55,15 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 		}
 	}
 
-	Control GetControlForItem(TItem item)
-	{
-		if(itemButtonScene == null)
-			throw new Exception("No item button scene [ItemsInspectorContent.cs]");
+	// Control GetControlForItem(TItem item)
+	// {
+	// 	if(itemButtonScene == null)
+	// 		throw new Exception("No item button scene [ItemsInspectorContent.cs]");
 
-		var itemButton = itemButtonScene.Instantiate<ItemButton<TItem>>();
-		var program = GetNode<Program>("/root/Program");
-		itemButton.Initialize(item, program);
+	// 	var itemButton = itemButtonScene.Instantiate<ItemButton<TItem>>();
+	// 	var program = GetNode<Program>("/root/Program");
+	// 	itemButton.Initialize(item, program);
 		
-		return itemButton;
-	}
+	// 	return itemButton;
+	// }
 }

@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cneae2gdwgslb"]
+
+[ext_resource type="PackedScene" uid="uid://dwqasoufekbqe" path="res://src/tscn/item_buttons/bank_food_button.tscn" id="1_krioa"]
+[ext_resource type="Script" path="res://src/code/gui/item_buttons/AddFoodButton.cs" id="2_fijg4"]
+
+[node name="AddLocalFoodButton" node_paths=PackedStringArray("button") instance=ExtResource("1_krioa")]
+script = ExtResource("2_fijg4")
+button = NodePath("HBoxContainer/Button")
+
+[node name="Button" parent="HBoxContainer" index="2"]
+theme_override_colors/font_color = Color(0.47451, 0.721569, 0.168627, 1)
+theme_override_font_sizes/font_size = 24
+text = "+"

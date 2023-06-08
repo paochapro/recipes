@@ -1,30 +1,23 @@
-partial class LocalFoodButton : ItemButton<FoodItem>
+partial class LocalFoodButton : ItemButton<FoodWithCount>
 {
-    public override void CustomInit(FoodItem item, Program program)
+    protected override void Initialize()
     {
         var nameLabel = GetNode<Label>("HBoxContainer/Label");
 		var image = GetNode<TextureRect>("HBoxContainer/TextureRect");
+        var food = base.Item;
 
-		nameLabel.Text = item.Name;
-		image.Texture = GD.Load<Texture2D>(item.TexturePath);
-
-	    //Get food with count
-		IEnumerable<FoodWithCount> food = program.LocalItems.Food;
-		FoodWithCount foodWithCount = food.First(f => f.Item == item);
-		
-		//Delete button
-		var button = GetNode<Button>("HBoxContainer/Button");
-        button.Pressed += () => program.RemoveLocalFood(foodWithCount);
+		nameLabel.Text = food.Item.Name;
+		image.Texture = GD.Load<Texture2D>(food.Item.TexturePath);
 
 		//Spinbox change count function
 		Action<double> changeCount = (double value) => {
 			int count = (int)Math.Round(value);
-			foodWithCount.Count = count;
+			food.Count = count;
 		};
 
         //Spinbox
         var spinbox = GetNode<SpinBox>("HBoxContainer/SpinBox");
-        spinbox.Value = foodWithCount.Count;
+        spinbox.Value = food.Count;
         spinbox.ValueChanged += (double value) => changeCount(value);
     }
 }
