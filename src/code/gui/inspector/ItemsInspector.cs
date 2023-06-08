@@ -12,6 +12,8 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 
 		content = GetNode<ItemsInspectorContent<TItem>>("ScrollContainer/Content");
 		content.UpdateContent(AvaliableItems);
+
+        _ChildReady();
 	}
 
 	protected void OnSearchTextChanged(string text)
@@ -24,4 +26,6 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 	}
 
 	protected abstract IEnumerable<TItem> AvaliableItems { get; }
+
+    protected virtual void _ChildReady() {}
 }

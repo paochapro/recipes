@@ -51,12 +51,12 @@ partial class CreateRecipeForm : CreateForm<Recipe>
 			name = str.Substring(0, str.Length-1);
 		}
 
-		FoodItem resultItem = foodBank.FirstOrDefault(f => f.Name == name);
+		FoodItem? resultItem = foodBank.FirstOrDefault(f => f.Name == name);
 		
 		if(resultItem == null)
 			throw new CustomErrorException("Некоторые предметы не существует в банке");
 
-		return new FoodWithCount(resultItem, count);
+		return new FoodWithCount((FoodItem)resultItem, count);
 	}
 
 	IEnumerable<TItem> GetItemsByString<TItem>(string value, IEnumerable<TItem> avaliableItems)

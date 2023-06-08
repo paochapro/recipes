@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://cbmbjwgtd3qdg"]
+[gd_scene load_steps=8 format=3 uid="uid://cbmbjwgtd3qdg"]
 
 [ext_resource type="Script" path="res://src/code/gui/creation/CreateRecipeForm.cs" id="1_0vlud"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_image_component.tscn" id="2_5mf23"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_string_component.tscn" id="3_qnmyl"]
+[ext_resource type="PackedScene" uid="uid://d33vl5tuyns45" path="res://src/tscn/form_components/form_image_component.tscn" id="2_5mf23"]
+[ext_resource type="PackedScene" uid="uid://b44ij26hjakx6" path="res://src/tscn/form_components/form_string_component.tscn" id="3_qnmyl"]
 [ext_resource type="PackedScene" path="res://src/tscn/form_components/form_dish_type.tscn" id="4_4yc4g"]
 [ext_resource type="PackedScene" path="res://src/tscn/form_components/form_spinbox_component.tscn" id="5_1al1x"]
 [ext_resource type="PackedScene" path="res://src/tscn/form_components/form_textedit_component.tscn" id="6_f35m8"]
+[ext_resource type="PackedScene" uid="uid://cfjn6odqnd345" path="res://src/tscn/form_components/form_item_set_component.tscn" id="7_h3kel"]
 
 [node name="CreateRecipeForm" type="VBoxContainer"]
 offset_right = 375.0
@@ -36,20 +37,9 @@ layout_mode = 2
 [node name="Label" parent="Instructions" index="0"]
 text = "Инструкции"
 
-[node name="Food" parent="." instance=ExtResource("3_qnmyl")]
+[node name="FormItemSetComponent" parent="." instance=ExtResource("7_h3kel")]
 layout_mode = 2
-
-[node name="Label" parent="Food" index="0"]
-text = "Продукты:"
-
-[node name="Inv" parent="." instance=ExtResource("3_qnmyl")]
-layout_mode = 2
-
-[node name="Label" parent="Inv" index="0"]
-text = "Инвентарь:"
 
 [editable path="Title"]
 [editable path="Time"]
 [editable path="Instructions"]
-[editable path="Food"]
-[editable path="Inv"]

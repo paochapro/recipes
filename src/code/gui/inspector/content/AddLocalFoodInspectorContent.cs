@@ -1,0 +1,1 @@
+partial class AddLocalFoodInspectorContent : AddLocalInspectorContent<FoodItem> {}

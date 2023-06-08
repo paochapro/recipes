@@ -1,0 +1,1 @@
+partial class AddLocalInvInspectorContent : AddLocalInspectorContent<InventoryItem> {}

@@ -4,8 +4,6 @@ public partial class DynamicWindow : VBoxContainer
     {
         var func = (DynamicWindowMenu m) => SetWindow(GetNode<Control>(GetMenuControlName(m)));
         GetNode<GlobalEvents>("/root/GlobalEvents").SwitchDynamicWindow += func;
-        GD.Print("wfmafa");
-        GD.Print("mfwaifmaif");
     }
 
     void SetWindow(Control setControl)

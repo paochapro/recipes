@@ -1,8 +1,8 @@
 partial class AllSubsection : VBoxContainer
 {
     #nullable disable
-    AllSubsectionFoodContent foodContent;
-    AllSubsectionInvContent invContent;
+    FoodInspectorContent foodContent;
+    InvInspectorContent invContent;
     Fold foodTab;
     Fold invTab;
     #nullable restore
@@ -22,8 +22,8 @@ partial class AllSubsection : VBoxContainer
         foodTab = content.GetNode<Fold>("FoodTab");
         invTab = content.GetNode<Fold>("InvTab");
 
-        foodContent = foodTab.MainContainer.GetNode<AllSubsectionFoodContent>("MarginContainer/Content");
-        invContent = invTab.MainContainer.GetNode<AllSubsectionInvContent>("MarginContainer/Content");
+        foodContent = foodTab.MainContainer.GetNode<FoodInspectorContent>("MarginContainer/Content");
+        invContent = invTab.MainContainer.GetNode<InvInspectorContent>("MarginContainer/Content");
     }
 
     void ConnectEvents()

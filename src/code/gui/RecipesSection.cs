@@ -27,12 +27,8 @@ public partial class RecipesSection : PanelContainer
         SearchInfo filtersSearchInfo = filters.GetSearchInfo();
         SearchInfo searchInfo = filtersSearchInfo with { Title = title };
 
-        GD.Print("Search info:"  + searchInfo);
-
 		var program = GetNode<Program>("/root/Program");
-        program.RecipeBank.Iterate(r => GD.Print($"Bank recipe: {r.Title}"));
 		IEnumerable<Recipe> foundRecipes = RecipeSearch.Search(program.RecipeBank, searchInfo);
-        program.RecipeBank.Iterate(r => GD.Print($"Found recipe: {r.Title}"));
 
 		content.UpdateContent(foundRecipes.ToList());
 	}

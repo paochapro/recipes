@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfjn6odqnd345"]
+
+[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="1_75ns0"]
+[ext_resource type="Script" path="res://src/code/gui/form_components/FormItemSetComponent.cs" id="1_jh6tj"]
+[ext_resource type="PackedScene" uid="uid://djmjll0ho2kac" path="res://src/tscn/inspector/inspector.tscn" id="2_ywk50"]
+
+[node name="FormItemSetComponent" type="VBoxContainer"]
+offset_right = 290.0
+offset_bottom = 378.0
+script = ExtResource("1_jh6tj")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Food" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_75ns0")
+Title = "Продукты"
+
+[node name="Inspector" parent="HBoxContainer/Food" instance=ExtResource("2_ywk50")]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Inv" type="VBoxContainer" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("1_75ns0")
+Title = "Инвентарь"
+
+[node name="Button" type="Button" parent="HBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "+"
+
+[editable path="HBoxContainer/Food/Inspector"]
