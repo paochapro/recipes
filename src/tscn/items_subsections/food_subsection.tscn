@@ -1,13 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dccnd5qk6fuik"]
+[gd_scene load_steps=5 format=3 uid="uid://l1os4m0bqm1t"]
 
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsections/items_subsection.tscn" id="1_xsqlf"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/FoodSubsection.cs" id="2_jgukh"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/LocalFoodInspector.cs" id="2_nm3v6"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/content/LocalFoodInspectorContent.cs" id="3_omn21"]
 [ext_resource type="PackedScene" uid="uid://mcwt0xjk21df" path="res://src/tscn/item_buttons/local_food_button.tscn" id="3_t3pek"]
 
 [node name="FoodSubsection" instance=ExtResource("1_xsqlf")]
-script = ExtResource("2_jgukh")
+script = ExtResource("2_nm3v6")
 buttonScene = ExtResource("3_t3pek")
 
 [node name="Content" parent="ScrollContainer" index="0"]
 script = ExtResource("3_omn21")
+
+[node name="Button" parent="ControlPanel" index="1"]
+menu = 1
+
+[editable path="ControlPanel"]

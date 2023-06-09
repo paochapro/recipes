@@ -38,3 +38,8 @@ theme_override_constants/margin_left = 15
 [node name="Content" type="VBoxContainer" parent="ScrollContainer/Content/InvTab/MarginContainer" index="0"]
 layout_mode = 2
 script = ExtResource("5_t7w8m")
+
+[node name="Button" parent="ControlPanel" index="1"]
+menu = 4
+
+[editable path="ControlPanel"]

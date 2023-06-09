@@ -6,9 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://csvmlceawnv6f" path="res://src/tscn/item_creation_tabs.tscn" id="4_smctc"]
 [ext_resource type="PackedScene" uid="uid://cdencvbo5p4aj" path="res://src/tscn/unknown_menu.tscn" id="6_ajv68"]
 [ext_resource type="PackedScene" uid="uid://c8x3apkju3cya" path="res://src/tscn/creation/create_recipe_menu.tscn" id="6_oa3ot"]
-[ext_resource type="PackedScene" uid="uid://c1cdro4gffhe8" path="res://src/tscn/inspector/food_inspector_menu.tscn" id="7_85ixy"]
+[ext_resource type="PackedScene" uid="uid://cx7s0351ciusl" path="res://src/tscn/inspector/food_inspector_menu.tscn" id="7_85ixy"]
 [ext_resource type="PackedScene" uid="uid://ced2qhfiu2nk1" path="res://src/tscn/recipes_section.tscn" id="7_vs2t5"]
-[ext_resource type="PackedScene" uid="uid://bn6tfe82fqbjd" path="res://src/tscn/inspector/inv_inspector_menu.tscn" id="8_34fwe"]
+[ext_resource type="PackedScene" path="res://src/tscn/inspector/inv_inspector_menu.tscn" id="8_34fwe"]
 
 [node name="GuiRoot" type="Control"]
 layout_mode = 3

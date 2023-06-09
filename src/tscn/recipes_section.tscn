@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://src/code/gui/RecipesSection.cs" id="1_wpon4"]
 [ext_resource type="PackedScene" uid="uid://bqv3ngpdutjws" path="res://src/tscn/recipe_card.tscn" id="2_4kfgs"]
 [ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="5_sk41l"]
-[ext_resource type="PackedScene" path="res://src/tscn/filters_form.tscn" id="6_143f0"]
+[ext_resource type="PackedScene" uid="uid://cwyyfiei6p611" path="res://src/tscn/filters_form.tscn" id="6_143f0"]
 
 [node name="RecipesSection" type="PanelContainer"]
 offset_right = 397.0
@@ -36,6 +36,9 @@ recipeCardScene = ExtResource("2_4kfgs")
 
 [node name="ControlPanel" parent="Components" instance=ExtResource("1_8x03f")]
 layout_mode = 2
+
+[node name="Button" parent="Components/ControlPanel" index="1"]
+menu = 3
 
 [node name="FiltersRoot" type="PanelContainer" parent="Components"]
 layout_mode = 2

@@ -1,10 +1,8 @@
-partial class InvSubsection : ItemsSubsection<InventoryItem>
+partial class LocalInvInspector : ItemsInspector<InventoryItem>
 {
     protected override IEnumerable<InventoryItem> AvaliableItems {
         get => GetNode<Program>("/root/Program").LocalItems.Inventory;
     }
-
-    protected override DynamicWindowMenu SwitchMenu => DynamicWindowMenu.Inv;
 
     protected override ButtonGenerator<InventoryItem> ButtonGenerator {
         get {

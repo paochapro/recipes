@@ -1,7 +1,5 @@
-partial class FoodSubsection : ItemsSubsection<FoodWithCount> //This could potentially break universe
+partial class LocalFoodInspector : ItemsInspector<FoodWithCount> //This could potentially break universe
 {
-    protected override DynamicWindowMenu SwitchMenu => DynamicWindowMenu.Food;
-
 	protected override IEnumerable<FoodWithCount> AvaliableItems {
         get => GetNode<Program>("/root/Program").LocalItems.Food;
     }
@@ -13,7 +11,7 @@ partial class FoodSubsection : ItemsSubsection<FoodWithCount> //This could poten
             return new ButtonGenerator<FoodWithCount>(buttonScene, onPressed);
         }
     }
-
+    
     protected override void _ChildReady()
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");

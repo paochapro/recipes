@@ -12,8 +12,6 @@ partial class AllSubsection : VBoxContainer
     ButtonGenerator<InventoryItem> invButtonGenerator;
     #nullable restore
 
-    const DynamicWindowMenu SWITCH_MENU = DynamicWindowMenu.ItemCreation;
-
     public override void _Ready()
     {
         var program = GetNode<Program>("/root/Program");
@@ -46,9 +44,6 @@ partial class AllSubsection : VBoxContainer
 
         var lineedit = GetNode<LineEdit>("ControlPanel/LineEdit");
 		lineedit.TextChanged += OnSearchTextChanged;
-
-        var menuButton = GetNode<Button>("ControlPanel/Button");
-        menuButton.Pressed += () => events.CallSwitchDynamicWindow(SWITCH_MENU);
     }
 
     void OnSearchTextChanged(string text)
