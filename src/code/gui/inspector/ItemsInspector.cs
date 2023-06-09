@@ -28,6 +28,7 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 
     protected void UpdateItem(TItem item) => content.UpdateItem(item, ButtonGenerator);
     protected void RemoveItem(TItem item) => content.RemoveItem(item);
+    protected void UpdateContent() => content.UpdateContent(AvaliableItems, ButtonGenerator);
 
 	protected abstract IEnumerable<TItem> AvaliableItems { get; }
 

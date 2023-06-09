@@ -1,6 +1,7 @@
 partial class GlobalEvents : Node
 {
     public event Action<DynamicWindowMenu>?     SwitchDynamicWindow;
+    public event Action<SectionAMenu>?          SwitchSectionA;
     public event Action<FoodItem>?              NewBankFood;
     public event Action<InventoryItem>?         NewBankInv;
     public event Action<FoodWithCount>?         NewLocalFood;
@@ -9,12 +10,14 @@ partial class GlobalEvents : Node
     public event Action<InventoryItem>?         RemoveBankInv;
     public event Action<FoodWithCount>?         RemoveLocalFood;
     public event Action<InventoryItem>?         RemoveLocalInv;
+
     public event Action<FoodWithCount>?         AddRecipeFood;
     public event Action<InventoryItem>?         AddRecipeInv;
-    public event Action<FoodWithCount>?         RemoveRecipeFood;
-    public event Action<InventoryItem>?         RemoveRecipeInv;
+
+    public event Action<FormItemSetComponent>?  OpenRecipeItemsMenu;
 
     public void CallSwitchDynamicWindow(DynamicWindowMenu val)  => SwitchDynamicWindow?.Invoke(val);
+    public void CallSwitchSectionA(SectionAMenu val)            => SwitchSectionA?.Invoke(val);
     public void CallNewBankFood(FoodItem val)                   => NewBankFood?.Invoke(val);
     public void CallNewBankInv(InventoryItem val)               => NewBankInv?.Invoke(val);
     public void CallNewLocalFood(FoodWithCount val)             => NewLocalFood?.Invoke(val);
@@ -25,6 +28,5 @@ partial class GlobalEvents : Node
     public void CallRemoveLocalInv(InventoryItem val)           => RemoveLocalInv?.Invoke(val);
     public void CallAddRecipeFood(FoodWithCount val)            => AddRecipeFood?.Invoke(val);
     public void CallAddRecipeInv(InventoryItem val)             => AddRecipeInv?.Invoke(val);
-    public void CallRemoveRecipeFood(FoodWithCount val)         => RemoveRecipeFood?.Invoke(val);
-    public void CallRemoveRecipeInv(InventoryItem val)          => RemoveRecipeInv?.Invoke(val);
+    public void CallOpenRecipeItemsMenu(FormItemSetComponent component)  => OpenRecipeItemsMenu?.Invoke(component);
 }

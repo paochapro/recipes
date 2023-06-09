@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2kghkf1o85wb"]
+
+[ext_resource type="PackedScene" uid="uid://bdi6vt0i5rhjj" path="res://src/tscn/inspector/recipe_items_menu.tscn" id="1_h31b5"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/AddRecipeInvInspector.cs" id="2_sa8wf"]
+[ext_resource type="PackedScene" uid="uid://bm4yde73bxvs7" path="res://src/tscn/item_buttons/add_inv_button.tscn" id="3_0dw3x"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/content/AddInvInspectorContent.cs" id="4_dojju"]
+
+[node name="RecipeInv" instance=ExtResource("1_h31b5")]
+
+[node name="Label" parent="Components/Banner" index="0"]
+text = "Добавить инструмент в рецепт"
+
+[node name="Inspector" parent="Components" index="1"]
+script = ExtResource("2_sa8wf")
+buttonScene = ExtResource("3_0dw3x")
+
+[node name="Content" parent="Components/Inspector/ScrollContainer" index="0"]
+script = ExtResource("4_dojju")

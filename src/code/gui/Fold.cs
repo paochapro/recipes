@@ -10,7 +10,7 @@ public partial class Fold : VBoxContainer
     TextureRect arrowIcon;
     Label titleLabel;
 
-    public VBoxContainer MainContainer => mainContainer; //TODO: get child?
+    public VBoxContainer MainContainer => mainContainer;
 
     [Export]
     public string Title {
@@ -68,7 +68,16 @@ public partial class Fold : VBoxContainer
 
     void SetupMainContainer()
     {
-        foreach(var child in this.GetChildren())
+        Node? node = GetChildren().FirstOrDefault(n => n.Name == mainContainerName);
+
+        if(node != null && node is VBoxContainer container)
+        {
+            this.RemoveChild(container);
+            container.Visible = Expanded;
+            mainContainer = container;
+        }
+
+        foreach(var child in GetChildren())
         {
             this.RemoveChild(child);
             mainContainer.AddChild(child);

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq2d0ri0gpi2t"]
+
+[ext_resource type="PackedScene" uid="uid://bdi6vt0i5rhjj" path="res://src/tscn/inspector/recipe_items_menu.tscn" id="1_dlgqp"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/AddRecipeFoodInspector.cs" id="2_a2fsg"]
+[ext_resource type="PackedScene" uid="uid://cneae2gdwgslb" path="res://src/tscn/item_buttons/add_food_button.tscn" id="3_teh47"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/content/AddFoodInspectorContent.cs" id="4_mt2wc"]
+
+[node name="RecipeFood" instance=ExtResource("1_dlgqp")]
+
+[node name="Label" parent="Components/Banner" index="0"]
+text = "Добавить продукт в рецепт"
+
+[node name="Inspector" parent="Components" index="1"]
+script = ExtResource("2_a2fsg")
+buttonScene = ExtResource("3_teh47")
+
+[node name="Content" parent="Components/Inspector/ScrollContainer" index="0"]
+script = ExtResource("4_mt2wc")

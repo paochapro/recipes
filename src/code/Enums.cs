@@ -5,3 +5,10 @@ enum DynamicWindowMenu {
     RecipeCreation,
     ItemCreation
 }
+
+enum SectionAMenu {
+    Unknown,
+    ItemSet,
+    RecipeFood,
+    RecipeInv
+}

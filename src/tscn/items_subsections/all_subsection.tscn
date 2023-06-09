@@ -10,10 +10,12 @@
 [ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="7_qaljd"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/BankInvInspector.cs" id="7_sy3dc"]
 
-[node name="AllSubsection" instance=ExtResource("1_vnm3k")]
+[node name="AllSubsection" node_paths=PackedStringArray("foodLineEdit", "invLineEdit") instance=ExtResource("1_vnm3k")]
 offset_right = 288.0
 offset_bottom = 369.0
 script = ExtResource("1_mbbrs")
+foodLineEdit = NodePath("ScrollContainer/Content/FoodTab/MarginContainer/FoodInspector/ControlPanel/LineEdit")
+invLineEdit = NodePath("ScrollContainer/Content/InvTab/MarginContainer/InvInspector/ControlPanel/LineEdit")
 
 [node name="FoodTab" type="VBoxContainer" parent="ScrollContainer/Content" index="0"]
 layout_mode = 2

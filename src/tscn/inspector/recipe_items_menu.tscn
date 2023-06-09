@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdi6vt0i5rhjj"]
+[gd_scene load_steps=3 format=3 uid="uid://bdi6vt0i5rhjj"]
 
-[ext_resource type="PackedScene" uid="uid://italx5gl4bq6" path="res://src/tscn/items_subsections/all_subsection.tscn" id="1_7d70t"]
+[ext_resource type="Script" path="res://src/code/gui/SwitchMenuButton.cs" id="1_m733f"]
+[ext_resource type="PackedScene" uid="uid://cwui08h0lmfae" path="res://src/tscn/search_bar.tscn" id="2_21iky"]
 
 [node name="RecipeItemsMenu" type="PanelContainer"]
 offset_right = 350.0
@@ -18,8 +19,28 @@ layout_mode = 2
 layout_mode = 2
 horizontal_alignment = 1
 
-[node name="AllSubsection" parent="Components" instance=ExtResource("1_7d70t")]
+[node name="Button" type="Button" parent="Components/Banner"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "<"
+script = ExtResource("1_m733f")
+sectionA_Menu = 1
+
+[node name="Inspector" type="VBoxContainer" parent="Components"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[editable path="Components/AllSubsection"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Components/Inspector"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="Components/Inspector/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ControlPanel" type="HBoxContainer" parent="Components/Inspector"]
+layout_mode = 2
+
+[node name="LineEdit" parent="Components/Inspector/ControlPanel" instance=ExtResource("2_21iky")]
+layout_mode = 2

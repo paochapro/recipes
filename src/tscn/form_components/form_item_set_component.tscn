@@ -1,43 +1,128 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfjn6odqnd345"]
+[gd_scene load_steps=11 format=3 uid="uid://cfjn6odqnd345"]
 
 [ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="1_75ns0"]
 [ext_resource type="Script" path="res://src/code/gui/form_components/FormItemSetComponent.cs" id="1_jh6tj"]
-[ext_resource type="PackedScene" uid="uid://djmjll0ho2kac" path="res://src/tscn/inspector/inspector.tscn" id="2_ywk50"]
+[ext_resource type="Script" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="2_5n088"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/content/LocalFoodInspectorContent.cs" id="3_ucoco"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/RecipeCreationFoodInspector.cs" id="4_0whuq"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/content/InvInspectorContent.cs" id="5_5wvb5"]
+[ext_resource type="PackedScene" uid="uid://mcwt0xjk21df" path="res://src/tscn/item_buttons/local_food_button.tscn" id="5_7ip4t"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/RecipeCreationInvInspector.cs" id="5_ljc7w"]
+[ext_resource type="PackedScene" uid="uid://dpjq0bsmrengm" path="res://src/tscn/control_panel.tscn" id="6_s6olh"]
+[ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="8_17rri"]
 
 [node name="FormItemSetComponent" type="VBoxContainer"]
 offset_right = 290.0
 offset_bottom = 378.0
+size_flags_vertical = 3
 script = ExtResource("1_jh6tj")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="AllSubsection" type="VBoxContainer" parent="." node_paths=PackedStringArray("foodLineEdit", "invLineEdit")]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("2_5n088")
+foodLineEdit = NodePath("ScrollContainer/Content/FoodTab/Fold/_FoldMainContainer/MarginContainer/FoodInspector/ControlPanel/LineEdit")
+invLineEdit = NodePath("ScrollContainer/Content/InvTab/Fold/_FoldMainContainer/MarginContainer/InvInspector/ControlPanel/LineEdit")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="AllSubsection"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="AllSubsection/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="FoodTab" type="HBoxContainer" parent="AllSubsection/ScrollContainer/Content"]
 layout_mode = 2
 
-[node name="Food" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Fold" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/FoodTab"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_75ns0")
 Title = "Продукты"
+Expanded = null
 
-[node name="Inspector" parent="HBoxContainer/Food" instance=ExtResource("2_ywk50")]
+[node name="_FoldMainContainer" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/FoodTab/Fold"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="AllSubsection/ScrollContainer/Content/FoodTab/Fold/_FoldMainContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="FoodInspector" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/FoodTab/Fold/_FoldMainContainer/MarginContainer" node_paths=PackedStringArray("formComponent")]
+layout_mode = 2
+script = ExtResource("4_0whuq")
+formComponent = NodePath("../../../../../../../..")
+buttonScene = ExtResource("5_7ip4t")
+
+[node name="ScrollContainer" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/FoodTab/Fold/_FoldMainContainer/MarginContainer/FoodInspector"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/FoodTab/Fold/_FoldMainContainer/MarginContainer/FoodInspector/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("3_ucoco")
+
+[node name="ControlPanel" type="HBoxContainer" parent="AllSubsection/ScrollContainer/Content/FoodTab/Fold/_FoldMainContainer/MarginContainer/FoodInspector"]
+visible = false
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="AllSubsection/ScrollContainer/Content/FoodTab/Fold/_FoldMainContainer/MarginContainer/FoodInspector/ControlPanel"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="AllSubsection/ScrollContainer/Content/FoodTab"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "+"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="InvTab" type="HBoxContainer" parent="AllSubsection/ScrollContainer/Content"]
 layout_mode = 2
 
-[node name="Inv" type="VBoxContainer" parent="HBoxContainer2"]
+[node name="Fold" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/InvTab"]
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("1_75ns0")
 Title = "Инвентарь"
+Expanded = null
 
-[node name="Button" type="Button" parent="HBoxContainer2"]
+[node name="_FoldMainContainer" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/InvTab/Fold"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="AllSubsection/ScrollContainer/Content/InvTab/Fold/_FoldMainContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+
+[node name="InvInspector" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/InvTab/Fold/_FoldMainContainer/MarginContainer" node_paths=PackedStringArray("formComponent")]
+layout_mode = 2
+script = ExtResource("5_ljc7w")
+formComponent = NodePath("../../../../../../../..")
+buttonScene = ExtResource("8_17rri")
+
+[node name="ScrollContainer" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/InvTab/Fold/_FoldMainContainer/MarginContainer/InvInspector"]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="AllSubsection/ScrollContainer/Content/InvTab/Fold/_FoldMainContainer/MarginContainer/InvInspector/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("5_5wvb5")
+
+[node name="ControlPanel" type="HBoxContainer" parent="AllSubsection/ScrollContainer/Content/InvTab/Fold/_FoldMainContainer/MarginContainer/InvInspector"]
+visible = false
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="AllSubsection/ScrollContainer/Content/InvTab/Fold/_FoldMainContainer/MarginContainer/InvInspector/ControlPanel"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="AllSubsection/ScrollContainer/Content/InvTab"]
 layout_mode = 2
 size_flags_vertical = 0
 text = "+"
 
-[editable path="HBoxContainer/Food/Inspector"]
+[node name="ControlPanel" parent="AllSubsection" instance=ExtResource("6_s6olh")]
+visible = false
+layout_mode = 2
+
+[node name="Button" parent="AllSubsection/ControlPanel" index="1"]
+dynamicMenu = null
+sectionA_Menu = null
+
+[editable path="AllSubsection/ControlPanel"]

@@ -13,21 +13,20 @@ partial class CreateRecipeForm : CreateForm<Recipe>
 	public override Recipe CreateObject()
 	{
 		string title = GetNode<FormLineEditComponent>("Title").GetValue;
-		string foodStr = GetNode<FormLineEditComponent>("Food").GetValue;
-		string invStr = GetNode<FormLineEditComponent>("Inv").GetValue;
 		string instuctions = GetNode<TextEdit>("Instructions/TextEdit").Text;
 		string imagePath = imageComponent.GetValue;
-
+        ItemSet itemSet = GetNode<FormItemSetComponent>("ItemSet").GetValue;
 		int selectedDishTypeInt = GetNode<OptionButton>("DishType/OptionButton").Selected;
 		DishType dishType = (DishType)selectedDishTypeInt;
 
 		int time = (int)GetNode<SpinBox>("Time/SpinBox").Value;
 
-		var program = GetNode<Program>("/root/Program");
-		var foodResult = GetFoodWithCountByString(foodStr, program.ItemsBank.Food);
-		var invResult = GetItemsByString<InventoryItem>(invStr, program.ItemsBank.Inventory);
-		ItemSet set = new(foodResult.ToList(), invResult.ToList());
-		Recipe recipe = new(title, instuctions, imagePath, time, set, dishType);
+		// var program = GetNode<Program>("/root/Program");
+		// var foodResult = GetFoodWithCountByString(foodStr, program.ItemsBank.Food);
+		// var invResult = GetItemsByString<InventoryItem>(invStr, program.ItemsBank.Inventory);
+		// ItemSet set = new(foodResult.ToList(), invResult.ToList());
+
+		Recipe recipe = new(title, instuctions, imagePath, time, itemSet, dishType);
 		
 		return recipe;
 	}

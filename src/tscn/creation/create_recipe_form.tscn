@@ -9,8 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://cfjn6odqnd345" path="res://src/tscn/form_components/form_item_set_component.tscn" id="7_h3kel"]
 
 [node name="CreateRecipeForm" type="VBoxContainer"]
-offset_right = 375.0
-offset_bottom = 578.0
+offset_right = 357.0
+offset_bottom = 610.0
 script = ExtResource("1_0vlud")
 
 [node name="Image" parent="." instance=ExtResource("2_5mf23")]
@@ -37,7 +37,7 @@ layout_mode = 2
 [node name="Label" parent="Instructions" index="0"]
 text = "Инструкции"
 
-[node name="FormItemSetComponent" parent="." instance=ExtResource("7_h3kel")]
+[node name="ItemSet" parent="." instance=ExtResource("7_h3kel")]
 layout_mode = 2
 
 [editable path="Title"]
