@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://uwwuvdlaemow"]
 
 [ext_resource type="Script" path="res://src/code/gui/ItemSetSection.cs" id="1_3n63r"]
-[ext_resource type="PackedScene" uid="uid://b1kswgf1gmj5" path="res://src/tscn/items_subsections/food_subsection.tscn" id="2_5ceom"]
-[ext_resource type="PackedScene" uid="uid://dijijkc5w3gt7" path="res://src/tscn/items_subsections/inv_subsection.tscn" id="3_hm4vf"]
-[ext_resource type="PackedScene" uid="uid://italx5gl4bq6" path="res://src/tscn/items_subsections/all_subsection.tscn" id="5_vm2qm"]
+[ext_resource type="PackedScene" uid="uid://l1os4m0bqm1t" path="res://src/tscn/items_subsections/food_subsection.tscn" id="2_5ceom"]
+[ext_resource type="PackedScene" path="res://src/tscn/items_subsections/inv_subsection.tscn" id="3_hm4vf"]
+[ext_resource type="PackedScene" uid="uid://b3x6gvht1pcxu" path="res://src/tscn/items_subsections/all_subsection.tscn" id="5_vm2qm"]
 
 [node name="ItemSetSection" type="VBoxContainer"]
 custom_minimum_size = Vector2(350, 0)
