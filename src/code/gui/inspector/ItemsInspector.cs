@@ -4,18 +4,15 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 	#nullable disable
     [Export] protected PackedScene buttonScene;
 	protected ItemsInspectorContent<TItem> content;
-    ButtonGenerator<TItem> buttonGenerator;
 	#nullable restore
 
 	public override sealed void _Ready()
 	{
-        buttonGenerator = new ButtonGenerator<TItem>(buttonScene, OnButtonPressed);
-
 		var lineedit = GetNode<LineEdit>("ControlPanel/LineEdit");
 		lineedit.TextChanged += OnSearchTextChanged;
 
 		content = GetNode<ItemsInspectorContent<TItem>>("ScrollContainer/Content");
-		content.UpdateContent(AvaliableItems, buttonGenerator);
+		content.UpdateContent(AvaliableItems, ButtonGenerator);
 
         _ChildReady();
 	}
@@ -26,15 +23,15 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 		IEnumerable<TItem> items = result.Cast<TItem>();
 
 		bool autoExpand = text != "";
-		content.UpdateContent(items, buttonGenerator, autoExpand);
+		content.UpdateContent(items, ButtonGenerator, autoExpand);
 	}
 
-    protected void UpdateItem(TItem item) => content.UpdateItem(item, buttonGenerator);
+    protected void UpdateItem(TItem item) => content.UpdateItem(item, ButtonGenerator);
     protected void RemoveItem(TItem item) => content.RemoveItem(item);
 
 	protected abstract IEnumerable<TItem> AvaliableItems { get; }
 
-	protected abstract Action<TItem> OnButtonPressed { get; }
+	protected abstract ButtonGenerator<TItem> ButtonGenerator { get; }
 
     protected virtual void _ChildReady() {}
 }

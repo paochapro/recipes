@@ -16,8 +16,6 @@ partial class Program : Node
     public Program()
     {
         GD.Print("start program");
-        GD.Print("fmwioqiqof");
-        GD.Print("fwmqifq");
                 
         //TODO: Debug this, and remove
         recipeBank = new List<Recipe>();

@@ -9,10 +9,30 @@ class ButtonGenerator<TItem>
         this.onButtonPressed = onButtonPressed;
     }
 
-    public Control GetButton(TItem item)
+    public virtual Control GetButton(TItem item)
     {
         var button = buttonScene.Instantiate<ItemButton<TItem>>();
         button.ButtonInitialize(item, onButtonPressed);
+        return button;
+    }
+}
+
+class AddItemButtonGenerator<TItem> : ButtonGenerator<TItem>
+    where TItem : Item
+{
+    protected Func<TItem, bool> disabledCondition;
+
+    public AddItemButtonGenerator(PackedScene buttonScene, Action<TItem> onButtonPressed, Func<TItem, bool> disabledCondition)
+        : base(buttonScene, onButtonPressed)
+    {
+        this.disabledCondition = disabledCondition;
+    }
+
+    public override Control GetButton(TItem item)
+    {
+        var button = buttonScene.Instantiate<AddItemButton<TItem>>();
+        button.ButtonInitialize(item, onButtonPressed);
+        button.IsLocked = disabledCondition(item);
         return button;
     }
 }

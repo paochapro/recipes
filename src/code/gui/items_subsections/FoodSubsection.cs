@@ -5,8 +5,14 @@ partial class FoodSubsection : ItemsSubsection<FoodWithCount> //This could poten
 	protected override IEnumerable<FoodWithCount> AvaliableItems {
         get => GetNode<Program>("/root/Program").LocalItems.Food;
     }
-    protected override Action<FoodWithCount> OnButtonPressed => 
-        (item) => GetNode<Program>("/root/Program").RemoveLocalFood(item);
+
+    protected override ButtonGenerator<FoodWithCount> ButtonGenerator {
+        get {
+            var program = GetNode<Program>("/root/Program");
+            var onPressed = (FoodWithCount item) => program.RemoveLocalFood(item);
+            return new ButtonGenerator<FoodWithCount>(buttonScene, onPressed);
+        }
+    }
 
     protected override void _ChildReady()
     {

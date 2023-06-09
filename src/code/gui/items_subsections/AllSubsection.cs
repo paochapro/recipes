@@ -16,16 +16,14 @@ partial class AllSubsection : VBoxContainer
 
     public override void _Ready()
     {
-        GetNodes();
-        ConnectEvents();
-        UpdateContent();
-
         var program = GetNode<Program>("/root/Program");
         var foodButtonPressed = (FoodItem item) => program.RemoveFoodItem(item);
         var invButtonPressed = (InventoryItem item) => program.RemoveInvItem(item);
-
         foodButtonGenerator = new ButtonGenerator<FoodItem>(foodButtonScene, foodButtonPressed);
         invButtonGenerator = new ButtonGenerator<InventoryItem>(invButtonScene, invButtonPressed); 
+        GetNodes();
+        ConnectEvents();
+        UpdateContent();
     }
 
     void GetNodes()

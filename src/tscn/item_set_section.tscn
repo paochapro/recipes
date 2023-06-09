@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://uwwuvdlaemow"]
 
 [ext_resource type="Script" path="res://src/code/gui/ItemSetSection.cs" id="1_3n63r"]
-[ext_resource type="PackedScene" path="res://src/tscn/items_subsections/food_subsection.tscn" id="2_5ceom"]
+[ext_resource type="PackedScene" uid="uid://dccnd5qk6fuik" path="res://src/tscn/items_subsections/food_subsection.tscn" id="2_5ceom"]
 [ext_resource type="PackedScene" uid="uid://xfvkn3px3or3" path="res://src/tscn/items_subsections/inv_subsection.tscn" id="3_hm4vf"]
 [ext_resource type="PackedScene" path="res://src/tscn/items_subsections/all_subsection.tscn" id="5_vm2qm"]
 

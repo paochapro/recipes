@@ -42,10 +42,8 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 		foreach(ItemButton<TItem> button in fold.MainContainer.GetChildren())
 		{
 			var container = fold.MainContainer;
-            var item1 = button.Item as Item;
-            var item2 = removing as Item;
 
-			if(item1 == item2)
+			if(button.Item.Name == removing.Name)
 			{
 				container.RemoveChild(button);
 
@@ -54,16 +52,4 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 			}
 		}
 	}
-
-	// Control GetControlForItem(TItem item)
-	// {
-	// 	if(itemButtonScene == null)
-	// 		throw new Exception("No item button scene [ItemsInspectorContent.cs]");
-
-	// 	var itemButton = itemButtonScene.Instantiate<ItemButton<TItem>>();
-	// 	var program = GetNode<Program>("/root/Program");
-	// 	itemButton.Initialize(item, program);
-		
-	// 	return itemButton;
-	// }
 }

@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" path="res://src/code/gui/item_buttons/BankInvButton.cs" id="1_iq14x"]
 
-[node name="InvButton" type="HBoxContainer"]
+[node name="InvButton" type="HBoxContainer" node_paths=PackedStringArray("button")]
 offset_right = 439.0
 offset_bottom = 40.0
 script = ExtResource("1_iq14x")
+button = NodePath("Button")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2

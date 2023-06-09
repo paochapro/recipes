@@ -6,12 +6,13 @@
 [sub_resource type="LabelSettings" id="LabelSettings_013ct"]
 font_size = 18
 
-[node name="BankFoodButton" type="PanelContainer"]
+[node name="BankFoodButton" type="PanelContainer" node_paths=PackedStringArray("button")]
 custom_minimum_size = Vector2(76, 76)
 offset_right = 206.0
 offset_bottom = 76.0
 mouse_filter = 2
 script = ExtResource("1_to8lw")
+button = NodePath("HBoxContainer/Button")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

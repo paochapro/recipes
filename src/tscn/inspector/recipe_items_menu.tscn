@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bdi6vt0i5rhjj"]
 
-[ext_resource type="PackedScene" path="res://src/tscn/items_subsections/all_subsection.tscn" id="1_7d70t"]
+[ext_resource type="PackedScene" uid="uid://italx5gl4bq6" path="res://src/tscn/items_subsections/all_subsection.tscn" id="1_7d70t"]
 
 [node name="RecipeItemsMenu" type="PanelContainer"]
 offset_right = 350.0
@@ -21,11 +21,5 @@ horizontal_alignment = 1
 [node name="AllSubsection" parent="Components" instance=ExtResource("1_7d70t")]
 layout_mode = 2
 size_flags_vertical = 3
-
-[node name="Content" parent="Components/AllSubsection/ScrollContainer/Content/FoodTab/MarginContainer" index="0"]
-itemButtonScene = null
-
-[node name="Content" parent="Components/AllSubsection/ScrollContainer/Content/InvTab/MarginContainer" index="0"]
-itemButtonScene = null
 
 [editable path="Components/AllSubsection"]

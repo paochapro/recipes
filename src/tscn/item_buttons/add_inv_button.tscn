@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=3 format=3 uid="uid://bm4yde73bxvs7"]
 
 [ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="1_b8h3h"]
 [ext_resource type="Script" path="res://src/code/gui/item_buttons/AddInvButton.cs" id="2_nfbpf"]
