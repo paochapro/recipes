@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=5 format=3 uid="uid://dtaehblr1yfpd"]
 
 [ext_resource type="PackedScene" uid="uid://60apnml35xmh" path="res://src/tscn/inspector/item_inspector_menu.tscn" id="1_4umnr"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/AddLocalInvInspector.cs" id="2_714h7"]
@@ -8,7 +8,7 @@
 [node name="InvInspectorMenu" instance=ExtResource("1_4umnr")]
 
 [node name="Label" parent="Components/Banner" index="0"]
-text = "Добавить инструмент в холодильник"
+text = "Добавить инструменты в холодильник"
 
 [node name="Inspector" parent="Components" index="1"]
 script = ExtResource("2_714h7")

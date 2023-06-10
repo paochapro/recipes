@@ -8,7 +8,7 @@
 [node name="RecipeFood" instance=ExtResource("1_dlgqp")]
 
 [node name="Label" parent="Components/Banner" index="0"]
-text = "Добавить продукт в рецепт"
+text = "Добавить продукты в рецепт"
 
 [node name="Inspector" parent="Components" index="1"]
 script = ExtResource("2_a2fsg")

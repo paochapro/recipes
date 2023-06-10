@@ -8,7 +8,7 @@
 [node name="RecipeInv" instance=ExtResource("1_h31b5")]
 
 [node name="Label" parent="Components/Banner" index="0"]
-text = "Добавить инструмент в рецепт"
+text = "Добавить инструменты в рецепт"
 
 [node name="Inspector" parent="Components" index="1"]
 script = ExtResource("2_sa8wf")
