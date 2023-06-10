@@ -14,9 +14,11 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 
 			var controls = group.Select(i => generator.GetButton(i));
 			fold.MainContainer.AddChildren(controls);
-
 			this.AddChild(fold);
+            ReorderItems(fold);
 		}
+
+        ReorderCategories();
 	}
 
 	//This could cause a ton of bugs, should handle new item creation better
@@ -26,13 +28,16 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 
 		var foundFold = GetChildren().Cast<Fold>().FirstOrDefault(f => f.Title == item.Category);
 
-		if(foundFold != null)
+		if(foundFold != null) {
 			foundFold.MainContainer.AddChild(control);
+            ReorderItems(foundFold);
+        }
 		else
 		{
 			Fold newFold = new() { Title = item.Category };
 			newFold.AddChild(control);
 			this.AddChild(newFold);
+            ReorderCategories();
 		}
 	}
 
@@ -52,4 +57,7 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 			}
 		}
 	}
+
+    void ReorderItems(Fold fold) => fold.MainContainer.ReorderChildren((ItemButton<TItem> button) => button.Item.Name);
+    void ReorderCategories() => this.ReorderChildren((Fold fold) => fold.Title);
 }

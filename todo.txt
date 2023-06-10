@@ -16,7 +16,7 @@ Modifying recipes and items
 Finish recipe search
 Add that new property to recipes
 File saving and loading
-Finish recipe card
++ Finish recipe card
 Default alphabetical ordering for recipes and items, for everythin
 
 Later:

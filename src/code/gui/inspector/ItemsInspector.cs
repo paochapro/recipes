@@ -4,12 +4,13 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 	#nullable disable
     [Export] protected PackedScene buttonScene;
 	protected ItemsInspectorContent<TItem> content;
+    LineEdit lineEdit;
 	#nullable restore
 
 	public override sealed void _Ready()
 	{
-		var lineedit = GetNode<LineEdit>("ControlPanel/LineEdit");
-		lineedit.TextChanged += OnSearchTextChanged;
+		lineEdit = GetNode<LineEdit>("ControlPanel/LineEdit");
+		lineEdit.TextChanged += OnSearchTextChanged;
 
 		content = GetNode<ItemsInspectorContent<TItem>>("ScrollContainer/Content");
 		content.UpdateContent(AvaliableItems, ButtonGenerator);
@@ -26,8 +27,14 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 		content.UpdateContent(items, ButtonGenerator, autoExpand);
 	}
 
-    protected void UpdateItem(TItem item) => content.UpdateItem(item, ButtonGenerator);
+    protected void UpdateItem(TItem item) { 
+        if(ItemSearch.ItemPasses(item, lineEdit.Text))
+            content.UpdateItem(item, ButtonGenerator);
+    }
+
     protected void RemoveItem(TItem item) => content.RemoveItem(item);
+    
+
     protected void UpdateContent() => content.UpdateContent(AvaliableItems, ButtonGenerator);
 
 	protected abstract IEnumerable<TItem> AvaliableItems { get; }

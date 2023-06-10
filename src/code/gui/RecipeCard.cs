@@ -20,13 +20,13 @@ partial class RecipeCard : PanelContainer
 		instructions.Text = recipe.Instructions;
 		image.Texture = GD.Load<Texture2D>(recipe.ImageTextureUID);
 
-        var foodButtons = recipe.ItemSet.Food.Select(f => {
+        var foodButtons = recipe.ItemSet.Food.OrderBy(i => i.Name).Select(f => {
             var button = recipeFoodScene.Instantiate<RecipeFoodButton>();
             button.Initialize(f);
             return button;
         });
 
-        var invButtons = recipe.ItemSet.Inventory.Select(f => {
+        var invButtons = recipe.ItemSet.Inventory.OrderBy(i => i.Name).Select(f => {
             var button = recipeInvScene.Instantiate<RecipeInvButton>();
             button.Initialize(f);
             return button;

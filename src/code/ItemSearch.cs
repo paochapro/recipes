@@ -20,7 +20,7 @@ static class ItemSearch
         return group;
     }
 
-    static bool ItemPasses(Item item, string text)
+    public static bool ItemPasses(Item item, string text)
     {
         return item.Name.Contains(text);
     }
