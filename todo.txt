@@ -10,13 +10,16 @@ Find out what exactly causes ".net failed to unload assemblies" error
 + Remake adding items in recipe creation (not just lineedit)
 + Change menu buttons in ItemSetSection
 + Remove category fold when all items are removed from this category
-When item is removed from bank, and local item exists too, we need to popup warning window
++ When item is removed from bank, and local item exists (and recipe have this item) too, we need to popup warning window
 + When adding item, text in search is ignored until its updates
 Modifying recipes and items
 Finish recipe search
 Add that new property to recipes
 File saving and loading
 Improve recipe section readability
+Remove scroll container in all subsection in create recipe form
+Search bar lower case?
+Make fold in depedencies warning window for depended recipes
 + Finish recipe card
 + Default alphabetical ordering for recipes and items, for everythin
 

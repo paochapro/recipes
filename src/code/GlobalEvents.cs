@@ -11,13 +11,15 @@ partial class GlobalEvents : Node
     public event Action<FoodWithCount>?         RemoveLocalFood;
     public event Action<InventoryItem>?         RemoveLocalInv;
 
-    public event Action<Recipe>?         NewRecipe;
-    public event Action<Recipe>?         RemoveRecipe;
+    public event Action<Recipe>?                NewRecipe;
+    public event Action<Recipe>?                RemoveRecipe;
+    public event Action<FormItemSetComponent>?  OpenRecipeItemsMenu;
+    public event Action<FoodItem, FoodWithCount?, IEnumerable<Recipe>>? FailedFoodRemove;
+    public event Action<InventoryItem, InventoryItem?, IEnumerable<Recipe>>? FailedInvRemove;
 
     //public event Action<FoodWithCount>?         AddRecipeFood;
     //public event Action<InventoryItem>?         AddRecipeInv;
 
-    public event Action<FormItemSetComponent>?  OpenRecipeItemsMenu;
 
     public void CallSwitchDynamicWindow(DynamicWindowMenu val)  => SwitchDynamicWindow?.Invoke(val);
     public void CallSwitchSectionA(SectionAMenu val)            => SwitchSectionA?.Invoke(val);
@@ -32,6 +34,23 @@ partial class GlobalEvents : Node
     public void CallNewRecipe(Recipe val)                       => NewRecipe?.Invoke(val);
     public void CallRemoveRecipe(Recipe val)                    => RemoveRecipe?.Invoke(val);
     public void CallOpenRecipeItemsMenu(FormItemSetComponent component)  => OpenRecipeItemsMenu?.Invoke(component);
+
+    public void CallFailedFoodRemove(
+        FoodItem item, 
+        FoodWithCount? dependedLocalItem, 
+        IEnumerable<Recipe> dependedRecipes) 
+    { 
+        FailedFoodRemove?.Invoke(item, dependedLocalItem, dependedRecipes);
+    }
+
+    public void CallFailedInvRemove(
+        InventoryItem item, 
+        InventoryItem? dependedLocalItem, 
+        IEnumerable<Recipe> dependedRecipes)
+    { 
+        FailedInvRemove?.Invoke(item, dependedLocalItem, dependedRecipes);
+    }
+
     //public void CallAddRecipeFood(FoodWithCount val)            => AddRecipeFood?.Invoke(val);
     //public void CallAddRecipeInv(InventoryItem val)             => AddRecipeInv?.Invoke(val);
 }

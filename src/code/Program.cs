@@ -16,7 +16,7 @@ partial class Program : Node
     public Program()
     {
         GD.Print("start program");
-                
+
         //Debug
         string itemsJsonFile = "content/items.json"; 
         var items = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
@@ -57,8 +57,11 @@ partial class Program : Node
 
     public void RemoveFoodItem(FoodItem item) 
     {
-        if(localItems.FoodItems.Contains(item)) {
-            GD.PrintErr("Local items contains an item that was reqeusted to be removed: " + item.Name);
+        var dependedLocalItem = localItems.Food.FirstOrDefault(f => f.Item == item);
+        var dependedRecipes = recipeBank.Where(r => r.ItemSet.FoodItems.Contains(item));
+
+        if(dependedLocalItem != null || dependedRecipes.Count() != 0) {
+            events.CallFailedFoodRemove(item, dependedLocalItem, dependedRecipes);
             return;
         }
 
@@ -68,8 +71,11 @@ partial class Program : Node
 
     public void RemoveInvItem(InventoryItem item) 
     {
-        if(localItems.Inventory.Contains(item)) {
-            GD.PrintErr("Local items contains an item that was reqeusted to be removed: " + item.Name);
+        var dependedLocalItemExists = localItems.Inventory.Contains(item);
+        var dependedRecipes = recipeBank.Where(r => r.ItemSet.Inventory.Contains(item));
+
+        if(dependedLocalItemExists || dependedRecipes.Count() != 0) {
+            events.CallFailedInvRemove(item, dependedLocalItemExists ? item : null, dependedRecipes);
             return;
         }
 
@@ -77,7 +83,7 @@ partial class Program : Node
         events.CallRemoveBankInv(item);
     }
 
-    public void RemoveLocalFood(FoodWithCount item) { 
+    public void RemoveLocalFood(FoodWithCount item) {
         localItems.FoodList.Remove(item);
         events.CallRemoveLocalFood(item);
     }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://btus26bhov6uo"]
+[gd_scene load_steps=15 format=3 uid="uid://btus26bhov6uo"]
 
 [ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_de05s"]
 [ext_resource type="PackedScene" uid="uid://uwwuvdlaemow" path="res://src/tscn/item_set_section.tscn" id="2_rhyb0"]
@@ -11,7 +11,9 @@
 [ext_resource type="PackedScene" uid="uid://c8x3apkju3cya" path="res://src/tscn/creation/create_recipe_menu.tscn" id="6_oa3ot"]
 [ext_resource type="PackedScene" uid="uid://cx7s0351ciusl" path="res://src/tscn/inspector/food_inspector_menu.tscn" id="7_85ixy"]
 [ext_resource type="PackedScene" uid="uid://ced2qhfiu2nk1" path="res://src/tscn/recipes_section.tscn" id="7_vs2t5"]
-[ext_resource type="PackedScene" path="res://src/tscn/inspector/inv_inspector_menu.tscn" id="8_34fwe"]
+[ext_resource type="PackedScene" uid="uid://dtaehblr1yfpd" path="res://src/tscn/inspector/inv_inspector_menu.tscn" id="8_34fwe"]
+[ext_resource type="Script" path="res://src/code/gui/DependenciesWarningCreator.cs" id="13_ofvxb"]
+[ext_resource type="PackedScene" uid="uid://bo1qhe7f6lk0g" path="res://src/tscn/dependencies_warning.tscn" id="14_uk2q3"]
 
 [node name="GuiRoot" type="Control"]
 layout_mode = 3
@@ -99,3 +101,7 @@ layout_mode = 2
 [node name="RecipesSection" parent="MarginContainer/HBoxContainer/HSplitContainer" instance=ExtResource("7_vs2t5")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
+
+[node name="DependenciesWarningCreator" type="Node" parent="."]
+script = ExtResource("13_ofvxb")
+scene = ExtResource("14_uk2q3")
