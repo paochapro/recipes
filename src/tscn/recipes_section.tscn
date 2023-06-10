@@ -52,6 +52,4 @@ Title = "Фильтры"
 [node name="FiltersForm" parent="Components/FiltersRoot/Fold" instance=ExtResource("6_143f0")]
 layout_mode = 2
 
-[connection signal="pressed" from="Components/ControlPanel/Button" to="." method="OnMenuButtonPressed"]
-
 [editable path="Components/ControlPanel"]

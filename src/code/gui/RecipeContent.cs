@@ -7,22 +7,52 @@ partial class RecipeContent : VBoxContainer
 
 	public void UpdateContent(IEnumerable<Recipe> recipes, bool autoExpand = false)
     {
-        if(recipeCardScene == null)
-            throw new Exception("No recipe card scene [RecipeContent.cs]");
-
         this.RemoveChildren();
 
         foreach(Recipe recipe in recipes)
-        {
-            Fold fold = new();
-            fold.Title = recipe.Title;
-            fold.Expanded = autoExpand;
+            AddRecipeCard(recipe, autoExpand);
+    }
 
-            var card = recipeCardScene.Instantiate<RecipeCard>();
-            card.Initialize(recipe);
-            fold.MainContainer.AddChild(card);
-
-            this.AddChild(fold);
+    public void UpdateRecipe(Recipe recipe) 
+    {
+        if(FindFoldByRecipe(recipe) != null) {
+            GD.PrintErr("Tried to add recipe that content already has [RecipeContent.cs]");
+            return;
         }
+
+        AddRecipeCard(recipe);
+    }
+
+    public void RemoveRecipe(Recipe recipe) 
+    {
+        var foundFold = FindFoldByRecipe(recipe);
+
+        if(foundFold == null) {
+            GD.PrintErr("Tried to remove recipe that content doesnt have [RecipeContent.cs]");
+            return;
+        }
+
+        this.RemoveChild(foundFold);
+    }
+
+    void AddRecipeCard(Recipe recipe, bool foldExpanded = false) 
+    {
+        if(recipeCardScene == null)
+            throw new Exception("No recipe card scene [RecipeContent.cs]");
+
+        Fold fold = new();
+        fold.Title = recipe.Title;
+        fold.Expanded = foldExpanded;
+
+        var card = recipeCardScene.Instantiate<RecipeCard>();
+        card.Initialize(recipe);
+        fold.MainContainer.AddChild(card);
+
+        this.AddChild(fold);
+        this.ReorderChildren((Fold fold) => fold.Title);
+    }
+
+    Fold? FindFoldByRecipe(Recipe recipe) {
+        return GetChildren().Cast<Fold>().FirstOrDefault(f => f.Title == recipe.Title);
     }
 }

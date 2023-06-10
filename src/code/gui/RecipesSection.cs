@@ -1,4 +1,4 @@
-public partial class RecipesSection : PanelContainer
+partial class RecipesSection : PanelContainer
 {
 	#nullable disable
 	FiltersForm filters;
@@ -18,23 +18,35 @@ public partial class RecipesSection : PanelContainer
 		filters.FormChanged += SearchRecipes;
         titleTb.TextChanged += (msg) => SearchRecipes();
 
+        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        events.NewRecipe += (r) => UpdateRecipe(r);
+        events.RemoveRecipe += (r) => RemoveRecipe(r);
+
         SearchRecipes();
 	}
 
+    void UpdateRecipe(Recipe recipe) {
+        if(RecipeSearch.DoesRecipePass(recipe, GetSearchInfo()))
+            content.UpdateRecipe(recipe);
+    }
+
+    void RemoveRecipe(Recipe recipe) {
+        content.RemoveRecipe(recipe);
+    }
+
 	void SearchRecipes()
 	{
-		string title = titleTb.Text;
-        SearchInfo filtersSearchInfo = filters.GetSearchInfo();
-        SearchInfo searchInfo = filtersSearchInfo with { Title = title };
-
 		var program = GetNode<Program>("/root/Program");
-		IEnumerable<Recipe> foundRecipes = RecipeSearch.Search(program.RecipeBank, searchInfo);
+		IEnumerable<Recipe> foundRecipes = RecipeSearch.Search(program.RecipeBank, GetSearchInfo());
 
 		content.UpdateContent(foundRecipes.ToList());
 	}
 
-	public void OnMenuButtonPressed()
-	{
-		GetNode<GlobalEvents>("/root/GlobalEvents").CallSwitchDynamicWindow(SWITCH_MENU);
-	}
+    SearchInfo GetSearchInfo()
+    {
+		string title = titleTb.Text;
+        SearchInfo filtersSearchInfo = filters.GetSearchInfo();
+        SearchInfo searchInfo = filtersSearchInfo with { Title = title };
+        return searchInfo;
+    }
 }

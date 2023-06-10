@@ -11,8 +11,11 @@ partial class GlobalEvents : Node
     public event Action<FoodWithCount>?         RemoveLocalFood;
     public event Action<InventoryItem>?         RemoveLocalInv;
 
-    public event Action<FoodWithCount>?         AddRecipeFood;
-    public event Action<InventoryItem>?         AddRecipeInv;
+    public event Action<Recipe>?         NewRecipe;
+    public event Action<Recipe>?         RemoveRecipe;
+
+    //public event Action<FoodWithCount>?         AddRecipeFood;
+    //public event Action<InventoryItem>?         AddRecipeInv;
 
     public event Action<FormItemSetComponent>?  OpenRecipeItemsMenu;
 
@@ -26,7 +29,9 @@ partial class GlobalEvents : Node
     public void CallRemoveBankInv(InventoryItem val)            => RemoveBankInv?.Invoke(val);
     public void CallRemoveLocalFood(FoodWithCount val)          => RemoveLocalFood?.Invoke(val);
     public void CallRemoveLocalInv(InventoryItem val)           => RemoveLocalInv?.Invoke(val);
-    public void CallAddRecipeFood(FoodWithCount val)            => AddRecipeFood?.Invoke(val);
-    public void CallAddRecipeInv(InventoryItem val)             => AddRecipeInv?.Invoke(val);
+    public void CallNewRecipe(Recipe val)                       => NewRecipe?.Invoke(val);
+    public void CallRemoveRecipe(Recipe val)                    => RemoveRecipe?.Invoke(val);
     public void CallOpenRecipeItemsMenu(FormItemSetComponent component)  => OpenRecipeItemsMenu?.Invoke(component);
+    //public void CallAddRecipeFood(FoodWithCount val)            => AddRecipeFood?.Invoke(val);
+    //public void CallAddRecipeInv(InventoryItem val)             => AddRecipeInv?.Invoke(val);
 }

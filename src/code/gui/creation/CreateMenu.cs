@@ -21,6 +21,7 @@ partial class CreateMenu : PanelContainer
     {
         var program = GetNode<Program>("/root/Program");
 
+        //TODO: Distribute this functionality to inherited classes
         if(form is CreateFoodForm foodForm)
             program.AddFoodItem(foodForm.CreateObject());
 

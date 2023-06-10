@@ -11,13 +11,14 @@ Find out what exactly causes ".net failed to unload assemblies" error
 + Change menu buttons in ItemSetSection
 + Remove category fold when all items are removed from this category
 When item is removed from bank, and local item exists too, we need to popup warning window
-When adding item, text in search is ignored until its updates
++ When adding item, text in search is ignored until its updates
 Modifying recipes and items
 Finish recipe search
 Add that new property to recipes
 File saving and loading
+Improve recipe section readability
 + Finish recipe card
-Default alphabetical ordering for recipes and items, for everythin
++ Default alphabetical ordering for recipes and items, for everythin
 
 Later:
 Download recipes and stuff like that

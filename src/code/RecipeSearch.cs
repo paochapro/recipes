@@ -29,7 +29,7 @@ static class RecipeSearch
                 yield return recipe;
     }
 
-    static bool DoesRecipePass(Recipe recipe, SearchInfo info)
+    public static bool DoesRecipePass(Recipe recipe, SearchInfo info)
     {
         bool title = RecipePassTitle(recipe, info.Title);
         bool localItems = RecipePassItemSet(recipe, info.LocalItemSet);

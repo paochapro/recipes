@@ -57,8 +57,7 @@ partial class Program : Node
 
     public void RemoveFoodItem(FoodItem item) 
     {
-        if(localItems.FoodItems.Contains(item))
-        {
+        if(localItems.FoodItems.Contains(item)) {
             GD.PrintErr("Local items contains an item that was reqeusted to be removed: " + item.Name);
             return;
         }
@@ -69,8 +68,7 @@ partial class Program : Node
 
     public void RemoveInvItem(InventoryItem item) 
     {
-        if(localItems.Inventory.Contains(item))
-        {
+        if(localItems.Inventory.Contains(item)) {
             GD.PrintErr("Local items contains an item that was reqeusted to be removed: " + item.Name);
             return;
         }
@@ -89,5 +87,13 @@ partial class Program : Node
         events.CallRemoveLocalInv(item);
     }
 
-    public void AddRecipe(Recipe recipe) => recipeBank.Add(recipe);
+    public void AddRecipe(Recipe recipe) { 
+        recipeBank.Add(recipe);
+        events.CallNewRecipe(recipe);
+    }
+
+    public void RemoveRecipe(Recipe recipe) { 
+        recipeBank.Remove(recipe);
+        events.CallRemoveRecipe(recipe);
+    }
 }
