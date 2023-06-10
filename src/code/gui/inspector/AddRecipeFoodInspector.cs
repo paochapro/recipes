@@ -10,7 +10,7 @@ partial class AddRecipeFoodInspector : AddItemsInspector<FoodItem>
             if(currentComponent != null) {
                 var onPressed = (FoodItem item) => currentComponent.AddFood(new FoodWithCount(item,1));
                 var disabledCondition = (FoodItem item) => {
-                    GD.Print("Disabled cond: " + currentComponent.GetValue.FoodItems.Contains(item));
+                    //GD.Print("Disabled cond: " + currentComponent.GetValue.FoodItems.Contains(item));
                     return currentComponent.GetValue.FoodItems.Contains(item);
                 };
 			    return new AddItemButtonGenerator<FoodItem>(buttonScene, onPressed, disabledCondition);

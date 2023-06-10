@@ -56,6 +56,12 @@ class ItemSet : ReadonlyItemSet {
         this.InventoryList = inventoryList;
     }
 
+    public override string ToString() { 
+        string food = string.Join(",", FoodNames);
+        string inv = string.Join(",", InventoryNames);
+        return $"ItemSet(Food:{food}, Inv:{inv})";
+    }
+
     public ItemSet() 
         : this(new List<FoodWithCount>(), new List<InventoryItem>())
     {}

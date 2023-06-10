@@ -13,6 +13,6 @@ buttonScene = ExtResource("3_t3pek")
 script = ExtResource("3_omn21")
 
 [node name="Button" parent="ControlPanel" index="1"]
-menu = 1
+dynamicMenu = 1
 
 [editable path="ControlPanel"]

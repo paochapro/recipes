@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bqv3ngpdutjws"]
+[gd_scene load_steps=5 format=3 uid="uid://bqv3ngpdutjws"]
 
 [ext_resource type="Script" path="res://src/code/gui/RecipeCard.cs" id="1_ll5dl"]
+[ext_resource type="PackedScene" uid="uid://ca17dykpgxxd7" path="res://src/tscn/item_buttons/recipe_food_button.tscn" id="2_yb4i6"]
+[ext_resource type="PackedScene" uid="uid://ug5bvmn7gfv4" path="res://src/tscn/item_buttons/recipe_inv_button.tscn" id="3_bbeuj"]
+[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="4_l1c4k"]
 
 [node name="RecipeCard" type="PanelContainer" node_paths=PackedStringArray("title", "time", "dishType", "instructions", "image", "foodContent", "invContent")]
 offset_right = 342.0
@@ -12,8 +15,10 @@ time = NodePath("Content/Time/Value")
 dishType = NodePath("Content/DishType/Type")
 instructions = NodePath("Content/InstructionsPanel/Label")
 image = NodePath("Content/PanelContainer/Banner/TextureRect")
-foodContent = NodePath("Content/ItemSet/FoodScroll/Content")
-invContent = NodePath("Content/ItemSet/InvScroll/Content")
+foodContent = NodePath("Content/FoodFold/_FoldMainContainer/Content")
+invContent = NodePath("Content/InvFold/_FoldMainContainer/Content")
+recipeFoodScene = ExtResource("2_yb4i6")
+recipeInvScene = ExtResource("3_bbeuj")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -68,41 +73,34 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Content/InstructionsPanel"]
 layout_mode = 2
 
-[node name="ItemSetText" type="HBoxContainer" parent="Content"]
+[node name="FoodFold" type="VBoxContainer" parent="Content"]
 layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("4_l1c4k")
+Title = "Продукты"
+Expanded = null
 
-[node name="Label" type="Label" parent="Content/ItemSetText"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Продукты"
-horizontal_alignment = 1
-
-[node name="Label2" type="Label" parent="Content/ItemSetText"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Инвентарь"
-horizontal_alignment = 1
-
-[node name="ItemSet" type="HBoxContainer" parent="Content"]
+[node name="_FoldMainContainer" type="VBoxContainer" parent="Content/FoodFold"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FoodScroll" type="ScrollContainer" parent="Content/ItemSet"]
-layout_mode = 2
-size_flags_horizontal = 3
-horizontal_scroll_mode = 0
-
-[node name="Content" type="VBoxContainer" parent="Content/ItemSet/FoodScroll"]
+[node name="Content" type="VBoxContainer" parent="Content/FoodFold/_FoldMainContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="InvScroll" type="ScrollContainer" parent="Content/ItemSet"]
+[node name="InvFold" type="VBoxContainer" parent="Content"]
 layout_mode = 2
-size_flags_horizontal = 3
-horizontal_scroll_mode = 0
+size_flags_vertical = 3
+script = ExtResource("4_l1c4k")
+Title = "Инвентарь"
+Expanded = null
 
-[node name="Content" type="VBoxContainer" parent="Content/ItemSet/InvScroll"]
+[node name="_FoldMainContainer" type="VBoxContainer" parent="Content/InvFold"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="VBoxContainer" parent="Content/InvFold/_FoldMainContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3

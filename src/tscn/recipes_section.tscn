@@ -38,7 +38,8 @@ recipeCardScene = ExtResource("2_4kfgs")
 layout_mode = 2
 
 [node name="Button" parent="Components/ControlPanel" index="1"]
-menu = 3
+dynamicMenu = 3
+sectionA_Menu = null
 
 [node name="FiltersRoot" type="PanelContainer" parent="Components"]
 layout_mode = 2

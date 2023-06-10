@@ -74,6 +74,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Button" parent="ControlPanel" index="1"]
-menu = 4
+dynamicMenu = 4
 
 [editable path="ControlPanel"]

@@ -17,16 +17,17 @@ partial class Program : Node
     {
         GD.Print("start program");
                 
-        //TODO: Debug this, and remove
-        recipeBank = new List<Recipe>();
-        Recipe testRecipe = new("Test Recipe", "1. Hello\n2. Goodbye", "res://content/tomato.svg", 20, new ItemSet(), DishType.Second);
-        recipeBank.Add(testRecipe);
-
         //Debug
         string itemsJsonFile = "content/items.json"; 
         var items = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
         itemsBank = items;
         localItems = ItemSetGenerator.SelectAllFromBank(itemsBank, 1);
+
+        //TODO: Debug this, and remove
+        var itemset = ItemSetGenerator.GenerateItemSet(new ItemsSelectorInfo(itemsBank, 0.5f, 0.5f));
+        recipeBank = new List<Recipe>();
+        Recipe testRecipe = new("Test Recipe", "1. Hello\n2. Goodbye", "res://content/tomato.svg", 20, itemset, DishType.Second);
+        recipeBank.Add(testRecipe);
     }
 
     public override void _Ready()

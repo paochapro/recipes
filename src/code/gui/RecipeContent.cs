@@ -14,8 +14,6 @@ partial class RecipeContent : VBoxContainer
 
         foreach(Recipe recipe in recipes)
         {
-            GD.Print($"Recipe: {recipe.Title}");
-
             Fold fold = new();
             fold.Title = recipe.Title;
             fold.Expanded = autoExpand;
