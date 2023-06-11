@@ -25,7 +25,7 @@ partial class AddRecipeFoodInspector : AddItemsInspector<FoodItem>
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
 
-        events.OpenRecipeItemsMenu += (FormItemSetComponent newComponent) => {
+        events.OpenRecipeFoodMenu += (FormItemSetComponent newComponent) => {
             if(currentComponent != null && currentComponent != newComponent) {
                 currentComponent.AddedFood -= (i) => content.SetLocked(i.Item, true);
                 currentComponent.RemovedFood -= (i) => content.SetLocked(i.Item, false);

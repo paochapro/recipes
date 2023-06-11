@@ -13,13 +13,10 @@ partial class GlobalEvents : Node
 
     public event Action<Recipe>?                NewRecipe;
     public event Action<Recipe>?                RemoveRecipe;
-    public event Action<FormItemSetComponent>?  OpenRecipeItemsMenu;
+    public event Action<FormItemSetComponent>?  OpenRecipeFoodMenu;
+    public event Action<FormItemSetComponent>?  OpenRecipeInvMenu;
     public event Action<FoodItem, FoodWithCount?, IEnumerable<Recipe>>? FailedFoodRemove;
     public event Action<InventoryItem, InventoryItem?, IEnumerable<Recipe>>? FailedInvRemove;
-
-    //public event Action<FoodWithCount>?         AddRecipeFood;
-    //public event Action<InventoryItem>?         AddRecipeInv;
-
 
     public void CallSwitchDynamicWindow(DynamicWindowMenu val)  => SwitchDynamicWindow?.Invoke(val);
     public void CallSwitchSectionA(SectionAMenu val)            => SwitchSectionA?.Invoke(val);
@@ -33,7 +30,8 @@ partial class GlobalEvents : Node
     public void CallRemoveLocalInv(InventoryItem val)           => RemoveLocalInv?.Invoke(val);
     public void CallNewRecipe(Recipe val)                       => NewRecipe?.Invoke(val);
     public void CallRemoveRecipe(Recipe val)                    => RemoveRecipe?.Invoke(val);
-    public void CallOpenRecipeItemsMenu(FormItemSetComponent component)  => OpenRecipeItemsMenu?.Invoke(component);
+    public void CallOpenRecipeFoodMenu(FormItemSetComponent component)      => OpenRecipeFoodMenu?.Invoke(component);
+    public void CallOpenRecipeInvMenu(FormItemSetComponent component)       => OpenRecipeInvMenu?.Invoke(component);
 
     public void CallFailedFoodRemove(
         FoodItem item, 
@@ -50,7 +48,4 @@ partial class GlobalEvents : Node
     { 
         FailedInvRemove?.Invoke(item, dependedLocalItem, dependedRecipes);
     }
-
-    //public void CallAddRecipeFood(FoodWithCount val)            => AddRecipeFood?.Invoke(val);
-    //public void CallAddRecipeInv(InventoryItem val)             => AddRecipeInv?.Invoke(val);
 }

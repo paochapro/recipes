@@ -5,6 +5,7 @@ public partial class Fold : VBoxContainer
 
     const string tabName = "_FoldTab";
     const string mainContainerName = "_FoldMainContainer";
+    const byte hoverAlpha = 35;
 
     VBoxContainer mainContainer;
     TextureRect arrowIcon;
@@ -48,9 +49,14 @@ public partial class Fold : VBoxContainer
     {
         SetupMainContainer();
 
-        HBoxContainer tab = new() { Name = tabName };
-        tab.AddChild(arrowIcon);
-        tab.AddChild(titleLabel);
+        PanelContainer tab = new() { Name = tabName };
+        StylizeTab(tab);
+        
+        HBoxContainer tabHContainer = new();
+        tabHContainer.AddChild(arrowIcon);
+        tabHContainer.AddChild(titleLabel);
+        tab.AddChild(tabHContainer);
+
         AddChild(tab);
         MoveChild(tab, 0);
         tab.GuiInput += TabGuiInput;
@@ -84,5 +90,17 @@ public partial class Fold : VBoxContainer
         }
 
         AddChild(mainContainer);
+    }
+
+    void StylizeTab(PanelContainer tab) {
+        tab.AddThemeStyleboxOverride("panel", new StyleBoxEmpty());
+
+        tab.MouseEntered += () => {
+            tab.AddThemeStyleboxOverride("panel", new StyleBoxFlat() { BgColor = Color.Color8(255,255,255, hoverAlpha)} );
+        };
+
+        tab.MouseExited += () => {
+            tab.AddThemeStyleboxOverride("panel", new StyleBoxEmpty());
+        };
     }
 }

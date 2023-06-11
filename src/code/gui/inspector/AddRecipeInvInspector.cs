@@ -22,7 +22,7 @@ partial class AddRecipeInvInspector : AddItemsInspector<InventoryItem>
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
 
-        events.OpenRecipeItemsMenu += (FormItemSetComponent newComponent) => {
+        events.OpenRecipeInvMenu += (FormItemSetComponent newComponent) => {
             if(currentComponent != null && currentComponent != newComponent) {
                 currentComponent.AddedInv -= (i) => content.SetLocked(i, true);
                 currentComponent.RemovedInv -= (i) => content.SetLocked(i, false);

@@ -2,8 +2,10 @@ public partial class SectionA : VBoxContainer
 {
     public override void _Ready()
     {
-        var func = (SectionAMenu m) => SetWindow(GetNode<Control>(GetMenuControlName(m)));
-        GetNode<GlobalEvents>("/root/GlobalEvents").SwitchSectionA += func;
+        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        events.OpenRecipeFoodMenu += (c) => events.CallSwitchSectionA(SectionAMenu.RecipeFood);
+        events.OpenRecipeInvMenu += (c) => events.CallSwitchSectionA(SectionAMenu.RecipeInv);
+        events.SwitchSectionA += (menu) => SetWindow(GetNode<Control>(GetMenuControlName(menu)));
     }
 
     void SetWindow(Control setControl)

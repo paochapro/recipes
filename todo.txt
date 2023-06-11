@@ -17,7 +17,7 @@ Finish recipe search
 Add that new property to recipes
 File saving and loading
 Improve recipe section readability
-Remove scroll container in all subsection in create recipe form
++ Remove scroll container in all subsection in create recipe form
 Search bar lower case?
 Make fold in depedencies warning window for depended recipes
 + Finish recipe card

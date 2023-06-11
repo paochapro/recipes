@@ -19,17 +19,15 @@ partial class FormItemSetComponent : Container, FormComponent<ItemSet>
     public override void _Ready()
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        var foodButton = GetNode<Button>("AllSubsection/ScrollContainer/Content/FoodTab/Button");
-        var invButton = GetNode<Button>("AllSubsection/ScrollContainer/Content/InvTab/Button");
+        var foodButton = GetNode<Button>("AllSubsection/Content/FoodTab/Button");
+        var invButton = GetNode<Button>("AllSubsection/Content/InvTab/Button");
 
         foodButton.Pressed += () => { 
-            events.CallOpenRecipeItemsMenu(this);
-            events.CallSwitchSectionA(SectionAMenu.RecipeFood);
+            events.CallOpenRecipeFoodMenu(this);
         };
 
         invButton.Pressed += () => {
-            events.CallOpenRecipeItemsMenu(this);
-            events.CallSwitchSectionA(SectionAMenu.RecipeInv);
+            events.CallOpenRecipeInvMenu(this);
         };
     }
 
