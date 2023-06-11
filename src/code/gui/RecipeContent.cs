@@ -5,6 +5,9 @@ partial class RecipeContent : VBoxContainer
 {
     [Export] PackedScene? recipeCardScene;
 
+    const byte foldTabNormalAlpha = 10;
+    const byte foldTabHoverAlpha = 25;
+
 	public void UpdateContent(IEnumerable<Recipe> recipes, bool autoExpand = false)
     {
         this.RemoveChildren();
@@ -43,6 +46,8 @@ partial class RecipeContent : VBoxContainer
         Fold fold = new();
         fold.Title = recipe.Title;
         fold.Expanded = foldExpanded;
+        fold.TabNormalAlpha = foldTabNormalAlpha;
+        fold.TabHoverAlpha = foldTabHoverAlpha;
 
         var card = recipeCardScene.Instantiate<RecipeCard>();
         card.Initialize(recipe);

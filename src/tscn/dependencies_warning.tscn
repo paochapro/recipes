@@ -1,25 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bo1qhe7f6lk0g"]
+[gd_scene load_steps=6 format=3 uid="uid://bo1qhe7f6lk0g"]
 
 [ext_resource type="Script" path="res://src/code/gui/DependenciesWarning.cs" id="1_s7ewk"]
 [ext_resource type="PackedScene" uid="uid://ca17dykpgxxd7" path="res://src/tscn/item_buttons/recipe_food_button.tscn" id="2_winh4"]
 [ext_resource type="PackedScene" uid="uid://ug5bvmn7gfv4" path="res://src/tscn/item_buttons/recipe_inv_button.tscn" id="3_skvc0"]
+[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="4_c11tl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nafi"]
 
-[node name="DependenciesWarning" type="ConfirmationDialog"]
+[node name="DependenciesWarning" type="ConfirmationDialog" node_paths=PackedStringArray("localItems", "recipes", "buttonRoot", "recipeLabels", "recipesFold")]
 title = "Внимание"
-position = Vector2i(376, 219)
-size = Vector2i(483, 143)
+size = Vector2i(483, 293)
 visible = true
 script = ExtResource("1_s7ewk")
+localItems = NodePath("VBoxContainer/Dependencies/LocalItems")
+recipes = NodePath("VBoxContainer/Dependencies/Recipes")
+buttonRoot = NodePath("VBoxContainer/Dependencies/LocalItems/ButtonRoot")
+recipeLabels = NodePath("VBoxContainer/Dependencies/Recipes/PanelContainer/Fold/_FoldMainContainer/ScrollContainer/MarginContainer/Labels")
 foodButton = ExtResource("2_winh4")
 invButton = ExtResource("3_skvc0")
+recipesFold = NodePath("VBoxContainer/Dependencies/Recipes/PanelContainer/Fold")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 475.0
-offset_bottom = 94.0
+offset_bottom = 244.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -29,6 +36,7 @@ autowrap_mode = 1
 
 [node name="Dependencies" type="VBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="LocalItems" type="HBoxContainer" parent="VBoxContainer/Dependencies"]
 visible = false
@@ -43,19 +51,38 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxEmpty_6nafi")
 
-[node name="Recipes" type="HBoxContainer" parent="VBoxContainer/Dependencies"]
+[node name="Recipes" type="VBoxContainer" parent="VBoxContainer/Dependencies"]
 visible = false
 layout_mode = 2
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="VBoxContainer/Dependencies/Recipes"]
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/Dependencies/Recipes"]
+layout_mode = 2
+size_flags_vertical = 2
+
+[node name="Fold" type="VBoxContainer" parent="VBoxContainer/Dependencies/Recipes/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 0
-text = "Рецепты:"
+script = ExtResource("4_c11tl")
+Title = "Рецепты:"
 
-[node name="Recipes" type="Label" parent="VBoxContainer/Dependencies/Recipes"]
+[node name="_FoldMainContainer" type="VBoxContainer" parent="VBoxContainer/Dependencies/Recipes/PanelContainer/Fold"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/Dependencies/Recipes/PanelContainer/Fold/_FoldMainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Dependencies/Recipes/PanelContainer/Fold/_FoldMainContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-autowrap_mode = 1
+size_flags_vertical = 3
+theme_override_constants/margin_left = 20
+
+[node name="Labels" type="VBoxContainer" parent="VBoxContainer/Dependencies/Recipes/PanelContainer/Fold/_FoldMainContainer/ScrollContainer/MarginContainer"]
+layout_mode = 2
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 layout_mode = 2

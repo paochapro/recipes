@@ -3,13 +3,15 @@ public partial class Fold : VBoxContainer
     Texture2D arrowIconCollapsed = ThemeDB.GetDefaultTheme().GetIcon("arrow_collapsed", "Tree");
     Texture2D arrowIconExpanded = ThemeDB.GetDefaultTheme().GetIcon("arrow", "Tree");
 
-    const string tabName = "_FoldTab";
-    const string mainContainerName = "_FoldMainContainer";
-    const byte hoverAlpha = 35;
-
     VBoxContainer mainContainer;
     TextureRect arrowIcon;
     Label titleLabel;
+
+    const string tabName = "_FoldTab";
+    const string mainContainerName = "_FoldMainContainer";
+    
+    [Export] public byte TabNormalAlpha { get; set; } = 0;
+    [Export] public byte TabHoverAlpha { get; set; } = 15;
 
     public VBoxContainer MainContainer => mainContainer;
 
@@ -33,8 +35,12 @@ public partial class Fold : VBoxContainer
                 arrowIcon.Texture = arrowIconCollapsed;
                 mainContainer.Hide();
             }
+
+            FoldExpanded?.Invoke();
         }
     }
+
+    public event Action? FoldExpanded;
 
     public Fold()
     {
@@ -93,14 +99,12 @@ public partial class Fold : VBoxContainer
     }
 
     void StylizeTab(PanelContainer tab) {
-        tab.AddThemeStyleboxOverride("panel", new StyleBoxEmpty());
+        void SetTabAlpha(byte alpha) {
+            tab.AddThemeStyleboxOverride("panel", new StyleBoxFlat() { BgColor = Color.Color8(255,255,255, alpha)});
+        }
 
-        tab.MouseEntered += () => {
-            tab.AddThemeStyleboxOverride("panel", new StyleBoxFlat() { BgColor = Color.Color8(255,255,255, hoverAlpha)} );
-        };
-
-        tab.MouseExited += () => {
-            tab.AddThemeStyleboxOverride("panel", new StyleBoxEmpty());
-        };
+        SetTabAlpha(TabNormalAlpha);
+        tab.MouseEntered += () => SetTabAlpha(TabHoverAlpha);
+        tab.MouseExited += () => SetTabAlpha(TabNormalAlpha);
     }
 }

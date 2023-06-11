@@ -14,6 +14,7 @@ script = ExtResource("1_wpon4")
 
 [node name="Components" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="Title" type="PanelContainer" parent="Components"]
 layout_mode = 2
@@ -31,6 +32,7 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme_override_constants/separation = 0
 script = ExtResource("1_k41t1")
 recipeCardScene = ExtResource("2_4kfgs")
 

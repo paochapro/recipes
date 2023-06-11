@@ -16,10 +16,10 @@ Modifying recipes and items
 Finish recipe search
 Add that new property to recipes
 File saving and loading
-Improve recipe section readability
++/- Improve recipe section readability (fold distinction)
 + Remove scroll container in all subsection in create recipe form
 Search bar lower case?
-Make fold in depedencies warning window for depended recipes
++ Make fold in depedencies warning window for depended recipes
 + Finish recipe card
 + Default alphabetical ordering for recipes and items, for everythin
 

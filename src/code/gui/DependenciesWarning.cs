@@ -4,9 +4,10 @@ partial class DependenciesWarning : ConfirmationDialog
     [Export] Container localItems;
     [Export] Container recipes;
     [Export] Container buttonRoot;
-    [Export] Label recipesLabel;
+    [Export] Container recipeLabels;
     [Export] PackedScene foodButton;
     [Export] PackedScene invButton;
+    [Export] Fold recipesFold;
     #nullable restore
 
     public override void _Ready() {
@@ -14,6 +15,8 @@ partial class DependenciesWarning : ConfirmationDialog
             if(Visible == false)
                 this.QueueFree();
         };
+
+        recipesFold.FoldExpanded += base.ResetSize;
     }
 
     public void ShowWarning(Item item, Item? dependedItem, IEnumerable<Recipe> dependedRecipes)
@@ -25,11 +28,14 @@ partial class DependenciesWarning : ConfirmationDialog
 
         if(dependedRecipes.Count() != 0) {
             recipes.Show();
-            recipesLabel.Text = GetRecipesText(dependedRecipes);
+            int i = 1;
+            var labels = dependedRecipes.Select(r => new Label() { Text = $"{i++}. {r.Title}"} );
+            recipeLabels.AddChildren(labels);
         }
 
         this.Confirmed += () => RemoveItem(item, dependedItem, dependedRecipes);
-        this.Popup();
+        this.PopupCentered();
+        this.CallDeferred(Window.MethodName.ResetSize);
     }
 
     public void RemoveItem(Item item, Item? dependedItem, IEnumerable<Recipe> dependedRecipes) 
