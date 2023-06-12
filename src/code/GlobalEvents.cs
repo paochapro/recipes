@@ -1,5 +1,6 @@
 partial class GlobalEvents : Node
 {
+    public event Action? FileLoaded;
     public event Action<DynamicWindowMenu>?     SwitchDynamicWindow;
     public event Action<SectionAMenu>?          SwitchSectionA;
     public event Action<FoodItem>?              NewBankFood;
@@ -18,6 +19,7 @@ partial class GlobalEvents : Node
     public event Action<FoodItem, FoodWithCount?, IEnumerable<Recipe>>? FailedFoodRemove;
     public event Action<InventoryItem, InventoryItem?, IEnumerable<Recipe>>? FailedInvRemove;
 
+    public void CallFileLoaded()                                => FileLoaded?.Invoke();
     public void CallSwitchDynamicWindow(DynamicWindowMenu val)  => SwitchDynamicWindow?.Invoke(val);
     public void CallSwitchSectionA(SectionAMenu val)            => SwitchSectionA?.Invoke(val);
     public void CallNewBankFood(FoodItem val)                   => NewBankFood?.Invoke(val);

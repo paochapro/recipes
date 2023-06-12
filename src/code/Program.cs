@@ -17,6 +17,8 @@ partial class Program : Node
     {
         GD.Print("start program");
 
+        var pm = new PopupMenu();
+
         //Debug
         string itemsJsonFile = "content/items.json"; 
         var items = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
@@ -28,6 +30,17 @@ partial class Program : Node
         recipeBank = new List<Recipe>();
         Recipe testRecipe = new("Test Recipe", "1. Hello\n2. Goodbye", "res://content/tomato.svg", 20, itemset, DishType.Second);
         recipeBank.Add(testRecipe);
+    }
+
+    public void LoadFileTable(FileTable fileTable)
+    {
+        recipeBank = fileTable.recipeBank.ToList();
+        itemsBank = new ItemBank(fileTable.bankFood.ToList(), fileTable.bankInv.ToList());
+
+        var localFood = fileTable.localFood.Select(f => new FoodWithCount(f.FoodItem, f.Count)).ToList();
+        localItems = new ItemSet(localFood, fileTable.localInv.ToList());
+
+        events.CallFileLoaded();
     }
 
     public override void _Ready()

@@ -40,8 +40,6 @@ partial class DependenciesWarning : ConfirmationDialog
 
     public void RemoveItem(Item item, Item? dependedItem, IEnumerable<Recipe> dependedRecipes) 
     {
-        GD.Print("remove item");
-
         var program = GetNode<Program>("/root/Program");
         
         //Making a list from dependedRecipes, because we are removing them here

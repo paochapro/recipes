@@ -1,3 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Newtonsoft.Json;
+
 interface Item {
     string Name { get; }
     string Category { get; }
@@ -15,6 +19,7 @@ readonly record struct InventoryItem(
 ) : Item;
 
 //Food with count
+[JsonObject(MemberSerialization.Fields)]
 class FoodWithCount : Item
 {
     public string Name => Item.Name;
@@ -39,6 +44,7 @@ interface ReadonlyItemSet {
     public IEnumerable<string> InventoryNames { get; }
 }
 
+[JsonObject(MemberSerialization.Fields)]
 class ItemSet : ReadonlyItemSet {
     public List<FoodWithCount> FoodList;
     public List<InventoryItem> InventoryList;
@@ -72,6 +78,7 @@ interface ReadonlyItemBank {
     public IEnumerable<InventoryItem> Inventory { get; }
 }
 
+[JsonObject(MemberSerialization.Fields)]
 class ItemBank : ReadonlyItemBank  {
     public List<FoodItem> FoodList;
     public List<InventoryItem> InventoryList;

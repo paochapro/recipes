@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://btus26bhov6uo"]
+[gd_scene load_steps=21 format=3 uid="uid://btus26bhov6uo"]
 
 [ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_de05s"]
 [ext_resource type="PackedScene" uid="uid://uwwuvdlaemow" path="res://src/tscn/item_set_section.tscn" id="2_rhyb0"]
@@ -14,6 +14,26 @@
 [ext_resource type="PackedScene" uid="uid://dtaehblr1yfpd" path="res://src/tscn/inspector/inv_inspector_menu.tscn" id="8_34fwe"]
 [ext_resource type="Script" path="res://src/code/gui/DependenciesWarningCreator.cs" id="13_ofvxb"]
 [ext_resource type="PackedScene" uid="uid://bo1qhe7f6lk0g" path="res://src/tscn/dependencies_warning.tscn" id="14_uk2q3"]
+[ext_resource type="PackedScene" uid="uid://bj5njors51t8h" path="res://src/tscn/file_menu.tscn" id="15_dcndn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_saljn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3l8uw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cgf3n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mn382"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jfurb"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
 
 [node name="GuiRoot" type="Control"]
 layout_mode = 3
@@ -36,72 +56,98 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HBoxContainer"]
+[node name="TopMenu" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/TopMenu"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0.511835, 0.825878, 1)
+theme_override_colors/font_hover_color = Color(0.454902, 0.745098, 1, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxEmpty_saljn")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_3l8uw")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cgf3n")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_mn382")
+theme_override_styles/focus = SubResource("StyleBoxFlat_jfurb")
+text = "Файл"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/HBoxContainer/HSplitContainer"]
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 5
 
-[node name="SectionA" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
+[node name="SectionA" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
 custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
 script = ExtResource("2_rssb3")
 
-[node name="ItemSetSection" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/SectionA" instance=ExtResource("2_rhyb0")]
+[node name="ItemSetSection" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/SectionA" instance=ExtResource("2_rhyb0")]
 layout_mode = 2
 size_flags_vertical = 3
 foodTabName = "Продукты"
 invTabName = "Инвентарь"
 allTabName = "Банк"
 
-[node name="RecipeFood" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/SectionA" instance=ExtResource("4_onf8t")]
+[node name="RecipeFood" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/SectionA" instance=ExtResource("4_onf8t")]
 visible = false
 layout_mode = 2
 
-[node name="RecipeInv" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/SectionA" instance=ExtResource("5_721qx")]
+[node name="RecipeInv" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/SectionA" instance=ExtResource("5_721qx")]
 visible = false
 layout_mode = 2
 
-[node name="UnknownMenu" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/SectionA" instance=ExtResource("6_ajv68")]
+[node name="UnknownMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/SectionA" instance=ExtResource("6_ajv68")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="DynamicWindow" type="VBoxContainer" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
+[node name="DynamicWindow" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer"]
 layout_mode = 2
 script = ExtResource("3_ohc7q")
 
-[node name="ItemCreationTabs" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("4_smctc")]
+[node name="ItemCreationTabs" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("4_smctc")]
 layout_mode = 2
 
-[node name="CreateRecipeMenu" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("6_oa3ot")]
+[node name="CreateRecipeMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("6_oa3ot")]
 visible = false
 layout_mode = 2
 
-[node name="UnknownMenu" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("6_ajv68")]
+[node name="UnknownMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("6_ajv68")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="FoodInspectorMenu" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("7_85ixy")]
+[node name="FoodInspectorMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("7_85ixy")]
 visible = false
 layout_mode = 2
 
-[node name="InvInspectorMenu" parent="MarginContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("8_34fwe")]
+[node name="InvInspectorMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("8_34fwe")]
 visible = false
 layout_mode = 2
 
-[node name="RecipesSection" parent="MarginContainer/HBoxContainer/HSplitContainer" instance=ExtResource("7_vs2t5")]
+[node name="RecipesSection" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer" instance=ExtResource("7_vs2t5")]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="DependenciesWarningCreator" type="Node" parent="."]
 script = ExtResource("13_ofvxb")
 scene = ExtResource("14_uk2q3")
+
+[node name="FileMenu" parent="." instance=ExtResource("15_dcndn")]
+position = Vector2i(8, 29)
+visible = false
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/TopMenu/Button" to="FileMenu" method="FileMenuPopup"]

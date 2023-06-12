@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://3iy8jpfvj6mk"]
+
+[node name="FileDialog" type="FileDialog"]
+title = "Сохранить файл"
+position = Vector2i(297, 170)
+size = Vector2i(488, 367)
+visible = true
+ok_button_text = "Сохранить"
+cancel_button_text = "Отмена"
+mode_overrides_title = false
+access = 2
+filters = PackedStringArray("*.json")

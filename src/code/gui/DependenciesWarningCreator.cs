@@ -15,8 +15,6 @@ partial class DependenciesWarningCreator : Node
     }
 
     void ShowWarning(Item item, Item? local, IEnumerable<Recipe> recipes) {
-        GD.Print("creater show warning");
-
         this.RemoveChildren();
         var window = scene.Instantiate<DependenciesWarning>();
         AddChild(window);

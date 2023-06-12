@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bj5njors51t8h"]
+
+[ext_resource type="Script" path="res://src/code/FileManager.cs" id="1_4c01i"]
+[ext_resource type="Script" path="res://src/code/gui/FileMenu.cs" id="1_uhn8y"]
+[ext_resource type="PackedScene" uid="uid://ds4srjn0cchvl" path="res://src/tscn/open_table_file_dialog.tscn" id="3_cgyme"]
+[ext_resource type="PackedScene" uid="uid://3iy8jpfvj6mk" path="res://src/tscn/save_table_file_dialog.tscn" id="4_r6aw2"]
+
+[node name="FileMenu" type="PopupMenu"]
+size = Vector2i(186, 100)
+visible = true
+item_count = 2
+item_0/text = "Сохранить (CTRL+S)"
+item_0/id = 0
+item_1/text = "Открыть (CTRL+O)"
+item_1/id = 1
+script = ExtResource("1_uhn8y")
+
+[node name="FileManager" type="Node" parent="."]
+script = ExtResource("1_4c01i")
+openFileDialogScene = ExtResource("3_cgyme")
+saveFileDialogScene = ExtResource("4_r6aw2")
+
+[node name="ErrorDialog" type="AcceptDialog" parent="FileManager"]
+title = "Внимание"
+dialog_text = "Ошибка не была инициализирована. Если вы увидели это сообщение, пожалуйста сообщите об этой проблеме разработчику."
+
+[connection signal="id_pressed" from="." to="." method="ItemPressed"]

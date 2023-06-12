@@ -3,7 +3,7 @@ readonly record struct Recipe(
     string Instructions,
     string ImageTextureUID,
     int Minutes,
-    ReadonlyItemSet ItemSet,
+    ItemSet ItemSet,
     DishType DishType
 );
 
