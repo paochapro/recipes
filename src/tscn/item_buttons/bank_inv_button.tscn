@@ -1,10 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://b5s1ob37srd6l"]
+[gd_scene load_steps=3 format=3 uid="uid://b5s1ob37srd6l"]
 
 [ext_resource type="Script" path="res://src/code/gui/item_buttons/BankInvButton.cs" id="1_iq14x"]
+[ext_resource type="PackedScene" uid="uid://bd77t07q21kor" path="res://src/tscn/creation/modify_popup.tscn" id="2_lb1un"]
 
 [node name="InvButton" type="HBoxContainer" node_paths=PackedStringArray("button")]
 offset_right = 439.0
 offset_bottom = 40.0
+mouse_filter = 0
 script = ExtResource("1_iq14x")
 button = NodePath("Button")
 
@@ -23,3 +25,6 @@ layout_mode = 2
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.435294, 0.368627, 1)
 text = "X"
+
+[node name="ModifyPopup" parent="." instance=ExtResource("2_lb1un")]
+visible = false

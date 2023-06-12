@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3n6entu8nhq"]
+
+[ext_resource type="PackedScene" uid="uid://sm7w2brycqrl" path="res://src/tscn/creation/modify_menu.tscn" id="1_kj687"]
+[ext_resource type="PackedScene" uid="uid://cf5vue5eeutg6" path="res://src/tscn/creation/create_food_form.tscn" id="2_1m48y"]
+[ext_resource type="Script" path="res://src/code/gui/creation/ModifyFoodMenu.cs" id="2_kwcuy"]
+
+[node name="ModifyFoodMenu" instance=ExtResource("1_kj687")]
+script = ExtResource("2_kwcuy")
+
+[node name="Label" parent="Content/PanelContainer" index="0"]
+text = "Изменить продукт"
+
+[node name="CreateFoodForm" parent="Content/FormContainer/MarginContainer" index="0" instance=ExtResource("2_1m48y")]
+layout_mode = 2
+
+[node name="LineEdit" parent="Content/FormContainer/MarginContainer/CreateFoodForm/Name" index="1"]
+editable = false
+
+[editable path="Content/FormContainer/MarginContainer/CreateFoodForm"]
+[editable path="Content/FormContainer/MarginContainer/CreateFoodForm/Name"]

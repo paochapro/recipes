@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://btus26bhov6uo"]
+[gd_scene load_steps=23 format=3 uid="uid://btus26bhov6uo"]
 
 [ext_resource type="Theme" uid="uid://cryc6iba6l42n" path="res://content/program_theme.tres" id="1_de05s"]
 [ext_resource type="PackedScene" uid="uid://uwwuvdlaemow" path="res://src/tscn/item_set_section.tscn" id="2_rhyb0"]
@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://cx7s0351ciusl" path="res://src/tscn/inspector/food_inspector_menu.tscn" id="7_85ixy"]
 [ext_resource type="PackedScene" uid="uid://ced2qhfiu2nk1" path="res://src/tscn/recipes_section.tscn" id="7_vs2t5"]
 [ext_resource type="PackedScene" uid="uid://dtaehblr1yfpd" path="res://src/tscn/inspector/inv_inspector_menu.tscn" id="8_34fwe"]
+[ext_resource type="PackedScene" uid="uid://b3n6entu8nhq" path="res://src/tscn/creation/modify_food_menu.tscn" id="12_omkxm"]
 [ext_resource type="Script" path="res://src/code/gui/DependenciesWarningCreator.cs" id="13_ofvxb"]
+[ext_resource type="PackedScene" uid="uid://bp5wx73h7mi0" path="res://src/tscn/creation/modify_inv_menu.tscn" id="13_qx11o"]
 [ext_resource type="PackedScene" uid="uid://bo1qhe7f6lk0g" path="res://src/tscn/dependencies_warning.tscn" id="14_uk2q3"]
 [ext_resource type="PackedScene" uid="uid://bj5njors51t8h" path="res://src/tscn/file_menu.tscn" id="15_dcndn"]
 
@@ -135,6 +137,14 @@ visible = false
 layout_mode = 2
 
 [node name="InvInspectorMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("8_34fwe")]
+visible = false
+layout_mode = 2
+
+[node name="ModifyFoodMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("12_omkxm")]
+visible = false
+layout_mode = 2
+
+[node name="ModifyInvMenu" parent="MarginContainer/VBoxContainer/HBoxContainer/HSplitContainer/HSplitContainer/DynamicWindow" instance=ExtResource("13_qx11o")]
 visible = false
 layout_mode = 2
 

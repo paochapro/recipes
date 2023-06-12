@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bd77t07q21kor"]
+
+[ext_resource type="Script" path="res://src/code/gui/creation/ModifyPopup.cs" id="1_cbkaw"]
+
+[node name="ModifyPopup" type="PopupMenu"]
+size = Vector2i(119, 100)
+item_count = 2
+item_0/text = "Изменить"
+item_0/id = 0
+item_1/text = "Удалить"
+item_1/id = 1
+script = ExtResource("1_cbkaw")
+
+[connection signal="id_pressed" from="." to="." method="ItemSelected"]

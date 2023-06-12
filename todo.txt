@@ -14,16 +14,19 @@ Find out what exactly causes ".net failed to unload assemblies" error
 + When adding item, text in search is ignored until its updates
 Modifying recipes and items
 Finish recipe search
-Autowrap labels in dependency recipes
 + File saving and loading
 + Remove scroll container in all subsection in create recipe form
 + Make fold in depedencies warning window for depended recipes
 + Finish recipe card
 + Default alphabetical ordering for recipes and items, for everythin
 
+Minor:
+Autowrap labels in dependency recipes
+Image file dialog file selected event rather than confirmed event
+
 Ask:
 +/- Improve recipe section readability (fold distinction)
-Add that new property to recipes
++ Add that new property to recipes
 Search bar lower case?
 Should recipe creation items inspector distinct categories?
 

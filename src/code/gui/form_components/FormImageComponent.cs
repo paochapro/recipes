@@ -12,6 +12,10 @@ public partial class FormImageComponent : VBoxContainer, FormComponent<string>
 	public string GetValue => imagePath.GetValue;
 	public bool IsCompleted => imagePath.IsCompleted;
 
+    public void SetValue(string value) {
+        imagePath.SetValue(value);
+    }
+
 	public override void _Ready()
 	{
 		previewImage = GetNode<TextureRect>("Load/TextureRect");

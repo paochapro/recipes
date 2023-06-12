@@ -7,4 +7,5 @@ interface FormComponent
 interface FormComponent<T> : FormComponent
 {
     T GetValue { get; }
+    void SetValue(T value);
 }

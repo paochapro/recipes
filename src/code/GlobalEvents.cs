@@ -16,8 +16,14 @@ partial class GlobalEvents : Node
     public event Action<Recipe>?                RemoveRecipe;
     public event Action<FormItemSetComponent>?  OpenRecipeFoodMenu;
     public event Action<FormItemSetComponent>?  OpenRecipeInvMenu;
+    public event Action<FoodItem>?              OpenFoodModificationMenu;
+    public event Action<InventoryItem>?         OpenInvModificationMenu;
+
     public event Action<FoodItem, FoodWithCount?, IEnumerable<Recipe>>? FailedFoodRemove;
     public event Action<InventoryItem, InventoryItem?, IEnumerable<Recipe>>? FailedInvRemove;
+    
+    public event Action<FoodItem>? FoodModified;
+    public event Action<InventoryItem>? InvModified;
 
     public void CallFileLoaded()                                => FileLoaded?.Invoke();
     public void CallSwitchDynamicWindow(DynamicWindowMenu val)  => SwitchDynamicWindow?.Invoke(val);
@@ -32,8 +38,14 @@ partial class GlobalEvents : Node
     public void CallRemoveLocalInv(InventoryItem val)           => RemoveLocalInv?.Invoke(val);
     public void CallNewRecipe(Recipe val)                       => NewRecipe?.Invoke(val);
     public void CallRemoveRecipe(Recipe val)                    => RemoveRecipe?.Invoke(val);
+
     public void CallOpenRecipeFoodMenu(FormItemSetComponent component)      => OpenRecipeFoodMenu?.Invoke(component);
     public void CallOpenRecipeInvMenu(FormItemSetComponent component)       => OpenRecipeInvMenu?.Invoke(component);
+    public void CallFoodModificationMenu(FoodItem val)                      => OpenFoodModificationMenu?.Invoke(val);
+    public void CallInvModificationMenu(InventoryItem val)                  => OpenInvModificationMenu?.Invoke(val);
+    
+    public void CallFoodModified(FoodItem item) => FoodModified?.Invoke(item);
+    public void CallInvModified(InventoryItem item) => InvModified?.Invoke(item);
 
     public void CallFailedFoodRemove(
         FoodItem item, 

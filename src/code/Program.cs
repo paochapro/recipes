@@ -48,6 +48,36 @@ partial class Program : Node
         events = GetNode<GlobalEvents>("/root/GlobalEvents");
     }
 
+    public void FoodItemModified(FoodItem modifiedItem)
+    {
+        GD.Print("FoodItem being modified");
+
+        int index = itemsBank.FoodList.FindIndex(i => i.Name == modifiedItem.Name);
+
+        if(index == -1) {
+            GD.PrintErr($"Trying to modify item ({modifiedItem.Name}) that doenst exist in ItemSet");
+            return;
+        }
+
+        itemsBank.FoodList[index] = modifiedItem;
+        events.CallFoodModified(modifiedItem);
+    }
+
+    public void InvItemModified(InventoryItem modifiedItem)
+    {
+        GD.Print("InvItem being modified");
+
+        int index = itemsBank.InventoryList.FindIndex(i => i.Name == modifiedItem.Name);
+
+        if(index == -1) {
+            GD.PrintErr($"Trying to modify item ({modifiedItem.Name}) that doenst exist in ItemSet");
+            return;
+        }
+
+        itemsBank.InventoryList[index] = modifiedItem;
+        events.CallInvModified(modifiedItem);
+    }
+
     public void AddFoodItem(FoodItem item) {
         itemsBank.FoodList.Add(item);
         events.CallNewBankFood(item);

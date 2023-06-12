@@ -8,4 +8,9 @@ public partial class FormTextEditChanged : VBoxContainer, FormComponent<string>
     public event Action? ComponentChanged;
 
     public void OnTextChanged() => ComponentChanged?.Invoke();
+
+    public void SetValue(string value) {
+        var textEdit = GetNode<TextEdit>("TextEdit");
+        textEdit.Text = value; //TODO: does he call event ItemSelected?
+    }
 }

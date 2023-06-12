@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bp5wx73h7mi0"]
+
+[ext_resource type="PackedScene" uid="uid://sm7w2brycqrl" path="res://src/tscn/creation/modify_menu.tscn" id="1_1l73j"]
+[ext_resource type="PackedScene" uid="uid://bdqaftq3buu7o" path="res://src/tscn/creation/create_inv_form.tscn" id="2_gljwm"]
+
+[node name="ModifyInvMenu" instance=ExtResource("1_1l73j")]
+
+[node name="Label" parent="Content/PanelContainer" index="0"]
+text = "Изменить инструмент"
+
+[node name="CreateInvForm" parent="Content/FormContainer/MarginContainer" index="0" instance=ExtResource("2_gljwm")]
+layout_mode = 2
+
+[node name="LineEdit" parent="Content/FormContainer/MarginContainer/CreateInvForm/Name" index="1"]
+editable = false
+
+[editable path="Content/FormContainer/MarginContainer/CreateInvForm"]
+[editable path="Content/FormContainer/MarginContainer/CreateInvForm/Name"]

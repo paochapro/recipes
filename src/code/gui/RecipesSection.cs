@@ -18,9 +18,11 @@ partial class RecipesSection : PanelContainer
 		filters.FormChanged += SearchRecipes;
         titleTb.TextChanged += (msg) => SearchRecipes();
 
+		var program = GetNode<Program>("/root/Program");
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewRecipe += (r) => UpdateRecipe(r);
         events.RemoveRecipe += (r) => RemoveRecipe(r);
+        events.FileLoaded += () => this.CallDeferred(RecipesSection.MethodName.SearchRecipes);
 
         SearchRecipes();
 	}
@@ -34,13 +36,13 @@ partial class RecipesSection : PanelContainer
         content.RemoveRecipe(recipe);
     }
 
-	void SearchRecipes()
-	{
+	void SearchRecipes() {
 		var program = GetNode<Program>("/root/Program");
 		IEnumerable<Recipe> foundRecipes = RecipeSearch.Search(program.RecipeBank, GetSearchInfo());
-
-		content.UpdateContent(foundRecipes.ToList());
+		UpdateContent(foundRecipes.ToList());
 	}
+
+    void UpdateContent(IEnumerable<Recipe> recipes) => content.UpdateContent(recipes); 
 
     SearchInfo GetSearchInfo()
     {

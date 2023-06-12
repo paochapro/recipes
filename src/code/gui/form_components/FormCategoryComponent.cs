@@ -1,26 +1,25 @@
 public partial class FormCategoryComponent : VBoxContainer, FormComponent<string>
 {
     #nullable disable
-    LineEdit categoryTb;
+    FormLineEditComponent categoryComp;
     #nullable restore
 
-    public string GetValue => categoryTb.Text;
+    public string GetValue => categoryComp.GetValue;
     public bool IsCompleted => GetValue != "";
     public event Action? ComponentChanged;
+
+    public void SetValue(string value) {
+        categoryComp.SetValue(value);
+    }
 
     public override void _Ready()
     {
         var list = GetNode<CategoryList>("CatergoryList");
-        var category = GetNode<FormLineEditComponent>("Category");
-        category.ComponentChanged += () => ComponentChanged?.Invoke();
-        categoryTb = category.GetNode<LineEdit>("LineEdit");
+        categoryComp = GetNode<FormLineEditComponent>("Category");
+        categoryComp.ComponentChanged += () => ComponentChanged?.Invoke();
         
-        list.CategorySelected += (category) =>
-        {
-            categoryTb.Text = category;
-
-            //Changing text property doesnt emit text_changed signal, so we do it ourselfs
-            categoryTb.EmitSignal("text_changed", categoryTb.Text);
+        list.CategorySelected += (category) => {
+            categoryComp.SetValue(category);
         };
     }
 }

@@ -1,4 +1,4 @@
-partial class BankFoodButton : ItemButton<FoodItem>
+partial class BankFoodButton : BankButton<FoodItem>
 {
     protected override void Initialize()
     {
@@ -8,5 +8,7 @@ partial class BankFoodButton : ItemButton<FoodItem>
 
 		nameLabel.Text = Item.Name;
 		image.Texture = GD.Load<Texture2D>(Item.TexturePath);
+
+        base.Initialize();        
     }
 }

@@ -5,4 +5,9 @@ public partial class FormOptionsComponent : HBoxContainer, FormComponent<int>
     public event Action? ComponentChanged;
 
     public void OnItemSelected(int index) => ComponentChanged?.Invoke();
+
+    public void SetValue(int value) {
+        var optionButton = GetNode<OptionButton>("OptionButton");
+        optionButton.Selected = value; //TODO: does he call event ItemSelected?
+    }
 }

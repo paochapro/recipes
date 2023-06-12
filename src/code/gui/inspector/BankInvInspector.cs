@@ -15,5 +15,6 @@ partial class BankInvInspector : ItemsInspector<InventoryItem>
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewBankInv += (i) => UpdateItem(i);
         events.RemoveBankInv += (i) => RemoveItem(i);
+        //events.FileLoaded += UpdateContent;
     }
 }

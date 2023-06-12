@@ -14,6 +14,9 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 
 		content = GetNode<ItemsInspectorContent<TItem>>("ScrollContainer/Content");
 		content.UpdateContent(AvaliableItems, ButtonGenerator);
+        
+        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        events.FileLoaded += () => this.CallDeferred(ItemsInspector<TItem>.MethodName.UpdateContent);
 
         _ChildReady();
 	}
@@ -34,7 +37,6 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 
     protected void RemoveItem(TItem item) => content.RemoveItem(item);
     
-
     protected void UpdateContent() => content.UpdateContent(AvaliableItems, ButtonGenerator);
 
 	protected abstract IEnumerable<TItem> AvaliableItems { get; }

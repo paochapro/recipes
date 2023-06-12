@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://sm7w2brycqrl"]
+
+[ext_resource type="PackedScene" uid="uid://b6753yr6hb1l0" path="res://src/tscn/creation/create_menu.tscn" id="1_2iqvs"]
+
+[node name="ModifyMenu" instance=ExtResource("1_2iqvs")]
+offset_right = 320.0
+offset_bottom = 497.0
+
+[node name="PanelContainer" type="PanelContainer" parent="Content" index="0"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Content/PanelContainer" index="0"]
+layout_mode = 2
+text = "Изменить предмет"
+horizontal_alignment = 1
+
+[node name="Create" parent="Content" index="2"]
+text = "Изменить"

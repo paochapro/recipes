@@ -5,4 +5,9 @@ public partial class FormSpinBoxComponent : HBoxContainer, FormComponent<double>
     public event Action? ComponentChanged;
 
     public void OnValueChanged(double value) => ComponentChanged?.Invoke();
+
+    public void SetValue(double value) {
+        var spinbox = GetNode<SpinBox>("SpinBox");
+        spinbox.Value = value;
+    }
 }

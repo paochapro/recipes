@@ -17,5 +17,6 @@ partial class LocalFoodInspector : ItemsInspector<FoodWithCount> //This could po
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewLocalFood += (FoodWithCount food) => UpdateItem(food);
         events.RemoveLocalFood += (FoodWithCount food) => RemoveItem(food);
+        //events.FileLoaded += UpdateContent;
     }
 }

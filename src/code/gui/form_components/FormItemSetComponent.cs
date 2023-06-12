@@ -9,11 +9,11 @@ partial class FormItemSetComponent : Container, FormComponent<ItemSet>
     public event Action<FoodWithCount>? RemovedFood;
     public event Action<InventoryItem>? RemovedInv;
 
+    ItemSet itemSet = new();
 
-    ItemSet itemSet;
-
-    public FormItemSetComponent() {
-        itemSet = new();
+    public void SetValue(ItemSet value) {
+        this.itemSet = value;
+        ComponentChanged?.Invoke();
     }
 
     public override void _Ready()
@@ -21,6 +21,8 @@ partial class FormItemSetComponent : Container, FormComponent<ItemSet>
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         var foodButton = GetNode<Button>("AllSubsection/Content/FoodTab/Button");
         var invButton = GetNode<Button>("AllSubsection/Content/InvTab/Button");
+
+        events.FileLoaded += () => itemSet = new();
 
         foodButton.Pressed += () => { 
             events.CallOpenRecipeFoodMenu(this);
