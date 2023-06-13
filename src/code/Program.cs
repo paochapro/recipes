@@ -46,36 +46,45 @@ partial class Program : Node
     public override void _Ready()
     {
         events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        this.CallDeferred(Program.MethodName.DebugFileUpdate);
     }
 
-    public void FoodItemModified(FoodItem modifiedItem)
+    void DebugFileUpdate() => events.CallFileLoaded();
+    
+    public void FoodItemModified(FoodItem modifiedItem) => ItemModified(modifiedItem);
+    public void InvItemModified(InventoryItem modifiedItem) => ItemModified(modifiedItem);
+
+    void ItemModified(Item modifiedItem)
     {
-        GD.Print("FoodItem being modified");
+        recipeBank.ForEach(r => ModifyItemSet(r.ItemSet, modifiedItem));
+        ModifyItemSet(localItems, modifiedItem);
 
-        int index = itemsBank.FoodList.FindIndex(i => i.Name == modifiedItem.Name);
-
-        if(index == -1) {
-            GD.PrintErr($"Trying to modify item ({modifiedItem.Name}) that doenst exist in ItemSet");
-            return;
+        if(modifiedItem is FoodItem modifyFood) {
+            itemsBank.FoodList.Replace(i => i.Name == modifiedItem.Name, modifyFood);
+            events.CallFoodModified(modifyFood);
         }
 
-        itemsBank.FoodList[index] = modifiedItem;
-        events.CallFoodModified(modifiedItem);
+        if(modifiedItem is InventoryItem modifyInv) {
+            itemsBank.InventoryList.Replace(i => i.Name == modifiedItem.Name, modifyInv);
+            events.CallInvModified(modifyInv);
+        } 
     }
 
-    public void InvItemModified(InventoryItem modifiedItem)
+    void ModifyItemSet(ItemSet itemSet, Item modifiedItem)
     {
-        GD.Print("InvItem being modified");
+        if(modifiedItem is FoodItem modifyFood) {
+            var food = itemSet.FoodList.FirstOrDefault(f => f.Name == modifiedItem.Name);
 
-        int index = itemsBank.InventoryList.FindIndex(i => i.Name == modifiedItem.Name);
-
-        if(index == -1) {
-            GD.PrintErr($"Trying to modify item ({modifiedItem.Name}) that doenst exist in ItemSet");
-            return;
+            if(food != null)
+                itemSet.FoodList.Replace(food, new FoodWithCount(modifyFood, food.Count));
         }
 
-        itemsBank.InventoryList[index] = modifiedItem;
-        events.CallInvModified(modifiedItem);
+        if(modifiedItem is InventoryItem modifyInv) {
+            var inv = itemSet.InventoryList.FirstOrDefault(f => f.Name == modifiedItem.Name);
+            
+            if(inv != new InventoryItem())
+                itemSet.InventoryList.Replace(inv, modifyInv);
+        }
     }
 
     public void AddFoodItem(FoodItem item) {

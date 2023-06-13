@@ -23,6 +23,7 @@ Finish recipe search
 Minor:
 Autowrap labels in dependency recipes
 Image file dialog file selected event rather than confirmed event
+When modifying image should be refreshed (not only path)
 
 Ask:
 +/- Improve recipe section readability (fold distinction)

@@ -23,8 +23,6 @@ partial class RecipesSection : PanelContainer
         events.NewRecipe += (r) => UpdateRecipe(r);
         events.RemoveRecipe += (r) => RemoveRecipe(r);
         events.FileLoaded += () => this.CallDeferred(RecipesSection.MethodName.SearchRecipes);
-
-        SearchRecipes();
 	}
 
     void UpdateRecipe(Recipe recipe) {

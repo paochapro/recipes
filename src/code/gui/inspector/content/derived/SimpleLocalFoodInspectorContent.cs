@@ -1,0 +1,1 @@
+partial class SimpleLocalFoodInspectorContent : SimpleInspectorContent<FoodWithCount> {}

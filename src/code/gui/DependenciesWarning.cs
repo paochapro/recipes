@@ -98,13 +98,13 @@ partial class DependenciesWarning : ConfirmationDialog
 
     Control GetFoodButton(FoodWithCount food) {
         var recipeFoodButton = foodButton.Instantiate<RecipeFoodButton>();
-        recipeFoodButton.Initialize(food);
+        recipeFoodButton.ButtonInitialize(food, (i) => {});
         return recipeFoodButton;
     }
 
     Control GetInvButton(InventoryItem item) {
         var recipeInvButton = invButton.Instantiate<RecipeInvButton>();
-        recipeInvButton.Initialize(item);
+        recipeInvButton.ButtonInitialize(item, (i) => {});
         return recipeInvButton;
     }
 

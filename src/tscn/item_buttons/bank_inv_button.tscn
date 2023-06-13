@@ -13,6 +13,7 @@ button = NodePath("Button")
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -27,4 +28,3 @@ theme_override_colors/font_color = Color(1, 0.435294, 0.368627, 1)
 text = "X"
 
 [node name="ModifyPopup" parent="." instance=ExtResource("2_lb1un")]
-visible = false

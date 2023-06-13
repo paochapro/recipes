@@ -1,0 +1,1 @@
+partial class SimpleFoodInspectorContent : SimpleInspectorContent<FoodItem> {}

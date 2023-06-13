@@ -38,3 +38,54 @@ static class EnumerableExtensions
             func(value);
     }
 }
+
+static class ListExtensions
+{
+    public static bool Replace<T>(this List<T> source, T from, T to)
+    {
+        bool isRemoved = source.Remove(from);
+
+        if(!isRemoved)
+            return false;
+
+        source.Add(to);
+
+        return true;
+    }
+
+    public static bool Replace<T>(this List<T> source, Predicate<T> predicate, T replacement)
+    {
+        int count = source.RemoveAll(predicate);
+
+        if(count == 0)
+            return false;
+
+        source.Add(replacement);
+
+        return true;
+    }
+
+    public static bool ReplaceWithIndex<T>(this List<T> source, T from, T to)
+    {
+        int index = source.IndexOf(from);
+
+        if(index == -1)
+            return false;
+
+        source[index] = to;
+
+        return true;
+    }
+
+    public static bool ReplaceWithIndex<T>(this List<T> source, Predicate<T> predicate, T replacement)
+    {
+        int index = source.FindIndex(predicate);
+
+        if(index == -1)
+            return false;
+
+        source[index] = replacement;
+
+        return true;
+    }
+}

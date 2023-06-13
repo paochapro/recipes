@@ -35,6 +35,7 @@ partial class RecipeContent : VBoxContainer
             return;
         }
 
+        //TODO: Replace every remove child with QueueFree
         this.RemoveChild(foundFold);
     }
 
@@ -48,12 +49,12 @@ partial class RecipeContent : VBoxContainer
         fold.Expanded = foldExpanded;
         fold.TabNormalAlpha = foldTabNormalAlpha;
         fold.TabHoverAlpha = foldTabHoverAlpha;
+        this.AddChild(fold);
 
         var card = recipeCardScene.Instantiate<RecipeCard>();
-        card.Initialize(recipe);
         fold.MainContainer.AddChild(card);
+        card.Initialize(recipe);
 
-        this.AddChild(fold);
         this.ReorderChildren((Fold fold) => fold.Title);
     }
 

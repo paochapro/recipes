@@ -3,13 +3,13 @@
 [ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="1_75ns0"]
 [ext_resource type="Script" path="res://src/code/gui/form_components/FormItemSetComponent.cs" id="1_jh6tj"]
 [ext_resource type="Script" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="2_5n088"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/content/LocalFoodInspectorContent.cs" id="3_ucoco"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/RecipeCreationFoodInspector.cs" id="4_0whuq"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/content/InvInspectorContent.cs" id="5_5wvb5"]
 [ext_resource type="PackedScene" uid="uid://mcwt0xjk21df" path="res://src/tscn/item_buttons/local_food_button.tscn" id="5_7ip4t"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/RecipeCreationInvInspector.cs" id="5_ljc7w"]
 [ext_resource type="PackedScene" uid="uid://dpjq0bsmrengm" path="res://src/tscn/control_panel.tscn" id="6_s6olh"]
-[ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="8_17rri"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/content/derived/SimpleLocalFoodInspectorContent.cs" id="6_wefjd"]
+[ext_resource type="PackedScene" uid="uid://q2psm374g6p7" path="res://src/tscn/item_buttons/local_inv_button.tscn" id="8_0mab5"]
+[ext_resource type="Script" path="res://src/code/gui/inspector/content/derived/SimpleInvInspectorContent.cs" id="9_mljcq"]
 
 [node name="FormItemSetComponent" type="VBoxContainer"]
 offset_right = 290.0
@@ -56,7 +56,7 @@ layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="AllSubsection/Content/FoodTab/Fold/_FoldMainContainer/MarginContainer/FoodInspector/ScrollContainer"]
 layout_mode = 2
-script = ExtResource("3_ucoco")
+script = ExtResource("6_wefjd")
 
 [node name="ControlPanel" type="HBoxContainer" parent="AllSubsection/Content/FoodTab/Fold/_FoldMainContainer/MarginContainer/FoodInspector"]
 visible = false
@@ -90,14 +90,14 @@ theme_override_constants/margin_left = 15
 layout_mode = 2
 script = ExtResource("5_ljc7w")
 formComponent = NodePath("../../../../../../..")
-buttonScene = ExtResource("8_17rri")
+buttonScene = ExtResource("8_0mab5")
 
 [node name="ScrollContainer" type="VBoxContainer" parent="AllSubsection/Content/InvTab/Fold/_FoldMainContainer/MarginContainer/InvInspector"]
 layout_mode = 2
 
 [node name="Content" type="VBoxContainer" parent="AllSubsection/Content/InvTab/Fold/_FoldMainContainer/MarginContainer/InvInspector/ScrollContainer"]
 layout_mode = 2
-script = ExtResource("5_5wvb5")
+script = ExtResource("9_mljcq")
 
 [node name="ControlPanel" type="HBoxContainer" parent="AllSubsection/Content/InvTab/Fold/_FoldMainContainer/MarginContainer/InvInspector"]
 visible = false

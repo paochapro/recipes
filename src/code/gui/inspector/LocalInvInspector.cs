@@ -16,6 +16,6 @@ partial class LocalInvInspector : ItemsInspector<InventoryItem>
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewLocalInv += (InventoryItem item) => UpdateItem(item);
         events.RemoveLocalInv += (InventoryItem item) => RemoveItem(item);
-        //events.FileLoaded += UpdateContent;
+        //events.InvModified += (modify) => ModifyItem(modify);
     }
 }

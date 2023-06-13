@@ -6,12 +6,13 @@
 [sub_resource type="LabelSettings" id="LabelSettings_013ct"]
 font_size = 18
 
-[node name="RecipeFoodButton" type="PanelContainer"]
+[node name="RecipeFoodButton" type="PanelContainer" node_paths=PackedStringArray("button")]
 custom_minimum_size = Vector2(76, 76)
 offset_right = 206.0
 offset_bottom = 76.0
 mouse_filter = 2
 script = ExtResource("1_c1mlx")
+button = NodePath("Button")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -40,3 +41,7 @@ theme_override_constants/margin_right = 10
 layout_mode = 2
 size_flags_horizontal = 10
 text = "x1"
+
+[node name="Button" type="Button" parent="."]
+visible = false
+layout_mode = 2

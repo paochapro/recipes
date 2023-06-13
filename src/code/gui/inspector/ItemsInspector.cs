@@ -3,7 +3,7 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 {
 	#nullable disable
     [Export] protected PackedScene buttonScene;
-	protected ItemsInspectorContent<TItem> content;
+	protected InspectorContent<TItem> content;
     LineEdit lineEdit;
 	#nullable restore
 
@@ -12,9 +12,9 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 		lineEdit = GetNode<LineEdit>("ControlPanel/LineEdit");
 		lineEdit.TextChanged += OnSearchTextChanged;
 
-		content = GetNode<ItemsInspectorContent<TItem>>("ScrollContainer/Content");
-		content.UpdateContent(AvaliableItems, ButtonGenerator);
-        
+		content = GetNode<InspectorContent<TItem>>("ScrollContainer/Content");
+		//content.UpdateContent(AvaliableItems, ButtonGenerator);
+
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.FileLoaded += () => this.CallDeferred(ItemsInspector<TItem>.MethodName.UpdateContent);
 
@@ -30,18 +30,21 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 		content.UpdateContent(items, ButtonGenerator, autoExpand);
 	}
 
+    protected void UpdateContent() => content.UpdateContent(AvaliableItems, ButtonGenerator);
+
     protected void UpdateItem(TItem item) { 
         if(ItemSearch.ItemPasses(item, lineEdit.Text))
             content.UpdateItem(item, ButtonGenerator);
     }
 
     protected void RemoveItem(TItem item) => content.RemoveItem(item);
-    
-    protected void UpdateContent() => content.UpdateContent(AvaliableItems, ButtonGenerator);
+
+    protected void ModifyItem(TItem item) => content.ModifyItem(AvaliableItems, ButtonGenerator, item);
 
 	protected abstract IEnumerable<TItem> AvaliableItems { get; }
 
 	protected abstract ButtonGenerator<TItem> ButtonGenerator { get; }
 
     protected virtual void _ChildReady() {}
+
 }

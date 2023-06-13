@@ -15,6 +15,13 @@ partial class BankFoodInspector : ItemsInspector<FoodItem>
 		var events = GetNode<GlobalEvents>("/root/GlobalEvents");
 		events.NewBankFood += (i) => UpdateItem(i);
 		events.RemoveBankFood += (i) => RemoveItem(i);
-        //events.FileLoaded += UpdateContent;
+        // events.FoodModified += (modified) => {
+        //     var item = AvaliableItems.FirstOrDefault(i => i.Name == modified.Name);
+
+        //     if(item != new FoodItem()) {
+        //         RemoveItem(item);
+        //         UpdateItem(modified);
+        //     }
+        // };
 	}
 }

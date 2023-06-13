@@ -1,6 +1,6 @@
-partial class RecipeInvButton : HBoxContainer
+partial class RecipeInvButton : ItemButton<InventoryItem>
 {
-    public void Initialize(InventoryItem item) {
-        GetNode<Label>("PanelContainer/MarginContainer/Label").Text = $"{item.Name} ({item.Category})";
+    protected override void Initialize() {
+        GetNode<Label>("PanelContainer/MarginContainer/Label").Text = $"{Item.Name} ({Item.Category})";
     }
 }

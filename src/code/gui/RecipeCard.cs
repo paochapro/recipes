@@ -6,8 +6,8 @@ partial class RecipeCard : PanelContainer
 	[Export] Label dishType;
 	[Export] Label instructions;
 	[Export] TextureRect image;
-	[Export] Container foodContent;
-	[Export] Container invContent;
+	[Export] RecipeFoodInspector foodInspector;
+	[Export] RecipeInvInspector invInspector;
     [Export] PackedScene recipeFoodScene;
     [Export] PackedScene recipeInvScene;
 	#nullable restore
@@ -20,19 +20,7 @@ partial class RecipeCard : PanelContainer
 		instructions.Text = recipe.Instructions;
 		image.Texture = GD.Load<Texture2D>(recipe.ImageTextureUID);
 
-        var foodButtons = recipe.ItemSet.Food.OrderBy(i => i.Name).Select(f => {
-            var button = recipeFoodScene.Instantiate<RecipeFoodButton>();
-            button.Initialize(f);
-            return button;
-        });
-
-        var invButtons = recipe.ItemSet.Inventory.OrderBy(i => i.Name).Select(f => {
-            var button = recipeInvScene.Instantiate<RecipeInvButton>();
-            button.Initialize(f);
-            return button;
-        });
-
-        foodContent.AddChildren(foodButtons);
-        invContent.AddChildren(invButtons);
+        foodInspector.Initialize(recipe.ItemSet.Food);
+        invInspector.Initialize(recipe.ItemSet.Inventory);
 	}
 }

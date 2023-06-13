@@ -1,4 +1,4 @@
-abstract partial class ItemsInspectorContent<TItem> : Container
+abstract partial class ItemsInspectorContent<TItem> : Container, InspectorContent<TItem>
 	where TItem : Item
 {
 	public void UpdateContent(IEnumerable<TItem> items, ButtonGenerator<TItem> generator, bool autoExpand = false)
@@ -50,13 +50,24 @@ abstract partial class ItemsInspectorContent<TItem> : Container
 
 			if(button.Item.Name == removing.Name)
 			{
-				container.RemoveChild(button);
+                button.QueueFree();
+				//container.RemoveChild(button);
 
 				if(container.GetChildCount() == 0)
 					fold.QueueFree();
 			}
 		}
 	}
+
+    public void ModifyItem(IEnumerable<TItem> existingItems, ButtonGenerator<TItem> generator, TItem modify) 
+    {
+        var old = existingItems.FirstOrDefault(i => i.Name == modify.Name);
+
+        if(old != null) {
+            RemoveItem(old);
+            UpdateItem(modify, generator);
+        }
+    }
 
     void ReorderItems(Fold fold) => fold.MainContainer.ReorderChildren((ItemButton<TItem> button) => button.Item.Name);
     void ReorderCategories() => this.ReorderChildren((Fold fold) => fold.Title);

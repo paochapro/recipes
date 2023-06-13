@@ -18,4 +18,4 @@ partial class RecipeCreationFoodInspector : ItemsInspector<FoodWithCount>
         formComponent.AddedFood += (i) => UpdateItem(i);
         formComponent.RemovedFood += (i) => RemoveItem(i);
     }
-} 
+}

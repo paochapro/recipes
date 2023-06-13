@@ -12,6 +12,8 @@ abstract partial class CategoryList : PanelContainer
 		events.NewBankInv += (item) => UpdateContent();
 		events.RemoveBankFood += (item) => UpdateContent();
 		events.RemoveBankInv += (item) => UpdateContent();
+        events.FoodModified += (item) => UpdateContent();
+        events.InvModified += (item) => UpdateContent();
 		
 		UpdateContent();
 	}
