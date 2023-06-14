@@ -60,12 +60,10 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
     }
 
     protected void BankItemRemoved(TItem bankItem) {
-        GD.Print("Bank item removed");
         RemoveItem(bankItem.Name);
     }
 
     protected void BankItemModified(TItem bankItem) {
-        GD.Print("Bank item modified");
         RemoveItem(bankItem.Name);
         UpdateItem(bankItem);
     }

@@ -9,15 +9,14 @@ partial class DependenciesWarningCreator : Node
             throw new Exception("No scene for warning window");
 
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        
-        events.FailedFoodRemove += (i,d,r) => ShowWarning(i,d,r);
-        events.FailedInvRemove += (i,d,r) => ShowWarning(i,d,r);
     }
 
-    void ShowWarning(Item item, Item? local, IEnumerable<Recipe> recipes) {
+    public DependenciesWarning ShowWarning(DependencyWarningEventArgs args) 
+    {
         this.RemoveChildren();
         var window = scene.Instantiate<DependenciesWarning>();
         AddChild(window);
-        window.ShowWarning(item, local, recipes);
+        window.ShowWarning(args);
+        return window;
     }
 }

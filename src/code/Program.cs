@@ -112,23 +112,29 @@ partial class Program : Node
         var dependedLocalItem = localItems.Food.FirstOrDefault(f => f.Item == item);
         var dependedRecipes = recipeBank.Where(r => r.ItemSet.FoodItems.Contains(item));
 
-        if(dependedLocalItem != null || dependedRecipes.Count() != 0) {
-            events.CallFailedFoodRemove(item, dependedLocalItem, dependedRecipes);
-            return;
+        if(dependedLocalItem != null)
+            localItems.FoodList.RemoveAll(i => i.Name == item.Name);
+
+        if(dependedRecipes != null) {
+            foreach(var foodList in recipeBank.Select(r => r.ItemSet.FoodList))
+                foodList.RemoveAll(i => i.Name == item.Name);
         }
 
         itemsBank.FoodList.Remove(item);
         events.CallRemoveBankFood(item);
     }
 
-    public void RemoveInvItem(InventoryItem item) 
+    public void RemoveInvItem(InventoryItem item)
     {
-        var dependedLocalItemExists = localItems.Inventory.Contains(item);
+        bool dependedLocalItemExists = localItems.Inventory.Contains(item);
         var dependedRecipes = recipeBank.Where(r => r.ItemSet.Inventory.Contains(item));
 
-        if(dependedLocalItemExists || dependedRecipes.Count() != 0) {
-            events.CallFailedInvRemove(item, dependedLocalItemExists ? item : null, dependedRecipes);
-            return;
+        if(dependedLocalItemExists)
+            localItems.InventoryList.Remove(item);
+
+        if(dependedRecipes != null) {
+            foreach(var invList in recipeBank.Select(r => r.ItemSet.InventoryList))
+                invList.Remove(item);
         }
 
         itemsBank.InventoryList.Remove(item);

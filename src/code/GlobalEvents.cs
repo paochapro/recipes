@@ -19,9 +19,6 @@ partial class GlobalEvents : Node
     public event Action<FoodItem>?              OpenFoodModificationMenu;
     public event Action<InventoryItem>?         OpenInvModificationMenu;
 
-    public event Action<FoodItem, FoodWithCount?, IEnumerable<Recipe>>? FailedFoodRemove;
-    public event Action<InventoryItem, InventoryItem?, IEnumerable<Recipe>>? FailedInvRemove;
-    
     public event Action<FoodItem>? FoodModified;
     public event Action<InventoryItem>? InvModified;
 
@@ -44,30 +41,6 @@ partial class GlobalEvents : Node
     public void CallFoodModificationMenu(FoodItem val)                      => OpenFoodModificationMenu?.Invoke(val);
     public void CallInvModificationMenu(InventoryItem val)                  => OpenInvModificationMenu?.Invoke(val);
     
-    public void CallFoodModified(FoodItem item) 
-    {
-        FoodModified?.Invoke(item);
-    }
+    public void CallFoodModified(FoodItem item) => FoodModified?.Invoke(item);
     public void CallInvModified(InventoryItem item) => InvModified?.Invoke(item);
-
-    public void CallFailedFoodRemove(
-        FoodItem item, 
-        FoodWithCount? dependedLocalItem, 
-        IEnumerable<Recipe> dependedRecipes) 
-    { 
-        FailedFoodRemove?.Invoke(item, dependedLocalItem, dependedRecipes);
-    }
-
-    public void CallFailedInvRemove(
-        InventoryItem item, 
-        InventoryItem? dependedLocalItem, 
-        IEnumerable<Recipe> dependedRecipes)
-    { 
-        FailedInvRemove?.Invoke(item, dependedLocalItem, dependedRecipes);
-    }
-
-    public int GetFoodModifiedInvocationListCount()
-    {
-        return FoodModified?.GetInvocationList()?.Count() ?? 0;
-    }
 }

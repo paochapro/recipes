@@ -19,21 +19,20 @@ partial class DependenciesWarning : ConfirmationDialog
         recipesFold.FoldExpanded += base.ResetSize;
     }
 
-    public void ShowWarning(Item item, Item? dependedItem, IEnumerable<Recipe> dependedRecipes)
+    public void ShowWarning(DependencyWarningEventArgs args)
     {
-        if(dependedItem != null) {
+        if(args.LocalItem != null) {
             localItems.Show();
-            buttonRoot.AddChild(GetButton(dependedItem));
+            buttonRoot.AddChild(GetButton(args.LocalItem));
         }
 
-        if(dependedRecipes.Count() != 0) {
+        if(args.Recipes.Count() != 0) {
             recipes.Show();
             int i = 1;
-            var labels = dependedRecipes.Select(r => new Label() { Text = $"{i++}. {r.Title}"} );
+            var labels = args.Recipes.Select(r => new Label() { Text = $"{i++}. {r.Title}"} );
             recipeLabels.AddChildren(labels);
         }
 
-        this.Confirmed += () => RemoveItem(item, dependedItem, dependedRecipes);
         this.PopupCentered();
         this.CallDeferred(Window.MethodName.ResetSize);
     }

@@ -153,6 +153,7 @@ custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 
 [node name="DependenciesWarningCreator" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("13_ofvxb")
 scene = ExtResource("14_uk2q3")
 

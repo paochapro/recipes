@@ -24,10 +24,8 @@ partial class SimpleInspectorContent<TItem> : Container, InspectorContent<TItem>
     {
         var button = GetChildren().Cast<ItemButton<TItem>>().FirstOrDefault(b => b.Item.Name == removeName);
 
-        if(button == null) {
-            GD.PrintErr("Attempted to remove item that doesnt exist in content");
+        if(button == null)
             return;
-        }
 
         this.RemoveChild(button);
         button.QueueFree();
