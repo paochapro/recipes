@@ -20,9 +20,9 @@ partial class SimpleInspectorContent<TItem> : Container, InspectorContent<TItem>
         ReorderItems();
     }
 
-    public void RemoveItem(TItem item)
+    public void RemoveItem(string removeName)
     {
-        var button = GetChildren().Cast<ItemButton<TItem>>().FirstOrDefault(b => b.Item.Name == item.Name);
+        var button = GetChildren().Cast<ItemButton<TItem>>().FirstOrDefault(b => b.Item.Name == removeName);
 
         if(button == null) {
             GD.PrintErr("Attempted to remove item that doesnt exist in content");
@@ -33,15 +33,5 @@ partial class SimpleInspectorContent<TItem> : Container, InspectorContent<TItem>
         button.QueueFree();
     }
     
-    public void ModifyItem(IEnumerable<TItem> existingItems, ButtonGenerator<TItem> generator, TItem modify) 
-    {
-        var old = existingItems.FirstOrDefault(i => i.Name == modify.Name);
-
-        if(old != null) {
-            RemoveItem(old);
-            UpdateItem(modify, generator);
-        }
-    }
-
     void ReorderItems() => this.ReorderChildren((ItemButton<TItem> button) => button.Item.Name);
 }

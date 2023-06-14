@@ -1,4 +1,4 @@
-partial class LocalInvInspector : ItemsInspector<InventoryItem>
+partial class LocalInvInspector : InvInspector
 {
     protected override IEnumerable<InventoryItem> AvaliableItems {
         get => GetNode<Program>("/root/Program").LocalItems.Inventory;

@@ -1,4 +1,4 @@
-partial class BankFoodInspector : ItemsInspector<FoodItem>
+partial class BankFoodInspector : FoodInspector
 {
 	protected override IEnumerable<FoodItem> AvaliableItems =>
 		GetNode<Program>("/root/Program").ItemsBank.Food;
@@ -14,7 +14,7 @@ partial class BankFoodInspector : ItemsInspector<FoodItem>
 	protected override void _ChildReady() {
 		var events = GetNode<GlobalEvents>("/root/GlobalEvents");
 		events.NewBankFood += (i) => UpdateItem(i);
-		events.RemoveBankFood += (i) => RemoveItem(i);
+		// events.RemoveBankFood += (i) => RemoveItem(i);
         // events.FoodModified += (modified) => {
         //     var item = AvaliableItems.FirstOrDefault(i => i.Name == modified.Name);
 

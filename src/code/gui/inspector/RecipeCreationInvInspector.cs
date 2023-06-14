@@ -1,4 +1,4 @@
-partial class RecipeCreationInvInspector : ItemsInspector<InventoryItem>
+partial class RecipeCreationInvInspector : InvInspector
 {
     #nullable disable
     [Export] FormItemSetComponent formComponent;

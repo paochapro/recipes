@@ -1,4 +1,4 @@
-partial class RecipeFoodInspector : ItemsInspector<FoodWithCount>
+partial class RecipeFoodInspector : CountedFoodInspector
 {
     #nullable disable
     IEnumerable<FoodWithCount> avaliableItems;
@@ -6,14 +6,6 @@ partial class RecipeFoodInspector : ItemsInspector<FoodWithCount>
 
     public void Initialize(IEnumerable<FoodWithCount> avaliableItems) {
         this.avaliableItems = avaliableItems;
-
-        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.FoodModified += ModifyFood;
-
-        this.TreeExiting += () => {
-            events.FoodModified -= ModifyFood;
-        };
-
         UpdateContent();
     }
 
@@ -22,16 +14,6 @@ partial class RecipeFoodInspector : ItemsInspector<FoodWithCount>
     protected override ButtonGenerator<FoodWithCount> ButtonGenerator {
         get {
             return new ButtonGenerator<FoodWithCount>(buttonScene, (i) => {});
-        }
-    }
-
-    void ModifyFood(FoodItem item)
-    {
-        var modifyFood = avaliableItems.FirstOrDefault(f => f.Item.Name == item.Name);
-
-        if(modifyFood != null) {
-            RemoveItem(modifyFood);
-            UpdateItem(new FoodWithCount(item, modifyFood.Count));
         }
     }
 }

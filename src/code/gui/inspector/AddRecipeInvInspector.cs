@@ -1,4 +1,4 @@
-partial class AddRecipeInvInspector : AddItemsInspector<InventoryItem>
+partial class AddRecipeInvInspector : InvInspector, AddItemsInspector<InventoryItem>
 {
     FormItemSetComponent? currentComponent;
 
@@ -18,7 +18,7 @@ partial class AddRecipeInvInspector : AddItemsInspector<InventoryItem>
 		}
 	}
 
-    protected override void ConnectEvents(AddItemsInspectorContent<InventoryItem> content)
+    public void _ConnectEvents(AddItemsInspectorContent<InventoryItem> content)
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
 

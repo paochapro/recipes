@@ -1,4 +1,4 @@
-partial class LocalFoodInspector : ItemsInspector<FoodWithCount> //This could potentially break universe
+partial class LocalFoodInspector : CountedFoodInspector //This could potentially break universe
 {
 	protected override IEnumerable<FoodWithCount> AvaliableItems {
         get => GetNode<Program>("/root/Program").LocalItems.Food;

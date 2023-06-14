@@ -1,4 +1,4 @@
-partial class BankInvInspector : ItemsInspector<InventoryItem>
+partial class BankInvInspector : InvInspector
 {
     protected override IEnumerable<InventoryItem> AvaliableItems => 
         GetNode<Program>("/root/Program").ItemsBank.Inventory;
@@ -14,7 +14,7 @@ partial class BankInvInspector : ItemsInspector<InventoryItem>
     protected override void _ChildReady() {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewBankInv += (i) => UpdateItem(i);
-        events.RemoveBankInv += (i) => RemoveItem(i);
+        // events.RemoveBankInv += (i) => RemoveItem(i);
         // events.InvModified += (modified) => {
         //     var item = AvaliableItems.FirstOrDefault(i => i.Name == modified.Name);
             

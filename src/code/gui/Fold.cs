@@ -82,11 +82,10 @@ public partial class Fold : VBoxContainer
     {
         Node? node = GetChildren().FirstOrDefault(n => n.Name == mainContainerName);
 
-        if(node != null && node is VBoxContainer container)
-        {
-            this.RemoveChild(container);
+        if(node != null && node is VBoxContainer container) {
             container.Visible = Expanded;
             mainContainer = container;
+            return;
         }
 
         foreach(var child in GetChildren())

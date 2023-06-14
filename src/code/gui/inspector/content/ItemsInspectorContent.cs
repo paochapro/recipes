@@ -41,33 +41,23 @@ abstract partial class ItemsInspectorContent<TItem> : Container, InspectorConten
 		}
 	}
 
-	public void RemoveItem(TItem removing)
+	public void RemoveItem(string removeName)
 	{
 		foreach(Fold fold in GetChildren())
 		foreach(ItemButton<TItem> button in fold.MainContainer.GetChildren())
 		{
 			var container = fold.MainContainer;
 
-			if(button.Item.Name == removing.Name)
-			{
-                button.QueueFree();
+			if(button.Item.Name == removeName)
+			{  
 				//container.RemoveChild(button);
+                button.QueueFree();
 
 				if(container.GetChildCount() == 0)
 					fold.QueueFree();
 			}
 		}
 	}
-
-    public void ModifyItem(IEnumerable<TItem> existingItems, ButtonGenerator<TItem> generator, TItem modify) 
-    {
-        var old = existingItems.FirstOrDefault(i => i.Name == modify.Name);
-
-        if(old != null) {
-            RemoveItem(old);
-            UpdateItem(modify, generator);
-        }
-    }
 
     void ReorderItems(Fold fold) => fold.MainContainer.ReorderChildren((ItemButton<TItem> button) => button.Item.Name);
     void ReorderCategories() => this.ReorderChildren((Fold fold) => fold.Title);

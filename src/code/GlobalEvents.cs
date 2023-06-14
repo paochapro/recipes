@@ -44,7 +44,10 @@ partial class GlobalEvents : Node
     public void CallFoodModificationMenu(FoodItem val)                      => OpenFoodModificationMenu?.Invoke(val);
     public void CallInvModificationMenu(InventoryItem val)                  => OpenInvModificationMenu?.Invoke(val);
     
-    public void CallFoodModified(FoodItem item) => FoodModified?.Invoke(item);
+    public void CallFoodModified(FoodItem item) 
+    {
+        FoodModified?.Invoke(item);
+    }
     public void CallInvModified(InventoryItem item) => InvModified?.Invoke(item);
 
     public void CallFailedFoodRemove(
@@ -61,5 +64,10 @@ partial class GlobalEvents : Node
         IEnumerable<Recipe> dependedRecipes)
     { 
         FailedInvRemove?.Invoke(item, dependedLocalItem, dependedRecipes);
+    }
+
+    public int GetFoodModifiedInvocationListCount()
+    {
+        return FoodModified?.GetInvocationList()?.Count() ?? 0;
     }
 }

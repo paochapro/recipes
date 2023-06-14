@@ -1,4 +1,4 @@
-partial class AddLocalFoodInspector : AddItemsInspector<FoodItem>
+partial class AddLocalFoodInspector : FoodInspector, AddItemsInspector<FoodItem>
 {
     protected override IEnumerable<FoodItem> AvaliableItems => 
         GetNode<Program>("/root/Program").ItemsBank.Food;
@@ -12,7 +12,7 @@ partial class AddLocalFoodInspector : AddItemsInspector<FoodItem>
         }
     }
 
-    protected override void ConnectEvents(AddItemsInspectorContent<FoodItem> content)
+    public void _ConnectEvents(AddItemsInspectorContent<FoodItem> content)
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewBankFood += (item) => UpdateItem(item);

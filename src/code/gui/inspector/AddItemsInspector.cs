@@ -1,20 +1,13 @@
-abstract partial class AddItemsInspector<TItem> : ItemsInspector<TItem>
+interface AddItemsInspector<TItem>
     where TItem : Item
 {
-    protected override void _ChildReady()
+    void _InspectorInitialize(AddItemsInspectorContent<TItem> addContent, IEnumerable<TItem> avaliableItems)
     {
-        if(content is AddItemsInspectorContent<TItem> addContent)
-        {
-            var program = GetNode<Program>("/root/Program");
-            foreach(var item in AvaliableItems)
-                addContent.SetLocked(item, true);
-            
-            ConnectEvents(addContent);
-        }
-        else
-            throw new Exception("Content of AddItemsInspector is not of AddItemsInspectorContent type");
-
+        foreach(var item in avaliableItems)
+            addContent.SetLocked(item, true);
+       
+        _ConnectEvents(addContent);
     }
 
-    protected abstract void ConnectEvents(AddItemsInspectorContent<TItem> content);
+    void _ConnectEvents(AddItemsInspectorContent<TItem> content);
 }

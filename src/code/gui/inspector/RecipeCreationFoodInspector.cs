@@ -1,4 +1,4 @@
-partial class RecipeCreationFoodInspector : ItemsInspector<FoodWithCount>
+partial class RecipeCreationFoodInspector : CountedFoodInspector
 {
     #nullable disable
     [Export] FormItemSetComponent formComponent;

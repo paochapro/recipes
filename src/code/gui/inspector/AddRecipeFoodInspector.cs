@@ -1,4 +1,4 @@
-partial class AddRecipeFoodInspector : AddItemsInspector<FoodItem>
+partial class AddRecipeFoodInspector : FoodInspector, AddItemsInspector<FoodItem>
 {
     FormItemSetComponent? currentComponent;
 
@@ -21,7 +21,7 @@ partial class AddRecipeFoodInspector : AddItemsInspector<FoodItem>
 		}
 	}
 
-    protected override void ConnectEvents(AddItemsInspectorContent<FoodItem> content)
+    public void _ConnectEvents(AddItemsInspectorContent<FoodItem> content)
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
 

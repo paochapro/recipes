@@ -1,4 +1,4 @@
-partial class AddLocalInvInspector : AddItemsInspector<InventoryItem>
+partial class AddLocalInvInspector : InvInspector, AddItemsInspector<InventoryItem>
 {
     protected override IEnumerable<InventoryItem> AvaliableItems => 
         GetNode<Program>("/root/Program").ItemsBank.Inventory;
@@ -12,7 +12,7 @@ partial class AddLocalInvInspector : AddItemsInspector<InventoryItem>
         }
     }
 
-    protected override void ConnectEvents(AddItemsInspectorContent<InventoryItem> content)
+    public void _ConnectEvents(AddItemsInspectorContent<InventoryItem> content)
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
         events.NewBankInv += (item) => UpdateItem(item);
