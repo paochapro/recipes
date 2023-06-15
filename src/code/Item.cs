@@ -97,3 +97,22 @@ class ItemBank : ReadonlyItemBank  {
     {
     }
 }
+
+class ItemNameEqualityComparer<TItem> : IEqualityComparer<TItem>
+    where TItem : Item
+{
+    public bool Equals(TItem? x, TItem? y)
+    {
+        if(x == null || y == null)
+        {
+            if(x != null || y != null)
+                return false;
+
+            return true;
+        }
+
+        return x.Name == y.Name;
+    }
+
+    public int GetHashCode([DisallowNull] TItem obj) => obj.Name.GetHashCode();
+}

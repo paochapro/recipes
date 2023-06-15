@@ -12,7 +12,7 @@ Find out what exactly causes ".net failed to unload assemblies" error
 + Remove category fold when all items are removed from this category
 + When item is removed from bank, and local item exists (and recipe have this item) too, we need to popup warning window
 + When adding item, text in search is ignored until its updates
-Modifying recipes and items
++ Modifying recipes and items
 Finish recipe search
 + File saving and loading
 + Remove scroll container in all subsection in create recipe form
@@ -24,6 +24,7 @@ Minor:
 Autowrap labels in dependency recipes
 Image file dialog file selected event rather than confirmed event
 When modifying image should be refreshed (not only path)
+Deleting bank item with right click doesnt show depedencies window 
 
 Ask:
 +/- Improve recipe section readability (fold distinction)

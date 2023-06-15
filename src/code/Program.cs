@@ -17,8 +17,6 @@ partial class Program : Node
     {
         GD.Print("start program");
 
-        var pm = new PopupMenu();
-
         //Debug
         string itemsJsonFile = "content/items.json"; 
         var items = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
@@ -82,29 +80,26 @@ partial class Program : Node
         if(modifiedItem is InventoryItem modifyInv) {
             var inv = itemSet.InventoryList.FirstOrDefault(f => f.Name == modifiedItem.Name);
             
-            if(inv != new InventoryItem())
+            if(inv != new InventoryItem()) 
                 itemSet.InventoryList.Replace(inv, modifyInv);
         }
     }
 
-    public void AddFoodItem(FoodItem item) {
-        itemsBank.FoodList.Add(item);
-        events.CallNewBankFood(item);
-    }
+    public void AddFoodItem(FoodItem item) => Add(itemsBank.FoodList, item, events.CallNewBankFood);
+    public void AddInvItem(InventoryItem item) => Add(itemsBank.InventoryList, item, events.CallNewBankInv);
+    public void AddLocalFood(FoodWithCount item) => Add(localItems.FoodList, item, events.CallNewLocalFood);
+    public void AddLocalInv(InventoryItem item) => Add(localItems.InventoryList, item, events.CallNewLocalInv);
 
-    public void AddInvItem(InventoryItem item) {
-        itemsBank.InventoryList.Add(item);
-        events.CallNewBankInv(item);
-    }
+    void Add<T>(List<T> list, T item, Action<T> eventAction)
+        where T : Item
+    {
+        if(list.Contains(item, new ItemNameEqualityComparer<T>())) {
+            GD.Print("Failed to add item " + item);
+            return;
+        }
 
-    public void AddLocalFood(FoodWithCount item) {
-        localItems.FoodList.Add(item);
-        events.CallNewLocalFood(item);
-    }
-
-    public void AddLocalInv(InventoryItem item) {
-        localItems.InventoryList.Add(item);
-        events.CallNewLocalInv(item);
+        list.Add(item);
+        eventAction.Invoke(item);
     }
 
     public void RemoveFoodItem(FoodItem item) 
