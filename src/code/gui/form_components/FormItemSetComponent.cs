@@ -1,6 +1,6 @@
 partial class FormItemSetComponent : Container, FormComponent<ItemSet>
 {
-    public ItemSet GetValue => itemSet;
+    public ItemSet GetValue => new ItemSet(itemSet);
     public bool IsCompleted => GetValue.Food.Count() != 0 && GetValue.Inventory.Count() != 0;
     public event Action? ComponentChanged;
 
@@ -8,11 +8,13 @@ partial class FormItemSetComponent : Container, FormComponent<ItemSet>
     public event Action<InventoryItem>? AddedInv;
     public event Action<FoodWithCount>? RemovedFood;
     public event Action<InventoryItem>? RemovedInv;
+    public event Action<ItemSet>? NewItemSet;
 
     ItemSet itemSet = new();
 
     public void SetValue(ItemSet value) {
-        this.itemSet = value;
+        this.itemSet = new ItemSet(value);
+        NewItemSet?.Invoke(this.itemSet);
         ComponentChanged?.Invoke();
     }
 
@@ -45,9 +47,9 @@ partial class FormItemSetComponent : Container, FormComponent<ItemSet>
         ComponentChanged?.Invoke();
     }
 
-    public void RemoveFood(FoodWithCount food) {
-        itemSet.FoodList.Remove(food);
-        RemovedFood?.Invoke(food);
+    public void RemoveFood(FoodWithCount remove) {
+        itemSet.FoodList.RemoveAll(f => f.Name == remove.Name);
+        RemovedFood?.Invoke(remove);
         ComponentChanged?.Invoke();
     }
 

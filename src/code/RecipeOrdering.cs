@@ -1,46 +1,66 @@
-class ItemsCompare<TItem> : IComparer<IEnumerable<TItem>>
+static class RecipeOrdering
 {
-    IEnumerable<TItem> userItems;
-
-    public ItemsCompare(IEnumerable<TItem> userItems)
+    public static IEnumerable<Recipe> OrderRecipes(IEnumerable<Recipe> recipes, ReadonlyItemSet userItems)
     {
-        this.userItems = userItems;
+        var missingItemsCompare     = new MissingItemsCompare<FoodItem>(userItems.FoodItems);
+        var totalFoodItemsCompare   = new TotalItemsCompare<FoodItem>(userItems.FoodItems);
+        var totalInvItemsCompare    = new TotalItemsCompare<InventoryItem>(userItems.Inventory);
+        var lackFoodCompare         = new LackFoodCompare(userItems.Food);
+        var foodCountCompare        = new FoodCountCompare(userItems.Food);
+
+        var invItems                = (Recipe r) => r.ItemSet.Inventory;
+        var foodItems               = (Recipe r) => r.ItemSet.FoodItems;
+        var food                    = (Recipe r) => r.ItemSet.Food;
+
+        return recipes
+            .OrderBy            (foodItems, missingItemsCompare)
+            .ThenByDescending   (foodItems, totalFoodItemsCompare)
+            .ThenBy             (food, lackFoodCompare)
+            .ThenByDescending   (food, foodCountCompare)
+            .ThenByDescending   (invItems, totalInvItemsCompare)
+            .ThenBy             (r => r.Title);
     }
 
-    public int Compare(IEnumerable<TItem>? items1, IEnumerable<TItem>? items2)
-    {
-        if(items1 == null || items2 == null)
-            return NullCompare(items1, items2);
+    // static OrderComponent GetOrderComponent(ItemsCompare<Item> compare, bool descending, Func<Recipe, IEnumerable<Item>> selector)
+    // {
+    //     var component = new OrderComponent();
+    //     component.Compare = compare;
+    //     component.Descending = descending;
+    //     component.Selector = selector;
+    //     return component;
+    // }
 
-        //Check how many items each recipe need
-        int neededItems1 = GetNeededItemCount(items1);
-        int neededItems2 = GetNeededItemCount(items2);
-        int result = 0;
+    // static IEnumerable<Recipe> GetOrderedRecipes<TItem>(IEnumerable<Recipe> recipes, IEnumerable<OrderComponent> components)
+    // {
+    //     var orderedRecipes = FirstOrderRecipesByComponent(recipes, components.First());
 
-        //If both need the same amount of items
-        //Then compare which has the most items
-        //Else compare which one needs the least amount of items
-        if(neededItems1 == neededItems2)
-            result = items1.Count() - items2.Count();
-        else
-            result = neededItems2 - neededItems1;
+    //     foreach(var component in components.Skip(1)) {
+    //         orderedRecipes = ThenOrderRecipesByComponent(orderedRecipes, component);
+    //     }
 
-        return result;
-    }
+    //     return orderedRecipes;
+    // }
 
-    int GetNeededItemCount(IEnumerable<TItem> items) 
-    {
-        return items.Except(userItems).Count();
-    }
+    // static IOrderedEnumerable<Recipe> FirstOrderRecipesByComponent(IEnumerable<Recipe> recipes, OrderComponent component)
+    // {
+    //     if(component.Descending)
+    //         return recipes.OrderByDescending(component.Selector, component.Compare);
 
-    int NullCompare(object? x, object? y)
-    {
-        if(x == null && y != null)
-            return -1;
+    //     return recipes.OrderBy(component.Selector, component.Compare);
+    // }
 
-        if(x != null && y == null)
-            return 1;
+    // static IOrderedEnumerable<Recipe> ThenOrderRecipesByComponent(IOrderedEnumerable<Recipe> recipes, OrderComponent component)
+    // {
+    //     if(component.Descending)
+    //         return recipes.ThenByDescending(component.Selector, component.Compare);
 
-        return 0;
-    }
+    //     return recipes.ThenBy(component.Selector, component.Compare);
+    // }
+
+    
+    // struct OrderComponent {
+    //     public object Compare;
+    //     public bool Descending;
+    //     public Func<Recipe, IEnumerable<Item>> Selector;
+    // }
 }

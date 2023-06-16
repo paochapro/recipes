@@ -21,6 +21,18 @@ partial class BankRemovalSafety : Node
             var args = new DependencyWarningEventArgs(bankItem, dependedLocalItem, dependedRecipes);
             ShowWarning(args);
         }
+        else 
+            RemoveItem(bankItem);   
+    }
+
+    void RemoveItem(Item bankItem) {
+        var program = GetNode<Program>("/root/Program");
+
+        if(bankItem is FoodItem bankFood)
+            program.RemoveFoodItem(bankFood);
+
+        if(bankItem is InventoryItem bankInv)
+            program.RemoveInvItem(bankInv);
     }
 
     void ShowWarning(DependencyWarningEventArgs args)
@@ -28,13 +40,13 @@ partial class BankRemovalSafety : Node
         var creator = GetNode<DependenciesWarningCreator>("/root/GuiRoot/%DependenciesWarningCreator");
         var window = creator.ShowWarning(args);
 
-        Action? onConfirmed = GetConfirmedAction(args.BankItem);
+        Action? onConfirmed = GetRemoveAction(args.BankItem);
 
         if(onConfirmed != null)
             window.Confirmed += onConfirmed;
     }
 
-    Action? GetConfirmedAction(Item bankItem) {
+    Action? GetRemoveAction(Item bankItem) {
         var program = GetNode<Program>("/root/Program");
 
         if(bankItem is FoodItem bankFood)

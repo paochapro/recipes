@@ -50,7 +50,7 @@ abstract partial class ItemsInspectorContent<TItem> : Container, InspectorConten
 
 			if(button.Item.Name == removeName)
 			{  
-				//container.RemoveChild(button);
+				container.RemoveChild(button);
                 button.QueueFree();
 
 				if(container.GetChildCount() == 0)

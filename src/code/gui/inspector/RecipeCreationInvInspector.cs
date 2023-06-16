@@ -15,6 +15,7 @@ partial class RecipeCreationInvInspector : InvInspector
     }
 
     protected override void _ChildReady() {
+        formComponent.NewItemSet += (set) => UpdateContent();
         formComponent.AddedInv += (i) => UpdateItem(i);
         formComponent.RemovedInv += (i) => RemoveItem(i);
     }

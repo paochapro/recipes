@@ -10,7 +10,6 @@
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_hk0yr")
-fileDialogScene = ExtResource("2_tdf7q")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -47,6 +46,9 @@ layout_mode = 2
 size_flags_vertical = 1
 label_settings = ExtResource("5_lrbyo")
 horizontal_alignment = 1
+
+[node name="FileDialog" parent="." instance=ExtResource("2_tdf7q")]
+visible = false
 
 [connection signal="pressed" from="Load/Button" to="." method="OnLoadImageButtonPressed"]
 

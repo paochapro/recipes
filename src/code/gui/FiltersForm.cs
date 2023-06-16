@@ -4,10 +4,12 @@ partial class FiltersForm : Form
 	{
 		int time = (int)GetNode<FormSpinBoxComponent>("Time").GetValue;
 		int dishTypeIndex = GetNode<FormOptionsComponent>("DishType").GetValue;
+        bool useLocalItems = GetNode<CheckBox>("UseLocalItems").ButtonPressed;
 		DishType dishType = (DishType)dishTypeIndex;
 
-		ItemSet localItems = new();
-		ItemSet filterItems = new();
+		var program = GetNode<Program>("/root/Program");
+		ReadonlyItemSet localItems = useLocalItems ? program.LocalItems : new ItemSet();
+		ReadonlyItemSet filterItems = new ItemSet();
 
 		SearchInfo searchInfo = new SearchInfo("", localItems, filterItems, dishType, time);
 		return searchInfo;

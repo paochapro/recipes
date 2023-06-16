@@ -16,5 +16,9 @@ layout_mode = 2
 [node name="Label" parent="Time" index="0"]
 text = "Макс. время (мин):"
 
+[node name="UseLocalItems" type="CheckBox" parent="."]
+layout_mode = 2
+text = "Использовать холодильник"
+
 [editable path="DishType"]
 [editable path="Time"]

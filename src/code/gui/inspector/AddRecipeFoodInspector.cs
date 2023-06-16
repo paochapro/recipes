@@ -24,16 +24,25 @@ partial class AddRecipeFoodInspector : FoodInspector, AddItemsInspector<FoodItem
     public void _ConnectEvents(AddItemsInspectorContent<FoodItem> content)
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        var newItemSet = (ItemSet set) => 
+        {
+            foreach(var item in set.FoodItems)
+                content.SetLocked(item, true);
+        };
 
-        events.OpenRecipeFoodMenu += (FormItemSetComponent newComponent) => {
-            if(currentComponent != null && currentComponent != newComponent) {
+        events.OpenRecipeFoodMenu += (FormItemSetComponent newComponent) => 
+        {
+            if(currentComponent != null && currentComponent != newComponent) 
+            {
                 currentComponent.AddedFood -= (i) => content.SetLocked(i.Item, true);
                 currentComponent.RemovedFood -= (i) => content.SetLocked(i.Item, false);
+                currentComponent.NewItemSet -= newItemSet;
             }
 
             this.currentComponent = newComponent;
 
-            currentComponent.AddedFood += (i) => content.SetLocked(i.Item, true); 
+            currentComponent.NewItemSet += newItemSet;
+            currentComponent.AddedFood += (i) => content.SetLocked(i.Item, true);
             currentComponent.RemovedFood += (i) => content.SetLocked(i.Item, false);
 
             UpdateContent();

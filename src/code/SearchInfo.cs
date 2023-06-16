@@ -1,8 +1,8 @@
 readonly record struct SearchInfo
 (
     string Title,
-    ItemSet LocalItemSet,
-    ItemSet FilterItemSet,
+    ReadonlyItemSet LocalItemSet,
+    ReadonlyItemSet FilterItemSet,
     DishType DishType,
     int Minutes
 );

@@ -4,60 +4,49 @@ public partial class FormImageComponent : VBoxContainer, FormComponent<string>
 	TextureRect previewImage;
 	FormLineEditComponent imagePath;
     Label errorLabel;
+    FileDialog fileDialog;
 	#nullable restore
 
-	[Export] PackedScene? fileDialogScene;
-	
 	public event Action? ComponentChanged;
 	public string GetValue => imagePath.GetValue;
 	public bool IsCompleted => imagePath.IsCompleted;
 
     public void SetValue(string value) {
-        imagePath.SetValue(value);
+        LoadImage(value);
     }
 
 	public override void _Ready()
 	{
-		previewImage = GetNode<TextureRect>("Load/TextureRect");
 		imagePath = GetNode<FormLineEditComponent>("Path");
         imagePath.ComponentChanged += () => ComponentChanged?.Invoke();
+		previewImage = GetNode<TextureRect>("Load/TextureRect");
 		errorLabel = GetNode<Label>("ErrorLabel");
+
+        fileDialog = GetNode<FileDialog>("FileDialog");
+		fileDialog.FileSelected += LoadImage;
+        
         this.VisibilityChanged += HideErrorMessage;
 	}
 
 	public void OnLoadImageButtonPressed()
 	{
-		if(fileDialogScene == null) {
-			GD.PrintErr("FileDialog scene is not set (null) [FormImageComponent]");
+		if(fileDialog == null) {
+			GD.PrintErr("FileDialog is not set (null) [FormImageComponent]");
 			return;
 		}
 
-		var fileDialog = fileDialogScene.Instantiate<FileDialog>();
-		fileDialog.Confirmed += () => DialogConfomation(fileDialog);
-		AddChild(fileDialog);
 		fileDialog.Popup();
-	}
-
-	void DialogConfomation(FileDialog fileDialog)
-	{
-		LoadImage(fileDialog.CurrentPath);
-		fileDialog.QueueFree();
 	}
 
 	public void LoadImage(string path)
 	{
-		try 
-		{
+		try {
 			var texture = GD.Load<Texture2D>(path);
 
 			if(texture == null)
 				throw new Exception("Wrong format for loading image (." + path.Split(".").Last() + ")");
 
-			var pathTb = imagePath.GetNode<LineEdit>("LineEdit");
-			pathTb.Text = path;
-
-            //Text property doesnt emit text_changed signal, so we do it ourselfs
-			pathTb.EmitSignal("text_changed", pathTb.Text);
+            imagePath.SetValue(path);
 			previewImage.Texture = texture;
 
             HideErrorMessage();

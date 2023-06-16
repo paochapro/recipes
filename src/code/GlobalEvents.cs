@@ -18,9 +18,12 @@ partial class GlobalEvents : Node
     public event Action<FormItemSetComponent>?  OpenRecipeInvMenu;
     public event Action<FoodItem>?              OpenFoodModificationMenu;
     public event Action<InventoryItem>?         OpenInvModificationMenu;
+    public event Action<Recipe>?                OpenRecipeModificationMenu;
+
 
     public event Action<FoodItem>? FoodModified;
     public event Action<InventoryItem>? InvModified;
+    public event Action<Recipe>? RecipeModified;
 
     public void CallFileLoaded()                                => FileLoaded?.Invoke();
     public void CallSwitchDynamicWindow(DynamicWindowMenu val)  => SwitchDynamicWindow?.Invoke(val);
@@ -40,7 +43,9 @@ partial class GlobalEvents : Node
     public void CallOpenRecipeInvMenu(FormItemSetComponent component)       => OpenRecipeInvMenu?.Invoke(component);
     public void CallFoodModificationMenu(FoodItem val)                      => OpenFoodModificationMenu?.Invoke(val);
     public void CallInvModificationMenu(InventoryItem val)                  => OpenInvModificationMenu?.Invoke(val);
+    public void CallRecipeModificationMenu(Recipe recipe)                   => OpenRecipeModificationMenu?.Invoke(recipe);
     
     public void CallFoodModified(FoodItem item) => FoodModified?.Invoke(item);
     public void CallInvModified(InventoryItem item) => InvModified?.Invoke(item);
+    public void CallRecipeModified(Recipe recipe) => RecipeModified?.Invoke(recipe);
 }

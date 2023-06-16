@@ -8,18 +8,25 @@ partial class CreateRecipeForm : CreateForm<Recipe>
 	{
 		imageComponent = GetNode<FormImageComponent>("Image");
 		base._Ready();
+
+        // #if DEBUG
+        //     GetNode<FormTextEditChanged>("Instructions").SetValue("debug");
+        //     GetNode<FormOptionsComponent>("DishType").SetValue(1);
+        //     GetNode<FormSpinBoxComponent>("Time").SetValue(1);
+        //     imageComponent.SetValue("res://content/button_bg.png");
+        // #endif
 	}
 	
 	public override Recipe CreateObject()
 	{
 		string title = GetNode<FormLineEditComponent>("Title").GetValue;
-		string instuctions = GetNode<TextEdit>("Instructions/TextEdit").Text;
+		string instuctions = GetNode<FormTextEditChanged>("Instructions").GetValue;
 		string imagePath = imageComponent.GetValue;
         ItemSet itemSet = GetNode<FormItemSetComponent>("ItemSet").GetValue;
-		int selectedDishTypeInt = GetNode<OptionButton>("DishType/OptionButton").Selected;
+		int selectedDishTypeInt = GetNode<FormOptionsComponent>("DishType").GetValue;
 		DishType dishType = (DishType)selectedDishTypeInt;
 
-		int time = (int)GetNode<SpinBox>("Time/SpinBox").Value;
+		int time = (int)GetNode<FormSpinBoxComponent>("Time").GetValue;
 
 		// var program = GetNode<Program>("/root/Program");
 		// var foodResult = GetFoodWithCountByString(foodStr, program.ItemsBank.Food);

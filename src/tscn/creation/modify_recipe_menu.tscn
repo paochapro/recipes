@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://doummkcdl4a0c"]
+
+[ext_resource type="PackedScene" uid="uid://sm7w2brycqrl" path="res://src/tscn/creation/modify_menu.tscn" id="1_jpkqc"]
+[ext_resource type="Script" path="res://src/code/gui/creation/ModifyRecipeMenu.cs" id="2_dmip5"]
+[ext_resource type="PackedScene" uid="uid://cbmbjwgtd3qdg" path="res://src/tscn/creation/create_recipe_form.tscn" id="2_wrfhe"]
+
+[node name="ModifyRecipeMenu" instance=ExtResource("1_jpkqc")]
+offset_right = 369.0
+offset_bottom = 647.0
+script = ExtResource("2_dmip5")
+
+[node name="Label" parent="Content/PanelContainer" index="0"]
+text = "Изменить рецепт"
+
+[node name="CreateRecipeForm" parent="Content/FormContainer/MarginContainer" index="0" instance=ExtResource("2_wrfhe")]
+layout_mode = 2
+
+[node name="LineEdit" parent="Content/FormContainer/MarginContainer/CreateRecipeForm/Title" index="1"]
+editable = false
+
+[editable path="Content/FormContainer/MarginContainer/CreateRecipeForm"]
+[editable path="Content/FormContainer/MarginContainer/CreateRecipeForm/Title"]
+[editable path="Content/FormContainer/MarginContainer/CreateRecipeForm/Time"]
+[editable path="Content/FormContainer/MarginContainer/CreateRecipeForm/Instructions"]

@@ -146,7 +146,19 @@ partial class Program : Node
         events.CallRemoveLocalInv(item);
     }
 
-    public void AddRecipe(Recipe recipe) { 
+    public void RecipeModified(Recipe modifyRecipe) 
+    {
+        recipeBank.Replace(r => r.Title == modifyRecipe.Title, modifyRecipe);
+        events.CallRecipeModified(modifyRecipe);
+    }
+
+    public void AddRecipe(Recipe recipe) 
+    {
+        if(recipeBank.Any(r => r.Title == recipe.Title)) {
+            GD.Print("Failed to add recipe: " + recipe.Title);
+            return;
+        }
+
         recipeBank.Add(recipe);
         events.CallNewRecipe(recipe);
     }

@@ -7,6 +7,10 @@ public partial class DynamicWindow : VBoxContainer
         events.SwitchDynamicWindow += func;
         events.OpenFoodModificationMenu += (FoodItem item) => SetWindow("ModifyFoodMenu");
         events.OpenInvModificationMenu += (InventoryItem item) => SetWindow("ModifyInvMenu");
+        events.OpenRecipeModificationMenu += (Recipe item) => {
+            events.CallSwitchSectionA(SectionAMenu.ItemSet);
+            SetWindow("ModifyRecipeMenu");
+        };
     }
 
     void SetWindow(string controlName)
@@ -21,6 +25,10 @@ public partial class DynamicWindow : VBoxContainer
 
     string GetMenuControlName(DynamicWindowMenu menu)
     {
+        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        if(menu == DynamicWindowMenu.RecipeCreation)
+            events.CallSwitchSectionA(SectionAMenu.ItemSet);
+
         return menu switch {
             DynamicWindowMenu.ItemCreation => "ItemCreationTabs",
             DynamicWindowMenu.RecipeCreation => "CreateRecipeMenu",

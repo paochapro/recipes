@@ -7,7 +7,7 @@ partial class BankButton<TItem> : ItemButton<TItem>
 
     protected override void Initialize() {
         modifyPopup = GetNode<ModifyPopup>("ModifyPopup");
-        modifyPopup.SetModificationItem(base.Item);
+        modifyPopup.SetModificationObject(base.Item);
         this.GuiInput += ButtonGuiInput;
     }
 
@@ -15,11 +15,6 @@ partial class BankButton<TItem> : ItemButton<TItem>
     {
         if(@ev is InputEventMouseButton mouseEv)
             if(mouseEv.ButtonIndex == MouseButton.Right && mouseEv.Pressed)
-                OpenModifyPopup(this.GetGlobalMousePosition());
-    }
-
-    void OpenModifyPopup(Vector2 pos) {
-        modifyPopup.Position = (Vector2I)pos;
-        modifyPopup.Popup();
+                modifyPopup.Open(this.GetGlobalMousePosition());
     }
 }

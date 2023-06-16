@@ -1,22 +1,16 @@
-using System.Linq;
-
 static class RecipeSearch
 {
-    static bool orderingEnabled = false;
+    static bool orderingEnabled = true;
 
     public static IEnumerable<Recipe> Search(IEnumerable<Recipe> recipes, SearchInfo searchInfo)
     {
         IEnumerable<Recipe> neededRecipes = GetNeededRecipes(recipes, searchInfo).ToArray();
-
-        var inventoryCompare = new ItemsCompare<InventoryItem>(searchInfo.LocalItemSet.Inventory);
-        var foodCompare = new ItemsCompare<FoodItem>(searchInfo.LocalItemSet.FoodItems);
+        var userItems = searchInfo.LocalItemSet;
 
         IEnumerable<Recipe> result = neededRecipes;
 
-        if(orderingEnabled)
-        {
-            result = neededRecipes
-                .OrderByDescending(r => r.ItemSet.Inventory, inventoryCompare);
+        if(orderingEnabled) {
+            result = RecipeOrdering.OrderRecipes(result, userItems);
         }
 
         return result;
@@ -31,12 +25,13 @@ static class RecipeSearch
 
     public static bool DoesRecipePass(Recipe recipe, SearchInfo info)
     {
+        //bool localItems = RecipePassItemSet(recipe, info.LocalItemSet);
+        //bool filterItems = RecipePassItemSet(recipe, info.FilterItemSet);
+        bool localInvItems = RecipePassItems(recipe.ItemSet.InventoryNames, info.LocalItemSet.InventoryNames);
         bool title = RecipePassTitle(recipe, info.Title);
-        bool localItems = RecipePassItemSet(recipe, info.LocalItemSet);
-        bool filterItems = RecipePassItemSet(recipe, info.FilterItemSet);
         bool dishType = RecipePassDishType(recipe, info.DishType);
         bool time = RecipePassTime(recipe, info.Minutes);
-        return title && localItems && filterItems && dishType && time;
+        return title && dishType && time && localInvItems; //&& localItems && filterItems;
     }
 
     static bool RecipePassTitle(Recipe recipe, string searchTitle)
@@ -60,9 +55,9 @@ static class RecipeSearch
         //If we are searching, then check if recipe contains all search items
         //If we its contains everything - pass
         //If it doesnt - dont pass
-        bool shouldSearch = searchItems.Count() != 0; 
-        bool containsAllSearchItems = searchItems.Except(recipeItems).Count() == 0;
-        bool passes = !shouldSearch || (shouldSearch && containsAllSearchItems);
+        bool shouldSearch = searchItems.Count() != 0;
+        bool recipeContainsUniqueItems = recipeItems.Except(searchItems).Count() != 0;
+        bool passes = !shouldSearch || (shouldSearch && !recipeContainsUniqueItems);
 
         return passes;
     }

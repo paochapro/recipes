@@ -21,19 +21,29 @@ partial class AddRecipeInvInspector : InvInspector, AddItemsInspector<InventoryI
     public void _ConnectEvents(AddItemsInspectorContent<InventoryItem> content)
     {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        var newItemSet = (ItemSet set) => 
+        {
+            foreach(var item in set.Inventory)
+                content.SetLocked(item, true);
+        };
 
-        events.OpenRecipeInvMenu += (FormItemSetComponent newComponent) => {
-            if(currentComponent != null && currentComponent != newComponent) {
+        events.OpenRecipeInvMenu += (FormItemSetComponent newComponent) => 
+        {
+            if(currentComponent != null && currentComponent != newComponent) 
+            {
                 currentComponent.AddedInv -= (i) => content.SetLocked(i, true);
                 currentComponent.RemovedInv -= (i) => content.SetLocked(i, false);
+                currentComponent.NewItemSet -= newItemSet;
             }
 
             this.currentComponent = newComponent;
 
-            currentComponent.AddedInv += (i) => content.SetLocked(i, true); 
+            currentComponent.NewItemSet += newItemSet;
+            currentComponent.AddedInv += (i) => content.SetLocked(i, true);
             currentComponent.RemovedInv += (i) => content.SetLocked(i, false);
 
             UpdateContent();
         };
     }
+
 }

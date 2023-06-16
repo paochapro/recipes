@@ -9,22 +9,24 @@ Find out what exactly causes ".net failed to unload assemblies" error
 + Show list of categories in food and inv creation
 + Remake adding items in recipe creation (not just lineedit)
 + Change menu buttons in ItemSetSection
-+ Remove category fold when all items are removed from this category
 + When item is removed from bank, and local item exists (and recipe have this item) too, we need to popup warning window
 + When adding item, text in search is ignored until its updates
 + Modifying recipes and items
-Finish recipe search
 + File saving and loading
 + Remove scroll container in all subsection in create recipe form
 + Make fold in depedencies warning window for depended recipes
 + Finish recipe card
 + Default alphabetical ordering for recipes and items, for everythin
++ When changing food count in recipe creation, it changes other recipes food count
+Finish recipe search
 
 Minor:
++ Image file dialog file selected event rather than confirmed event
++ When modifying image should be refreshed (not only path)
++ Remove category fold when all items are removed from this category
++ Deleting bank item with right click doesnt show depedencies window
 Autowrap labels in dependency recipes
-Image file dialog file selected event rather than confirmed event
-When modifying image should be refreshed (not only path)
-Deleting bank item with right click doesnt show depedencies window 
+FormItemSetComponent wasnt set in AddRecipeItemInspector
 
 Ask:
 +/- Improve recipe section readability (fold distinction)

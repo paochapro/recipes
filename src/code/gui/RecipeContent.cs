@@ -54,8 +54,6 @@ partial class RecipeContent : VBoxContainer
         var card = recipeCardScene.Instantiate<RecipeCard>();
         fold.MainContainer.AddChild(card);
         card.Initialize(recipe);
-
-        this.ReorderChildren((Fold fold) => fold.Title);
     }
 
     Fold? FindFoldByRecipe(Recipe recipe) {

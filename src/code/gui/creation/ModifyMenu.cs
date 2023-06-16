@@ -1,4 +1,4 @@
-partial class ModifyMenu : PanelContainer
+abstract partial class ModifyMenu : PanelContainer
 {
     #nullable disable
     Button createButton;
@@ -26,5 +26,8 @@ partial class ModifyMenu : PanelContainer
 
         if(form is CreateInvForm invForm)
             program.InvItemModified(invForm.CreateObject());
+
+        if(form is CreateRecipeForm recipeForm)
+            program.RecipeModified(recipeForm.CreateObject());
     }
 }

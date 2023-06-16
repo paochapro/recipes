@@ -15,6 +15,7 @@ partial class RecipeCreationFoodInspector : CountedFoodInspector
     }
 
     protected override void _ChildReady() {
+        formComponent.NewItemSet += (set) => UpdateContent();
         formComponent.AddedFood += (i) => UpdateItem(i);
         formComponent.RemovedFood += (i) => RemoveItem(i);
     }
