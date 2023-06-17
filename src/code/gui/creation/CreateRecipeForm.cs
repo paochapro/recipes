@@ -9,12 +9,12 @@ partial class CreateRecipeForm : CreateForm<Recipe>
 		imageComponent = GetNode<FormImageComponent>("Image");
 		base._Ready();
 
-        // #if DEBUG
-        //     GetNode<FormTextEditChanged>("Instructions").SetValue("debug");
-        //     GetNode<FormOptionsComponent>("DishType").SetValue(1);
-        //     GetNode<FormSpinBoxComponent>("Time").SetValue(1);
-        //     imageComponent.SetValue("res://content/button_bg.png");
-        // #endif
+        #if DEBUG
+            GetNode<FormTextEditChanged>("Instructions").SetValue("debug");
+            GetNode<FormOptionsComponent>("DishType").SetValue(1);
+            GetNode<FormSpinBoxComponent>("Time").SetValue(1);
+            imageComponent.SetValue("res://content/button_bg.png");
+        #endif
 	}
 	
 	public override Recipe CreateObject()

@@ -18,7 +18,12 @@ Find out what exactly causes ".net failed to unload assemblies" error
 + Finish recipe card
 + Default alphabetical ordering for recipes and items, for everythin
 + When changing food count in recipe creation, it changes other recipes food count
-Finish recipe search
++ Update recipe search on different events
++/- Finish recipe search
++/- Improve recipe section readability (fold distinction)
+Highlight met conditions on recipes
+Modifying food count doenst work
+Pressing "Use Local Items" checkbox should not close folds
 
 Minor:
 + Image file dialog file selected event rather than confirmed event
@@ -29,7 +34,6 @@ Autowrap labels in dependency recipes
 FormItemSetComponent wasnt set in AddRecipeItemInspector
 
 Ask:
-+/- Improve recipe section readability (fold distinction)
 + Add that new property to recipes
 Search bar lower case?
 Should recipe creation items inspector distinct categories?
@@ -38,3 +42,4 @@ Later:
 Download recipes and stuff like that
 Ordering options
 Settings
+Autoload

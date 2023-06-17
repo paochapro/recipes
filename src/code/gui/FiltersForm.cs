@@ -4,7 +4,7 @@ partial class FiltersForm : Form
 	{
 		int time = (int)GetNode<FormSpinBoxComponent>("Time").GetValue;
 		int dishTypeIndex = GetNode<FormOptionsComponent>("DishType").GetValue;
-        bool useLocalItems = GetNode<CheckBox>("UseLocalItems").ButtonPressed;
+        bool useLocalItems = GetNode<FormCheckBoxComponent>("UseLocalItems").GetValue;
 		DishType dishType = (DishType)dishTypeIndex;
 
 		var program = GetNode<Program>("/root/Program");

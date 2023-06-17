@@ -1,19 +1,8 @@
 static class RecipeSearch
 {
-    static bool orderingEnabled = true;
-
     public static IEnumerable<Recipe> Search(IEnumerable<Recipe> recipes, SearchInfo searchInfo)
     {
-        IEnumerable<Recipe> neededRecipes = GetNeededRecipes(recipes, searchInfo).ToArray();
-        var userItems = searchInfo.LocalItemSet;
-
-        IEnumerable<Recipe> result = neededRecipes;
-
-        if(orderingEnabled) {
-            result = RecipeOrdering.OrderRecipes(result, userItems);
-        }
-
-        return result;
+        return GetNeededRecipes(recipes, searchInfo).ToArray();
     }
 
     static IEnumerable<Recipe> GetNeededRecipes(IEnumerable<Recipe> recipes, SearchInfo info)

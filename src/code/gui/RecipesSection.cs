@@ -18,29 +18,54 @@ partial class RecipesSection : PanelContainer
 		filters.FormChanged += SearchRecipes;
         titleTb.TextChanged += (msg) => SearchRecipes();
 
-		var program = GetNode<Program>("/root/Program");
-        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.NewRecipe += (r) => UpdateRecipe(r);
-        events.RemoveRecipe += (r) => RemoveRecipe(r);
-        events.FileLoaded += () => this.CallDeferred(RecipesSection.MethodName.SearchRecipes);
+		ConnectEvents();
 	}
 
-    void UpdateRecipe(Recipe recipe) {
-        if(RecipeSearch.DoesRecipePass(recipe, GetSearchInfo()))
-            content.UpdateRecipe(recipe);
+    void ConnectEvents() {
+        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        events.FileLoaded += () => this.CallDeferred(RecipesSection.MethodName.SearchRecipes);
+
+        events.NewRecipe += (r) => UpdateRecipe(r);
+        events.RemoveRecipe += (r) => RemoveRecipe(r);
+        events.RecipeModified += (r) => ModifyRecipe(r);
+
+        //Update search
+        events.NewLocalFood += (i) => Reorder();
+        events.NewLocalInv += (i) => Reorder();
+        events.RemoveLocalFood += (i) => Reorder();
+        events.RemoveLocalInv += (i) => Reorder();
+        events.RemoveBankFood += (i) => Reorder();
+        events.RemoveBankInv += (i) => Reorder();
     }
 
-    void RemoveRecipe(Recipe recipe) {
-        content.RemoveRecipe(recipe);
+    void UpdateRecipe(Recipe recipe) {
+        var info = GetSearchInfo();
+        if(RecipeSearch.DoesRecipePass(recipe, info))
+            content.UpdateRecipe(recipe, info.LocalItemSet);
     }
+
+    void ModifyRecipe(Recipe modified) {
+        var info = GetSearchInfo();
+        if(RecipeSearch.DoesRecipePass(modified, info))
+            content.ModifyRecipe(modified, info.LocalItemSet);
+    }
+
+    void RemoveRecipe(Recipe recipe) => content.RemoveRecipe(recipe);
 
 	void SearchRecipes() {
 		var program = GetNode<Program>("/root/Program");
-		IEnumerable<Recipe> foundRecipes = RecipeSearch.Search(program.RecipeBank, GetSearchInfo());
-		UpdateContent(foundRecipes.ToList());
+        var info = GetSearchInfo();
+        var foundRecipes = RecipeSearch.Search(program.RecipeBank, info);
+		UpdateContent(foundRecipes, info.LocalItemSet);
 	}
 
-    void UpdateContent(IEnumerable<Recipe> recipes) => content.UpdateContent(recipes); 
+    void UpdateContent(IEnumerable<Recipe> recipes, ReadonlyItemSet localItems) { 
+        content.UpdateContent(recipes, localItems); 
+    }
+
+    void Reorder() {
+        content.Reorder(GetSearchInfo().LocalItemSet);
+    }
 
     SearchInfo GetSearchInfo()
     {

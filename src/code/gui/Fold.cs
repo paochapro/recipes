@@ -15,6 +15,8 @@ public partial class Fold : VBoxContainer
 
     public VBoxContainer MainContainer => mainContainer;
 
+    public Label GetLabel() => titleLabel;
+
     [Export]
     public string Title {
         get => titleLabel.Text;

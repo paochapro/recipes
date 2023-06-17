@@ -1,6 +1,3 @@
-using Godot;
-using System;
-
 partial class RecipeContent : VBoxContainer
 {
     [Export] PackedScene? recipeCardScene;
@@ -8,15 +5,17 @@ partial class RecipeContent : VBoxContainer
     const byte foldTabNormalAlpha = 10;
     const byte foldTabHoverAlpha = 25;
 
-	public void UpdateContent(IEnumerable<Recipe> recipes, bool autoExpand = false)
+	public void UpdateContent(IEnumerable<Recipe> recipes, ReadonlyItemSet localItems)
     {
         this.RemoveChildren();
 
         foreach(Recipe recipe in recipes)
-            AddRecipeCard(recipe, autoExpand);
+            AddRecipeCard(recipe);
+
+        Reorder(localItems);
     }
 
-    public void UpdateRecipe(Recipe recipe) 
+    public void UpdateRecipe(Recipe recipe, ReadonlyItemSet localItems) 
     {
         if(FindFoldByRecipe(recipe) != null) {
             GD.PrintErr("Tried to add recipe that content already has [RecipeContent.cs]");
@@ -24,6 +23,25 @@ partial class RecipeContent : VBoxContainer
         }
 
         AddRecipeCard(recipe);
+
+        Reorder(localItems);
+    }
+
+    public void ModifyRecipe(Recipe recipe, ReadonlyItemSet localItems)
+    {
+        var foundFold = FindFoldByRecipe(recipe);
+
+        if(foundFold == null) {
+            GD.PrintErr("Attepmted to modify recipe that doesnt exist in content [RecipeContent.cs]");
+            return;
+        }
+
+        var titleSettings = GetTitleSettings(recipe);
+        var card = foundFold.MainContainer.GetChild<RecipeCard>(0);
+        foundFold.GetLabel().LabelSettings = titleSettings;
+        card.Initialize(recipe, titleSettings);
+
+        Reorder(localItems);
     }
 
     public void RemoveRecipe(Recipe recipe) 
@@ -31,7 +49,7 @@ partial class RecipeContent : VBoxContainer
         var foundFold = FindFoldByRecipe(recipe);
 
         if(foundFold == null) {
-            GD.PrintErr("Tried to remove recipe that content doesnt have [RecipeContent.cs]");
+            GD.PrintErr("Attepmted to remove recipe that doesnt exist in content [RecipeContent.cs]");
             return;
         }
 
@@ -39,24 +57,56 @@ partial class RecipeContent : VBoxContainer
         this.RemoveChild(foundFold);
     }
 
-    void AddRecipeCard(Recipe recipe, bool foldExpanded = false) 
+    void AddRecipeCard(Recipe recipe) 
     {
         if(recipeCardScene == null)
             throw new Exception("No recipe card scene [RecipeContent.cs]");
 
+        var titleSettings = GetTitleSettings(recipe);
+
         Fold fold = new();
         fold.Title = recipe.Title;
-        fold.Expanded = foldExpanded;
         fold.TabNormalAlpha = foldTabNormalAlpha;
         fold.TabHoverAlpha = foldTabHoverAlpha;
+        SetFoldTitleSettings(fold, titleSettings);
         this.AddChild(fold);
 
         var card = recipeCardScene.Instantiate<RecipeCard>();
         fold.MainContainer.AddChild(card);
-        card.Initialize(recipe);
+        card.Initialize(recipe, titleSettings);
+    }
+
+    LabelSettings GetTitleSettings(Recipe recipe)
+    {
+        return new LabelSettings();
     }
 
     Fold? FindFoldByRecipe(Recipe recipe) {
         return GetChildren().Cast<Fold>().FirstOrDefault(f => f.Title == recipe.Title);
+    }
+
+    public void Reorder(ReadonlyItemSet localItems)
+    {
+        var folds = GetChildren().Cast<Fold>();
+
+        var recipes = folds
+            .Select(f => f.MainContainer.GetChild<RecipeCard>(0))
+            .Select(c => c.Recipe);
+
+        var orderedRecipes = RecipeOrdering.OrderRecipes(recipes, localItems).ToList();
+        
+        foreach(var fold in folds)
+        {
+            var recipe = fold.MainContainer.GetChild<RecipeCard>(0).Recipe;
+            var titleColor = HightlightColor.GetRecipeTitleColor(recipe, localItems);
+            SetFoldTitleSettings(fold, new LabelSettings() { FontColor = titleColor } );
+
+            int index = orderedRecipes.IndexOf(recipe);
+            this.MoveChild(fold, index);
+        }
+    }
+
+    public void SetFoldTitleSettings(Fold fold, LabelSettings settings)  {
+        fold.GetLabel().LabelSettings = settings;
     }
 }

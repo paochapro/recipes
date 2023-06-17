@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwyyfiei6p611"]
+[gd_scene load_steps=5 format=3 uid="uid://cwyyfiei6p611"]
 
 [ext_resource type="Script" path="res://src/code/gui/FiltersForm.cs" id="1_brgbw"]
 [ext_resource type="PackedScene" path="res://src/tscn/form_components/form_spinbox_component.tscn" id="2_2u4p1"]
 [ext_resource type="PackedScene" path="res://src/tscn/form_components/form_dish_type.tscn" id="2_yfhyg"]
+[ext_resource type="PackedScene" uid="uid://cteqrgcylnpbf" path="res://src/tscn/form_components/form_check_box_component.tscn" id="4_6qqb6"]
 
 [node name="FiltersForm" type="VBoxContainer"]
 script = ExtResource("1_brgbw")
@@ -16,9 +17,12 @@ layout_mode = 2
 [node name="Label" parent="Time" index="0"]
 text = "Макс. время (мин):"
 
-[node name="UseLocalItems" type="CheckBox" parent="."]
+[node name="UseLocalItems" parent="." instance=ExtResource("4_6qqb6")]
 layout_mode = 2
+
+[node name="CheckBox" parent="UseLocalItems" index="0"]
 text = "Использовать холодильник"
 
 [editable path="DishType"]
 [editable path="Time"]
+[editable path="UseLocalItems"]

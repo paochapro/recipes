@@ -16,9 +16,14 @@ partial class RecipeCard : PanelContainer
     ModifyPopup modifyPopup;
 	#nullable restore
 
-	public void Initialize(Recipe recipe) {
+    public Recipe Recipe => recipe;
+
+	public void Initialize(Recipe recipe, LabelSettings titleSettings) {
         this.recipe = recipe;
+
 		title.Text = recipe.Title;
+        title.LabelSettings = titleSettings;
+
 		time.Text = recipe.Minutes.ToString();
 		dishType.Text = Enum.GetName<DishType>(recipe.DishType);
 		instructions.Text = recipe.Instructions;
@@ -32,22 +37,7 @@ partial class RecipeCard : PanelContainer
 
     public override void _Ready() {
         modifyPopup = GetNode<ModifyPopup>("ModifyPopup");
-        events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.RecipeModified += RecipeModified;
     }
 
     public void OpenModifyPopup() => modifyPopup.Open(this.GetGlobalMousePosition());
-
-    public override void _Notification(int what) {
-        if(what == NotificationPredelete)
-            events.RecipeModified -= RecipeModified;
-    }
-
-    void RecipeModified(Recipe modified) {
-        if(recipe == new Recipe())
-            return;
-
-        if(recipe.Title == modified.Title)
-            Initialize(modified);
-    }
 }
