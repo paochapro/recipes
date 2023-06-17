@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bqv3ngpdutjws"]
+[gd_scene load_steps=12 format=3 uid="uid://bqv3ngpdutjws"]
 
 [ext_resource type="Script" path="res://src/code/gui/RecipeCard.cs" id="1_ll5dl"]
 [ext_resource type="PackedScene" uid="uid://ca17dykpgxxd7" path="res://src/tscn/item_buttons/recipe_food_button.tscn" id="2_yb4i6"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="4_l1c4k"]
 [ext_resource type="Script" path="res://src/code/gui/RecipeCardBanner.cs" id="4_tnm2w"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/RecipeFoodInspector.cs" id="5_go6ks"]
+[ext_resource type="Texture2D" uid="uid://dakglq7iymulu" path="res://content/missing.png" id="5_kh0mr"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/content/derived/SimpleLocalFoodInspectorContent.cs" id="6_hd8u7"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/RecipeInvInspector.cs" id="7_cviot"]
 [ext_resource type="Script" path="res://src/code/gui/inspector/content/derived/SimpleInvInspectorContent.cs" id="8_omi51"]
@@ -40,6 +41,7 @@ mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Content/PanelContainer/Banner"]
 layout_mode = 2
+texture = ExtResource("5_kh0mr")
 expand_mode = 2
 
 [node name="Title" type="Label" parent="Content/PanelContainer/Banner"]

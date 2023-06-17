@@ -23,7 +23,8 @@ partial class RecipesSection : PanelContainer
 
     void ConnectEvents() {
         var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.FileLoaded += () => this.CallDeferred(RecipesSection.MethodName.SearchRecipes);
+
+        events.FileLoaded += () => this.CallDeferred(RecipesSection.MethodName.FileUpdateContent);
 
         events.NewRecipe += (r) => UpdateRecipe(r);
         events.RemoveRecipe += (r) => RemoveRecipe(r);
@@ -56,11 +57,12 @@ partial class RecipesSection : PanelContainer
 		var program = GetNode<Program>("/root/Program");
         var info = GetSearchInfo();
         var foundRecipes = RecipeSearch.Search(program.RecipeBank, info);
-		UpdateContent(foundRecipes, info.LocalItemSet);
+        content.SearchUpdate(foundRecipes, info.LocalItemSet);
 	}
 
-    void UpdateContent(IEnumerable<Recipe> recipes, ReadonlyItemSet localItems) { 
-        content.UpdateContent(recipes, localItems); 
+    void FileUpdateContent()  {
+		var program = GetNode<Program>("/root/Program");
+        content.UpdateContent(program.RecipeBank, GetSearchInfo().LocalItemSet); 
     }
 
     void Reorder() {

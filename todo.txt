@@ -29,10 +29,11 @@ Minor:
 + When modifying image should be refreshed (not only path)
 + Remove category fold when all items are removed from this category
 + Deleting bank item with right click doesnt show depedencies window
++ Notify users when attempt to create item or recipe was failed
++ Pressing "Use Local Items" checkbox should not close folds
 Autowrap labels in dependency recipes
 FormItemSetComponent wasnt set in AddRecipeItemInspector
-Pressing "Use Local Items" checkbox should not close folds
-Notify users when attempt to create item or recipe was failed
+Creating an item does not lock the create button
 
 Ask:
 + Add that new property to recipes

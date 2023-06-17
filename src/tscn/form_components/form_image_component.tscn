@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://d33vl5tuyns45"]
 
-[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_856cf"]
 [ext_resource type="Script" path="res://src/code/gui/form_components/FormImageComponent.cs" id="1_hk0yr"]
 [ext_resource type="PackedScene" uid="uid://ciy5m1774low5" path="res://src/tscn/image_file_dialog.tscn" id="2_tdf7q"]
+[ext_resource type="Texture2D" uid="uid://dakglq7iymulu" path="res://content/missing.png" id="2_ymg3w"]
 [ext_resource type="PackedScene" uid="uid://b44ij26hjakx6" path="res://src/tscn/form_components/form_string_component.tscn" id="4_3pu5y"]
 [ext_resource type="LabelSettings" uid="uid://m8vincgqqsa4" path="res://content/error_label_settings.tres" id="5_lrbyo"]
 
@@ -20,10 +20,11 @@ text = "Изображение"
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="Load"]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 4
-texture = ExtResource("1_856cf")
+texture = ExtResource("2_ymg3w")
+expand_mode = 2
 
 [node name="Button" type="Button" parent="Load"]
 layout_mode = 2

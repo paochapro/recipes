@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://b6753yr6hb1l0"]
 
 [node name="CreateMenu" type="PanelContainer"]
-offset_right = 292.0
-offset_bottom = 442.0
+offset_right = 386.0
+offset_bottom = 529.0
 size_flags_vertical = 3
 
 [node name="Content" type="VBoxContainer" parent="."]
@@ -21,6 +21,13 @@ theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
+
+[node name="ErrorLabel" type="Label" parent="Content"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.872957, 0.31788, 1)
+text = "Объект с таким именем уже существует"
+horizontal_alignment = 1
 
 [node name="Create" type="Button" parent="Content"]
 layout_mode = 2

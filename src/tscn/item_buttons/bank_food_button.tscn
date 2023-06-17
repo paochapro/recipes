@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwqasoufekbqe"]
 
 [ext_resource type="Script" path="res://src/code/gui/item_buttons/BankFoodButton.cs" id="1_to8lw"]
-[ext_resource type="Texture2D" uid="uid://do7eog3ovi26o" path="res://content/salt.svg" id="1_yhcq1"]
+[ext_resource type="Texture2D" uid="uid://dakglq7iymulu" path="res://content/missing.png" id="2_w7ecw"]
 [ext_resource type="PackedScene" uid="uid://bd77t07q21kor" path="res://src/tscn/creation/modify_popup.tscn" id="3_sfkmy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_013ct"]
@@ -22,7 +22,7 @@ texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-texture = ExtResource("1_yhcq1")
+texture = ExtResource("2_w7ecw")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="HBoxContainer"]
@@ -40,4 +40,3 @@ theme_override_colors/font_color = Color(1, 0.435294, 0.368627, 1)
 text = "X"
 
 [node name="ModifyPopup" parent="." instance=ExtResource("3_sfkmy")]
-visible = false

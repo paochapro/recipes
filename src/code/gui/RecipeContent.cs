@@ -57,6 +57,26 @@ partial class RecipeContent : VBoxContainer
         this.RemoveChild(foundFold);
     }
 
+    public void SearchUpdate(IEnumerable<Recipe> recipes, ReadonlyItemSet set)
+    {
+        var folds = GetChildren().Cast<Fold>();
+        var foldTitles = folds.Select(f => f.Title);
+        var addRecipes = recipes.Where(r => !foldTitles.Contains(r.Title));
+
+        foreach(var recipe in addRecipes)
+            AddRecipeCard(recipe);
+
+        var recipesTitles = recipes.Select(r => r.Title);
+        var removeFolds = folds.Where(f => !recipesTitles.Contains(f.Title)).ToArray();
+
+        foreach(var fold in removeFolds) {
+            this.RemoveChild(fold);
+            fold.QueueFree();
+        }
+
+        Reorder(set);
+    }
+
     void AddRecipeCard(Recipe recipe) 
     {
         if(recipeCardScene == null)
