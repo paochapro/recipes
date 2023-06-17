@@ -41,7 +41,7 @@ public partial class FormImageComponent : VBoxContainer, FormComponent<string>
 	public void LoadImage(string path)
 	{
 		try {
-			var texture = GD.Load<Texture2D>(path);
+			var texture = ImageLoader.GetImage(path);
 
 			if(texture == null)
 				throw new Exception("Wrong format for loading image (." + path.Split(".").Last() + ")");

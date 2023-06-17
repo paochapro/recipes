@@ -154,7 +154,7 @@ partial class Program : Node
 
     public void AddRecipe(Recipe recipe) 
     {
-        if(recipeBank.Any(r => r.Title == recipe.Title)) {
+        if(recipeBank.Any(r => r.Title.ToLower() == recipe.Title.ToLower())) {
             GD.Print("Failed to add recipe: " + recipe.Title);
             return;
         }

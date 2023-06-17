@@ -97,9 +97,11 @@ partial class RecipeContent : VBoxContainer
         
         foreach(var fold in folds)
         {
-            var recipe = fold.MainContainer.GetChild<RecipeCard>(0).Recipe;
+            var card = fold.MainContainer.GetChild<RecipeCard>(0);
+            var recipe = card.Recipe;
             var titleColor = HightlightColor.GetRecipeTitleColor(recipe, localItems);
             SetFoldTitleSettings(fold, new LabelSettings() { FontColor = titleColor } );
+            card.InitializeFoodInspector(recipe.ItemSet.Food, localItems);
 
             int index = orderedRecipes.IndexOf(recipe);
             this.MoveChild(fold, index);

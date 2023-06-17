@@ -7,7 +7,7 @@ static class HightlightColor
 
     public static Color GetRecipeTitleColor(Recipe recipe, ReadonlyItemSet set)
     {
-        if(set.Food.Count() == 0)
+        if(IsFoodEmpty(set))
             return DEFAULT;
 
         if(recipe.ItemSet.FoodItems.Any(i => SetContainsItem(i, set) == false))
@@ -21,6 +21,9 @@ static class HightlightColor
 
     public static Color GetFoodColor(FoodWithCount food, ReadonlyItemSet set)
     {
+        if(IsFoodEmpty(set))
+            return DEFAULT;
+
         if(GetItemColor(food.Item, set) == MET_CONDITIONS) 
         {
             var setFood = set.Food.First(i => i.Name == food.Name);
@@ -33,6 +36,8 @@ static class HightlightColor
 
         return NOT_IN_SET;
     }
+
+    public static bool IsFoodEmpty(ReadonlyItemSet set) => set.Food.Count() == 0;
 
     public static Color GetItemColor(Item item, ReadonlyItemSet set)
     {

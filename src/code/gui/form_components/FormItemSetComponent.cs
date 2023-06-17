@@ -1,7 +1,7 @@
 partial class FormItemSetComponent : Container, FormComponent<ItemSet>
 {
     public ItemSet GetValue => new ItemSet(itemSet);
-    public bool IsCompleted => GetValue.Food.Count() != 0 && GetValue.Inventory.Count() != 0;
+    public bool IsCompleted => itemSet.Food.Count() != 0 && itemSet.Inventory.Count() != 0;
     public event Action? ComponentChanged;
 
     public event Action<FoodWithCount>? AddedFood;
@@ -10,9 +10,12 @@ partial class FormItemSetComponent : Container, FormComponent<ItemSet>
     public event Action<InventoryItem>? RemovedInv;
     public event Action<ItemSet>? NewItemSet;
 
+    public ItemSet GetItemSetReference => itemSet;
+
     ItemSet itemSet = new();
 
-    public void SetValue(ItemSet value) {
+    public void SetValue(ItemSet value) 
+    {
         this.itemSet = new ItemSet(value);
         NewItemSet?.Invoke(this.itemSet);
         ComponentChanged?.Invoke();

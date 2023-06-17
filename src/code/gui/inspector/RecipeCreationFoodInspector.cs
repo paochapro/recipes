@@ -4,7 +4,7 @@ partial class RecipeCreationFoodInspector : CountedFoodInspector
     [Export] FormItemSetComponent formComponent;
     #nullable restore
 
-    protected override IEnumerable<FoodWithCount> AvaliableItems => formComponent.GetValue.Food;
+    protected override IEnumerable<FoodWithCount> AvaliableItems => formComponent.GetItemSetReference.Food;
 
     protected override ButtonGenerator<FoodWithCount> ButtonGenerator {
         get {

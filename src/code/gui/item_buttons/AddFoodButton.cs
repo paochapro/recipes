@@ -5,7 +5,7 @@ partial class AddFoodButton : AddItemButton<FoodItem>
         var image = GetNode<TextureRect>("HBoxContainer/TextureRect");
         var nameLabel = GetNode<Label>("HBoxContainer/Label");
 
-        image.Texture = GD.Load<Texture2D>(Item.TexturePath);
+        image.Texture = ImageLoader.GetImage(Item.TexturePath);
         nameLabel.Text = Item.Name;
     }
 }

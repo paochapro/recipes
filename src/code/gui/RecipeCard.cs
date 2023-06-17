@@ -27,13 +27,17 @@ partial class RecipeCard : PanelContainer
 		time.Text = recipe.Minutes.ToString();
 		dishType.Text = Enum.GetName<DishType>(recipe.DishType);
 		instructions.Text = recipe.Instructions;
-		image.Texture = GD.Load<Texture2D>(recipe.ImageTextureUID);
+		image.Texture = ImageLoader.GetImage(recipe.ImageTextureUID);
 
-        foodInspector.Initialize(recipe.ItemSet.Food);
+        foodInspector.Initialize(recipe.ItemSet.Food, new ItemSet());
         invInspector.Initialize(recipe.ItemSet.Inventory);
 
         modifyPopup.SetModificationObject(recipe);
 	}
+
+    public void InitializeFoodInspector(IEnumerable<FoodWithCount> food, ReadonlyItemSet set) {
+        foodInspector.Initialize(food, set);
+    }
 
     public override void _Ready() {
         modifyPopup = GetNode<ModifyPopup>("ModifyPopup");

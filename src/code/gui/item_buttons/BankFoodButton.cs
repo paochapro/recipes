@@ -7,7 +7,7 @@ partial class BankFoodButton : BankButton<FoodItem>
         var button = GetNode<Button>("HBoxContainer/Button");
 
 		nameLabel.Text = Item.Name;
-		image.Texture = GD.Load<Texture2D>(Item.TexturePath);
+		image.Texture = ImageLoader.GetImage(Item.TexturePath);
 
         base.Initialize();        
     }

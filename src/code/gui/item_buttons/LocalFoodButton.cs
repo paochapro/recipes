@@ -7,7 +7,7 @@ partial class LocalFoodButton : ItemButton<FoodWithCount>
         var food = base.Item;
 
 		nameLabel.Text = food.Item.Name;
-		image.Texture = GD.Load<Texture2D>(food.Item.TexturePath);
+		image.Texture = ImageLoader.GetImage(food.Item.TexturePath);
 
 		//Spinbox change count function
 		Action<double> changeCount = (double value) => {

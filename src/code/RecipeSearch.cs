@@ -28,7 +28,7 @@ static class RecipeSearch
         if(searchTitle == "")
             return true;
 
-        return recipe.Title.Contains(searchTitle);
+        return recipe.Title.ToLower().Contains(searchTitle.ToLower());
     }
 
     static bool RecipePassItemSet(Recipe recipe, ReadonlyItemSet searchItemSet)

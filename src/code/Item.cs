@@ -1,5 +1,3 @@
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 using Newtonsoft.Json;
 
 interface Item {
@@ -72,9 +70,9 @@ class ItemSet : ReadonlyItemSet {
     }
 
     public override string ToString() { 
-        string food = string.Join(",", FoodNames);
+        string food = string.Join(",", Food.Select(f => f.Name + f.Count));
         string inv = string.Join(",", InventoryNames);
-        return $"ItemSet(Food:{food}, Inv:{inv})";
+        return $"ItemSet(Food: {food}, Inv:{inv})";
     }
 
     public ItemSet() 
@@ -120,8 +118,8 @@ class ItemNameEqualityComparer<TItem> : IEqualityComparer<TItem>
             return true;
         }
 
-        return x.Name == y.Name;
+        return x.Name.ToLower() == y.Name.ToLower();
     }
 
-    public int GetHashCode([DisallowNull] TItem obj) => obj.Name.GetHashCode();
+    public int GetHashCode(TItem obj) => obj.Name.GetHashCode();
 }

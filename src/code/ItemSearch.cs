@@ -15,13 +15,13 @@ static class ItemSearch
         var groups = avaliableItems.GroupBy(i => i.Category);
         var categories = avaliableItems.GroupBy(i => i.Category).Select(c => c.Key);
 
-        IGrouping<string, Item>? group = groups.FirstOrDefault(c => c.Key == category);
+        IGrouping<string, Item>? group = groups.FirstOrDefault(c => c.Key.ToLower() == category.ToLower());
 
         return group;
     }
 
     public static bool ItemPasses(Item item, string text)
     {
-        return item.Name.Contains(text);
+        return item.Name.ToLower().Contains(text.ToLower());
     }
 }

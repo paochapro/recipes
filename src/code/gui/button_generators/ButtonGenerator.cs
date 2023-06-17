@@ -36,3 +36,25 @@ class AddItemButtonGenerator<TItem> : ButtonGenerator<TItem>
         return button;
     }
 }
+
+class RecipeButtonGenerator<TItem> : ButtonGenerator<TItem>
+    where TItem : Item
+{
+    Func<TItem, LabelSettings> getSettings;
+
+    public RecipeButtonGenerator(
+        PackedScene buttonScene, 
+        Action<TItem> onButtonPressed, 
+        Func<TItem, LabelSettings> getSettings) 
+        : base(buttonScene, onButtonPressed)
+    {
+        this.getSettings = getSettings;
+    }
+
+    public override Control GetButton(TItem item) {
+        var button = buttonScene.Instantiate<ItemButton<TItem>>();
+        button.ButtonInitialize(item, onButtonPressed);
+        button.GetNode<Label>("HBoxContainer/Label").LabelSettings = getSettings(item);
+        return button;
+    }
+}

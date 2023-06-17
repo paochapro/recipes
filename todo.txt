@@ -19,11 +19,10 @@ Find out what exactly causes ".net failed to unload assemblies" error
 + Default alphabetical ordering for recipes and items, for everythin
 + When changing food count in recipe creation, it changes other recipes food count
 + Update recipe search on different events
++ Modifying food count doenst work
++ Highlight met conditions on recipes
 +/- Finish recipe search
 +/- Improve recipe section readability (fold distinction)
-Highlight met conditions on recipes
-Modifying food count doenst work
-Pressing "Use Local Items" checkbox should not close folds
 
 Minor:
 + Image file dialog file selected event rather than confirmed event
@@ -32,10 +31,12 @@ Minor:
 + Deleting bank item with right click doesnt show depedencies window
 Autowrap labels in dependency recipes
 FormItemSetComponent wasnt set in AddRecipeItemInspector
+Pressing "Use Local Items" checkbox should not close folds
+Notify users when attempt to create item or recipe was failed
 
 Ask:
 + Add that new property to recipes
-Search bar lower case?
++ Search bar lower case?
 Should recipe creation items inspector distinct categories?
 
 Later:
@@ -43,3 +44,4 @@ Download recipes and stuff like that
 Ordering options
 Settings
 Autoload
+Comparison bar •••
