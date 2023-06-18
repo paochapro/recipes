@@ -33,6 +33,7 @@ text = "Макс. время (мин):"
 
 [node name="ItemSet" parent="." instance=ExtResource("7_h3kel")]
 layout_mode = 2
+size_flags_vertical = 1
 
 [node name="Instructions" parent="." instance=ExtResource("6_f35m8")]
 layout_mode = 2

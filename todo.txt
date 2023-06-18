@@ -32,10 +32,11 @@ Minor:
 + Notify users when attempt to create item or recipe was failed
 + Pressing "Use Local Items" checkbox should not close folds
 + Creating an item does not lock the create button
++ Spinboxes value is limited to 100
 +/- Issues when loading file
 Autowrap labels in dependency recipes
 FormItemSetComponent wasnt set in AddRecipeItemInspector
-Spinboxes value is limited to 100
+Issues with images when removing them
 
 Ask:
 + Add that new property to recipes
