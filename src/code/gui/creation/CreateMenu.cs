@@ -12,6 +12,11 @@ partial class CreateMenu : PanelContainer
         errorLabel = GetNode<Label>("Content/ErrorLabel");
         form = GetNode("Content/FormContainer/MarginContainer").GetChild<Form>(0);
         form.FormChanged += () => UpdateCreateButton();
+
+        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+        events.RemoveBankFood += (i) => UpdateCreateButton();
+        events.RemoveBankInv += (i) => UpdateCreateButton();
+        events.RemoveRecipe += (i) => UpdateCreateButton();
 	}
 
     void UpdateCreateButton() {

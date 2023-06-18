@@ -40,6 +40,7 @@ layout_mode = 2
 mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Content/PanelContainer/Banner"]
+texture_filter = 1
 layout_mode = 2
 texture = ExtResource("5_kh0mr")
 expand_mode = 2

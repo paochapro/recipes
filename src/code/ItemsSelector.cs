@@ -1,5 +1,3 @@
-using System.Linq;
-
 static class ItemsSelector
 {
     public static ItemBank GetRandomItemSet(ItemsSelectorInfo info)

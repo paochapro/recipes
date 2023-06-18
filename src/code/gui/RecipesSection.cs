@@ -30,13 +30,13 @@ partial class RecipesSection : PanelContainer
         events.RemoveRecipe += (r) => RemoveRecipe(r);
         events.RecipeModified += (r) => ModifyRecipe(r);
 
-        //Update search
         events.NewLocalFood += (i) => Reorder();
-        events.NewLocalInv += (i) => Reorder();
         events.RemoveLocalFood += (i) => Reorder();
-        events.RemoveLocalInv += (i) => Reorder();
         events.RemoveBankFood += (i) => Reorder();
         events.RemoveBankInv += (i) => Reorder();
+
+        events.NewLocalInv += (i) => SearchRecipes();
+        events.RemoveLocalInv += (i) => SearchRecipes();
     }
 
     void UpdateRecipe(Recipe recipe) {

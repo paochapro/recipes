@@ -7,4 +7,5 @@ size = Vector2i(568, 398)
 visible = true
 ok_button_text = "Open"
 file_mode = 0
+access = 2
 filters = PackedStringArray("*.svg; SVG", "*.png; PNG", "*.jpg; JPEG")

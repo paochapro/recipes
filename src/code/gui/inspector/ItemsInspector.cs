@@ -23,7 +23,7 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 		//content.UpdateContent(AvaliableItems, ButtonGenerator);
 
         events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        events.FileLoaded += () => this.CallDeferred(ItemsInspector<TItem>.MethodName.UpdateContent);
+        events.FileLoaded += CallDeferredUpdateContent;
 
         if( this is AddItemsInspector<TItem> addItemsInspector &&
             content is AddItemsInspectorContent<TItem> addContent)
@@ -35,9 +35,15 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
         _ChildReady();
 	}
 
+    void CallDeferredUpdateContent() {
+        this.CallDeferred(ItemsInspector<TItem>.MethodName.UpdateContent);
+    }
+
     public override void _Notification(int what) {
-        if(what == NotificationPredelete)
+        if(what == NotificationPredelete) {
+            events.FileLoaded -= CallDeferredUpdateContent;
             RemoveBankEvents(events);
+        }
     }
 
 	protected void OnSearchTextChanged(string text)

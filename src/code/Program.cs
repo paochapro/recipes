@@ -18,16 +18,16 @@ partial class Program : Node
         GD.Print("start program");
 
         //Debug
-        string itemsJsonFile = "content/items.json"; 
-        var items = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
-        itemsBank = items;
-        localItems = ItemSetGenerator.SelectAllFromBank(itemsBank, 1);
+        // string itemsJsonFile = "content/items.json"; 
+        // var items = ItemsFromJson.GetItemsFromJson(itemsJsonFile);
+        // itemsBank = items;
+        // localItems = ItemSetGenerator.SelectAllFromBank(itemsBank, 1);
 
-        //TODO: Debug this, and remove
-        var itemset = ItemSetGenerator.GenerateItemSet(new ItemsSelectorInfo(itemsBank, 0.5f, 0.5f));
-        recipeBank = new List<Recipe>();
-        Recipe testRecipe = new("Test Recipe", "1. Hello\n2. Goodbye", "res://content/tomato.svg", 20, itemset, DishType.Second);
-        recipeBank.Add(testRecipe);
+        // //TODO: Debug this, and remove
+        // var itemset = ItemSetGenerator.GenerateItemSet(new ItemsSelectorInfo(itemsBank, 0.5f, 0.5f));
+        // recipeBank = new List<Recipe>();
+        // Recipe testRecipe = new("Test Recipe", "1. Hello\n2. Goodbye", "res://content/tomato.svg", 20, itemset, DishType.Second);
+        // recipeBank.Add(testRecipe);
     }
 
     public void LoadFileTable(FileTable fileTable)
@@ -44,7 +44,7 @@ partial class Program : Node
     public override void _Ready()
     {
         events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        this.CallDeferred(Program.MethodName.DebugFileUpdate);
+        //this.CallDeferred(Program.MethodName.DebugFileUpdate);
     }
 
     void DebugFileUpdate() => events.CallFileLoaded();

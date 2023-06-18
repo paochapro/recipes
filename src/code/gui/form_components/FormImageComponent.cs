@@ -44,7 +44,7 @@ public partial class FormImageComponent : VBoxContainer, FormComponent<string>
 			var texture = ImageLoader.GetImage(path);
 
 			if(texture == null)
-				throw new Exception("Wrong format for loading image (." + path.Split(".").Last() + ")");
+				throw new Exception("Couldn't load image: " + path);
 
             imagePath.SetValue(path);
 			previewImage.Texture = texture;
@@ -53,7 +53,7 @@ public partial class FormImageComponent : VBoxContainer, FormComponent<string>
 		}
 		catch(Exception ex)
 		{
-			GD.PushError("Exception in [CreateFoodForm.cs]: " + ex.Message);
+			GD.PushError("Exception in [FormImageComponent]: " + ex.Message);
             ShowErrorMessage("Не удалось загрузить изображение.");
 		}
 	}

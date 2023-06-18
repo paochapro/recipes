@@ -20,7 +20,6 @@ partial class GlobalEvents : Node
     public event Action<InventoryItem>?         OpenInvModificationMenu;
     public event Action<Recipe>?                OpenRecipeModificationMenu;
 
-
     public event Action<FoodItem>? FoodModified;
     public event Action<InventoryItem>? InvModified;
     public event Action<Recipe>? RecipeModified;
@@ -49,3 +48,9 @@ partial class GlobalEvents : Node
     public void CallInvModified(InventoryItem item) => InvModified?.Invoke(item);
     public void CallRecipeModified(Recipe recipe) => RecipeModified?.Invoke(recipe);
 }
+
+record DependencyWarningEventArgs(
+    Item BankItem,
+    Item? LocalItem, 
+    IEnumerable<Recipe> Recipes
+);

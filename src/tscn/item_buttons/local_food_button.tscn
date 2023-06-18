@@ -30,4 +30,5 @@ script = ExtResource("2_q36hj")
 layout_mode = 2
 size_flags_vertical = 4
 theme = SubResource("Theme_y8wek")
+max_value = 999.0
 suffix = "x"

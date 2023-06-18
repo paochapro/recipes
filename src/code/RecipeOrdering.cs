@@ -17,8 +17,8 @@ static class RecipeOrdering
 
         return recipes
             .OrderBy            (foodItems, missingItemsCompare)
-            .ThenByDescending   (foodItems, totalFoodItemsCompare)
             .ThenBy             (food, lackFoodCompare)
+            .ThenByDescending   (foodItems, totalFoodItemsCompare)
             .ThenByDescending   (food, foodCountCompare)
             .ThenBy             (invItems, totalInvItemsCompare)
             .ThenBy             (r => r.Title);
