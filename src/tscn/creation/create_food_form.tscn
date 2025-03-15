@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://cf5vue5eeutg6"]
 
-[ext_resource type="Script" path="res://src/code/gui/creation/CreateFoodForm.cs" id="1_sl3de"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_image_component.tscn" id="2_heorf"]
+[ext_resource type="Script" uid="uid://b2wtiucgjd35h" path="res://src/code/gui/creation/CreateFoodForm.cs" id="1_sl3de"]
+[ext_resource type="PackedScene" uid="uid://d33vl5tuyns45" path="res://src/tscn/form_components/form_image_component.tscn" id="2_heorf"]
 [ext_resource type="PackedScene" path="res://src/tscn/form_components/form_food_category_component.tscn" id="3_wxhsa"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_string_component.tscn" id="4_r47to"]
+[ext_resource type="PackedScene" uid="uid://b44ij26hjakx6" path="res://src/tscn/form_components/form_string_component.tscn" id="4_r47to"]
 
 [node name="CreateFoodForm" type="VBoxContainer"]
 offset_right = 40.0

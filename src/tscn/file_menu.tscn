@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bj5njors51t8h"]
 
-[ext_resource type="Script" path="res://src/code/FileManager.cs" id="1_4c01i"]
-[ext_resource type="Script" path="res://src/code/gui/FileMenu.cs" id="1_uhn8y"]
+[ext_resource type="Script" uid="uid://2b2ovqtyecsn" path="res://src/code/FileManager.cs" id="1_4c01i"]
+[ext_resource type="Script" uid="uid://dq2ia765dnkuw" path="res://src/code/gui/FileMenu.cs" id="1_uhn8y"]
 [ext_resource type="PackedScene" uid="uid://ds4srjn0cchvl" path="res://src/tscn/open_table_file_dialog.tscn" id="3_cgyme"]
 [ext_resource type="PackedScene" uid="uid://3iy8jpfvj6mk" path="res://src/tscn/save_table_file_dialog.tscn" id="4_r6aw2"]
 

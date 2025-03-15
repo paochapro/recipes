@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://b5s1ob37srd6l"]
 
-[ext_resource type="Script" path="res://src/code/gui/item_buttons/BankInvButton.cs" id="1_iq14x"]
+[ext_resource type="Script" uid="uid://cgxhckj6kagcp" path="res://src/code/gui/item_buttons/BankInvButton.cs" id="1_iq14x"]
 [ext_resource type="PackedScene" uid="uid://bd77t07q21kor" path="res://src/tscn/creation/modify_popup.tscn" id="2_lb1un"]
 
 [node name="InvButton" type="HBoxContainer" node_paths=PackedStringArray("button")]

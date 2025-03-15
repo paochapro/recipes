@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ug5bvmn7gfv4"]
 
-[ext_resource type="Script" path="res://src/code/gui/item_buttons/RecipeInvButton.cs" id="1_734pu"]
+[ext_resource type="Script" uid="uid://cwwlhfnyfausi" path="res://src/code/gui/item_buttons/RecipeInvButton.cs" id="1_734pu"]
 
 [node name="RecipeInvButton" type="HBoxContainer" node_paths=PackedStringArray("button")]
 custom_minimum_size = Vector2(0, 40)

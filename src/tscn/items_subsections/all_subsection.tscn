@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://b3x6gvht1pcxu"]
 
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="1_mbbrs"]
+[ext_resource type="Script" uid="uid://dyc1othva0lj2" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="1_mbbrs"]
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsections/items_subsection.tscn" id="1_vnm3k"]
-[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="2_im3na"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/content/FoodInspectorContent.cs" id="4_ucyhp"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/BankFoodInspector.cs" id="4_xd7dk"]
+[ext_resource type="Script" uid="uid://cflgtfqdfqdq5" path="res://src/code/gui/Fold.cs" id="2_im3na"]
+[ext_resource type="Script" uid="uid://desivbsurxx8y" path="res://src/code/gui/inspector/content/FoodInspectorContent.cs" id="4_ucyhp"]
+[ext_resource type="Script" uid="uid://cmdinvhivxdcq" path="res://src/code/gui/inspector/BankFoodInspector.cs" id="4_xd7dk"]
 [ext_resource type="PackedScene" uid="uid://dwqasoufekbqe" path="res://src/tscn/item_buttons/bank_food_button.tscn" id="5_3mw3d"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/content/InvInspectorContent.cs" id="5_t7w8m"]
+[ext_resource type="Script" uid="uid://m6ulmky2dnnj" path="res://src/code/gui/inspector/content/InvInspectorContent.cs" id="5_t7w8m"]
 [ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="7_qaljd"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/BankInvInspector.cs" id="7_sy3dc"]
+[ext_resource type="Script" uid="uid://byeu2c7um760a" path="res://src/code/gui/inspector/BankInvInspector.cs" id="7_sy3dc"]
 
 [node name="AllSubsection" node_paths=PackedStringArray("foodLineEdit", "invLineEdit") instance=ExtResource("1_vnm3k")]
 offset_right = 288.0

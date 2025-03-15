@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dq2d0ri0gpi2t"]
 
 [ext_resource type="PackedScene" uid="uid://bdi6vt0i5rhjj" path="res://src/tscn/inspector/recipe_items_menu.tscn" id="1_dlgqp"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/AddRecipeFoodInspector.cs" id="2_a2fsg"]
+[ext_resource type="Script" uid="uid://bij6expufboii" path="res://src/code/gui/inspector/AddRecipeFoodInspector.cs" id="2_a2fsg"]
 [ext_resource type="PackedScene" uid="uid://cneae2gdwgslb" path="res://src/tscn/item_buttons/add_food_button.tscn" id="3_teh47"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/content/AddFoodInspectorContent.cs" id="4_mt2wc"]
+[ext_resource type="Script" uid="uid://c1whawdf8me7" path="res://src/code/gui/inspector/content/AddFoodInspectorContent.cs" id="4_mt2wc"]
 
 [node name="RecipeFood" instance=ExtResource("1_dlgqp")]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cteqrgcylnpbf"]
 
-[ext_resource type="Script" path="res://src/code/gui/form_components/FormCheckBoxComponent.cs" id="1_cdxhg"]
+[ext_resource type="Script" uid="uid://dnvygdy1o42ge" path="res://src/code/gui/form_components/FormCheckBoxComponent.cs" id="1_cdxhg"]
 
 [node name="FormCheckBoxComponent" type="HBoxContainer"]
 offset_right = 40.0

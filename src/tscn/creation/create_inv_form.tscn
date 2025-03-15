@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdqaftq3buu7o"]
 
-[ext_resource type="Script" path="res://src/code/gui/creation/CreateInvForm.cs" id="1_1v7f2"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_string_component.tscn" id="2_4wiuk"]
+[ext_resource type="Script" uid="uid://djua42u08jv3m" path="res://src/code/gui/creation/CreateInvForm.cs" id="1_1v7f2"]
+[ext_resource type="PackedScene" uid="uid://b44ij26hjakx6" path="res://src/tscn/form_components/form_string_component.tscn" id="2_4wiuk"]
 [ext_resource type="PackedScene" path="res://src/tscn/form_components/form_inv_category_component.tscn" id="3_7oos0"]
 
 [node name="CreateInvForm" type="VBoxContainer"]

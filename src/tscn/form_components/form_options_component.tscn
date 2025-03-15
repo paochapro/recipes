@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=2 format=3 uid="uid://clth0kba6p8ih"]
 
-[ext_resource type="Script" path="res://src/code/gui/form_components/FormOptionsComponent.cs" id="1_7q13x"]
+[ext_resource type="Script" uid="uid://bgqhcll1fxwxs" path="res://src/code/gui/form_components/FormOptionsComponent.cs" id="1_7q13x"]
 
 [node name="Options" type="HBoxContainer"]
 script = ExtResource("1_7q13x")

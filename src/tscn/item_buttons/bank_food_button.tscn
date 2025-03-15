@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwqasoufekbqe"]
 
-[ext_resource type="Script" path="res://src/code/gui/item_buttons/BankFoodButton.cs" id="1_to8lw"]
+[ext_resource type="Script" uid="uid://dg8tvc8snoy0y" path="res://src/code/gui/item_buttons/BankFoodButton.cs" id="1_to8lw"]
 [ext_resource type="Texture2D" uid="uid://dakglq7iymulu" path="res://content/missing.png" id="2_w7ecw"]
 [ext_resource type="PackedScene" uid="uid://bd77t07q21kor" path="res://src/tscn/creation/modify_popup.tscn" id="3_sfkmy"]
 

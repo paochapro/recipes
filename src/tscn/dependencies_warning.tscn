@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://bo1qhe7f6lk0g"]
 
-[ext_resource type="Script" path="res://src/code/gui/DependenciesWarning.cs" id="1_s7ewk"]
+[ext_resource type="Script" uid="uid://cuba5n87tojd2" path="res://src/code/gui/DependenciesWarning.cs" id="1_s7ewk"]
 [ext_resource type="PackedScene" uid="uid://ca17dykpgxxd7" path="res://src/tscn/item_buttons/recipe_food_button.tscn" id="2_winh4"]
 [ext_resource type="PackedScene" uid="uid://ug5bvmn7gfv4" path="res://src/tscn/item_buttons/recipe_inv_button.tscn" id="3_skvc0"]
-[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="4_c11tl"]
+[ext_resource type="Script" uid="uid://cflgtfqdfqdq5" path="res://src/code/gui/Fold.cs" id="4_c11tl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nafi"]
 

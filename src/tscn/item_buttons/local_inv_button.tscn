@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://q2psm374g6p7"]
 
-[ext_resource type="Script" path="res://src/code/gui/item_buttons/LocalInvButton.cs" id="1_02e74"]
+[ext_resource type="Script" uid="uid://co2s65yfjhnhk" path="res://src/code/gui/item_buttons/LocalInvButton.cs" id="1_02e74"]
 
 [node name="InvButton" type="HBoxContainer" node_paths=PackedStringArray("button")]
 offset_right = 439.0

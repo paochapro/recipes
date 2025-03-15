@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b44ij26hjakx6"]
 
-[ext_resource type="Script" path="res://src/code/gui/form_components/FormLineEditComponent.cs" id="1_30goj"]
+[ext_resource type="Script" uid="uid://dgl3pktio72xb" path="res://src/code/gui/form_components/FormLineEditComponent.cs" id="1_30goj"]
 
 [node name="String" type="HBoxContainer"]
 script = ExtResource("1_30goj")

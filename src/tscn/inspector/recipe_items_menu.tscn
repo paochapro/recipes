@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bdi6vt0i5rhjj"]
 
-[ext_resource type="Script" path="res://src/code/gui/SwitchMenuButton.cs" id="1_m733f"]
+[ext_resource type="Script" uid="uid://ce0iaqi6iqrjj" path="res://src/code/gui/SwitchMenuButton.cs" id="1_m733f"]
 [ext_resource type="PackedScene" uid="uid://cwui08h0lmfae" path="res://src/tscn/search_bar.tscn" id="2_21iky"]
 
 [node name="RecipeItemsMenu" type="PanelContainer"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cwyyfiei6p611"]
 
-[ext_resource type="Script" path="res://src/code/gui/FiltersForm.cs" id="1_brgbw"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_spinbox_component.tscn" id="2_2u4p1"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_dish_type.tscn" id="2_yfhyg"]
+[ext_resource type="Script" uid="uid://t0w4ynuxwmq1" path="res://src/code/gui/FiltersForm.cs" id="1_brgbw"]
+[ext_resource type="PackedScene" uid="uid://b5h36qhikp10o" path="res://src/tscn/form_components/form_spinbox_component.tscn" id="2_2u4p1"]
+[ext_resource type="PackedScene" uid="uid://cw2glty0g41p4" path="res://src/tscn/form_components/form_dish_type.tscn" id="2_yfhyg"]
 [ext_resource type="PackedScene" uid="uid://cteqrgcylnpbf" path="res://src/tscn/form_components/form_check_box_component.tscn" id="4_6qqb6"]
 
 [node name="FiltersForm" type="VBoxContainer"]

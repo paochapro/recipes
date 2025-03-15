@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://sm7w2brycqrl" path="res://src/tscn/creation/modify_menu.tscn" id="1_kj687"]
 [ext_resource type="PackedScene" uid="uid://cf5vue5eeutg6" path="res://src/tscn/creation/create_food_form.tscn" id="2_1m48y"]
-[ext_resource type="Script" path="res://src/code/gui/creation/ModifyFoodMenu.cs" id="2_kwcuy"]
+[ext_resource type="Script" uid="uid://c36rmtnvpc8t2" path="res://src/code/gui/creation/ModifyFoodMenu.cs" id="2_kwcuy"]
 
 [node name="ModifyFoodMenu" instance=ExtResource("1_kj687")]
 script = ExtResource("2_kwcuy")

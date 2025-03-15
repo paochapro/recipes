@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://cfjn6odqnd345"]
 
-[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="1_75ns0"]
-[ext_resource type="Script" path="res://src/code/gui/form_components/FormItemSetComponent.cs" id="1_jh6tj"]
-[ext_resource type="Script" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="2_5n088"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/RecipeCreationFoodInspector.cs" id="4_0whuq"]
+[ext_resource type="Script" uid="uid://cflgtfqdfqdq5" path="res://src/code/gui/Fold.cs" id="1_75ns0"]
+[ext_resource type="Script" uid="uid://r18i2t1c4l2i" path="res://src/code/gui/form_components/FormItemSetComponent.cs" id="1_jh6tj"]
+[ext_resource type="Script" uid="uid://dyc1othva0lj2" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="2_5n088"]
+[ext_resource type="Script" uid="uid://bgonce2du1cum" path="res://src/code/gui/inspector/RecipeCreationFoodInspector.cs" id="4_0whuq"]
 [ext_resource type="PackedScene" uid="uid://mcwt0xjk21df" path="res://src/tscn/item_buttons/local_food_button.tscn" id="5_7ip4t"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/RecipeCreationInvInspector.cs" id="5_ljc7w"]
+[ext_resource type="Script" uid="uid://8fxrvldb1gkh" path="res://src/code/gui/inspector/RecipeCreationInvInspector.cs" id="5_ljc7w"]
 [ext_resource type="PackedScene" uid="uid://dpjq0bsmrengm" path="res://src/tscn/control_panel.tscn" id="6_s6olh"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/content/derived/SimpleLocalFoodInspectorContent.cs" id="6_wefjd"]
+[ext_resource type="Script" uid="uid://c4woybkfsv5c1" path="res://src/code/gui/inspector/content/derived/SimpleLocalFoodInspectorContent.cs" id="6_wefjd"]
 [ext_resource type="PackedScene" uid="uid://q2psm374g6p7" path="res://src/tscn/item_buttons/local_inv_button.tscn" id="8_0mab5"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/content/derived/SimpleInvInspectorContent.cs" id="9_mljcq"]
+[ext_resource type="Script" uid="uid://dm71s4veogeli" path="res://src/code/gui/inspector/content/derived/SimpleInvInspectorContent.cs" id="9_mljcq"]
 
 [node name="FormItemSetComponent" type="VBoxContainer"]
 offset_right = 290.0

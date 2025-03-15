@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtaehblr1yfpd"]
 
 [ext_resource type="PackedScene" uid="uid://60apnml35xmh" path="res://src/tscn/inspector/item_inspector_menu.tscn" id="1_4umnr"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/AddLocalInvInspector.cs" id="2_714h7"]
-[ext_resource type="Script" path="res://src/code/gui/inspector/content/AddInvInspectorContent.cs" id="3_hwy3y"]
+[ext_resource type="Script" uid="uid://ct50itvfohwvy" path="res://src/code/gui/inspector/AddLocalInvInspector.cs" id="2_714h7"]
+[ext_resource type="Script" uid="uid://kv6fypkcna5c" path="res://src/code/gui/inspector/content/AddInvInspectorContent.cs" id="3_hwy3y"]
 [ext_resource type="PackedScene" uid="uid://bm4yde73bxvs7" path="res://src/tscn/item_buttons/add_inv_button.tscn" id="3_iqph5"]
 
 [node name="InvInspectorMenu" instance=ExtResource("1_4umnr")]

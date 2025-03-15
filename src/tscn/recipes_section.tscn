@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://ced2qhfiu2nk1"]
 
 [ext_resource type="PackedScene" uid="uid://dpjq0bsmrengm" path="res://src/tscn/control_panel.tscn" id="1_8x03f"]
-[ext_resource type="Script" path="res://src/code/gui/RecipeContent.cs" id="1_k41t1"]
-[ext_resource type="Script" path="res://src/code/gui/RecipesSection.cs" id="1_wpon4"]
+[ext_resource type="Script" uid="uid://b3ct6noyhhm8d" path="res://src/code/gui/RecipeContent.cs" id="1_k41t1"]
+[ext_resource type="Script" uid="uid://c2fgybi1exyxh" path="res://src/code/gui/RecipesSection.cs" id="1_wpon4"]
 [ext_resource type="PackedScene" uid="uid://bqv3ngpdutjws" path="res://src/tscn/recipe_card.tscn" id="2_4kfgs"]
-[ext_resource type="Script" path="res://src/code/gui/Fold.cs" id="5_sk41l"]
+[ext_resource type="Script" uid="uid://cflgtfqdfqdq5" path="res://src/code/gui/Fold.cs" id="5_sk41l"]
 [ext_resource type="PackedScene" uid="uid://cwyyfiei6p611" path="res://src/tscn/filters_form.tscn" id="6_143f0"]
 
 [node name="RecipesSection" type="PanelContainer"]
