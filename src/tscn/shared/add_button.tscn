@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ih3dnm8jbqyn"]
+
+[ext_resource type="Texture2D" uid="uid://dqcvnhlb6oifi" path="res://content/add.svg" id="1_ws8q3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2g60g"]
+atlas = ExtResource("1_ws8q3")
+region = Rect2(4, 4, 16, 16)
+
+[node name="AddButton" type="Button"]
+modulate = Color(0.47451, 0.721569, 0.168627, 1)
+size_flags_horizontal = 10
+size_flags_vertical = 4
+icon = SubResource("AtlasTexture_2g60g")

@@ -1,3 +1,4 @@
+//Foods and inventory items in recipe creation menu
 partial class FormItemSetComponent : Container, FormComponent<ItemSet>
 {
     public ItemSet GetValue => new ItemSet(itemSet);

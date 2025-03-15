@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdm6u56unmee"]
+
+[ext_resource type="PackedScene" uid="uid://bd77t07q21kor" path="res://src/tscn/creation/modify_popup.tscn" id="2_gc25w"]
+
+[node name="BaseInvButton" type="HBoxContainer"]
+offset_right = 439.0
+offset_bottom = 40.0
+mouse_filter = 0
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+
+[node name="Label" type="Label" parent="PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="ModifyPopup" parent="." instance=ExtResource("2_gc25w")]

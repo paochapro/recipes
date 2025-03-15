@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://kgdhkwl8xeka"]
+
+[ext_resource type="Texture2D" uid="uid://bdft5m5yqr5vl" path="res://content/close.svg" id="1_e6sv8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ocdfx"]
+atlas = ExtResource("1_e6sv8")
+region = Rect2(4, 4, 16, 16)
+
+[node name="CloseButton" type="Button"]
+modulate = Color(1, 0.435294, 0.368627, 1)
+size_flags_horizontal = 10
+size_flags_vertical = 4
+icon = SubResource("AtlasTexture_ocdfx")

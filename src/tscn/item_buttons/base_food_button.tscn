@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwe1lkqbatty0"]
+
+[ext_resource type="Texture2D" uid="uid://dakglq7iymulu" path="res://content/missing.png" id="2_ilga0"]
+[ext_resource type="PackedScene" uid="uid://bd77t07q21kor" path="res://src/tscn/creation/modify_popup.tscn" id="4_q6yxj"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_013ct"]
+font_size = 18
+
+[node name="BaseFoodButton" type="PanelContainer"]
+custom_minimum_size = Vector2(76, 76)
+offset_right = 206.0
+offset_bottom = 76.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+texture = ExtResource("2_ilga0")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Title"
+label_settings = SubResource("LabelSettings_013ct")
+vertical_alignment = 1
+
+[node name="ModifyPopup" parent="." instance=ExtResource("4_q6yxj")]

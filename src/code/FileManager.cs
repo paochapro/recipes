@@ -32,7 +32,7 @@ partial class FileManager : Node
         FileDialogInitialize(openFileDialogScene, LoadFile);
     }
 
-    void SaveFile(string path) 
+    public void SaveFile(string path) 
     {
         var program = GetNode<Program>("/root/Program");
 
@@ -62,7 +62,7 @@ partial class FileManager : Node
         }
     }
 
-    void LoadFile(string path) 
+    public void LoadFile(string path) 
     {
         var program = GetNode<Program>("/root/Program");
         FileTable? table = Load(path);

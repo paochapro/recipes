@@ -1,51 +1,51 @@
 partial class AddRecipeFoodInspector : FoodInspector, AddItemsInspector<FoodItem>
 {
-    FormItemSetComponent? currentComponent;
+	FormItemSetComponent? currentComponent;
 
-    protected override IEnumerable<FoodItem> AvaliableItems => 
+	protected override IEnumerable<FoodItem> AvaliableItems => 
 		GetNode<Program>("/root/Program").ItemsBank.Food;
 
-    protected override ButtonGenerator<FoodItem> ButtonGenerator {
+	protected override ButtonGenerator<FoodItem> ButtonGenerator {
 		get {
-            if(currentComponent != null) {
-                var onPressed = (FoodItem item) => currentComponent.AddFood(new FoodWithCount(item,1));
-                var disabledCondition = (FoodItem item) => {
-                    //GD.Print("Disabled cond: " + currentComponent.GetValue.FoodItems.Contains(item));
-                    return currentComponent.GetValue.FoodItems.Contains(item);
-                };
-			    return new AddItemButtonGenerator<FoodItem>(buttonScene, onPressed, disabledCondition);
-            }
+			if(currentComponent != null) {
+				var onPressed = (FoodItem item) => currentComponent.AddFood(new FoodWithCount(item,1));
+				var disabledCondition = (FoodItem item) => {
+					//GD.Print("Disabled cond: " + currentComponent.GetValue.FoodItems.Contains(item));
+					return currentComponent.GetValue.FoodItems.Contains(item);
+				};
+				return new AddItemButtonGenerator<FoodItem>(buttonScene, onPressed, disabledCondition);
+			}
 
-            GD.PrintErr("FormItemSetComponent wasnt set in AddRecipeItemInspector");
-            return new AddItemButtonGenerator<FoodItem>(buttonScene, (i) => {}, (i) => false);
+			GD.PrintErr("FormItemSetComponent wasnt set in AddRecipeItemInspector");
+			return new AddItemButtonGenerator<FoodItem>(buttonScene, (i) => {}, (i) => false);
 		}
 	}
 
-    public void _ConnectEvents(AddItemsInspectorContent<FoodItem> content)
-    {
-        var events = GetNode<GlobalEvents>("/root/GlobalEvents");
-        var newItemSet = (ItemSet set) => 
-        {
-            foreach(var item in set.FoodItems)
-                content.SetLocked(item, true);
-        };
+	public void _ConnectEvents(AddItemsInspectorContent<FoodItem> content)
+	{
+		var events = GetNode<GlobalEvents>("/root/GlobalEvents");
+		var newItemSet = (ItemSet set) => 
+		{
+			foreach(var item in set.FoodItems)
+				content.SetLocked(item, true);
+		};
 
-        events.OpenRecipeFoodMenu += (FormItemSetComponent newComponent) => 
-        {
-            if(currentComponent != null && currentComponent != newComponent) 
-            {
-                currentComponent.AddedFood -= (i) => content.SetLocked(i.Item, true);
-                currentComponent.RemovedFood -= (i) => content.SetLocked(i.Item, false);
-                currentComponent.NewItemSet -= newItemSet;
-            }
+		events.OpenRecipeFoodMenu += (FormItemSetComponent newComponent) => 
+		{
+			if(currentComponent != null && currentComponent != newComponent) 
+			{
+				currentComponent.AddedFood -= (i) => content.SetLocked(i.Item, true);
+				currentComponent.RemovedFood -= (i) => content.SetLocked(i.Item, false);
+				currentComponent.NewItemSet -= newItemSet;
+			}
 
-            this.currentComponent = newComponent;
+			this.currentComponent = newComponent;
 
-            currentComponent.NewItemSet += newItemSet;
-            currentComponent.AddedFood += (i) => content.SetLocked(i.Item, true);
-            currentComponent.RemovedFood += (i) => content.SetLocked(i.Item, false);
+			currentComponent.NewItemSet += newItemSet;
+			currentComponent.AddedFood += (i) => content.SetLocked(i.Item, true);
+			currentComponent.RemovedFood += (i) => content.SetLocked(i.Item, false);
 
-            UpdateContent();
-        };
-    }
+			UpdateContent();
+		};
+	}
 }

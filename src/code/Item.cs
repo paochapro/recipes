@@ -103,6 +103,16 @@ class ItemBank : ReadonlyItemBank  {
         : this(new(), new()) 
     {
     }
+
+    public override string ToString() {
+        var foodList = string.Join(", ", FoodList.Select(x => x.Name));
+        var invList = string.Join(", ", InventoryList.Select(x => x.Name));
+
+        return
+@$"ItemBank
+    FoodList: { foodList }
+    InvList: {invList}";
+    }
 }
 
 class ItemNameEqualityComparer<TItem> : IEqualityComparer<TItem>

@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm4yde73bxvs7"]
+[gd_scene load_steps=4 format=3 uid="uid://bm4yde73bxvs7"]
 
-[ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="1_b8h3h"]
+[ext_resource type="PackedScene" uid="uid://cdm6u56unmee" path="res://src/tscn/item_buttons/base_inv_button.tscn" id="1_uxejp"]
 [ext_resource type="Script" uid="uid://dbaad0r0aq1vn" path="res://src/code/gui/item_buttons/AddInvButton.cs" id="2_nfbpf"]
+[ext_resource type="PackedScene" uid="uid://ih3dnm8jbqyn" path="res://src/tscn/shared/add_button.tscn" id="3_1usom"]
 
-[node name="AddLocalInvButton" node_paths=PackedStringArray("button") instance=ExtResource("1_b8h3h")]
+[node name="AddInvButton" node_paths=PackedStringArray("button") instance=ExtResource("1_uxejp")]
 script = ExtResource("2_nfbpf")
-button = NodePath("Button")
+button = NodePath("AddButton")
 
-[node name="Button" parent="." index="1"]
-theme_override_colors/font_color = Color(0.47451, 0.721569, 0.168627, 1)
-theme_override_font_sizes/font_size = 24
-text = "+"
+[node name="AddButton" parent="." index="1" instance=ExtResource("3_1usom")]
+layout_mode = 2
+size_flags_horizontal = 4
