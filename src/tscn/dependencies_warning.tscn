@@ -1,30 +1,21 @@
-[gd_scene load_steps=6 format=3 uid="uid://bo1qhe7f6lk0g"]
+[gd_scene load_steps=4 format=3 uid="uid://bo1qhe7f6lk0g"]
 
 [ext_resource type="Script" uid="uid://cuba5n87tojd2" path="res://src/code/gui/DependenciesWarning.cs" id="1_s7ewk"]
-[ext_resource type="PackedScene" uid="uid://ca17dykpgxxd7" path="res://src/tscn/item_buttons/recipe_food_button.tscn" id="2_winh4"]
-[ext_resource type="PackedScene" uid="uid://ug5bvmn7gfv4" path="res://src/tscn/item_buttons/recipe_inv_button.tscn" id="3_skvc0"]
 [ext_resource type="Script" uid="uid://cflgtfqdfqdq5" path="res://src/code/gui/Fold.cs" id="4_c11tl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6nafi"]
 
-[node name="DependenciesWarning" type="ConfirmationDialog" node_paths=PackedStringArray("localItems", "recipes", "buttonRoot", "recipeLabels", "recipesFold")]
+[node name="DependenciesWarning" type="ConfirmationDialog"]
 title = "Внимание"
-size = Vector2i(483, 293)
+size = Vector2i(483, 1853)
 visible = true
 script = ExtResource("1_s7ewk")
-localItems = NodePath("VBoxContainer/Dependencies/LocalItems")
-recipes = NodePath("VBoxContainer/Dependencies/Recipes")
-buttonRoot = NodePath("VBoxContainer/Dependencies/LocalItems/ButtonRoot")
-recipeLabels = NodePath("VBoxContainer/Dependencies/Recipes/PanelContainer/Fold/_FoldMainContainer/ScrollContainer/MarginContainer/Labels")
-foodButton = ExtResource("2_winh4")
-invButton = ExtResource("3_skvc0")
-recipesFold = NodePath("VBoxContainer/Dependencies/Recipes/PanelContainer/Fold")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 8.0
 offset_top = 8.0
 offset_right = 475.0
-offset_bottom = 244.0
+offset_bottom = 1804.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -64,7 +55,7 @@ size_flags_vertical = 2
 layout_mode = 2
 size_flags_vertical = 0
 script = ExtResource("4_c11tl")
-Title = "Рецепты:"
+metadata/Title = "Рецепты:"
 
 [node name="_FoldMainContainer" type="VBoxContainer" parent="VBoxContainer/Dependencies/Recipes/PanelContainer/Fold"]
 custom_minimum_size = Vector2(0, 150)

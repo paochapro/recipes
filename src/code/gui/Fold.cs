@@ -1,111 +1,114 @@
 public partial class Fold : VBoxContainer
 {
-    Texture2D arrowIconCollapsed = ThemeDB.GetDefaultTheme().GetIcon("arrow_collapsed", "Tree");
-    Texture2D arrowIconExpanded = ThemeDB.GetDefaultTheme().GetIcon("arrow", "Tree");
+	Texture2D arrowIconCollapsed = ThemeDB.GetDefaultTheme().GetIcon("arrow_collapsed", "Tree");
+	Texture2D arrowIconExpanded = ThemeDB.GetDefaultTheme().GetIcon("arrow", "Tree");
 
-    VBoxContainer mainContainer;
-    TextureRect arrowIcon;
-    Label titleLabel;
+	VBoxContainer mainContainer;
+	TextureRect arrowIcon;
+	Label titleLabel;
 
-    const string tabName = "_FoldTab";
-    const string mainContainerName = "_FoldMainContainer";
-    
-    [Export] public byte TabNormalAlpha { get; set; } = 0;
-    [Export] public byte TabHoverAlpha { get; set; } = 15;
+	const string tabName = "_FoldTab";
+	const string mainContainerName = "_FoldMainContainer";
+	
+	public byte TabNormalAlpha { get; set; } = 0;
+	public byte TabHoverAlpha { get; set; } = 15;
 
-    public VBoxContainer MainContainer => mainContainer;
+	public VBoxContainer MainContainer => mainContainer;
 
-    public Label GetLabel() => titleLabel;
+	public Label GetLabel() => titleLabel;
 
-    [Export]
-    public string Title {
-        get => titleLabel.Text;
-        set {
-            titleLabel.Text = value;
-        }
-    }
+	
+	public string Title {
+		get => titleLabel.Text;
+		set {
+			titleLabel.Text = value;
+		}
+	}
 
-    [Export]
-    public bool Expanded {
-        get => mainContainer.Visible;
-        set {
-            if(value == true) {
-                arrowIcon.Texture = arrowIconExpanded;
-                mainContainer.Show();
-            }
-            else {
-                arrowIcon.Texture = arrowIconCollapsed;
-                mainContainer.Hide();
-            }
+	
+	public bool Expanded {
+		get => mainContainer.Visible;
+		set {
+			if(value == true) {
+				arrowIcon.Texture = arrowIconExpanded;
+				mainContainer.Show();
+			}
+			else {
+				arrowIcon.Texture = arrowIconCollapsed;
+				mainContainer.Hide();
+			}
 
-            FoldExpanded?.Invoke();
-        }
-    }
+			FoldExpanded?.Invoke();
+		}
+	}
 
-    public event Action? FoldExpanded;
+	public event Action? FoldExpanded;
 
-    public Fold()
-    {
-        titleLabel = new Label();
-        arrowIcon = new TextureRect() { ExpandMode = TextureRect.ExpandModeEnum.FitWidth };
-        mainContainer = new VBoxContainer() { Name = mainContainerName };
-        Expanded = false;
-        Title = "";
-    }
+	public Fold()
+	{
+		titleLabel = new Label();
+		arrowIcon = new TextureRect() { ExpandMode = TextureRect.ExpandModeEnum.FitWidth };
+		mainContainer = new VBoxContainer() { Name = mainContainerName };
+		Expanded = false;
+		Title = "";
+	}
 
-    public override void _Ready() 
-    {
-        SetupMainContainer();
+	public override void _Ready() 
+	{
+		if(this.HasMeta("Title"))
+			this.Title = this.GetMeta("Title").AsString();
 
-        PanelContainer tab = new() { Name = tabName };
-        StylizeTab(tab);
-        
-        HBoxContainer tabHContainer = new();
-        tabHContainer.AddChild(arrowIcon);
-        tabHContainer.AddChild(titleLabel);
-        tab.AddChild(tabHContainer);
+		SetupMainContainer();
 
-        AddChild(tab);
-        MoveChild(tab, 0);
-        tab.GuiInput += TabGuiInput;
-    }
+		PanelContainer tab = new() { Name = tabName };
+		StylizeTab(tab);
+		
+		HBoxContainer tabHContainer = new();
+		tabHContainer.AddChild(arrowIcon);
+		tabHContainer.AddChild(titleLabel);
+		tab.AddChild(tabHContainer);
 
-    public void TabGuiInput(InputEvent @event)
-    {
-        if( @event is InputEventMouseButton ev && 
-            ev.ButtonIndex == MouseButton.Left &&
-            ev.Pressed)
-        {
-            Expanded = !Expanded;
-        }
-    }
+		AddChild(tab);
+		MoveChild(tab, 0);
+		tab.GuiInput += TabGuiInput;
+	}
 
-    void SetupMainContainer()
-    {
-        Node? node = GetChildren().FirstOrDefault(n => n.Name == mainContainerName);
+	public void TabGuiInput(InputEvent @event)
+	{
+		if( @event is InputEventMouseButton ev && 
+			ev.ButtonIndex == MouseButton.Left &&
+			ev.Pressed)
+		{
+			Expanded = !Expanded;
+		}
+	}
 
-        if(node != null && node is VBoxContainer container) {
-            container.Visible = Expanded;
-            mainContainer = container;
-            return;
-        }
+	void SetupMainContainer()
+	{
+		Node? node = GetChildren().FirstOrDefault(n => n.Name == mainContainerName);
 
-        foreach(var child in GetChildren())
-        {
-            this.RemoveChild(child);
-            mainContainer.AddChild(child);
-        }
+		if(node != null && node is VBoxContainer container) {
+			container.Visible = Expanded;
+			mainContainer = container;
+			return;
+		}
 
-        AddChild(mainContainer);
-    }
+		foreach(var child in GetChildren())
+		{
+			this.RemoveChild(child);
+			mainContainer.AddChild(child);
+		}
 
-    void StylizeTab(PanelContainer tab) {
-        void SetTabAlpha(byte alpha) {
-            tab.AddThemeStyleboxOverride("panel", new StyleBoxFlat() { BgColor = Color.Color8(255,255,255, alpha)});
-        }
+		AddChild(mainContainer);
+	}
 
-        SetTabAlpha(TabNormalAlpha);
-        tab.MouseEntered += () => SetTabAlpha(TabHoverAlpha);
-        tab.MouseExited += () => SetTabAlpha(TabNormalAlpha);
-    }
+	void StylizeTab(PanelContainer tab) {
+		void SetTabAlpha(byte alpha) {
+			tab.AddThemeStyleboxOverride("panel", new StyleBoxFlat() { BgColor = Color.Color8(255,255,255, alpha)});
+		}
+
+		SetTabAlpha(TabNormalAlpha);
+		tab.MouseEntered += () => SetTabAlpha(TabHoverAlpha);
+		tab.MouseExited += () => SetTabAlpha(TabNormalAlpha);
+	}
 }

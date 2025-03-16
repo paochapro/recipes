@@ -14,14 +14,20 @@ script = ExtResource("1_3n63r")
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+current_tab = 0
 
 [node name="Food" parent="TabContainer" instance=ExtResource("2_5ceom")]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="Inv" parent="TabContainer" instance=ExtResource("3_hm4vf")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
 
-[node name="All" parent="TabContainer" instance=ExtResource("5_vm2qm")]
+[node name="All" parent="TabContainer" node_paths=PackedStringArray("foodLineEdit", "invLineEdit") instance=ExtResource("5_vm2qm")]
 visible = false
 layout_mode = 2
+foodLineEdit = NodePath("ScrollContainer/Content/FoodTab/MarginContainer/FoodInspector/ControlPanel/LineEdit")
+invLineEdit = NodePath("ScrollContainer/Content/InvTab/MarginContainer/InvInspector/ControlPanel/LineEdit")
+metadata/_tab_index = 2

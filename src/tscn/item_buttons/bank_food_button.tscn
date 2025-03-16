@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://dwe1lkqbatty0" path="res://src/tscn/item_buttons/base_food_button.tscn" id="1_vgl8v"]
 [ext_resource type="PackedScene" uid="uid://kgdhkwl8xeka" path="res://src/tscn/shared/close_button.tscn" id="3_toele"]
 
-[node name="BankFoodButton" node_paths=PackedStringArray("button") instance=ExtResource("1_vgl8v")]
+[node name="BankFoodButton" instance=ExtResource("1_vgl8v")]
 script = ExtResource("1_to8lw")
-button = NodePath("HBoxContainer/CloseButton")
+metadata/button = "HBoxContainer/CloseButton"
 
 [node name="CloseButton" parent="HBoxContainer" index="2" instance=ExtResource("3_toele")]
 layout_mode = 2

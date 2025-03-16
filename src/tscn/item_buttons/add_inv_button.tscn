@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://dbaad0r0aq1vn" path="res://src/code/gui/item_buttons/AddInvButton.cs" id="2_nfbpf"]
 [ext_resource type="PackedScene" uid="uid://ih3dnm8jbqyn" path="res://src/tscn/shared/add_button.tscn" id="3_1usom"]
 
-[node name="AddInvButton" node_paths=PackedStringArray("button") instance=ExtResource("1_uxejp")]
+[node name="AddInvButton" instance=ExtResource("1_uxejp")]
 script = ExtResource("2_nfbpf")
-button = NodePath("AddButton")
+metadata/button = "AddButton"
 
 [node name="AddButton" parent="." index="1" instance=ExtResource("3_1usom")]
 layout_mode = 2

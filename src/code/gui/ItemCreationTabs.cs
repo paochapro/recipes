@@ -3,8 +3,8 @@ using System;
 
 public partial class ItemCreationTabs : TabContainer
 {
-    [Export] string foodMenuName = "";
-    [Export] string invMenuName = "";
+    string foodMenuName = "Создать продукт";
+    string invMenuName = "Создать инструмент";
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

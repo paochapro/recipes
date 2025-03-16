@@ -1,8 +1,6 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqv3ngpdutjws"]
+[gd_scene load_steps=10 format=3 uid="uid://bqv3ngpdutjws"]
 
 [ext_resource type="Script" uid="uid://dtsrjuo24jxb4" path="res://src/code/gui/RecipeCard.cs" id="1_ll5dl"]
-[ext_resource type="PackedScene" uid="uid://ca17dykpgxxd7" path="res://src/tscn/item_buttons/recipe_food_button.tscn" id="2_yb4i6"]
-[ext_resource type="PackedScene" uid="uid://ug5bvmn7gfv4" path="res://src/tscn/item_buttons/recipe_inv_button.tscn" id="3_bbeuj"]
 [ext_resource type="Script" uid="uid://cflgtfqdfqdq5" path="res://src/code/gui/Fold.cs" id="4_l1c4k"]
 [ext_resource type="Script" uid="uid://evhc7srfamyv" path="res://src/code/gui/RecipeCardBanner.cs" id="4_tnm2w"]
 [ext_resource type="Script" uid="uid://dpp56wpnayj2r" path="res://src/code/gui/inspector/RecipeFoodInspector.cs" id="5_go6ks"]
@@ -12,20 +10,11 @@
 [ext_resource type="Script" uid="uid://dm71s4veogeli" path="res://src/code/gui/inspector/content/derived/SimpleInvInspectorContent.cs" id="8_omi51"]
 [ext_resource type="PackedScene" uid="uid://bd77t07q21kor" path="res://src/tscn/creation/modify_popup.tscn" id="9_1pgpb"]
 
-[node name="RecipeCard" type="PanelContainer" node_paths=PackedStringArray("title", "time", "dishType", "instructions", "image", "foodInspector", "invInspector")]
+[node name="RecipeCard" type="PanelContainer"]
 offset_right = 342.0
 offset_bottom = 466.0
 size_flags_vertical = 3
 script = ExtResource("1_ll5dl")
-title = NodePath("Content/PanelContainer/Banner/Title")
-time = NodePath("Content/Time/Value")
-dishType = NodePath("Content/DishType/Type")
-instructions = NodePath("Content/InstructionsPanel/Label")
-image = NodePath("Content/PanelContainer/Banner/TextureRect")
-foodInspector = NodePath("Content/FoodFold/_FoldMainContainer/FoodInspector")
-invInspector = NodePath("Content/InvFold/_FoldMainContainer/InvInspector")
-recipeFoodScene = ExtResource("2_yb4i6")
-recipeInvScene = ExtResource("3_bbeuj")
 
 [node name="Content" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -88,7 +77,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("4_l1c4k")
-Title = "Ингредиенты"
 
 [node name="_FoldMainContainer" type="VBoxContainer" parent="Content/FoodFold"]
 layout_mode = 2
@@ -96,7 +84,7 @@ layout_mode = 2
 [node name="FoodInspector" type="VBoxContainer" parent="Content/FoodFold/_FoldMainContainer"]
 layout_mode = 2
 script = ExtResource("5_go6ks")
-buttonScene = ExtResource("2_yb4i6")
+metadata/buttonScene = "res://src/tscn/item_buttons/recipe_food_button.tscn"
 
 [node name="ScrollContainer" type="VBoxContainer" parent="Content/FoodFold/_FoldMainContainer/FoodInspector"]
 layout_mode = 2
@@ -116,7 +104,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("4_l1c4k")
-Title = "Инвентарь"
 
 [node name="_FoldMainContainer" type="VBoxContainer" parent="Content/InvFold"]
 layout_mode = 2
@@ -124,7 +111,7 @@ layout_mode = 2
 [node name="InvInspector" type="VBoxContainer" parent="Content/InvFold/_FoldMainContainer"]
 layout_mode = 2
 script = ExtResource("7_cviot")
-buttonScene = ExtResource("3_bbeuj")
+metadata/buttonScene = "res://src/tscn/item_buttons/recipe_inv_button.tscn"
 
 [node name="ScrollContainer" type="VBoxContainer" parent="Content/InvFold/_FoldMainContainer/InvInspector"]
 layout_mode = 2

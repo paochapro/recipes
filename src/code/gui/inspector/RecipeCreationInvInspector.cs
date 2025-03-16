@@ -1,7 +1,7 @@
 partial class RecipeCreationInvInspector : InvInspector
 {
     #nullable disable
-    [Export] FormItemSetComponent formComponent;
+    FormItemSetComponent formComponent;
     #nullable restore
 
     protected override IEnumerable<InventoryItem> AvaliableItems => formComponent.GetValue.Inventory;
@@ -15,6 +15,7 @@ partial class RecipeCreationInvInspector : InvInspector
     }
 
     protected override void _ChildReady() {
+        formComponent = GetNode<FormItemSetComponent>("../../../../../../..");
         formComponent.NewItemSet += (set) => UpdateContent();
         formComponent.AddedInv += (i) => UpdateItem(i);
         formComponent.RemovedInv += (i) => RemoveItem(i);

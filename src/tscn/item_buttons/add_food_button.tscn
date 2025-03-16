@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://ouu0vo0mu62u" path="res://src/code/gui/item_buttons/AddFoodButton.cs" id="2_fijg4"]
 [ext_resource type="PackedScene" uid="uid://ih3dnm8jbqyn" path="res://src/tscn/shared/add_button.tscn" id="3_ssg28"]
 
-[node name="AddLocalFoodButton" node_paths=PackedStringArray("button") instance=ExtResource("1_hrlqd")]
+[node name="AddLocalFoodButton" instance=ExtResource("1_hrlqd")]
 script = ExtResource("2_fijg4")
-button = NodePath("HBoxContainer/AddButton")
+metadata/button = "HBoxContainer/AddButton"
 
 [node name="AddButton" parent="HBoxContainer" index="2" instance=ExtResource("3_ssg28")]
 layout_mode = 2

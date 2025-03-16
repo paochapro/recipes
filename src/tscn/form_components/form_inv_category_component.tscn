@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://bngmye2pf1rhk"]
+[gd_scene load_steps=3 format=3 uid="uid://bngmye2pf1rhk"]
 
 [ext_resource type="PackedScene" uid="uid://ci60dwcg5eiyw" path="res://src/tscn/form_components/form_category_component.tscn" id="1_edhc1"]
 [ext_resource type="Script" uid="uid://dm8xu136jg0t0" path="res://src/code/gui/InvCategoryList.cs" id="2_iml3f"]
-[ext_resource type="PackedScene" uid="uid://b344tmvmi3myn" path="res://src/tscn/category_button.tscn" id="3_12n03"]
 
 [node name="FormCategoryComponent" instance=ExtResource("1_edhc1")]
 
 [node name="CatergoryList" parent="." index="1"]
 script = ExtResource("2_iml3f")
-categoryButtonScene = ExtResource("3_12n03")
 
 [editable path="Category"]

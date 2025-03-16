@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://cgxhckj6kagcp" path="res://src/code/gui/item_buttons/BankInvButton.cs" id="1_iq14x"]
 [ext_resource type="PackedScene" uid="uid://kgdhkwl8xeka" path="res://src/tscn/shared/close_button.tscn" id="3_3m8vr"]
 
-[node name="BankInvButton" node_paths=PackedStringArray("button") instance=ExtResource("1_27uch")]
+[node name="BankInvButton" instance=ExtResource("1_27uch")]
 script = ExtResource("1_iq14x")
-button = NodePath("CloseButton")
+metadata/button = "CloseButton"
 
 [node name="CloseButton" parent="." index="1" instance=ExtResource("3_3m8vr")]
 layout_mode = 2

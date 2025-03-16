@@ -49,3 +49,9 @@ Ordering options
 Settings
 Autoload
 Comparison bar •••
+
+Fixing "failed to unload assemblies" problem
+- Callables
+- MethodName
+- Export
+- Use built-in json library instead of Newtonsoft.Json

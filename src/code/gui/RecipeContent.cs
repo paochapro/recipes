@@ -1,11 +1,16 @@
 partial class RecipeContent : VBoxContainer
 {
-    [Export] PackedScene? recipeCardScene;
+    PackedScene? recipeCardScene;
 
     const byte foldTabNormalAlpha = 10;
     const byte foldTabHoverAlpha = 25;
 
-	public void UpdateContent(IEnumerable<Recipe> recipes, ReadonlyItemSet localItems)
+    public override void _Ready()
+    {
+        recipeCardScene =  GD.Load<PackedScene>("res://src/tscn/recipe_card.tscn");
+    }
+
+    public void UpdateContent(IEnumerable<Recipe> recipes, ReadonlyItemSet localItems)
     {
         this.RemoveChildren();
 

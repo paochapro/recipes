@@ -1,16 +1,24 @@
 partial class DependenciesWarning : ConfirmationDialog
 {
     #nullable disable
-    [Export] Container localItems;
-    [Export] Container recipes;
-    [Export] Container buttonRoot;
-    [Export] Container recipeLabels;
-    [Export] PackedScene foodButton;
-    [Export] PackedScene invButton;
-    [Export] Fold recipesFold;
+    Container localItems;
+    Container recipes;
+    Container buttonRoot;
+    Container recipeLabels;
+    PackedScene foodButton;
+    PackedScene invButton;
+    Fold recipesFold;
     #nullable restore
 
     public override void _Ready() {
+        localItems = GetNode<Container>("VBoxContainer/Dependencies/LocalItems");
+        recipes = GetNode<Container>("VBoxContainer/Dependencies/Recipes");
+        buttonRoot = GetNode<Container>("VBoxContainer/Dependencies/LocalItems/ButtonRoot");
+        recipeLabels = GetNode<Container>("VBoxContainer/Dependencies/Recipes/PanelContainer/Fold/_FoldMainContainer/ScrollContainer/MarginContainer/Labels");
+        foodButton = GD.Load<PackedScene>("res://src/tscn/item_buttons/recipe_food_button.tscn");
+        invButton = GD.Load<PackedScene>("res://src/tscn/item_buttons/recipe_inv_button.tscn");
+        recipesFold = GetNode<Fold>("VBoxContainer/Dependencies/Recipes/PanelContainer/Fold");
+
         this.VisibilityChanged += () => {
             if(Visible == false)
                 this.QueueFree();

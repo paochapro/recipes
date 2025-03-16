@@ -24,7 +24,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "<"
 script = ExtResource("1_m733f")
-sectionA_Menu = 1
+metadata/sectionA_Menu = 1
 
 [node name="Inspector" type="VBoxContainer" parent="Components"]
 layout_mode = 2

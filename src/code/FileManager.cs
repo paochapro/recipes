@@ -4,12 +4,14 @@ using Newtonsoft.Json;
 partial class FileManager : Node
 {
     #nullable disable
-    [Export] PackedScene openFileDialogScene;
-    [Export] PackedScene saveFileDialogScene;
+    PackedScene openFileDialogScene;
+    PackedScene saveFileDialogScene;
     AcceptDialog errorDialog;
     #nullable restore
 
     public override void _Ready(){
+        openFileDialogScene = GD.Load<PackedScene>("res://src/tscn/open_table_file_dialog.tscn");
+        saveFileDialogScene = GD.Load<PackedScene>("res://src/tscn/save_table_file_dialog.tscn");
         errorDialog = GetNode<AcceptDialog>("ErrorDialog");
     }
 

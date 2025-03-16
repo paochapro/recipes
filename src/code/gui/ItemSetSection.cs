@@ -3,9 +3,9 @@ using System;
 
 public partial class ItemSetSection : VBoxContainer
 {
-    [Export] string foodTabName = "";
-    [Export] string invTabName = "";
-    [Export] string allTabName = "";
+    string foodTabName = "Продукты";
+    string invTabName = "Инвентарь";
+    string allTabName = "Банк";
 
 	public override void _Ready()
 	{

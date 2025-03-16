@@ -3,10 +3,12 @@ abstract partial class CategoryList : PanelContainer
 	protected abstract IEnumerable<string> AvaliableCategories { get; }
 	public event Action<string>? CategorySelected;
 
-	[Export] PackedScene? categoryButtonScene; 
+	PackedScene categoryButtonScene;
 
 	public override void _Ready()
 	{
+		categoryButtonScene = GD.Load<PackedScene>("res://src/tscn/category_button.tscn");
+
 		var events = GetNode<GlobalEvents>("/root/GlobalEvents");
 		events.NewBankFood += (item) => UpdateContent();
 		events.NewBankInv += (item) => UpdateContent();

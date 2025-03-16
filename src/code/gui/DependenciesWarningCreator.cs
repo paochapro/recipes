@@ -1,10 +1,11 @@
 partial class DependenciesWarningCreator : Node 
 {
     #nullable disable
-    [Export] PackedScene scene;
+    PackedScene scene;
     #nullable restore
 
     public override void _Ready() {
+        scene = GD.Load<PackedScene>("res://src/tscn/dependencies_warning.tscn");
         if(scene == null)
             throw new Exception("No scene for warning window");
 

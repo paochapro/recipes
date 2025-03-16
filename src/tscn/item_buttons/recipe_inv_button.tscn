@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cwwlhfnyfausi" path="res://src/code/gui/item_buttons/RecipeInvButton.cs" id="1_734pu"]
 
-[node name="RecipeInvButton" type="HBoxContainer" node_paths=PackedStringArray("button")]
+[node name="RecipeInvButton" type="HBoxContainer"]
 custom_minimum_size = Vector2(0, 40)
 offset_right = 301.0
 offset_bottom = 40.0
 script = ExtResource("1_734pu")
-button = NodePath("Button")
+metadata/button = "Button"
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 2

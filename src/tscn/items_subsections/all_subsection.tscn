@@ -1,26 +1,24 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3x6gvht1pcxu"]
+[gd_scene load_steps=8 format=3 uid="uid://b3x6gvht1pcxu"]
 
 [ext_resource type="Script" uid="uid://dyc1othva0lj2" path="res://src/code/gui/items_subsections/AllSubsection.cs" id="1_mbbrs"]
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsections/items_subsection.tscn" id="1_vnm3k"]
 [ext_resource type="Script" uid="uid://cflgtfqdfqdq5" path="res://src/code/gui/Fold.cs" id="2_im3na"]
 [ext_resource type="Script" uid="uid://desivbsurxx8y" path="res://src/code/gui/inspector/content/FoodInspectorContent.cs" id="4_ucyhp"]
 [ext_resource type="Script" uid="uid://cmdinvhivxdcq" path="res://src/code/gui/inspector/BankFoodInspector.cs" id="4_xd7dk"]
-[ext_resource type="PackedScene" uid="uid://dwqasoufekbqe" path="res://src/tscn/item_buttons/bank_food_button.tscn" id="5_3mw3d"]
 [ext_resource type="Script" uid="uid://m6ulmky2dnnj" path="res://src/code/gui/inspector/content/InvInspectorContent.cs" id="5_t7w8m"]
-[ext_resource type="PackedScene" uid="uid://b5s1ob37srd6l" path="res://src/tscn/item_buttons/bank_inv_button.tscn" id="7_qaljd"]
 [ext_resource type="Script" uid="uid://byeu2c7um760a" path="res://src/code/gui/inspector/BankInvInspector.cs" id="7_sy3dc"]
 
-[node name="AllSubsection" node_paths=PackedStringArray("foodLineEdit", "invLineEdit") instance=ExtResource("1_vnm3k")]
+[node name="AllSubsection" instance=ExtResource("1_vnm3k")]
 offset_right = 288.0
 offset_bottom = 369.0
 script = ExtResource("1_mbbrs")
-foodLineEdit = NodePath("ScrollContainer/Content/FoodTab/MarginContainer/FoodInspector/ControlPanel/LineEdit")
-invLineEdit = NodePath("ScrollContainer/Content/InvTab/MarginContainer/InvInspector/ControlPanel/LineEdit")
+metadata/foodLineEdit = "1"
+metadata/invLineEdit = "1"
 
 [node name="FoodTab" type="VBoxContainer" parent="ScrollContainer/Content" index="0"]
 layout_mode = 2
 script = ExtResource("2_im3na")
-Title = "Продукты"
+metadata/Title = "Продукты"
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Content/FoodTab" index="0"]
 layout_mode = 2
@@ -29,7 +27,7 @@ theme_override_constants/margin_left = 15
 [node name="FoodInspector" type="VBoxContainer" parent="ScrollContainer/Content/FoodTab/MarginContainer" index="0"]
 layout_mode = 2
 script = ExtResource("4_xd7dk")
-buttonScene = ExtResource("5_3mw3d")
+metadata/buttonScene = "res://src/tscn/item_buttons/bank_food_button.tscn"
 
 [node name="ScrollContainer" type="VBoxContainer" parent="ScrollContainer/Content/FoodTab/MarginContainer/FoodInspector" index="0"]
 layout_mode = 2
@@ -48,7 +46,7 @@ layout_mode = 2
 [node name="InvTab" type="VBoxContainer" parent="ScrollContainer/Content" index="1"]
 layout_mode = 2
 script = ExtResource("2_im3na")
-Title = "Инвентарь"
+metadata/Title = "Инвентарь"
 
 [node name="MarginContainer" type="MarginContainer" parent="ScrollContainer/Content/InvTab" index="0"]
 layout_mode = 2
@@ -57,7 +55,7 @@ theme_override_constants/margin_left = 15
 [node name="InvInspector" type="VBoxContainer" parent="ScrollContainer/Content/InvTab/MarginContainer" index="0"]
 layout_mode = 2
 script = ExtResource("7_sy3dc")
-buttonScene = ExtResource("7_qaljd")
+metadata/buttonScene = "res://src/tscn/item_buttons/bank_inv_button.tscn"
 
 [node name="ScrollContainer" type="VBoxContainer" parent="ScrollContainer/Content/InvTab/MarginContainer/InvInspector" index="0"]
 layout_mode = 2
@@ -74,6 +72,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Button" parent="ControlPanel" index="1"]
-dynamicMenu = 4
+metadata/dynamicMenu = 4
 
 [editable path="ControlPanel"]

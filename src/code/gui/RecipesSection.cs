@@ -7,13 +7,17 @@ partial class RecipesSection : PanelContainer
 	#nullable restore
 
     const DynamicWindowMenu SWITCH_MENU = DynamicWindowMenu.RecipeCreation; 
+    const string filtersFoldTitle = "Фильтры";
 
 	public override void _Ready()
 	{
 		content = GetNode<RecipeContent>("Components/ContentScroll/Content");
         titleTb = GetNode<LineEdit>("Components/ControlPanel/LineEdit");
 
-        var filtersFoldContainer = GetNode<Fold>("Components/FiltersRoot/Fold").MainContainer;
+        var filtersFold = GetNode<Fold>("Components/FiltersRoot/Fold");
+        filtersFold.Title = filtersFoldTitle;
+
+        var filtersFoldContainer = filtersFold.MainContainer;
         filters = filtersFoldContainer.GetNode<FiltersForm>("FiltersForm");
 		filters.FormChanged += SearchRecipes;
         titleTb.TextChanged += (msg) => SearchRecipes();

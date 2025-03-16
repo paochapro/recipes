@@ -1,18 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpkpiy6ema02b"]
+[gd_scene load_steps=4 format=3 uid="uid://bpkpiy6ema02b"]
 
 [ext_resource type="PackedScene" uid="uid://dtnclvl5g3oee" path="res://src/tscn/items_subsections/items_subsection.tscn" id="1_678ro"]
 [ext_resource type="Script" uid="uid://cu44ax22hufa3" path="res://src/code/gui/inspector/LocalInvInspector.cs" id="2_ui4fc"]
-[ext_resource type="PackedScene" uid="uid://q2psm374g6p7" path="res://src/tscn/item_buttons/local_inv_button.tscn" id="3_ty02f"]
 [ext_resource type="Script" uid="uid://m6ulmky2dnnj" path="res://src/code/gui/inspector/content/InvInspectorContent.cs" id="3_vqkj7"]
 
 [node name="InvSubsection" instance=ExtResource("1_678ro")]
 script = ExtResource("2_ui4fc")
-buttonScene = ExtResource("3_ty02f")
+metadata/buttonScene = "res://src/tscn/item_buttons/local_inv_button.tscn"
 
 [node name="Content" parent="ScrollContainer" index="0"]
 script = ExtResource("3_vqkj7")
 
 [node name="Button" parent="ControlPanel" index="1"]
-dynamicMenu = 2
+metadata/dynamicMenu = 2
 
 [editable path="ControlPanel"]

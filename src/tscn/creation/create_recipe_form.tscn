@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://bonnmbwong7w1" path="res://src/code/gui/creation/CreateRecipeForm.cs" id="1_0vlud"]
 [ext_resource type="PackedScene" uid="uid://d33vl5tuyns45" path="res://src/tscn/form_components/form_image_component.tscn" id="2_5mf23"]
 [ext_resource type="PackedScene" uid="uid://b44ij26hjakx6" path="res://src/tscn/form_components/form_string_component.tscn" id="3_qnmyl"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_dish_type.tscn" id="4_4yc4g"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_spinbox_component.tscn" id="5_1al1x"]
-[ext_resource type="PackedScene" path="res://src/tscn/form_components/form_textedit_component.tscn" id="6_f35m8"]
+[ext_resource type="PackedScene" uid="uid://cw2glty0g41p4" path="res://src/tscn/form_components/form_dish_type.tscn" id="4_4yc4g"]
+[ext_resource type="PackedScene" uid="uid://b5h36qhikp10o" path="res://src/tscn/form_components/form_spinbox_component.tscn" id="5_1al1x"]
+[ext_resource type="PackedScene" uid="uid://cq3rio22jcxan" path="res://src/tscn/form_components/form_textedit_component.tscn" id="6_f35m8"]
 [ext_resource type="PackedScene" uid="uid://cfjn6odqnd345" path="res://src/tscn/form_components/form_item_set_component.tscn" id="7_h3kel"]
 
 [node name="CreateRecipeForm" type="VBoxContainer"]

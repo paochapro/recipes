@@ -1,22 +1,27 @@
 partial class RecipeCard : PanelContainer
 {
 	#nullable disable
-	[Export] Label title;
-	[Export] Label time;
-	[Export] Label dishType;
-	[Export] Label instructions;
-	[Export] TextureRect image;
-	[Export] RecipeFoodInspector foodInspector;
-	[Export] RecipeInvInspector invInspector;
-    [Export] PackedScene recipeFoodScene;
-    [Export] PackedScene recipeInvScene;
+	Label title;
+	Label time;
+	Label dishType;
+	Label instructions;
+	TextureRect image;
+	RecipeFoodInspector foodInspector;
+	RecipeInvInspector invInspector;
+    PackedScene recipeFoodScene;
+    PackedScene recipeInvScene;
 
     GlobalEvents events;
     Recipe recipe;
     ModifyPopup modifyPopup;
+    Fold foodFold;
+    Fold invFold;
 	#nullable restore
 
     public Recipe Recipe => recipe;
+
+    const string foodFoldTitle = "Ингредиенты";
+    const string invFoldTitle = "Инвентарь";
 
 	public void Initialize(Recipe recipe, LabelSettings titleSettings) {
         this.recipe = recipe;
@@ -40,6 +45,22 @@ partial class RecipeCard : PanelContainer
     }
 
     public override void _Ready() {
+        foodFold = GetNode<Fold>("Content/FoodFold");
+        invFold = GetNode<Fold>("Content/InvFold");
+        foodFold.Title = foodFoldTitle;
+        invFold.Title = invFoldTitle;
+
+        title = GetNode<Label>("Content/PanelContainer/Banner/Title");
+        time = GetNode<Label>("Content/Time/Value");
+        dishType = GetNode<Label>("Content/DishType/Type");
+        instructions = GetNode<Label>("Content/InstructionsPanel/Label");
+        image = GetNode<TextureRect>("Content/PanelContainer/Banner/TextureRect");
+        foodInspector = GetNode<RecipeFoodInspector>("Content/FoodFold/_FoldMainContainer/FoodInspector");
+        invInspector = GetNode<RecipeInvInspector>("Content/InvFold/_FoldMainContainer/InvInspector");
+        recipeFoodScene = GD.Load<PackedScene>("res://src/tscn/item_buttons/recipe_food_button.tscn");
+        recipeInvScene = GD.Load<PackedScene>("res://src/tscn/item_buttons/recipe_inv_button.tscn");
+
+
         modifyPopup = GetNode<ModifyPopup>("ModifyPopup");
     }
 

@@ -2,7 +2,7 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 	where TItem : Item
 {
 	#nullable disable
-    [Export] protected PackedScene buttonScene;
+    protected PackedScene buttonScene;
 	protected InspectorContent<TItem> content;
     protected GlobalEvents events;
     LineEdit lineEdit;
@@ -16,6 +16,10 @@ abstract partial class ItemsInspector<TItem> : VBoxContainer
 
 	public override sealed void _Ready()
 	{
+        if(this.HasMeta("buttonScene")) {
+            buttonScene = GD.Load<PackedScene>(this.GetMeta("buttonScene").AsString());
+        }
+
 		lineEdit = GetNode<LineEdit>("ControlPanel/LineEdit");
 		lineEdit.TextChanged += OnSearchTextChanged;
 

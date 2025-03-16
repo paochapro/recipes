@@ -9,13 +9,16 @@ offset_right = 424.0
 offset_bottom = 622.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+current_tab = 0
 script = ExtResource("1_wu43e")
 foodMenuName = "Создать продукт"
 invMenuName = "Создать инструмент"
 
 [node name="CreateFoodMenu" parent="." instance=ExtResource("1_vsvka")]
 layout_mode = 2
+metadata/_tab_index = 0
 
 [node name="CreateInvMenu" parent="." instance=ExtResource("2_8w4iw")]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 1
